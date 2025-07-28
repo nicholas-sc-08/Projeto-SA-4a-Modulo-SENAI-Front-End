@@ -1,0 +1,273 @@
+.container_chat {
+
+    transition: 0.5s;
+    position: fixed;
+
+    width: 26%;
+
+    right: 4%;
+    bottom: 0%;
+
+    box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+    
+    border-top-left-radius: 1vw;
+    border-top-right-radius: 1vw;
+
+    background-color: var(--cor_quatro);
+    z-index: 4;
+}
+
+.container_header_chat {
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    height: 15%;
+    border-top-left-radius: 1vw;
+    border-top-right-radius: 1vw;
+
+    background-color: var(--cor_um);
+}
+
+.container_header_chat_pesquisa {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 80%;
+}
+
+.container_inpt_pesquisa_chat {
+
+    display: flex;
+    align-items: center;
+    margin-top: 2%;
+    width: 90%;
+    height: 45%;
+
+    border-radius: 100vw;
+    background-color: var(--cor_doze);
+}
+
+.container_inpt_pesquisa_chat img {
+
+    margin-left: 5%;
+    margin-right: 1%;
+    height: 60%;
+}
+
+.container_inpt_pesquisa_chat input {
+
+    height: 100%;
+
+    outline: none;
+
+    border: 0px;
+    margin-left: 2%;
+
+    font-family: var(--tipografia_secundaria);
+    font-size: 0.9rem;
+
+    background-color: transparent;
+}
+
+.botao_de_abrir_e_fechar_chat img {
+
+    width: 60%;
+}
+
+.container_header_chat button {
+
+    cursor: pointer;
+
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-right: 5%;
+
+    border: 0px;
+    color: var(--cor_quatro);
+    background-color: transparent;
+}
+
+.container_nenhuma_conversa_chat {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    height: 95%;
+}
+
+.container_nenhuma_conversa_chat img {
+
+    width: 25%;
+}
+
+.container_nenhuma_conversa_chat span {
+
+    width: 90%;
+    margin-top: 5%;
+
+    text-align: center;
+
+    font-size: 1.15rem;
+    font-family: var(--tipografia_secundaria);
+    font-weight: 550;
+
+    color: var(--cor_seis_v_um);
+}
+
+.container_conversas_chat {
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: scroll;
+    overflow-x: hidden;
+
+    transition: 0.3s;
+
+    width: 100%;
+    height: 85%;
+}
+
+
+.container_conversa_com_pessoa:hover {
+
+    background-color: var(--cor_quatro_v_um);
+}
+
+.fundo_escuro_para_notificacao {
+
+    position: fixed;
+    width: 26%;
+    height: 100%;
+    background-color: #00000041;
+}
+
+.container_conversa_com_pessoa {
+
+    display: flex;
+    align-items: center;
+
+    width: 100%;
+    height: 25%;
+
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.container_conversa_imagem_de_pefil {
+
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    width: 25%;
+    height: 100%;
+}
+
+.container_conversa_imagem_de_pefil img {
+
+    border-radius: 100vw;
+    width: 60%;
+}
+
+.container_info_das_conversas_chat {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    width: 75%;
+}
+
+.container_conversa_nome_e_hora {
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    width: 95%;
+}
+
+.container_conversa_nome_e_hora h3 {
+
+    width: 70%;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    font-weight: 600;
+    font-size: 1.1rem;
+    font-family: var(--tipografia_primaria);
+
+    color: var(--cor_seis);
+}
+
+.hora_da_ultima_mensagem {
+
+    white-space: nowrap;
+    font-size: 1rem;
+    font-family: var(--tipografia_secundaria);
+
+    color: var(--cor_seis_v_um);
+}
+
+
+.container_conversa_contador_e_ultima_mensagem {
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    width: 95%;
+    height: 55%;
+}
+
+.container_conversa_contador_e_ultima_mensagem p {
+
+    width: 75%;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    font-weight: 450;
+    font-family: var(--tipografia_secundaria);
+    color: var(--cor_seis_v_um);
+}
+
+.container_contador_mensagens_nao_lida {
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 12%;
+    height: 100%;
+}
+
+.contador_de_mensagens_nao_lida {
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    height: 100%;
+
+    font-family: var(--tipografia_primaria);
+    font-size: 1rem;
+    font-weight: 500;
+
+    border-radius: 100vw;
+    color: var(--cor_quatro);
+    background-color: var(--cor_um);
+}

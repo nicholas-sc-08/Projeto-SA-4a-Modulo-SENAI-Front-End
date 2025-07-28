@@ -1,0 +1,172 @@
+.corpo-contato{
+    margin-top: 7%;
+}
+
+.cabecalho-tela-contato{
+    display: flex;
+    padding: 30px 0 0 90px;
+    font-family: var(--tipografia_secundaria);
+    font-size: 12px;
+}
+
+.link-tela-contato{
+    text-decoration: none;
+    color: var(--cor_um);
+}
+
+.container-info-contato{
+    width: 22%;
+    height: 465px;
+
+    margin: 70px 0 8px 90px;
+    border-radius: 19px;
+    margin-left: 10%;
+    box-shadow: 1px 1px 6px 6px rgba(63, 64, 50, 0.105) ;
+}
+
+.container-info-contato p{
+    margin-left: 3%;
+    margin-top: 5%;
+    font-size: 18px;
+}
+
+.container-info-contato hr{
+    width: 90%;
+    margin-left: 5%;
+    margin-top: 5%;
+}
+
+.detalhe-entre-em-contato{
+    padding-top: 2%;
+    padding-left: 3%;
+}
+
+.cabecario-info-contato{
+    display: flex;
+    align-items: center;
+    padding: 15px;
+}
+
+.ligue-contato{
+    color: var(--cor_seis);
+    padding-left: 5%;
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+}
+
+.circulo-icon-contato{
+    width: 45px;         
+    height: 45px;        
+    background-color: var(--cor_um); 
+    border-radius: 50%;
+}
+
+.circulo-icon-contato img{
+    width: 65%;
+    margin-left: 18%;
+    margin-top: 20%;
+}
+
+.container-entre-em-contato{
+    position: relative;
+    font-family: "Poppins", sans-serif;
+    font-weight: 100;
+    font-style: normal;
+    border-radius: 19px;
+    box-shadow: 1px 1px 6px 6px rgba(63, 64, 50, 0.105) ;
+    left:  600px;
+    width: 55%;
+    height: 465px;
+    bottom: 470px;
+
+}
+
+.nome-entre-em-contato{
+    display: flex;
+    flex-direction: column;
+}
+
+.info-importante-entre-em-contato{
+    display: flex;
+    justify-content: space-around;
+    padding-top: 3%;
+}
+
+.nome-entre-em-contato label, .email-entre-em-contato label, .telefone-entre-em-contato label{
+    display: block;
+    margin-bottom: 4%;
+    color: var(--cor_dez);
+    font-weight: 800;
+}
+
+.nome-entre-em-contato input, .email-entre-em-contato input, .telefone-entre-em-contato input{
+    height: 2.3vw;
+    width: 210px;
+    padding-left: 4%;
+    outline: none;
+    border: none;
+
+    font-family: var(--tipografia_secundaria);
+    font-size: 1rem;
+
+    background-color: #fcf7e900;
+    border-radius: 0.4rem;
+    border: 2px solid var(--cor_dois);
+}
+
+.menssagem-cliente-entre-em-contato{
+    height: 9.8vw;
+    width: 785px;
+    margin-top: 3%;
+    margin-left: 5%;
+
+
+    font-family: var(--tipografia_secundaria);
+    font-size: 1rem;
+
+    background-color: #fcf7e900;
+    border-radius: 0.4rem;
+    border: 2px solid var(--cor_dois);
+}
+
+.menssagem-cliente-entre-em-contato input{
+    height: 2.3vw;
+    width: 210px;
+    padding-left: 1%;
+    outline: none;
+    border: none;
+
+    font-family: var(--tipografia_secundaria);
+    font-size: 1rem;
+
+    background-color: #fcf7e900;
+}
+
+.but-entre-em-contato{
+    font-family: var(--tipografia_secundaria);
+    font-size: 1rem;
+    background-color: var(--cor_um);
+    color: var(--cor_quatro);
+    border: none;
+    border-radius: 19px;
+    width: 20%;
+    height: 50px;
+    margin-top: 2%;
+    margin-left: 74%;
+}
+
+.detalhe-entre-em-contato{
+    display: flex;
+}
+
+.detalhe-entre-em-contato h3{
+    color: var(--cor_seis);
+    font-weight: 300;
+}
+.detalhe-entre-em-contato h4{
+    color: var(--cor_um);
+    font-weight: 800;
+    padding-left: 5%;
+    padding-top: 0.9%;
+}

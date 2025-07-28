@@ -1,0 +1,244 @@
+.sideBar-edicao-perfil-cliente{
+    display: flex;
+    margin-left: 10%;
+    margin-top: 2%;
+}
+
+.sideBar-edicao-perfil-cliente h4{
+    color: var(--cor_um_v_um);
+    font-weight: 200;
+}
+
+.sideBar-edicao-perfil-cliente img{
+    position: absolute;
+    left: 87%;
+    width: 36px;
+    color: var(--cor_um_v_um);
+}
+
+.foto-edicao-perfil-cliente{
+    position: relative;
+    width: 27%;
+    left: 7%;
+    top: 26%;
+
+}
+
+.foto-base-perfil-cliente{
+    position: relative;
+    width: 70%;
+    border-radius: 19px;
+    left: 9%;
+    bottom: 64px;
+}
+
+.busca-img-galeria{
+    opacity: 0;
+}
+.foto-edicao-perfil-cliente .busca-img-galeria:hover{
+    opacity: 1;
+}
+
+.busca-img-galeria{
+    position: absolute;
+    width: 242px;
+    height: 242px;
+    bottom: 27%;
+    left: 44%;
+    transform: translateX(-50%); /* Centraliza o balão em relação à imagem */
+    background-color: rgba(0, 0, 0, 0.466);
+    color: white;
+    padding: 10px;
+    border-radius: 19px;
+    font-size: 13px;
+    opacity: 0; /* Inicialmente invisível */
+    transition: opacity 0.3s ease-in-out; /* Transição suave de opacidade */
+}
+
+.aviso-mudar-img{
+    display: block;
+    margin-left: 26%;
+    margin-top: 40%;
+}
+
+.aviso-mudar-img img{
+    width: 70%;
+}
+
+.container-edicao-perfil-cliente{
+    font-family: "Poppins", sans serif;
+    margin-top: 3%;
+    margin-left: 10%;
+    margin-bottom: 77px;
+    width: 80%;
+    height: 676px;
+    border-radius: 13px;
+    border: 1px solid  #fbf0ce;
+    box-shadow: 1px 1px 6px 6px rgba(63, 64, 50, 0.105) ;
+}
+
+.container-edicao-perfil-cliente label{
+    display: block;
+    margin-bottom: 0.5%;
+    color: var(--cor_dez);
+    font-weight: 800;
+}
+
+.info-edicao-cliente{
+    position: relative;
+    bottom: 37%;
+    left: 22%;
+    width: 70%;
+}
+
+.cabecario-edicao-cliente{
+    margin-left: 24%;
+    margin-top: 4%;
+    font-family: "Poppins", sans serif;
+    font-weight: 495;
+    font-size: 1.8rem;
+    color: var(--cor_um);
+}
+
+.info01{
+    display: flex;
+    margin-left: 22%;
+    margin-top: 5%;
+    justify-content: space-around;
+
+}
+
+.edicao-nome-cliente, .edicao-telefone-cliente, .edicao-rua-cliente{
+    display: flex;
+    flex-direction: column;
+
+}
+
+.edicao-nome-cliente input{
+    height: 2.4vw;
+    width: 310px;
+    padding-left: 4%;
+    outline: none;
+    border: none;
+
+    font-family: var(--tipografia_secundaria);
+    font-size: 1rem;
+
+    background-color: #fcf7e900;
+    border-radius: 0.3rem;
+    border: 1px solid var(--cor_dois);
+
+}
+
+.edicao-telefone-cliente input{  
+    height: 2.9vw;
+    width: 310px;
+    padding-left: 4%;
+    outline: none;
+    border: none;
+
+    font-family: var(--tipografia_secundaria);
+    font-size: 1rem;
+
+    background-color: #fcf7e900;
+    border-radius: 0.3rem;
+    border: 1px solid var(--cor_dois);
+
+}
+
+.info02{
+    display: flex;
+    margin-left: 22%;
+    margin-top: 5%;
+    justify-content: space-around;
+}
+
+.edicao-email-cliente{
+    display: flex;
+    flex-direction: column;
+
+}
+
+.edicao-email-cliente input{
+    height: 2.9vw;
+    width: 310px;
+    padding-left: 4%;
+    outline: none;
+    border: none;
+
+    font-family: var(--tipografia_secundaria);
+    font-size: 1rem;
+
+    color: var(--cor_seis);
+    background-color: #fcf7e900;
+    border-radius: 0.3rem;
+    border: 1px solid var(--cor_dois);
+}
+
+.edicao-rua-cliente button{
+    height: 2.9vw;
+    width: 310px;
+    padding-left: 1%;
+    outline: none;
+    border: none;
+
+    font-family: var(--tipografia_secundaria);
+    font-size: 1rem;
+
+    color: var(--cor_seis);
+    background-color: #fcf7e900;
+    border-radius: 0.3rem;
+    border: 1px solid var(--cor_dois);
+}
+
+.edicao-mudanca-senha{
+    display: flex;
+    flex-direction: column ;
+    margin-left: 24%;
+    margin-top: 5%;
+}
+
+.edicao-mudanca-senha input{
+    display: block;
+    margin-bottom: 2%;
+    height: 2.9vw;
+    width: 655px;
+    padding-left: 2%;
+    outline: none;
+    border: none;
+
+    font-family: var(--tipografia_secundaria);
+    font-size: 1rem;
+
+    background-color: #fcf7e900;
+    border-radius: 0.3rem;
+    border: 1px solid var(--cor_dois);
+}
+
+.edicao-mudanca-senha button{
+    font-family: var(--tipografia_secundaria);
+    border: none;
+    border-radius: 23px;
+    width: 41%;
+    height: 50px;
+    margin-top: 5%;
+    margin-left: 7%;
+
+}
+
+.botoes-edicao-cliente{
+    display: flex;
+    margin-left: 34%;
+    
+}
+
+.but-cancelar-edicao-cliente{
+    font-family: "Poppins", sans serif;
+    background-color: #fbf0ce00;
+    font-size: 15px;
+}
+.but-salvar-edicao-cliente{
+    background-color: var(--cor_um);
+    color: var(--cor_quatro);
+    font-size: 15px;
+}

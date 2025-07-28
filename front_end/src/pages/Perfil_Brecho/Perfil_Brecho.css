@@ -1,0 +1,454 @@
+body {
+    margin: 0;
+}
+
+.toda-tela-content {
+    /* border: 3px solid #18CA00; */
+
+    height: 100vh;
+    width: 100%;
+}
+
+.depois-da-navbar-content{
+    /* border: 3px solid #D08E00; */
+    background-color: var(--cor_quatro);
+
+    height: 89%;
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.perfil-brecho-content {
+    /* border: 3px solid #0C35FF; */
+    border-radius: 25px;
+    border: 0.1vw solid var(--cor_quatro);
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+    background-color: var(--cor_quatro);
+
+    height: 85%;
+    width: 81%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+
+
+/*  --- Dentro da Div do Perfil Brecho ---  */
+
+
+/* Divs e Elementos que estão presentes na parte ESQUERDA dentro da Div Principal de Perfil Brecho*/
+
+.parte-esquerda-content {
+    /* border: 3px solid red;  */
+
+    height: 95%;
+    width: 26%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    padding-top: 1.5%;  
+    gap: 10%;
+}
+
+.logo-brecho-perfil-content {
+    /* border: 3px solid #00E69D;  */
+    border-radius: 20px;
+
+    background-color: var(--cor_dezesseis);
+
+    height: 42%;
+    width: 72%;
+
+    
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo-brecho-perfil-content img {
+    height: 100%;
+    width: 100%;
+    
+    
+    border-radius: 1.7rem;
+}
+
+.infos-horario-endereco-cadastrou-brecho-content {
+    border-top: 3px solid var(--cor_nove_v_tres);
+
+    height: 39%;
+    width: 96%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.endereco-e-horarios-contents {
+    /* border: 3px solid #00A9E6; */
+
+    height: 87%;
+    width: 95%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.endereco-brecho-content {
+    /* border: 3px solid #FFA600; */
+
+    height: 60%;
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding-left: 5%;
+
+}
+
+.titulo-endereco {
+    font-family: "Montserrat", sans serif;
+    font-weight: 720;
+    font-size: 1.1rem;
+    color: var(--cor_um);
+}
+
+.endereco-cadastrado {
+    font-family: "Montserrat", sans serif;
+    font-weight: 595;
+    font-size: 1rem;
+    color: var(--cor_dezoito);
+}
+
+.horario-brecho-content {
+    /* border: 3px solid #FFA600; */
+
+    height: 70%;
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding-left: 5%;
+
+    line-height: 1.5;
+}
+
+.titulo-horario {
+    font-family: "Montserrat", sans serif;
+    font-weight: 720;
+    font-size: 1.1rem;
+    color: var(--cor_um);
+}
+
+.horario-cadastrado {
+    font-family: "Montserrat", sans serif;
+    font-weight: 595;
+    font-size: 1rem;
+    color: var(--cor_dezoito);
+}
+
+.data-cadastrouSe-content {
+    /* border: 3px solid #00A9E6; */
+
+    height: 13%;
+    width: 95%;
+
+    display: flex;
+    align-items: end;
+    padding-left: 5%;
+}
+
+.data-cadastrouSe-content p {
+    font-family: "Montserrat", sans serif;
+    font-weight: 650;
+    font-size: 0.9rem;
+    color: var(--cor_dezoito);
+}
+
+/* Divs e Elementos que estão presentes na parte DIREITA dentro da Div Principal de Perfil Brecho*/
+
+.parte-direita-content {
+    /* border: 3px solid red; */
+
+    height: 95%;
+    width: 69%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.parte-superior-div-direita-content {
+    /* border: 3px solid #026002; */
+
+    height: 44%;
+    width: 98%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nome-brecho-icons-content{
+    /* border: 3px solid #E600B5; */
+
+    height: 35%;
+    width: 100%;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1%;
+}
+
+.nome-brecho-icons-content h1 {
+    font-family: "Montserrat", sans serif;
+    font-weight: 740;
+    font-size: 1.9rem;
+    letter-spacing: 1px;
+    color: var(--cor_dezesete);
+}
+
+.icons-edicao-excluir-content {
+    /* border: 3px solid #DFE600; */
+
+    width: 22%;
+    height: 80%;
+
+    display: flex;
+    align-items: center;
+}
+
+.editar-content {
+    width: 50%;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    cursor: pointer;
+
+    text-decoration: none;
+}
+
+.editar-opcao-palavra {
+    font-size: 1em;
+    font-family: "Montserrat";
+    font-weight: 500;
+    color: var(--cor_um);
+    cursor: pointer;
+}
+
+.excluir-content {
+    width: 50%;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    cursor: pointer;
+
+    text-decoration: none;
+}
+
+.excluir-opcao-palavra {
+    font-size: 1em;
+    font-family: "Montserrat";
+    font-weight: 500;
+    color: var(--cor_onze);
+    cursor: pointer;
+}
+
+.entrar-em-contato-content {
+    /* border: 3px solid #E600B5; */
+
+    height: 34%;
+    width: 100%;
+
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 1%;
+}
+
+.mensagem-content {
+    /* border: 3px solid #DFE600; */
+    
+    width: 36%;
+    height: 90%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.mensagem-content a {
+    width: 3rem;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--cor_um);
+    border-radius: 50%;
+}
+
+.mensagem-content img {
+    width: 2rem;
+    height: 2rem;
+}
+
+.entrar-em-contato-content p {
+    font-family: "Montserrat", sans serif;
+    font-weight: 730;
+    font-size: 1.1rem;
+    color: var(--cor_dezesete);
+    cursor: default;
+}
+
+.parte-inferior-div-direita-content {
+    /* border: 3px solid #026002; */
+
+    height: 48%;
+    width: 98%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.topicos-infos-grandeContent {
+    border-bottom: 3px solid var(--cor_nove_v_tres);
+
+    height: 24%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0.3%;
+}
+
+.topicos-infos-subContent {
+    /* border: 3px solid #DFE600; */
+
+    height: 90%;
+    width: 47%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 2rem;
+}
+
+.topicos-infos-subContent button {
+    width: fit-content;
+    height: 49%;
+    background-color: var(--cor_quatro);
+
+    font-family: var(--tipografia_primaria);
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--cor_um);
+    cursor: pointer;
+    border: none;
+}
+
+    .topicos-infos-subContent button:focus{
+        border-bottom: 0.14rem solid var(--cor_um); 
+    }
+
+
+.infos-exibidas-content {
+    /* border: 3px solid #E600B5; */
+
+    height: 73%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.titulo-topico-exibido{
+    /* border: 3px solid #8a00e6; */
+
+    height: 25%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding-left: 3%;
+}
+
+.titulo-topico-exibido p {
+    font-family: var(--tipografia_primaria);
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--cor_seis);
+}
+
+.infos-cadastradas-sub-div {
+    /* border: 3px solid #8a00e6; */
+
+    height: 75%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding-left: 3%;
+}
+
+.labels-e-dados-cadastrados-content {
+    /* border: 3px solid red; */
+
+    width: 100%;
+    height: fit-content;
+
+    display: flex;
+}
+
+.labels-infos {
+    padding-right: 1%;
+
+    font-family: var(--tipografia_primaria);
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--cor_dezesete);
+}
+
+.dados-cadastradas-exibidos {
+    font-family: var(--tipografia_primaria);
+    font-weight: 550;
+    font-size: 1rem;
+    color: var(--cor_dezoito);
+}
+
+.infos-cadastradas-descricao-sub-div {
+    height: 75%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 2.5%;
+}
+
+/* .descricao-brecho-cadastrado {
+    font-family: var(--tipografia_primaria);
+    font-weight: 500;
+    font-size: 1rem;
+    color: var(--cor_seis);
+    text-align: justify;
+} */
+
+
+

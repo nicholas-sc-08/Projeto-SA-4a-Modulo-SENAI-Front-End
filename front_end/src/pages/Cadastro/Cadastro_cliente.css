@@ -1,0 +1,947 @@
+.container_cadastro_cliente {
+    display: flex;
+    /* border: 1px solid red; */
+}
+
+.container-ir-para-tela-login-alinhamento {
+
+    width: 45%;
+    height: 100vh;
+
+    align-items: center;
+    justify-content: center;
+    display: flex;
+
+    /* border: 1px solid red; */
+}
+
+.container-informacoes-login-cadastro-cliente {
+    width: 80%;
+    height: 90vh;
+    border-radius: 25px;
+    background-color: var(--cor_tres);
+
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    z-index: 100;
+}
+
+.container-informacoes-login-cadastro-cliente h1 {
+    font-family: var(--tipografia_primaria);
+    font-size: 2rem;
+    width: 65%;
+    color: var(--cor_um);
+    letter-spacing: 1px;
+    line-height: 45px;
+    font-weight: bold;
+    text-align: center;
+
+    padding-bottom: 4%;
+}
+
+.container-informacoes-login-cadastro-cliente p {
+    font-family: var(--tipografia_secundaria);
+    color: var(--cor_um);
+    opacity: 75%;
+    width: 50%;
+    text-align: center;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+
+    padding-bottom: 5%;
+}
+
+.container-informacoes-login-cadastro-cliente button {
+    width: 25%;
+    height: 6%;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+
+    border-radius: 10vw;
+    border: none;
+
+    font-family: var(--tipografia_secundaria);
+    font-size: 1rem;
+
+    color: var(--cor_quatro);
+    background-color: var(--cor_dois);
+}
+
+.container-informacoes-login-cadastro-cliente button:hover {
+    transition: 0.3s;
+    background-color: var(--cor_dois_v_um);
+}
+
+.container-alinhamento-inputs-secao-tres{
+    /* border: 1px solid red; */
+    margin-top: -4%;
+}
+
+@media only screen and (min-width: 1201px) {
+
+    .container_cadastro_cliente {
+
+        transition: 0.3s;
+
+        display: flex;
+
+        width: 100%;
+        height: 100vh;
+    }
+
+    .container_ir_para_login_cliente {
+
+        transition: 0.3s;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        justify-content: center;
+
+        width: 75%;
+
+        background-color: var(--cor_quatro);
+
+        /* border: 1px solid blue; */
+    }
+
+    .container_informacoes_para_o_login {
+
+        transition: 0.3s;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        width: 80%;
+        height: 85vh;
+
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+        border: 1% solid var(--cor_tres);
+        border-radius: 3%;
+
+        background-color: var(--cor_tres);
+        /* border: 1px solid red; */
+    }
+
+    .container_informacoes_para_o_login h1 {
+
+        transition: 0.3s;
+
+        width: 65%;
+
+        font-family: var(--tipografia_primaria);
+        font-weight: 700;
+        font-size: 2rem;
+
+        color: var(--cor_um);
+    }
+
+    .container_informacoes_para_o_login p {
+
+        transition: 0.3s;
+        opacity: 75%;
+        text-align: center;
+
+        width: 50%;
+        font-weight: 400;
+        letter-spacing: 0.5px;
+
+        margin-bottom: 5%;
+
+        font-family: var(--tipografia_secundaria);
+
+
+        color: var(--cor_um_v_um);
+    }
+
+    .container_informacoes_para_o_login button {
+
+        width: 25%;
+        height: 6%;
+
+        cursor: pointer;
+
+        transition: 0.3s;
+
+        border-radius: 100vw;
+        border: 0.1vw solid var(--cor_dois);
+
+        font-family: var(--tipografia_secundaria);
+        font-size: 1rem;
+
+        color: var(--cor_quatro);
+        background-color: var(--cor_dois);
+    }
+
+    .container_informacoes_para_o_login button:hover {
+
+        border: 0.1vw solid var(--cor_um_v_dois);
+        background-color: var(--cor_um_v_dois);
+    }
+
+    .container_informacoes_para_o_login img {
+
+        transition: 0.3s;
+
+        width: 5%;
+
+        left: 3%;
+        bottom: 20%;
+        position: absolute;
+    }
+
+    .estrela_um_cadastro {
+
+        transition: 0.3s;
+
+        right: 58.5%;
+        top: 20%;
+        position: absolute;
+    }
+
+    .container_formulario_cliente {
+
+        width: 35%;
+        height: 100%;
+    }
+
+    .container_etapa_cliente_alinhamento {
+
+        display: flex;
+        height: fit-content;
+
+        align-items: center;
+        justify-content: space-between;
+
+        margin-top: 4vh;
+        width: 48vw;
+        /* border: 1px solid red; */
+    }
+
+    .container_etapa_cliente {
+        height: fit-content;
+        width: 13%;
+        justify-content: space-between;
+        align-items: center;
+        display: flex;
+    }
+
+    .container_cadastro_cliente_titulo {
+        width: 85%;
+        /* border: 1px solid red; */
+    }
+
+    .container_cadastro_cliente_titulo h1 {
+        font-family: var(--tipografia_primaria);
+        color: var(--cor_seis);
+        width: fit-content;
+        letter-spacing: 1px;
+
+        margin-top: -1.5vw;
+    }
+
+    .container_cadastro_cliente_titulo p {
+        font-family: var(--tipografia_secundaria);
+        letter-spacing: 0.5px;
+        color: var(--cor_seis);
+        opacity: 85%;
+        font-size: 105%;
+        padding-top: 1%;
+    }
+
+    .container_inputs_secao_um_e_dois {
+
+        margin-top: 3%;
+
+        width: 90%;
+
+        display: flex;
+        flex-direction: column;
+        /* border: 1px solid red; */
+    }
+
+    .container_inputs_secao_um_e_dois label {
+        padding-top: 4.5%;
+        padding-bottom: 1%;
+
+        font-family: var(--tipografia_secundaria);
+        font-size: 1rem;
+        font-weight: bold;
+
+        color: var(--cor_seis_v_um);
+    }
+
+    .container_inputs_secao_um_e_dois span {
+        color: var(--cor_sete);
+    }
+
+    .container_inputs_secao_um_e_dois input {
+        width: 85%;
+        height: 3vw;
+        background-color: transparent;
+        border: 0.1vw solid var(--cor_dois);
+        font-family: var(--tipografia_secundaria);
+        color: var(--cor_seis);
+        padding-left: 1%;
+        border-radius: 0.6vw;
+    }
+
+    input[type="date"]::-webkit-calendar-picker-indicator {
+        padding-right: 3%;
+    }
+
+    .container_inputs_secao_um_e_dois input::placeholder {
+        color: var(--cor_seis);
+        opacity: 75%;
+    }
+
+    .container_inputs_secao_um_e_dois input:focus {
+        outline: none;
+        border: 0.1em solid var(--cor_um);
+    }
+
+    .dv_frm_cadastro_cliente_botoes {
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+    }
+
+    .dv_frm_cadastro_cliente_botoes p {
+
+        width: 70%;
+
+        font-family: var(--tipografia_secundaria);
+        font-size: 1rem;
+        font-weight: 600;
+
+        margin-left: 3%;
+
+        color: var(--cor_sete);
+        /* border: 1px solid red; */
+    }
+
+    .dv_frm_cadastro_cliente_botoes button {
+
+        width: 10vw;
+        height: 3vw;
+
+        cursor: pointer;
+        transition: 0.3s;
+
+        font-family: var(--tipografia_secundaria);
+        font-size: 0.9em;
+        font-weight: 500;
+
+        border-radius: 100vw;
+        border: 0.1vw solid var(--cor_um);
+
+        color: var(--cor_quatro);
+        background-color: var(--cor_um);
+    }
+
+    .dv_frm_cadastro_cliente_botoes button:hover {
+
+        border: 0.1vw solid var(--cor_um_v_dois);
+        background-color: var(--cor_um_v_dois);
+    }
+
+    .secao_inputs_tres_p_um {
+
+        margin-top: 2%;
+
+        width: 59%;
+
+        display: flex;
+        flex-direction: column;
+    }
+
+    .secao_inputs_tres_p_um label {
+
+        margin-top: 5%;
+        margin-bottom: 2%;
+
+        font-family: var(--tipografia_secundaria);
+        font-size: 1rem;
+        font-weight: bold;
+
+        color: var(--cor_seis_v_um);
+    }
+
+    .secao_inputs_tres_p_um span {
+
+        color: var(--cor_sete_v_um);
+    }
+
+    .secao_inputs_tres_p_um input {
+
+        width: 128%;
+        height: 3vw;
+        background-color: transparent;
+        border: 0.1vw solid var(--cor_dois);
+        font-family: var(--tipografia_secundaria);
+        color: var(--cor_seis);
+        padding-left: 1%;
+        border-radius: 0.6vw;
+        /* border: 1px solid red; */
+    }
+
+    .secao_inputs_tres_p_um input::placeholder {
+        color: var(--cor_seis);
+        opacity: 75%;
+        padding-left: 1%;
+    }
+
+    .secao_inputs_tres_p_um input:focus {
+        outline: none;
+        border: 0.1em solid var(--cor_um);
+    }
+
+    .container_cadastro_cliente_secao_inputs_tres_alinhamento {
+
+        display: flex;
+        justify-content: start;
+
+        width: 100%;
+        /* border: 1px solid red; */
+    }
+
+    .container_cadastro_cliente_secao_inputs_tres_coluna_um {
+
+        display: flex;
+        flex-direction: column;
+
+        width: 40%;
+        /* border: 1px solid blue; */
+    }
+
+    .container_cadastro_cliente_secao_inputs_tres_coluna_dois {
+
+        display: flex;
+        flex-direction: column;
+
+        width: 40%;
+        /* border: 1px solid red; */
+    }
+
+    .container_cadastro_cliente_secao_inputs_tres_coluna_um label {
+
+        margin-top: 8%;
+        margin-bottom: 2%;
+
+        font-family: var(--tipografia_secundaria);
+        font-size: 1rem;
+        font-weight: bold;
+
+        color: var(--cor_seis_v_um);
+    }
+
+    .container_cadastro_cliente_secao_inputs_tres_coluna_um span {
+
+        color: var(--cor_sete_v_um);
+    }
+
+    .container_cadastro_cliente_secao_inputs_tres_coluna_um input {
+        width: 92%;
+        height: 3vw;
+        background-color: transparent;
+        border: 0.1vw solid var(--cor_dois);
+        font-family: var(--tipografia_secundaria);
+        color: var(--cor_seis);
+        padding-left: 1%;
+        border-radius: 0.6vw;
+    }
+
+    .container_cadastro_cliente_secao_inputs_tres_coluna_um input:focus {
+        outline: none;
+        border: 0.1em solid var(--cor_um);
+    }
+
+    .container_cadastro_cliente_secao_inputs_tres_coluna_um input::placeholder {
+        color: var(--cor_seis);
+        opacity: 75%;
+        padding-left: 1%;
+    }
+
+    .container_cadastro_cliente_secao_inputs_tres_coluna_dois label {
+
+        margin-top: 8%;
+        margin-bottom: 2%;
+
+        font-family: var(--tipografia_secundaria);
+        font-size: 1rem;
+        font-weight: bold;
+
+        color: var(--cor_seis_v_um);
+    }
+
+    .container_cadastro_cliente_secao_inputs_tres_coluna_dois span {
+
+        color: var(--cor_sete_v_um);
+    }
+
+    .container_cadastro_cliente_secao_inputs_tres_coluna_dois input {
+        width: 92%;
+        height: 3vw;
+        background-color: transparent;
+        border: 0.1vw solid var(--cor_dois);
+        font-family: var(--tipografia_secundaria);
+        color: var(--cor_seis);
+        padding-left: 1%;
+        border-radius: 0.6vw;
+    }
+
+    .container_cadastro_cliente_secao_inputs_tres_coluna_dois input:focus {
+        outline: none;
+        border: 0.1em solid var(--cor_um);
+    }
+
+    .container_cadastro_cliente_secao_inputs_tres_coluna_dois input::placeholder {
+        color: var(--cor_seis);
+        opacity: 75%;
+        padding-left: 1%;
+    }
+
+}
+
+@media (max-width: 768px) {
+
+    .container_cadastro_cliente {
+
+        transition: 0.3s;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        height: 100vh;
+    }
+
+    .container_ir_para_login_cliente {
+
+        transition: 0.3s;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        justify-content: center;
+
+        width: 90%;
+
+        margin-top: 5%;
+
+        background-color: var(--cor_quatro);
+    }
+
+    .container_informacoes_para_o_login {
+
+        transition: 0.3s;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        width: 85%;
+        height: 65vh;
+
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+        border: 1% solid var(--cor_tres);
+        border-radius: 3%;
+
+        background-color: var(--cor_tres);
+    }
+
+    .container_informacoes_para_o_login h1 {
+
+        transition: 0.3s;
+
+        width: 80%;
+
+        font-family: var(--tipografia_primaria);
+        font-weight: 700;
+        font-size: 1.4rem;
+
+        color: var(--cor_um);
+    }
+
+    .container_informacoes_para_o_login p {
+
+        transition: 0.3s;
+
+        width: 60%;
+
+        margin-top: 5%;
+        margin-bottom: 8%;
+
+        font-family: var(--tipografia_secundaria);
+        font-size: 0.8rem;
+
+        color: var(--cor_um_v_um);
+    }
+
+    .container_informacoes_para_o_login button {
+
+        width: 30%;
+        height: 5vh;
+        margin-top: 5%;
+
+        cursor: pointer;
+
+        transition: 0.3s;
+
+        border-radius: 10vw;
+        border: 0.1vw solid var(--cor_um);
+
+        font-family: var(--tipografia_secundaria);
+        font-size: 0.8rem;
+
+        color: var(--cor_quatro);
+        background-color: var(--cor_um);
+    }
+
+    .container_informacoes_para_o_login button:hover {
+
+        border: 0.1vw solid var(--cor_um_v_dois);
+        background-color: var(--cor_um_v_dois);
+    }
+
+    .container_informacoes_para_o_login img {
+
+        transition: 0.3s;
+
+        width: 12%;
+
+        left: 6%;
+        bottom: 35%;
+        position: absolute;
+    }
+
+    .estrela_um_cadastro {
+
+        width: 10%;
+        transition: 0.3s;
+
+        right: 7%;
+        top: 10%;
+        position: absolute;
+    }
+
+    .container_formulario_cliente {
+
+        width: 90%;
+        text-align: center;
+    }
+
+    .container_logo_etapa_cliente {
+
+        width: 90%;
+
+        margin-left: 5%;
+    }
+
+    .container_etapa_cliente_alinhamento {
+
+        margin-top: 1%;
+
+        display: flex;
+        align-items: center;
+        flex-direction: column-reverse;
+    }
+
+    .container_etapa_cliente {
+
+        margin-bottom: 10%;
+
+        width: 35%;
+
+        display: flex;
+        justify-content: space-around;
+    }
+
+    .container_etapa_cliente img {
+
+        width: 20%;
+    }
+
+    .container_cadastro_cliente_titulo {
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        width: 100%;
+    }
+
+    .container_cadastro_cliente_titulo h1 {
+
+        font-family: var(--tipografia_primaria);
+        font-size: 1.4rem;
+
+        color: var(--cor_seis);
+    }
+
+    .container_cadastro_cliente_titulo p {
+
+        width: 55%;
+
+        font-family: var(--tipografia_secundaria);
+        font-size: 0.8rem;
+
+        color: var(--cor_seis_v_um);
+    }
+
+    .container_inputs_secao_um_e_dois {
+
+        margin-top: 7%;
+
+        width: 100%;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .container_inputs_secao_um_e_dois label {
+
+        margin-top: 2%;
+        margin-bottom: 2%;
+
+        font-family: var(--tipografia_secundaria);
+        font-size: 1rem;
+        font-weight: bold;
+
+        color: var(--cor_seis_v_um);
+    }
+
+    .container_inputs_secao_um_e_dois span {
+
+        color: var(--cor_sete_v_um);
+    }
+
+    .container_inputs_secao_um_e_dois input {
+
+        width: 70%;
+        height: 12vw;
+
+        outline: none;
+        border: 0.1vw solid var(--cor_dois);
+        border-radius: 2vw;
+
+        font-family: var(--tipografia_secundaria);
+        font-size: 0.8rem;
+        text-align: center;
+
+        color: var(--cor_seis);
+        background-color: transparent;
+    }
+
+    input[type="date"]::-webkit-calendar-picker-indicator {
+        padding-right: 3%;
+    }
+
+    .container_formulario_cliente {
+
+        display: flex;
+        justify-content: center;
+    }
+
+    .container_formulario_cliente button {
+
+        transition: 0.3s;
+        cursor: pointer;
+
+        margin-top: 7%;
+
+        width: 55%;
+        height: 8vh;
+
+        border: 0.1vw solid var(--cor_um);
+        border-radius: 15vw;
+
+        font-family: var(--tipografia_secundaria);
+        font-size: 0.8rem;
+
+        color: var(--cor_quatro);
+        background-color: var(--cor_um);
+    }
+
+    .container_formulario_cliente button:hover {
+
+        background-color: var(--cor_um_v_dois);
+    }
+
+    .dv_frm_cadastro_cliente_botoes {
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        width: 100%;
+        margin-top: 4%;
+    }
+
+    .dv_frm_cadastro_cliente_botoes p {
+
+        width: 40%;
+
+        font-family: var(--tipografia_secundaria);
+        font-size: 0.8rem;
+        font-weight: bold;
+
+        margin-top: 5%;
+
+        color: var(--cor_sete);
+    }
+
+    .secao_inputs_tres_p_um {
+
+        margin-top: 6%;
+
+        width: 100%;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+    }
+
+    .secao_inputs_tres_p_um label {
+
+        margin-top: 2%;
+        margin-bottom: 2%;
+
+        font-family: var(--tipografia_secundaria);
+        font-size: 1rem;
+        font-weight: bold;
+
+        color: var(--cor_seis_v_um);
+    }
+
+    .secao_inputs_tres_p_um span {
+
+        color: var(--cor_sete_v_um);
+    }
+
+    .secao_inputs_tres_p_um input {
+
+        width: 100%;
+        height: 12vw;
+
+        outline: none;
+        border: 0.1vw solid var(--cor_dois);
+        border-radius: 2vw;
+
+        font-family: var(--tipografia_secundaria);
+        font-size: 0.8rem;
+        text-align: center;
+
+        color: var(--cor_seis);
+        background-color: transparent;
+    }
+
+    .container_cadastro_cliente_secao_inputs_tres_alinhamento {
+
+        display: flex;
+        flex-direction: column;
+
+        width: 100%;
+    }
+
+    .container_cadastro_cliente_secao_inputs_tres_coluna_um {
+
+        display: flex;
+        flex-direction: column;
+
+        width: 100%;
+    }
+
+    .container_cadastro_cliente_secao_inputs_tres_coluna_dois {
+
+        display: flex;
+        flex-direction: column;
+
+        width: 100%;
+    }
+
+    .container_cadastro_cliente_secao_inputs_tres_coluna_um label {
+
+        margin-top: 4%;
+        margin-bottom: 2%;
+
+        font-family: var(--tipografia_secundaria);
+        font-size: 1rem;
+        font-weight: bold;
+
+        color: var(--cor_seis_v_um);
+    }
+
+    .container_cadastro_cliente_secao_inputs_tres_coluna_um span {
+
+        color: var(--cor_sete_v_um);
+    }
+
+    .container_cadastro_cliente_secao_inputs_tres_coluna_um input {
+
+        width: 100%;
+        height: 12vw;
+
+        outline: none;
+        border: 0.1vw solid var(--cor_dois);
+        border-radius: 2vw;
+
+        font-family: var(--tipografia_secundaria);
+        font-size: 0.8rem;
+        text-align: center;
+
+        color: var(--cor_seis);
+        background-color: transparent;
+    }
+
+    .container_cadastro_cliente_secao_inputs_tres_coluna_dois label {
+
+        margin-top: 4%;
+        margin-bottom: 2%;
+
+        font-family: var(--tipografia_secundaria);
+        font-size: 1rem;
+        font-weight: bold;
+
+        color: var(--cor_seis_v_um);
+    }
+
+    .container_cadastro_cliente_secao_inputs_tres_coluna_dois span {
+
+        color: var(--cor_sete_v_um);
+    }
+
+    .container_cadastro_cliente_secao_inputs_tres_coluna_dois input {
+
+        width: 100%;
+        height: 12vw;
+
+        outline: none;
+        border: 0.1vw solid var(--cor_dois);
+        border-radius: 2vw;
+
+        font-family: var(--tipografia_secundaria);
+        font-size: 0.8rem;
+        text-align: center;
+
+        color: var(--cor_seis);
+        background-color: transparent;
+    }
+}
