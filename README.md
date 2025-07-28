@@ -1,4 +1,3 @@
-![profile-views](https://komarev.com/ghpvc/?username=Projeto-SA-3a-Modulo-SENAI&color=green)
 <img src="https://github.com/nicholas-sc-08/Projeto-SA-3a-Modulo-SENAI/blob/main/Imagens%20do%20README/Banner%20Fly.png" alt="Banner Fly" width="100%"/>
 
 <div style="margin-top: 10px"></div>
