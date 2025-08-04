@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 
 function Pop_up_conversa_adicionada() {
   return (
-    <div className='container_conversa_ja_adicionada'>
+    <div className='container_conversa_ja_adicionada_produto'>
 
       <AnimatePresence>
 
@@ -13,7 +13,7 @@ function Pop_up_conversa_adicionada() {
           transition={{
             duration: 0.4,
             scale: { type: "spring", visualDuration: 0.4, bounce: 0.5 },
-          }} className="container_pop_up_conversa_ja_adicionada">
+          }} className="container_pop_up_conversa_ja_adicionada_produto">
 
           <img src="./img/icons/icone_de_erro.svg" alt="" className='gif-animation' />
           <span>Conversa já Adicionada!</span>

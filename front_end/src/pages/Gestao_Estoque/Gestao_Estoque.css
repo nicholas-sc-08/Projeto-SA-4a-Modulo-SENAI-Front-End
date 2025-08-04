@@ -31,16 +31,17 @@ body {
   background: var(--cor_um);
   padding: 20px;
   border-radius: 8px 8px 0 0;
-  box-shadow: rgba(0, 0, 0, 0.2) 0px 7px 29px 0px;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
 }
 
 .container-tabela-estoque {
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
 }
 
 .search-box {
   display: flex;
-  background: #F0EEED;
+  background: var(--cor_quatro);
   padding: 8px 12px;
   border-radius: 20px;
   width: 60%;
@@ -48,16 +49,16 @@ body {
 
 .search-icon {
   color: var(--cor_quatro);
-  margin-right: 8px;
-  padding-top: 4px;
+  margin-right: 1%;
+  padding-top: 1%;
 }
 
 .search-input {
   border: none;
   outline: none;
   width: 100%;
-  font-size: 14px;
-  background-color: #F0EEED;
+  font-size: 1rem;
+  background-color: var(--cor_quatro);
 }
 
 .novo-produto {

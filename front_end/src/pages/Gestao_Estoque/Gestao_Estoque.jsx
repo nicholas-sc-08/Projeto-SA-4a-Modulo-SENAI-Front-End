@@ -199,12 +199,20 @@ function Gestao_Estoque() {
       <motion.div initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: -10 }}
-        transition={{ duration: 0.4 }}>
+        transition={{ duration: 0.4 }} className="estoque-container">
+        
         <Header tipo={tipo_de_header} />
-        <div className="estoque-container">
-          <h2>Estoque Produto</h2>
+                  
+          <div className="estoque-container-titulo">
+
+            <h2>Estoque Produto</h2>
+          
+          </div>
+          
           <div className="container-tabela-estoque">
+            
             <div className="estoque-header">
+            
               <div className="search-box">
                 <span className="search-icon">
                   <img src="./img/LupaIcon.svg" alt="Buscar" />
@@ -216,62 +224,70 @@ function Gestao_Estoque() {
                   value={termoBusca}
                   onChange={(e) => setTermoBusca(e.target.value)}
                 />
+            
               </div>
-              <button onClick={ResetNovoProduto} className="novo-produto">
-                Novo Produto
-              </button>
+            
+              <button onClick={ResetNovoProduto} className="novo-produto">Novo Produto</button>
+            
             </div>
 
             <div className="estoque-tabela">
+            
               <div className="estoque-tabela-header">
+            
                 <span>Produtos</span>
                 <span>Preço</span>
                 <span>Estoque</span>
                 <span>Conservação</span>
                 <span>Tamanho</span>
+            
               </div>
 
               {produtosFiltrados.map((produto, index) => (
-                <div
-                  className="produto-linha"
-                  key={index}
-                  onClick={() => vizualizar_produto(produto._id)}
-                >
+            
+            <div className="produto-linha" key={index} onClick={() => vizualizar_produto(produto._id)}>
+                  
                   <div className="produto-info">
+                  
                     <div className="produto-imagem">
                       <img src={produto.imagem[0]} alt={produto.nome} />
                     </div>
+                  
                     <div>
+                  
                       <p className="produto-nome">{produto.nome}</p>
                       <p className="produto-categoria">
+                  
                         {
                           array_categorias.find(
                             (categoria) => categoria._id === produto.fk_id_categoria
                           )?.nome || "Sem categoria"
                         } - {nomeDaCorSimplificada(produto.cor)}
+                  
                       </p>
+                  
                     </div>
+                  
                   </div>
+                  
                   <span className="produto-preco">R$ {produto.preco}</span>
                   <span>{produto.quantidade} uni</span>
                   <span>{produto.condicao}</span>
                   <span>{produto.tamanho}</span>
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      excluirProduto(produto._id);
-                    }}
-                    className="delete-button"
-                  >
-                    <img src="./img/Lixeiraicon.svg" alt="Excluir" />
-                  </button>
+                  
+                  <button onClick={e => {e.stopPropagation();excluirProduto(produto._id);}} className="delete-button"><img src="./img/Lixeiraicon.svg" alt="Excluir" /></button>
+                
                 </div>
+              
               ))}
+            
             </div>
+          
           </div>
-        </div>
+                
         {usuario_logado !== "" && !conversa_aberta && <Chat />}
         {conversa_aberta && <Chat_conversa />}
+      
       </motion.div>
     </AnimatePresence>
   );

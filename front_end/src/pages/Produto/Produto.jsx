@@ -390,7 +390,6 @@ function Produto() {
             <motion.div className='container_visualizar_produto' ref={refencia_do_produto} initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.4 }}>
 
                 {pop_de_chat_ja_adicionado && <Pop_up_conversa_adicionada />}
-                {pop_de_chat_ja_adicionado && <div className='fundo_do_pop_up_conversa_adicionada'></div>}
                 {pop_up_de_usuario_nao_logado && <Pop_up_usuario_nao_logado />}
                 {produto_adicionado_na_sacola && <Pop_up_produto_adicionado />}
                 {pop_de_chat_adicionado && <Pop_up_conversa_adicionada_sucesso />}

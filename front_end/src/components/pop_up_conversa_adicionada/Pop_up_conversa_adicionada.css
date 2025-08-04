@@ -1,4 +1,4 @@
-.container_conversa_ja_adicionada{
+.container_conversa_ja_adicionada_produto{
 
     display: flex;
     justify-content: center;
@@ -10,7 +10,7 @@
     z-index: 99;
 }
 
-.container_pop_up_conversa_ja_adicionada{
+.container_pop_up_conversa_ja_adicionada_produto{
 
     display: flex;
     flex-direction: column;
@@ -21,15 +21,15 @@
 
     border-radius: 1vw;
     box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
-    background-color: var(--cor_quatro);
+    background-color: var(--cor_quatro_v_quatro);
 }
 
-.container_pop_up_conversa_ja_adicionada img{
+.container_pop_up_conversa_ja_adicionada_produto img{
     
-    width: 30%;
+    width: 20%;
 }
 
-.container_pop_up_conversa_ja_adicionada span{
+.container_pop_up_conversa_ja_adicionada_produto span{
 
     margin-top: 10%;
 

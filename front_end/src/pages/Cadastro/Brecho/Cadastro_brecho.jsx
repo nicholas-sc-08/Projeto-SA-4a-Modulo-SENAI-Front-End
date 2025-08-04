@@ -1,11 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react'
 import './Cadastro_brecho.css'
 import { Link, useNavigate } from 'react-router-dom';
-import { GlobalContext } from '../../contexts/GlobalContext';
-import SecaoInputsUmBrecho from '../../components/cadastro_brecho/CadastroBrechoSecaoInputsUm.jsx'
-import SecaoInputsDoisBrecho from '../../components/cadastro_brecho/CadastroBrechoSecaoInputsDois.jsx'
-import SecaoInputsTresBrecho from '../../components/cadastro_brecho/CadastroBrechoSecaoInputsTres.jsx'
-import api from '../../services/api.js';
+import { GlobalContext } from '../../../contexts/GlobalContext.jsx';
+import SecaoInputsUmBrecho from '../../../components/cadastro_brecho/CadastroBrechoSecaoInputsUm.jsx'
+import SecaoInputsDoisBrecho from '../../../components/cadastro_brecho/CadastroBrechoSecaoInputsDois.jsx'
+import SecaoInputsTresBrecho from '../../../components/cadastro_brecho/CadastroBrechoSecaoInputsTres.jsx'
+import api from '../../../services/api.js';
 import { AnimatePresence, motion } from "framer-motion";
 
 function Cadastro_brecho() {

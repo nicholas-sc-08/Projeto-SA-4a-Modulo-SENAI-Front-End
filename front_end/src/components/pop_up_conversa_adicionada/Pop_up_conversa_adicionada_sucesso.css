@@ -21,12 +21,12 @@
 
     border-radius: 1vw;
     box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
-    background-color: var(--cor_quatro);
+    background-color: var(--cor_quatro_v_quatro);
 }
 
 .container_pop_up_conversa_adicionada img{
     
-    width: 30%;
+    width: 45%;
 }
 
 .container_pop_up_conversa_adicionada span{
