@@ -61,6 +61,11 @@
 | RF 13 Produto                 | O sistema permite que o brechó consiga modificar as informações das peças, como tamanho, avarias e o valor e que o produto seja excluído em qualquer momento, a menos que o produto não esteja reservado em determinada compra, além disso, o brechó deve disponibilizar a visualização de todos esses detalhes ao cliente. |
 | RF 14 Termos de Uso           | O sistema vai contar com termos de uso, para que quando o usuário criar uma conta ele esteja ciente de seus atos durante o uso do site. |
 | RF 15 Política de Privacidade | O sistema permite uma política de privacidade robusta e clara, de maneira que o cliente esteja ciente das normas da empresa. |
+| RF 16 Avaliação de Brechó     | O sistema deve permitir que o usuário avalie um brechó cadastrado no site da Fly a qualquer momento. O usuário poderá excluir sua avaliação se desejado. Além disso, tanto o brechó quanto o administrador do dashboard terão permissão para excluir uma avaliação caso ela tenha cunho preconceituoso ou seja má intencionada. |
+| RF 17 Doações                 | O sistema possibilita que o brechó cadastre diversos produtos para doações, adicionando informações sobre os itens, para que esses produtos em específico sejam doados a pessoas que não tenham condições de comprar novas roupas para uso. |
+| RF 18 Compartilhar Produto    | O sistema possibilita que o usuário compartilhe para o próprio brechó ou para outro um produto que lhe chamou a atenção, tirando qualquer dúvida e facilitando a compra. |
+| RF 19 Eventos de Brechós      | O sistema permite que a pessoa dona de brechó consiga criar um anúncio sobre uma feira de brechó fornecendo as suas respectivas informações como local, data, se possui taxa de inscrição e seu valor. Além disso, é possível que as outras donas de brechó se inscrição nesse evento criado. |
+| RF 20 Embalagens personalizados do Fly| O sistema disponibiliza as pessoas donas de brechós a compra e encomenda de embalagens personalizados com a logo do Fly, como caixas de papelão, sacolas e Ecobags, todos os produtos possuindo variação de cor e tamanho. Ademais, a visualização das embalagens poderá ser feita de forma 3D. |
 
 ## Principais Tecnologias
 
@@ -77,11 +82,11 @@
 
 | Integrantes da equipe | Requisitos Funcionais (RF)                                                                                                  |
 |-----------------------|-----------------------------------------------------------------------------------------------------------------------------|
-| [Mayara Storl](https://github.com/MayaraStorl)          | [RF 03], [RF 09], [RF 12]                                                                 |
-| [Maria Eduarda Wolf](https://github.com/dudawl18)           | [RF 01], [RF 02], [RF 03], [RF 06], [RF 12]                                           |
-| [Nicholas Serencovich](https://github.com/nicholas-sc-08)  | [RF 01], [RF 03], [RF 05], [RF 06], [RF 08], [RF 10], [RF 11], [RF 13]                 |
-| [Rinmarys Alejandra](https://github.com/rinmarys)             | [RF 02], [RF 05], [RF 06], [RF 08], [RF 10], [RF 11], [RF 13]                       |
-| [Gabriel Lacerda](https://github.com/GabrielFerLacerda)       | [RF 04], [RF 07], [RF 11]                                                           |
+| [Mayara Storl](https://github.com/MayaraStorl)          | [RF 03], [RF 09], [RF 12], [RF 16], [RF 20]                                               |
+| [Maria Eduarda Wolf](https://github.com/dudawl18)           | [RF 01], [RF 02], [RF 03], [RF 06], [RF 12], [RF 19], [RF 20]                         |
+| [Nicholas Serencovich](https://github.com/nicholas-sc-08) | [RF 01], [RF 03], [RF 05], [RF 06], [RF 08], [RF 10], [RF 11], [RF 13], [RF 17], [RF 20]|
+| [Rinmarys Alejandra](https://github.com/rinmarys)        | [RF 02], [RF 05], [RF 06], [RF 08], [RF 10], [RF 11], [RF 13], [RF 17], [RF 19], [RF 20] |
+| [Gabriel Lacerda](https://github.com/GabrielFerLacerda)       | [RF 04], [RF 07], [RF 11], [RF 18], [RF 19] [RF20]                                  |
 
 
 ## Protótipos das Telas
