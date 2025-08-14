@@ -9,8 +9,6 @@ import { motion } from 'framer-motion';
 import { AnimatePresence } from 'framer-motion';
 import api from '../../services/api';
 import Header from '../../components/Header/Header';
-import Chat_conversa from '../../components/chat/Chat_conversa';
-import Chat from '../../components/chat/Chat';
 import Footer from '../../components/Footer/Footer';
 import Pop_up_conversa_adicionada from '../../components/pop_up_conversa_adicionada/Pop_up_conversa_adicionada';
 import Pop_up_usuario_nao_logado from '../../components/pop_up_usuario_nao_logado/Pop_up_usuario_nao_logado';
@@ -29,7 +27,6 @@ function Produto() {
     const { usuario_logado, set_usuario_logado } = useContext(GlobalContext);
     const { nome_do_brecho, set_nome_do_brecho } = useContext(GlobalContext);
     const { exibir_nome_brecho, set_exibir_nome_brecho } = useContext(GlobalContext);
-    const { conversa_aberta, set_conversa_aberta } = useContext(GlobalContext);
     const { tipo_de_header, set_tipo_de_header } = useContext(GlobalContext);
     const { brecho_selecionado, set_brecho_selecionado } = useContext(GlobalContext);
     const { sacola_ou_produto, set_sacola_ou_produto } = useContext(GlobalContext);
@@ -582,10 +579,6 @@ function Produto() {
                     </div>
 
                 </div>
-
-
-                {usuario_logado != `` && !conversa_aberta && <Chat />}
-                {conversa_aberta && <Chat_conversa />}
 
                 <Footer />
 

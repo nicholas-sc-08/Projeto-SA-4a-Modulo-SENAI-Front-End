@@ -13,8 +13,6 @@ import Pop_up_usuario_nao_logado from '../../components/pop_up_usuario_nao_logad
 import Pop_up_sacola_vazia from '../../components/Pop_up_sacola_vazia/Pop_up_sacola_vazia.jsx';
 import Header from '../../components/Header/Header.jsx';
 import Footer from '../../components/Footer/Footer.jsx';
-import Chat from '../../components/chat/Chat.jsx';
-import Chat_conversa from '../../components/chat/Chat_conversa.jsx';
 
 import './Sacola_geral.css';
 
@@ -23,7 +21,6 @@ function Sacola_geral() {
     const { tipo_de_header, set_tipo_de_header } = useContext(GlobalContext);
     const { usuario_logado, set_usuario_logado } = useContext(GlobalContext);
     const { sacola, set_sacola } = useContext(GlobalContext);
-    const { conversa_aberta, set_conversa_aberta } = useContext(GlobalContext);
     const { sacola_aberta, set_sacola_aberta } = useContext(GlobalContext);
     const { sacola_ou_produto, set_sacola_ou_produto } = useContext(GlobalContext);
     const { produto, set_produto } = useContext(GlobalContext);
@@ -365,9 +362,6 @@ function Sacola_geral() {
                 </div>
 
                 <Footer />
-
-                {usuario_logado != `` && !conversa_aberta && <Chat />}
-                {conversa_aberta && <Chat_conversa />}
 
             </motion.div>
         </AnimatePresence>

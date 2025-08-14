@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { GlobalContext } from '../../contexts/GlobalContext'
 
 import { IMaskInput } from 'react-imask';
+import '../../pages/Cadastro/Brecho/Cadastro_brecho.css'
 
 function CadastroBrechoSecaoInputsTres() {
 

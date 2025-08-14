@@ -3,8 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import api from '../../services/api';
 import { GlobalContext } from '../../contexts/GlobalContext';
 import Footer from '../../components/Footer/Footer';
-import Chat from '../../components/chat/Chat';
-import Chat_conversa from '../../components/chat/Chat_conversa';
 import './Tela_inicial.css'
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence, useAnimation } from "framer-motion";
@@ -22,8 +20,6 @@ function Tela_incial() {
   const { array_categorias, set_array_categorias } = useContext(GlobalContext);
   const { brecho_selecionado, set_brecho_selecionado } = useContext(GlobalContext);
 
-  const { chat_aberto, set_chato_aberto } = useContext(GlobalContext);
-  const { conversa_aberta, set_conversa_aberta } = useContext(GlobalContext);
   const { usuario_logado, set_usuario_logado } = useContext(GlobalContext);
   const { tipo_de_header, set_tipo_de_header } = useContext(GlobalContext);
   const { produto, set_produto } = useContext(GlobalContext);
@@ -464,9 +460,6 @@ function Tela_incial() {
             </div>
           </div>
         </div>
-
-        {usuario_logado != `` && !conversa_aberta && <Chat />}
-        {conversa_aberta && <Chat_conversa />}
 
         <Footer />
       </motion.div>

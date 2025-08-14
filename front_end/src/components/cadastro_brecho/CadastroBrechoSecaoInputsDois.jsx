@@ -1,8 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { GlobalContext } from '../../contexts/GlobalContext';
-import '../../pages/Cadastro/Cadastro_brecho.css';
+import '../../pages/Cadastro/Brecho/Cadastro_brecho.css';
 import { IMaskInput } from 'react-imask';
 import api from '../../services/api';
+import '../../pages/Cadastro/Brecho/Cadastro_brecho.css'
 
 function CadastroBrechoSecaoInputsDois() {
 
