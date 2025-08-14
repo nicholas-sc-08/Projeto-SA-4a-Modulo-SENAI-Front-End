@@ -90,15 +90,16 @@
 
 ## Possibilidades de customização das embalagens
 
-|  1º Andar - Caixa                                                                                                                                                                   |
-|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+###  1º Andar - Caixa                                                                                                                                                                   
+
+
 | Relação das escolhas | Características Customizáveis                                                                                                                                |
-|----------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|----------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Cor do chassi (1º andar)** – [preto, vermelho, azul] | **Material:** papelão reciclável, papel kraft, papelão ondulado.                                                           |
 | **Cor da paleta esquerda (1º andar)** – [null, vermelho, azul, amarelo, verde, preto, branco] | **Padrão:** Logo da Fly, Logo da Fly + nome, Logo da Fly embaixo, Padrão de roupas. |
 | **Desenho na paleta frontal (1º andar)** – [casa, barco, estrela, null] | **Tamanho:** pequeno, médio, grande.                                                                      |
 
-  ### 2º Andar - Sacola                   
+### 2º Andar - Sacola                   
   
 
 | Relação das escolhas | Características Customizáveis                                                                                                                                |
@@ -108,14 +109,16 @@
 | **Cor da paleta direita (2º andar)** – [[null, vermelho, azul, amarelo, verde, preto, branco] | **Cor:** verde, branca.                                                             |
 | **Desenho na paleta direita (2º andar)** – [casa, barco, estrela, null] | **Tamanho:** pequeno, médio, grande.                                                                      |
 
-|  3º Andar - EcoBag                                                                                                                                                                  |
-|----------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|
+###  3º Andar - EcoBag                                                                                                                                                                  
+
+
 | Relação das escolhas | Características Customizáveis                                                                                                                                |
+|----------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Cor do chassi (3º andar)** – [preto, vermelho, azul] | **Material:** algodão, poliéster reciclável, juta.                                                                         |
-| **Cor da paleta esquerda (3º andar)** – [null, vermelho, azul, amarelo, verde, preto, branco] | **Padrão:** Logo da Fly, Logo da Fly + nome, Logo da Fly embaixo, Padrão de roupas  |
-| **Cor da paleta frontal (3º andar)** – [null, vermelho, azul, amarelo, verde, preto, branco] | **Cor do corpo:** amarelo, marrom, verde, areia, branco                              |
-| **Cor da paleta direita (3º andar)** – [null, vermelho, azul, amarelo, verde, preto, branco] | **Cor da alça:** amarelo, marrom, verde, areia, branco                               |
-| **Desenho na paleta esquerda (3º andar)** – [casa, barco, estrela, null] | **Tamanho:** médio, grande                                                                               |
+| **Cor da paleta esquerda (3º andar)** – [null, vermelho, azul, amarelo, verde, preto, branco] | **Padrão:** Logo da Fly, Logo da Fly + nome, Logo da Fly embaixo, Padrão de roupas. |
+| **Cor da paleta frontal (3º andar)** – [null, vermelho, azul, amarelo, verde, preto, branco] | **Cor do corpo:** amarelo, marrom, verde, areia, branco.                             |
+| **Cor da paleta direita (3º andar)** – [null, vermelho, azul, amarelo, verde, preto, branco] | **Cor da alça:** amarelo, marrom, verde, areia, branco.                              |
+| **Desenho na paleta esquerda (3º andar)** – [casa, barco, estrela, null] | **Tamanho:** médio, grande.                                                                              |
 
 ## Protótipos das Telas
 
