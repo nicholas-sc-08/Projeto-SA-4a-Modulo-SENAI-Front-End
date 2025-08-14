@@ -98,9 +98,11 @@
 | **Cor da paleta esquerda (1º andar)** – [null, vermelho, azul, amarelo, verde, preto, branco] | **Padrão:** Logo da Fly, Logo da Fly + nome, Logo da Fly embaixo, Padrão de roupas. |
 | **Desenho na paleta frontal (1º andar)** – [casa, barco, estrela, null] | **Tamanho:** pequeno, médio, grande.                                                                      |
 
-|  2º Andar - Sacola                                                                                                                                                                  |
-|----------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|
+  ### 2º Andar - Sacola                   
+  
+
 | Relação das escolhas | Características Customizáveis                                                                                                                                |
+|----------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Cor do chassi (2º andar)** – [preto, vermelho, azul] | **Material:** plástica biodegradável, papel kraft (cor original), papel semente.                                           |
 | **Cor da paleta esquerda (2º andar)** – [null, vermelho, azul, amarelo, verde, preto, branco] | **Padrão:** Logo da Fly, Logo da Fly + nome, Logo da Fly embaixo, Padrão de roupas. |
 | **Cor da paleta direita (2º andar)** – [[null, vermelho, azul, amarelo, verde, preto, branco] | **Cor:** verde, branca.                                                             |
