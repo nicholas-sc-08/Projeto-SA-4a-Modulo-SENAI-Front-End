@@ -91,8 +91,9 @@
 ## Possibilidades de customização das embalagens
 
 |  1º Andar - Caixa                                                                                                                                                                   |
-|----------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Relação das escolhas | Características Customizáveis                                                                                                                                |
+|----------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Cor do chassi (1º andar)** – [preto, vermelho, azul] | **Material:** papelão reciclável, papel kraft, papelão ondulado.                                                           |
 | **Cor da paleta esquerda (1º andar)** – [null, vermelho, azul, amarelo, verde, preto, branco] | **Padrão:** Logo da Fly, Logo da Fly + nome, Logo da Fly embaixo, Padrão de roupas. |
 | **Desenho na paleta frontal (1º andar)** – [casa, barco, estrela, null] | **Tamanho:** pequeno, médio, grande.                                                                      |
