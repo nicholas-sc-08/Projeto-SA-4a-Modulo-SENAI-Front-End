@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 import { motion, AnimatePresence, useAnimation } from "framer-motion";
 import Header from '../../components/Header/Header';
 import Compra_realizada from '../../components/Pop_up_compra_realizada/Compra_realizada';
+import Painel from '../../components/Chat/Painel/Painel';
 // import { motion, AnimatePresence } from 'framer-motion';
 // import { useSearch } from '@/contexts/SearchContext';
 
@@ -309,6 +310,7 @@ function Tela_incial() {
 
       <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.4 }}>
 
+        {true && <Painel/>}
         <Header tipo={tipo_de_header} />
 
         {/* home page seção um */}
