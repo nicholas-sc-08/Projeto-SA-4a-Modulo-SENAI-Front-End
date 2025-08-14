@@ -10,8 +10,6 @@ import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
 import Filtro_de_pesquisa from '../../components/filtro_de_pesquisa/Filtro_de_pesquisa';
 import api from '../../services/api';
-import Chat from '../../components/chat/Chat';
-import Chat_conversa from '../../components/chat/Chat_conversa';
 import './Pesquisa_de_produtos.css';
 
 function Pesquisa_de_produtos() {
@@ -21,7 +19,6 @@ function Pesquisa_de_produtos() {
     const { array_categorias, set_array_categorias } = useContext(GlobalContext);
     const { array_marcas, set_array_marcas } = useContext(GlobalContext);
     const { usuario_logado, set_usuario_logado } = useContext(GlobalContext);
-    const { conversa_aberta, set_conversa_aberta } = useContext(GlobalContext);
     const { produto, set_produto } = useContext(GlobalContext);
     const { tipo_de_header, set_tipo_de_header } = useContext(GlobalContext);
     const { pagina_atual, set_pagina_atual } = useContext(GlobalContext);
@@ -294,9 +291,6 @@ function Pesquisa_de_produtos() {
 
                     </div>
                     : ``}
-
-                {usuario_logado != `` && !conversa_aberta && <Chat />}
-                {conversa_aberta && <Chat_conversa />}
 
                 <Footer />
             </motion.div>

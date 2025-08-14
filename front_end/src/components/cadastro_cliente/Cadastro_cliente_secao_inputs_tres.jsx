@@ -2,7 +2,7 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useContext } from 'react';
 import { GlobalContext } from '../../contexts/GlobalContext';
-import '../../pages/Cadastro/Cadastro_cliente.css';
+import '../../pages/Cadastro/Cliente/Cadastro_cliente.css';
 import { useNavigate } from 'react-router-dom';
 
 import { IMaskInput } from 'react-imask';

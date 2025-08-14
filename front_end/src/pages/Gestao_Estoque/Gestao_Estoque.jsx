@@ -5,8 +5,6 @@ import { GlobalContext } from "../../contexts/GlobalContext";
 import "./Gestao_Estoque.css";
 import Header from "../../components/Header/Header.jsx";
 import api from "../../services/api.js";
-import Chat from "../../components/chat/Chat.jsx";
-import Chat_conversa from "../../components/chat/Chat_conversa.jsx";
 import { AnimatePresence } from "framer-motion";
 import { motion } from "framer-motion";
 
@@ -14,7 +12,6 @@ function Gestao_Estoque() {
   // Importação de dados globais via contexto
   const { array_brechos, set_array_brechos } = useContext(GlobalContext);
   const { usuario_logado } = useContext(GlobalContext);
-  const { conversa_aberta } = useContext(GlobalContext);
   const { array_produtos, set_array_produtos } = useContext(GlobalContext);
   const { array_categorias, set_array_categorias } = useContext(GlobalContext);
   const { tipo_de_header, set_tipo_de_header } = useContext(GlobalContext);
@@ -284,9 +281,6 @@ function Gestao_Estoque() {
             </div>
           
           </div>
-                
-        {usuario_logado !== "" && !conversa_aberta && <Chat />}
-        {conversa_aberta && <Chat_conversa />}
       
       </motion.div>
     </AnimatePresence>

@@ -1,13 +1,13 @@
 import { createBrowserRouter } from "react-router-dom"
 import Tela_inicial from '../pages/Inicio/Tela_incial.jsx';
-import Cadastro_cliente from "../pages/Cadastro/Cadastro_cliente";
+import Cadastro_cliente from "../pages/Cadastro/Cliente/Cadastro_cliente.jsx";
 import Login from "../pages/Login/Login.jsx";
 import DashBoard from "../pages/DashBoard/DashBoard.jsx";
 
 import Footer from "../components/Footer/Footer.jsx";
 import GestaoEstoque from "../pages/Gestao_Estoque/Gestao_Estoque.jsx";
 import Cadastro_Produto from "../pages/Cadastro_Produto/Cadastro_Produto.jsx";
-import Cadastro_brecho from "../pages/Cadastro/Cadastro_brecho.jsx";
+import Cadastro_brecho from "../pages/Cadastro/Brecho/Cadastro_brecho.jsx";
 import Perfil_Brecho from "../pages/Perfil_Brecho/Perfil_Brecho.jsx";
 import Contato from "../pages/Contato/Contato.jsx";
 import Sobre_nos from "../pages/Sobre_Nos/Sobre_nos.jsx";
