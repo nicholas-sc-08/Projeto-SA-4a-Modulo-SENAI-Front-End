@@ -2,7 +2,83 @@
     
     box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
 
+    display: flex;
+    align-items: center;
+    flex-direction: column;
     width: 30%;
     height: 100%;
     background-color: var(--cor_doze);
+}
+
+.container_chat_informacoes header{
+
+    display: flex;
+    align-items: end;
+    width: 90%;
+    height: 10%;
+}
+
+.titulo_conversas_chat{
+
+    font-weight: 600;
+    font-family: var(--tipografia_secundaria);
+    font-size: 1.5rem;
+
+    color: var(--cor_seis_v_um);
+}
+
+.barra_de_pesquisa{
+
+    display: flex;
+    align-items: center;
+    width: 90%;
+    height: 6%;
+
+    margin-top: 2%;
+
+    border-radius: 100vw;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+    background-color: var(--cor_quatro);
+}
+
+.barra_de_pesquisa img{
+
+    padding-left: 4%;
+    padding-right: 2%;
+    width: 12%;
+}
+
+.barra_de_pesquisa input{
+
+    width: 85%;
+    height: 100%;
+
+    font-family: var(--tipografia_secundaria);
+    font-size: 0.9rem;
+    font-weight: 500;
+
+    border-top-right-radius: 1vw;
+    border-bottom-right-radius: 1vw;
+    
+    border: transparent;
+    outline: none;
+
+    color: var(--cor_seis_v_um);
+    background-color: transparent;
+}
+
+.container_conversas_frequentes{
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    
+    width: 90%;
+    height: 25%;
+    background-color: red;
+}
+
+.container_contato_frequente{
+
+
 }

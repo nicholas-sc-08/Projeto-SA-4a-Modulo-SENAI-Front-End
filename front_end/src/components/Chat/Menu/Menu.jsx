@@ -2,7 +2,7 @@ import "./Menu.css";
 
 function Menu() {
     return (
-        <div className='container_menu_chat'>
+        <nav className='container_menu_chat'>
             <div className="container_imagem_menu">
                 <img src="./img/logo/logo-verdeCamadinha.svg" alt="logo" className="logo_menu_chat" />
             </div>
@@ -14,7 +14,7 @@ function Menu() {
             <div className="container_fechar_chat">
                 <button><img src="./img/icons/icone_chat_fechar.svg" alt=""/></button>
             </div>
-        </div>
+        </nav>
     )
 }
 
