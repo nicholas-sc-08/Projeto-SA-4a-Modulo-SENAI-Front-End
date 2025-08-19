@@ -78,7 +78,19 @@
     background-color: red;
 }
 
-.container_contato_frequente{
+.container_contatos_chat{
 
+    display: flex;
+    flex-direction: column;
 
+    width: 90%;
+    height: 50%;
+    overflow-y: scroll;
+    background-color: red;
+}
+
+.container_contato_chat{
+
+    display: flex;
+    background-color: yellow;
 }

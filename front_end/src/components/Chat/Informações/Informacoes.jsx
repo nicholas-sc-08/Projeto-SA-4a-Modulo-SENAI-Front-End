@@ -65,15 +65,39 @@ function Informacoes() {
     };
   };
 
-  async function buscar_informacoes_contato(param) {
+  function ultima_mensagem(param) {
 
-    switch (param) {
+    for (let i = array_chat.length - 1; i > 0; i--) {
 
-      case param == `imagem` && cliente_brecho == `cliente`:
-        return usuario_logado.conversas.logo;
+      if (array_chat[i].id_dono_mensagem == param && usuario_logado._id == array_chat[i].id_quem_recebeu_mensagem) {
 
-      case param == `imagem` && cliente_brecho == `brecho`:
-        return usuario_logado.conversas.imagem_de_perfil;
+        return array_chat[i].mensagem;
+      };
+
+      if (array_chat[i].id_dono_mensagem == usuario_logado._id && array_chat[i].id_quem_recebeu_mensagem == param) {
+
+        return array_chat[i].mensagem;
+      };
+
+      return ``;
+    };
+  };
+
+  function hora_ultima_mensagem(param) {
+
+    for (let i = array_chat.length - 1; i > 0; i--) {
+
+      if (array_chat[i].id_dono_mensagem == param && usuario_logado._id == array_chat[i].id_quem_recebeu_mensagem) {
+
+        return array_chat[i].hora;
+      };
+
+      if (array_chat[i].id_dono_mensagem == usuario_logado._id && array_chat[i].id_quem_recebeu_mensagem == param) {
+
+        return array_chat[i].hora;
+      };
+
+      return ``;
     };
   };
 
@@ -88,8 +112,8 @@ function Informacoes() {
       </search>
       <section className="container_conversas_frequentes">
         {usuario_logado.conversas ? usuario_logado.conversas.map((conversa, i) => (
-          <div key={i} className="container_contato_frequente">
-            <img src={buscar_informacoes_contato(`imagem`)} alt="" />
+          <div>
+
           </div>
         )) : ``}
       </section>
@@ -97,11 +121,19 @@ function Informacoes() {
         <h4>Recentes({usuario_logado.conversas.length})</h4>
         : ``
       }
-      {usuario_logado.conversas ? usuario_logado.conversas.map((contato, i) => (
-        <div key={i}>
 
-        </div>
-      )) : ``}
+      <section className="container_contatos_chat">
+        {usuario_logado.conversas ? usuario_logado.conversas.map((contato, i) => (
+          <div key={i} className="container_contato_chat">
+            <img style={{ width: `100px` }} src={cliente_brecho == `cliente` ? contato.logo : contato.imagem_de_perfil} referrerPolicy="no-referrer" crossOrigin="anonymous" alt="" />
+            <aside>
+              <h5>{cliente_brecho == `cliente` ? contato.nome_brecho : contato.nome}</h5>
+              <span>{hora_ultima_mensagem(contato._id)}</span>
+            </aside>
+            <span>{ultima_mensagem(contato._id)}</span>
+          </div>
+        )) : ``}
+      </section>
     </div>
   )
 }
