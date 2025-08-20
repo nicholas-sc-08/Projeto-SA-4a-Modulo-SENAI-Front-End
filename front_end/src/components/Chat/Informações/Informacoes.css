@@ -256,3 +256,32 @@
     color: var(--cor_quatro);
     background-color: var(--cor_um);
 }
+
+.container_nenhuma_conversa_encontrada_chat {
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+ 
+    width: 100%;
+    height: 100%;
+}
+
+.container_nenhuma_conversa_encontrada_chat img{
+
+    width: 10%;
+}
+
+.container_nenhuma_conversa_encontrada_chat p{
+
+    text-align: center;
+
+    margin-top: 3%;
+    margin-bottom: 5%;
+
+    font-family: var(--tipografia_secundaria);
+    font-size: 0.7rem;
+    font-weight: 500;
+    color: var(--cor_seis_v_um);
+}
