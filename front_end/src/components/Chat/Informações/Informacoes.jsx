@@ -76,39 +76,15 @@ function Informacoes() {
     };
   };
 
-  function ultima_mensagem(param) {
+  function calcular_conversas(){
 
-    for (let i = array_chat.length - 1; i > 0; i--) {
+    if(barra_de_pesquisa != ``){
 
-      if (array_chat[i].id_dono_mensagem == param && usuario_logado._id == array_chat[i].id_quem_recebeu_mensagem) {
+      return conversas_filtradas.length;
+    
+    } else {
 
-        return array_chat[i].mensagem;
-      };
-
-      if (array_chat[i].id_dono_mensagem == usuario_logado._id && array_chat[i].id_quem_recebeu_mensagem == param) {
-
-        return array_chat[i].mensagem;
-      };
-
-      return ``;
-    };
-  };
-
-  function hora_ultima_mensagem(param) {
-
-    for (let i = array_chat.length - 1; i > 0; i--) {
-
-      if (array_chat[i].id_dono_mensagem == param && usuario_logado._id == array_chat[i].id_quem_recebeu_mensagem) {
-
-        return array_chat[i].hora;
-      };
-
-      if (array_chat[i].id_dono_mensagem == usuario_logado._id && array_chat[i].id_quem_recebeu_mensagem == param) {
-
-        return array_chat[i].hora;
-      };
-
-      return ``;
+      return usuario_logado.conversas.length;
     };
   };
 
@@ -131,7 +107,7 @@ function Informacoes() {
       </section>
       <div className="sub_titulo_conversas_chat">
         {usuario_logado.conversas ?
-          <h4>Recentes({conversas_filtradas.length == 0 ? usuario_logado.conversas.length : conversas_filtradas.length})</h4>
+          <h4>Recentes({calcular_conversas()})</h4>
           : ``
         }
       </div>

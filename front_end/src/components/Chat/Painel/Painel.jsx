@@ -9,6 +9,7 @@ function Painel() {
 
             <Menu/>
             <Informacoes/>
+            
 
             </div>
         </div>
