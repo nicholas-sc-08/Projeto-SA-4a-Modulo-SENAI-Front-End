@@ -111,26 +111,32 @@ function Informacoes() {
         <input type="text" placeholder="Procurar por Conversa" />
       </search>
       <section className="container_conversas_frequentes">
-        {usuario_logado.conversas ? usuario_logado.conversas.map((conversa, i) => (
-          <div>
-
+        {usuario_logado.conversas ? [usuario_logado.conversas[0], usuario_logado.conversas[1], usuario_logado.conversas[2]].map((conversa, i) => (
+          <div key={i} className="container_conversa_frequente">
+            <img src={cliente_brecho == `cliente` ? conversa.logo : conversa.imagem_de_perfil} alt="" />
+            <h5>{cliente_brecho == `cliente` ? conversa.nome_brecho : conversa.nome}</h5>
           </div>
         )) : ``}
       </section>
-      {usuario_logado.conversas ?
-        <h4>Recentes({usuario_logado.conversas.length})</h4>
-        : ``
-      }
+      <div className="sub_titulo_conversas_chat">
+        {usuario_logado.conversas ?
+          <h4>Recentes({usuario_logado.conversas.length})</h4>
+          : ``
+        }
+      </div>
 
       <section className="container_contatos_chat">
         {usuario_logado.conversas ? usuario_logado.conversas.map((contato, i) => (
           <div key={i} className="container_contato_chat">
-            <img style={{ width: `100px` }} src={cliente_brecho == `cliente` ? contato.logo : contato.imagem_de_perfil} referrerPolicy="no-referrer" crossOrigin="anonymous" alt="" />
-            <aside>
+            <img src={cliente_brecho == `cliente` ? contato.logo : contato.imagem_de_perfil} referrerPolicy="no-referrer" crossOrigin="anonymous" alt="" />
+            <aside className="info_principal_contatos_chat">
               <h5>{cliente_brecho == `cliente` ? contato.nome_brecho : contato.nome}</h5>
-              <span>{hora_ultima_mensagem(contato._id)}</span>
+              <p>teste</p>
             </aside>
-            <span>{ultima_mensagem(contato._id)}</span>
+            <aside className="info_horario_contatos_chat">
+              <h5>12:06</h5>
+              <span>3</span>
+            </aside>
           </div>
         )) : ``}
       </section>
