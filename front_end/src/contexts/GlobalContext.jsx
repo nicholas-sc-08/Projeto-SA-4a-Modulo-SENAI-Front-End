@@ -43,6 +43,7 @@ export const GlobalContextProvider = ({ children }) => {
     const [pop_up_notificacao_excluir_categoria, set_pop_up_notificacao_excluir_categoria] = useState(false);
     const [pop_up_notificacao_excluir_conversa, set_pop_up_notificacao_excluir_conversa] = useState(false);
     const [chat_aberto, set_chat_aberto] = useState(false);
+    const [chat_pagina_atual, set_chat_pagina_atual] = useState("conversas");
     const [erro_pagina, set_erro_pagina] = useState(`404 Página não encontrada`);
     const [excluir_mensagens_chat, set_excluir_mensagens_chat] = useState(false);
     const [excluir_conversa_chat, set_excluir_conversa_chat] = useState(false);
@@ -167,6 +168,8 @@ export const GlobalContextProvider = ({ children }) => {
             set_pop_up_notificacao_excluir_categoria,
             chat_aberto,
             set_chat_aberto,
+            chat_pagina_atual,
+            set_chat_pagina_atual,
             array_chat,
             set_array_chat,
             erro_pagina,

@@ -298,7 +298,6 @@ function Tela_incial() {
     }
   };
 
-
   const redirecionarParaTelaEmAndamento = () => {
     navegar(`/estamosChegando`);
   };

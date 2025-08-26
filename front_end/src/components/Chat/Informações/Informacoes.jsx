@@ -100,7 +100,7 @@ function Informacoes() {
       <section className="container_conversas_frequentes">
         {usuario_logado.conversas ? [usuario_logado.conversas[0], usuario_logado.conversas[1], usuario_logado.conversas[2]].map((conversa, i) => (
           <div key={i} className="container_conversa_frequente">
-            <img src={cliente_brecho == `cliente` ? conversa.logo : conversa.imagem_de_perfil} alt="" />
+            <img src={cliente_brecho == `cliente` ? conversa.logo : conversa.imagem_de_perfil} referrerPolicy="no-referrer" crossOrigin="anonymous" alt="" />
             <h5>{cliente_brecho == `cliente` ? conversa.nome_brecho : conversa.nome}</h5>
           </div>
         )) : ``}
