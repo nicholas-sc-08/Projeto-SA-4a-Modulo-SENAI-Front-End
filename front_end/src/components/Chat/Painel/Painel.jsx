@@ -3,6 +3,7 @@ import Menu from "../Menu/Menu";
 import { useContext, useEffect } from 'react';
 import { GlobalContext } from '../../../contexts/GlobalContext.jsx';
 import "./Painel.css";
+import Perfil from "../Perfil/Perfil.jsx";
 
 function Painel() {
 
@@ -21,6 +22,9 @@ function Painel() {
         if (tela == `conversas`) {
 
             return <Informacoes />
+        } else if (tela == `perfil`){
+
+            return <Perfil/>
         }
     };
 

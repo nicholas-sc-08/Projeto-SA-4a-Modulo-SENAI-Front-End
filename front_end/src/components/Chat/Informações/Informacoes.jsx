@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { GlobalContext } from '../../../contexts/GlobalContext.jsx';
+import { motion, AnimatePresence } from "framer-motion";
 import api from '../../../services/api.js';
 import "./Informacoes.css";
 
@@ -76,12 +77,12 @@ function Informacoes() {
     };
   };
 
-  function calcular_conversas(){
+  function calcular_conversas() {
 
-    if(barra_de_pesquisa != ``){
+    if (barra_de_pesquisa != ``) {
 
       return conversas_filtradas.length;
-    
+
     } else {
 
       return usuario_logado.conversas.length;
@@ -89,63 +90,66 @@ function Informacoes() {
   };
 
   return (
-    <div className="container_chat_informacoes">
-      <header>
-        <h2 className="titulo_conversas_chat">Conversas</h2>
-      </header>
-      <search className="barra_de_pesquisa">
-        <img src="./img/icons/Pesquisa.svg" alt="" />
-        <input type="text" placeholder="Procurar por Conversa" value={barra_de_pesquisa} onChange={e => set_barra_de_pesquisa(e.target.value)} />
-      </search>
-      <section className="container_conversas_frequentes">
-        {usuario_logado.conversas ? [usuario_logado.conversas[0], usuario_logado.conversas[1], usuario_logado.conversas[2]].map((conversa, i) => (
-          <div key={i} className="container_conversa_frequente">
-            <img src={cliente_brecho == `cliente` ? conversa.logo : conversa.imagem_de_perfil} referrerPolicy="no-referrer" crossOrigin="anonymous" alt="" />
-            <h5>{cliente_brecho == `cliente` ? conversa.nome_brecho : conversa.nome}</h5>
-          </div>
-        )) : ``}
-      </section>
-      <div className="sub_titulo_conversas_chat">
-        {usuario_logado.conversas ?
-          <h4>Recentes({calcular_conversas()})</h4>
-          : ``
-        }
-      </div>
+    <AnimatePresence>
+      <motion.div initial={{ opacity: 0, y: 0 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.5 }} className="container_chat_informacoes">
+        <header>
+          <h2 className="titulo_conversas_chat">Conversas</h2>
+        </header>
+        <search className="barra_de_pesquisa">
+          <img src="./img/icons/Pesquisa.svg" alt="" />
+          <input type="text" placeholder="Procurar por Conversa" value={barra_de_pesquisa} onChange={e => set_barra_de_pesquisa(e.target.value)} />
+        </search>
+        <section className="container_conversas_frequentes">
+          {usuario_logado.conversas ? [usuario_logado.conversas[0], usuario_logado.conversas[1], usuario_logado.conversas[2]].map((conversa, i) => (
+            <div key={i} className="container_conversa_frequente">
+              <img src={cliente_brecho == `cliente` ? conversa.logo : conversa.imagem_de_perfil} referrerPolicy="no-referrer" crossOrigin="anonymous" alt="" />
+              <h5>{cliente_brecho == `cliente` ? conversa.nome_brecho : conversa.nome}</h5>
+            </div>
+          )) : ``}
+        </section>
+        <div className="sub_titulo_conversas_chat">
+          {usuario_logado.conversas ?
+            <h4>Recentes({calcular_conversas()})</h4>
+            : ``
+          }
+        </div>
 
-      <section className="container_contatos_chat">
-        {usuario_logado.conversas.length > 0 && barra_de_pesquisa == `` ? usuario_logado.conversas.map((contato, i) => (
-          <div key={i} className="container_contato_chat">
-            <img src={cliente_brecho == `cliente` ? contato.logo : contato.imagem_de_perfil} referrerPolicy="no-referrer" crossOrigin="anonymous" alt="" />
-            <aside className="info_principal_contatos_chat">
-              <h5>{cliente_brecho == `cliente` ? contato.nome_brecho : contato.nome}</h5>
-              <p>testeee</p>
-            </aside>
-            <aside className="info_horario_contatos_chat">
-              <h5>12:06</h5>
-              <span>3</span>
-            </aside>
-          </div>
-        )) : ``}
-        {conversas_filtradas.length > 0 ? conversas_filtradas.map((contato, i) => (
-          <div key={i} className="container_contato_chat">
-            <img src={cliente_brecho == `cliente` ? contato.logo : contato.imagem_de_perfil} referrerPolicy="no-referrer" crossOrigin="anonymous" alt="" />
-            <aside className="info_principal_contatos_chat">
-              <h5>{cliente_brecho == `cliente` ? contato.nome_brecho : contato.nome}</h5>
-              <p>testeee</p>
-            </aside>
-            <aside className="info_horario_contatos_chat">
-              <h5>12:06</h5>
-              <span>3</span>
-            </aside>
-          </div>
-        )) : ``}
-        {conversas_filtradas.length == 0 && barra_de_pesquisa != `` ?
-          <div className="container_nenhuma_conversa_encontrada_chat">
-            <img src="./img/icons/icone_chat_nenhuma_conversa.svg" alt="" />
-            <p>Tentamos procurar por conversas mas parece que não conseguimos encontrar nenhuma conversa!</p>
-          </div> : ``}
-      </section>
-    </div>
+        <section className="container_contatos_chat">
+          {usuario_logado.conversas.length > 0 && barra_de_pesquisa == `` ? usuario_logado.conversas.map((contato, i) => (
+            <div key={i} className="container_contato_chat">
+              <img src={cliente_brecho == `cliente` ? contato.logo : contato.imagem_de_perfil} referrerPolicy="no-referrer" crossOrigin="anonymous" alt="" />
+              <aside className="info_principal_contatos_chat">
+                <h5>{cliente_brecho == `cliente` ? contato.nome_brecho : contato.nome}</h5>
+                <p>testeee</p>
+              </aside>
+              <aside className="info_horario_contatos_chat">
+                <h5>12:06</h5>
+                <span>3</span>
+              </aside>
+            </div>
+          )) : ``}
+          {conversas_filtradas.length > 0 ? conversas_filtradas.map((contato, i) => (
+            <div key={i} className="container_contato_chat">
+              <img src={cliente_brecho == `cliente` ? contato.logo : contato.imagem_de_perfil} referrerPolicy="no-referrer" crossOrigin="anonymous" alt="" />
+              <aside className="info_principal_contatos_chat">
+                <h5>{cliente_brecho == `cliente` ? contato.nome_brecho : contato.nome}</h5>
+                <p>testeee</p>
+              </aside>
+              <aside className="info_horario_contatos_chat">
+                <h5>12:06</h5>
+                <span>3</span>
+              </aside>
+            </div>
+          )) : ``}
+          {conversas_filtradas.length == 0 && barra_de_pesquisa != `` ?
+            <div className="container_nenhuma_conversa_encontrada_chat">
+              <img src="./img/icons/icone_chat_nenhuma_conversa.svg" alt="" />
+              <p>Tentamos procurar por conversas mas parece que não conseguimos encontrar nenhuma conversa!</p>
+            </div> : ``}
+        </section>
+      </motion.div>
+    </AnimatePresence>
+
   )
 }
 
