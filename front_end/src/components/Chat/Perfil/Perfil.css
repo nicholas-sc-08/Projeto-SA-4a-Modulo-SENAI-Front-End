@@ -68,3 +68,28 @@
     text-align: center;
     color: var(--cor_seis_v_um);
 }
+
+.botao_meu_perfil_chat {
+
+    width: 80%;
+    height: 7%;
+
+    cursor: pointer;
+    transition: 0.3s;
+
+    font-family: var(--tipografia_secundaria);
+    font-size: 0.8rem;
+    font-weight: 400;
+
+    border-radius: 100vw;
+    border: 0.1vw solid var(--cor_um);
+
+    color: var(--cor_quatro);
+    background-color: var(--cor_um);
+}
+
+.botao_meu_perfil_chat:hover {
+
+    border: 0.1vw solid var(--cor_um_v_dois);
+    background-color: var(--cor_um_v_dois);
+}

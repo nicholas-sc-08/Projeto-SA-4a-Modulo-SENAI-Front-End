@@ -3,6 +3,7 @@ import { useState, useContext, useEffect } from "react";
 import { GlobalContext } from '../../../contexts/GlobalContext.jsx';
 import { motion, AnimatePresence } from "framer-motion";
 import './Perfil.css';
+import Info from "./Info.jsx";
 
 function Perfil() {
 
@@ -28,6 +29,8 @@ function Perfil() {
                     <h2>{cliente_brecho == `cliente` ? usuario_logado.nome : usuario_logado.nome_brecho}</h2>
                     <p>Um brechó é um estabelecimento comercial, físico ou online, que vende artigos usados, como roupas, calçados, acessórios, livros, objetos de decoração e outros itens. A prática de comprar e vender artigos usados tem ganhado popularidade devido a fatores como a busca por preços mais acessíveis, a preocupação com a sustentabilidade e a valorização de peças únicas e com história. </p>
                 </main>
+                <Info/>
+                <button className="botao_meu_perfil_chat">Visualizar Perfil por Completo</button>
             </motion.div>
         </AnimatePresence>
     )
