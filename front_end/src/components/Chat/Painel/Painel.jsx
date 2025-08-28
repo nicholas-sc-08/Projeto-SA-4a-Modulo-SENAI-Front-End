@@ -4,28 +4,21 @@ import { useContext, useEffect } from 'react';
 import { GlobalContext } from '../../../contexts/GlobalContext.jsx';
 import "./Painel.css";
 import Perfil from "../Perfil/Perfil.jsx";
+import Conversa from "../Conversa/Conversa.jsx";
 
 function Painel() {
 
     const { chat_pagina_atual, set_chat_pagina_atual } = useContext(GlobalContext);
 
-    useEffect(() => {
-
-        console.log(chat_pagina_atual);
-        
-        
-        
-    }, [chat_pagina_atual])
-    
     function tela_selecionada(tela) {
 
         if (tela == `conversas`) {
 
             return <Informacoes />
-        } else if (tela == `perfil`){
+        } else if (tela == `perfil`) {
 
-            return <Perfil/>
-        }
+            return <Perfil />
+        };
     };
 
     return (
@@ -34,7 +27,7 @@ function Painel() {
 
                 <Menu />
                 {tela_selecionada(chat_pagina_atual)}
-
+                <Conversa />
 
             </div>
         </div>

@@ -10,6 +10,8 @@ function Informacoes() {
   const { array_brechos, set_array_brechos } = useContext(GlobalContext);
   const { array_chat, set_array_chat } = useContext(GlobalContext);
   const { usuario_logado, set_usuario_logado } = useContext(GlobalContext);
+  const { conversa_selecionada, set_conversa_selecionada } = useContext(GlobalContext);
+  const { grupo_conversa, set_grupo_conversa } = useContext(GlobalContext);
   const [cliente_brecho, set_cliente_brecho] = useState(null);
   const [barra_de_pesquisa, set_barra_de_pesquisa] = useState(``);
   const [conversas_frequentes, set_conversas_frequentes] = useState([]);
@@ -89,6 +91,12 @@ function Informacoes() {
     };
   };
 
+  function selecionar_conversa(contato){
+
+    set_conversa_selecionada(contato);
+    set_grupo_conversa(`conversa`);
+  };
+
   return (
     <AnimatePresence>
       <motion.div initial={{ opacity: 0, y: 0 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.5 }} className="container_chat_informacoes">
@@ -116,7 +124,7 @@ function Informacoes() {
 
         <section className="container_contatos_chat">
           {usuario_logado.conversas.length > 0 && barra_de_pesquisa == `` ? usuario_logado.conversas.map((contato, i) => (
-            <div key={i} className="container_contato_chat">
+            <div key={i} className="container_contato_chat" onClick={() => selecionar_conversa(contato)}>
               <img src={cliente_brecho == `cliente` ? contato.logo : contato.imagem_de_perfil} referrerPolicy="no-referrer" crossOrigin="anonymous" alt="" />
               <aside className="info_principal_contatos_chat">
                 <h5>{cliente_brecho == `cliente` ? contato.nome_brecho : contato.nome}</h5>
