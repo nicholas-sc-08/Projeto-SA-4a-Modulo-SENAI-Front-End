@@ -4,7 +4,6 @@
     height: 100%;
     border-top-right-radius: 1vw;
     border-bottom-right-radius: 1vw;
-    background-image: url("./img/fundo_chat_conversa.svg");
 }
 
 .container_header_chat_conversa {
@@ -85,6 +84,12 @@
     width: 100%;
 }
 
+.container_chat_fundo_da_conversa {
+
+    height: 70%;
+    background-image: url("./img/fundo_chat_conversa.svg");
+}
+
 .container_interagir_conversa {
 
     display: flex;
@@ -92,6 +97,7 @@
     width: 100%;
     height: 15%;
 
+    border-bottom-right-radius: 1vw;
     box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
     background-color: var(--cor_quatro);
 }
