@@ -630,8 +630,8 @@ export default function Header({ tipo }) {
                                                 <h2>Queridinhos dos Flyers</h2>
 
                                                 {queridinhos_flyers.slice(0, 4).map((brecho, i) => (
-                                                    <div className={styles_pesquisa["alinhamento-brechos-queridinhos"]}>
-                                                        <div className={styles_pesquisa["container-brecho-individual-queridinhos"]} key={i} onClick={() => ir_para_perfil_brecho(brecho._id)}>
+                                                    <div className={styles_pesquisa["alinhamento-brechos-queridinhos"]} key={i}>
+                                                        <div className={styles_pesquisa["container-brecho-individual-queridinhos"]} onClick={() => ir_para_perfil_brecho(brecho._id)}>
                                                             <img src={brecho.logo} alt="Brecho logo" />
 
                                                             <p>{brecho.nome_brecho}</p>
