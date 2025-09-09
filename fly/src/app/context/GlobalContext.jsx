@@ -1,8 +1,11 @@
-import { createContext, useContext, useEffect, useState } from "react";
+"use client";
 
-export const GlobalContext = createContext();
+import { createContext, useContext } from "react";
 
-export const GlobalContextProvider = ({ children }) => {
+const GlobalContext = createContext < any > ({});
+
+
+export const GlobalProvider = ({ children }) => {
 
     const [array_clientes, set_array_clientes] = useState([]);
     const [array_brechos, set_array_brechos] = useState([]);
@@ -43,9 +46,6 @@ export const GlobalContextProvider = ({ children }) => {
     const [pop_up_notificacao_excluir_categoria, set_pop_up_notificacao_excluir_categoria] = useState(false);
     const [pop_up_notificacao_excluir_conversa, set_pop_up_notificacao_excluir_conversa] = useState(false);
     const [chat_aberto, set_chat_aberto] = useState(false);
-    const [chat_pagina_atual, set_chat_pagina_atual] = useState("conversas");
-    const [conversa_selecionada, set_conversa_selecionada] = useState(null);
-    const [grupo_conversa, set_grupo_conversa] = useState(null);
     const [erro_pagina, set_erro_pagina] = useState(`404 Página não encontrada`);
     const [excluir_mensagens_chat, set_excluir_mensagens_chat] = useState(false);
     const [excluir_conversa_chat, set_excluir_conversa_chat] = useState(false);
@@ -99,17 +99,6 @@ export const GlobalContextProvider = ({ children }) => {
             set_usuario_logado(JSON.parse(usuarioSalvo))
         }
     }, []);
-
-    // 
-    useEffect(() => {
-
-        if (usuario_logado && Object.keys(usuario_logado).length > 0) { // aqui garante que os valores de usuario_logado existam e que ele salva os dados sempre que o usuario_logado estiver com algum dado que não seja apenas um valor null ou undefined
-            localStorage.setItem('usuario_logado', JSON.stringify(usuario_logado))
-        } else {
-            localStorage.removeItem('usuario_logado')  // quando o usuario fazer logout (sair da conta) o localStorage vai limpar os dados do cache, assim não acontece sobreposição de dados
-        }
-    }, [usuario_logado])
-
 
     return (
         <GlobalContext.Provider value={{
@@ -170,12 +159,6 @@ export const GlobalContextProvider = ({ children }) => {
             set_pop_up_notificacao_excluir_categoria,
             chat_aberto,
             set_chat_aberto,
-            conversa_selecionada,
-            set_conversa_selecionada,
-            grupo_conversa,
-            set_grupo_conversa,
-            chat_pagina_atual,
-            set_chat_pagina_atual,
             array_chat,
             set_array_chat,
             erro_pagina,
@@ -278,5 +261,7 @@ export const GlobalContextProvider = ({ children }) => {
         }}>
             {children}
         </GlobalContext.Provider>
-    )
-}
+    );
+};
+
+export const useGlobalContext = () => useContext(GlobalContext);

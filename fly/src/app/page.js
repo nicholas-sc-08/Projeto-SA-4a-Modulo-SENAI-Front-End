@@ -1,37 +1,39 @@
-import React, { useContext, useEffect, useState } from 'react';
+"use client";
+
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import api from '../../services/api';
-import { GlobalContext } from '../../contexts/GlobalContext';
-import Footer from '../../components/Footer/Footer';
-import './Tela_inicial.css'
-import { Link } from 'react-router-dom';
+import api from "@/app/services/api";
+import Footer from '@/app/components/Footer/Footer';
+import Chat from '@/app/components/Chat/chat';
+import Chat_conversa from '@/app/components/chat/Chat_conversa';
+import '@/app/page.module.css'
 import { motion, AnimatePresence, useAnimation } from "framer-motion";
-import Header from '../../components/Header/Header';
-import Compra_realizada from '../../components/Pop_up_compra_realizada/Compra_realizada';
-import Painel from '../../components/Chat/Painel/Painel';
-// import { motion, AnimatePresence } from 'framer-motion';
-// import { useSearch } from '@/contexts/SearchContext';
+import Header from '@/app/components/Header/Header';
+import Compra_realizada from '@/app/components/Pop_up_compra_realizada/Compra_realizada';
+import { useGlobalContext } from '@/app/context/GlobalContext';
 
 
-function Tela_incial() {
+export default function Tela_incial() {
 
-  const { array_clientes, set_array_clientes } = useContext(GlobalContext);
-  const { array_brechos, set_array_brechos } = useContext(GlobalContext);
-  const { array_produtos, set_array_produtos } = useContext(GlobalContext);
-  const { array_categorias, set_array_categorias } = useContext(GlobalContext);
-  const { brecho_selecionado, set_brecho_selecionado } = useContext(GlobalContext);
+  const { array_clientes, set_array_clientes } = useGlobalContext();
+  const { array_brechos, set_array_brechos } = useGlobalContext();
+  const { array_produtos, set_array_produtos } = useGlobalContext();
+  const { array_categorias, set_array_categorias } = useGlobalContext();
+  const { brecho_selecionado, set_brecho_selecionado } = useGlobalContext();
 
-  const { usuario_logado, set_usuario_logado } = useContext(GlobalContext);
-  const { tipo_de_header, set_tipo_de_header } = useContext(GlobalContext);
-  const { produto, set_produto } = useContext(GlobalContext);
-  const { id_categoria_selecionada, set_id_categoria_selecionada } = useContext(GlobalContext);
-  const { sacola, set_sacola } = useContext(GlobalContext);
-  const { sacola_ou_produto, set_sacola_ou_produto } = useContext(GlobalContext);
+  const { chat_aberto, set_chato_aberto } = useGlobalContext();
+  const { conversa_aberta, set_conversa_aberta } = useGlobalContext();
+  const { usuario_logado, set_usuario_logado } = useGlobalContext();
+  const { tipo_de_header, set_tipo_de_header } = useGlobalContext();
+  const { produto, set_produto } = useGlobalContext();
+  const { id_categoria_selecionada, set_id_categoria_selecionada } = useGlobalContext();
+  const { sacola, set_sacola } = useGlobalContext();
+  const { sacola_ou_produto, set_sacola_ou_produto } = useGlobalContext();
   const navegar = useNavigate(``);
-  const { sacola_aberta, set_sacola_aberta } = useContext(GlobalContext);
+  const { sacola_aberta, set_sacola_aberta } = useGlobalContext();
   const [compra_realizada, set_compra_realizada] = useState(false);
 
-  const { formCadastroBrecho, setFormCadastroBrecho } = useContext(GlobalContext)
+  const { formCadastroBrecho, setFormCadastroBrecho } = useGlobalContext();
 
   const [startIndex, setStartIndex] = useState(0);
   const itemsToShow = 4;
@@ -45,9 +47,9 @@ function Tela_incial() {
   const controlsEstrelaVerde = useAnimation();
   const controlsEstrelaAmarela = useAnimation();
 
-  const { termoBuscado, setTermoBuscado } = useContext(GlobalContext)
+  const { termoBuscado, setTermoBuscado } = useGlobalContext()
 
-  const { filtro_de_pesquisa, set_filtro_de_pesquisa } = useContext(GlobalContext);
+  const { filtro_de_pesquisa, set_filtro_de_pesquisa } = useGlobalContext();
 
   // const { setValorBuscado } = useSearch();
 
@@ -298,6 +300,7 @@ function Tela_incial() {
     }
   };
 
+
   const redirecionarParaTelaEmAndamento = () => {
     navegar(`/estamosChegando`);
   };
@@ -309,7 +312,6 @@ function Tela_incial() {
 
       <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.4 }}>
 
-        {true && <Painel/>}
         <Header tipo={tipo_de_header} />
 
         {/* home page seção um */}
@@ -462,9 +464,11 @@ function Tela_incial() {
           </div>
         </div>
 
+        {usuario_logado != `` && !conversa_aberta && <Chat />}
+        {conversa_aberta && <Chat_conversa />}
+
         <Footer />
       </motion.div>
     </AnimatePresence>
-  )
-}
-export default Tela_incial
+  );
+};
