@@ -183,7 +183,7 @@ export default function Header({ tipo }) {
             return (
                 <>
                     <Link href="/EstamosChegando" className={styles["link-texto-navbar-usuario"]}>Doações</Link>
-                    <Link href="/buscarProdutos" className={styles["link-texto-navbar-usuario"]}>Produtos</Link>
+                    <Link href="/pesquisa_de_produtos" className={styles["link-texto-navbar-usuario"]}>Produtos</Link>
                     <Link href="/sobre_nos" className={styles["link-texto-navbar-usuario"]}>Sobre nós</Link>
                 </>
             );

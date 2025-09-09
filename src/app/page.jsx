@@ -322,7 +322,7 @@ export default function Tela_incial() {
           <div className={styles["secao-um-texto-container-home-page"]}>
             <h1>ENCONTRE ROUPAS QUE COMBINAM COM SEU ESTILO</h1>
             <p>Explore nossa seleção exclusiva de roupas em brechós cuidadosamente curados, onde cada peça reflete personalidade e estilo único. Encontre itens que combinam com você e expressam sua individualidade de forma autêntica.</p>
-            <button onClick={() => router.push(`/buscarProdutos`)}>Compre Já</button>
+            <button onClick={() => router.push(`/pesquisa_de_produtos`)}>Compre Já</button>
           </div>
 
           <div className={styles["container-imagem-roupas-numero-um"]}>
