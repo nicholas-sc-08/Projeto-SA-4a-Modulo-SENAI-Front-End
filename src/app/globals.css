@@ -4,6 +4,11 @@
   box-sizing: border-box;
 }
 
+body{ 
+
+  background-color: var(--cor_quatro);
+}
+
 #root,
 body,
 html {

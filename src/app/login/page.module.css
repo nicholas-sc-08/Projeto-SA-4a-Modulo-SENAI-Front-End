@@ -1,0 +1,301 @@
+.ladoEsquerdo-container {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin-left: 9%;
+    height: 45%;
+    font-family: "Montserrat", sans serif;
+    overflow-y: hidden;
+
+    /* border: 1px solid red; */
+}
+
+.container-informacoes-login-cadastro {
+    /* border: 1px solid red; */
+    width: 73%;
+    height: 90vh;
+    border-radius: 25px;
+    background-color: var(--cor_tres);
+
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    z-index: 100;
+
+    margin-right: 25%;
+}
+
+.container-informacoes-login-cadastro h1 {
+    font-family: var(--tipografia_primaria);
+    font-size: 2rem;
+    width: 65%;
+    color: var(--cor_um);
+    letter-spacing: 1px;
+    line-height: 45px;
+    font-weight: bold;
+    text-align: center;
+
+    padding-bottom: 4%;
+}
+
+.container-informacoes-login-cadastro p {
+    font-family: var(--tipografia_secundaria);
+    color: var(--cor_um);
+    opacity: 75%;
+    width: 50%;
+    text-align: center;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+
+    padding-bottom: 5%;
+}
+
+.container-informacoes-login-cadastro button {
+    width: 25%;
+    height: 7%;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+
+    border-radius: 10vw;
+    border: none;
+
+    font-family: var(--tipografia_secundaria);
+    font-size: 1rem;
+
+    color: var(--cor_quatro);
+    background-color: var(--cor_dois);
+}
+
+.container-informacoes-login-cadastro button:hover {
+    transition: 0.3s;
+    background-color: var(--cor_um);
+}
+
+.alinhamento-container-login {
+    display: flex;
+    justify-content: space-between;
+    /* border: 1px solid blue; */
+}
+
+.ladoEsquerdo-container {
+    /* border: 1px solid red; */
+    width: 30%;
+    padding-top: 1%;
+    margin-left: 12%;
+}
+
+.info-login {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    /* border: 1px solid blue; */
+}
+
+.logo-camadinha {
+
+    margin-left: 12%;
+    margin-top: 2%;
+    height: 10%;
+    cursor: pointer;
+    /* border: 1px solid red; */
+}
+
+
+.ladoEsquerdo-container img {
+    width: 150px;
+}
+
+.ladoEsquerdo-container input {
+
+    width: 100%;
+    height: 6vh;
+    padding-left: 1%;
+    outline: none;
+    border: 0.1vw solid var(--cor_dois);
+    border-radius: 0.6vw;
+
+    font-family: var(--tipografia_secundaria);
+    font-size: 1em;
+
+    color: var(--cor_seis);
+    background-color: transparent;
+    /* border: 1px solid red; */
+
+}
+
+.ladoEsquerdo-container span {
+    color: var(--cor_sete_v_um);
+}
+
+.ladoEsquerdo-container label {
+    margin-top: 8%;
+    margin-bottom: 1%;
+
+    font-family: var(--tipografia_secundaria);
+    font-size: 1rem;
+    font-weight: bold;
+
+    color: var(--cor_seis_v_um);
+    /* border: 1px solid red; */
+}
+
+.ladoEsquerdo-container h1 {
+    color: var(--cor_seis);
+    width: 100%;
+    margin-top: 2%;
+}
+
+.container_input_senha {
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    border: 0.1vw solid var(--cor_dois);
+    border-radius: 0.6vw;
+}
+
+.container_input_senha input {
+
+    width: 85%;
+    border: none;
+}
+
+.container_input_senha img {
+
+    cursor: pointer;
+    transition: 0.3s;
+
+    width: 6%;
+    margin-right: 3%;
+    padding: 1%;
+
+    border-radius: 100vw;
+
+    background-color: transparent;
+}
+
+.container_input_senha img:hover {
+
+    background-color: var(--cor_quatro_v_um);
+}
+
+.fazer_login_butao {
+    border: 0.1vw solid var(--cor_um);
+    border-radius: 100vw;
+    background-color: var(--cor_um);
+    color: var(--cor_quatro);
+    width: 100%;
+    height: 6vh;
+    font-size: 1rem;
+    margin-top: 5%;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.fazer_login_butao button:hover {
+
+    border: 0.1vw solid var(--cor_um_v_dois);
+    background-color: var(--cor_um_v_dois);
+}
+
+.botao-google-custom {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    padding: 12px 19px;
+    border: 1px solid #dadce0;
+    border-radius: 0.4vw;
+    background-color: transparent;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+    margin-top: 8%;
+    width: 100%;
+    height: 6vh;
+    color: var(--cor_seis);
+}
+
+.botao-google-custom:hover {
+    background-color: #f7f7f7;
+}
+
+.botao-google-custom img {
+    width: 35px;
+    height: 20px;
+}
+
+/* --------------------------------------------------------LADO DIREITO--------------------------------------- */
+
+.container-ir-para-tela-cadastro-alinhamento {
+    width: 50%;
+    height: 100vh;
+
+    margin-top: -10.5%;
+
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    /* border: 1px solid red; */
+}
+
+.erro-campo {
+    color: red;
+    font-size: 0.9rem;
+    margin-top: 0.3rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.erro-geral {
+    margin-top: 1rem;
+}
+
+/* Responsividade Mobile*/
+@media (max-width: 768px) {
+    .logo-camadinha {
+        margin-left: 15%;
+    }
+
+    .ladoEsquerdo-container {
+        position: relative;
+        bottom: 14px;
+        right: 3%;
+    }
+
+    .info-login {
+        margin-top: 8%;
+
+    }
+
+    .info-login input {
+        width: 80%;
+    }
+
+    .ladoEsquerdo-container button {
+        width: 75%;
+        margin-top: 14%;
+        margin-left: 2.5%;
+
+    }
+
+    .ladoDireito-container {
+        position: relative;
+        width: 80%;
+        top: 30px;
+        left: 10%;
+    }
+
+    .info-ladoDireito p {
+        margin-top: 5%;
+    }
+
+}

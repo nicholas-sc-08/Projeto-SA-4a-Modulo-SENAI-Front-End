@@ -433,7 +433,7 @@ export default function Tela_incial() {
           </AnimatePresence>
 
           <div className={styles["alinhamento-buttons-secao-tres-lancamentos"]}>
-            <button onClick={() => router.push(`/buscarProdutos`)}>Ver todos</button>
+            <button onClick={() => router.push(`/pesquisa_de_produtos`)}>Ver todos</button>
           </div>
         </div>
         {/* home page seção tres */}
