@@ -297,7 +297,7 @@ export default function Tela_incial() {
 
     if (categoria_encontrada) {
       set_id_categoria_selecionada(categoria_encontrada._id);
-      router.push(`/buscarProdutos?categoria=${encodeURIComponent(categoria_encontrada._id)}`);
+      router.push(`/pesquisa_de_produtos?categoria=${encodeURIComponent(categoria_encontrada._id)}`);
     } else {
       console.log("Categoria não encontrada!");
     }

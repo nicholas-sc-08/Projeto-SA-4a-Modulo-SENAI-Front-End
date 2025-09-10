@@ -392,7 +392,7 @@ export default function Header({ tipo }) {
     //             }
     //         }
 
-    //         router(`/buscarProdutos?query=${encodeURIComponent(termo)}`);
+    //         router(`/pesquisa_de_produtos?query=${encodeURIComponent(termo)}`);
     //         setTermoBuscado('');
     //         setContainerAberto(false);
     //     }
@@ -429,7 +429,7 @@ export default function Header({ tipo }) {
             }
         }
 
-        router(`/buscarProdutos?query=${encodeURIComponent(termo)}`);
+        router.push(`/pesquisa_de_produtos?query=${encodeURIComponent(termo)}`);
         setTermoBuscado('');
         setContainerAberto(false);
     };
@@ -444,7 +444,7 @@ export default function Header({ tipo }) {
         set_id_categoria_selecionada(categoria._id);
         setTermoBuscado(categoria.nome);
 
-        router.push(`/buscarProdutos?categoria=${categoria._id}`);
+        router.push(`/pesquisa_de_produtos?categoria=${categoria._id}`);
     };
 
 
@@ -453,7 +453,7 @@ export default function Header({ tipo }) {
         set_id_marca_selecionada(marca._id);
         setTermoBuscado(marca.nome);
 
-        router.push(`/buscarProdutos?marca=${marca._id}`);
+        router.push(`/pesquisa_de_produtos?marca=${marca._id}`);
     };
 
 
@@ -573,7 +573,7 @@ export default function Header({ tipo }) {
                                                                     className={styles_pesquisa["busquedas-recentes-individual"]}
                                                                     onClick={() => {
                                                                         setTermoBuscado(busca.termo);
-                                                                        router(`/buscarProdutos?query=${encodeURIComponent(busca.termo)}`);
+                                                                        router.push(`/pesquisa_de_produtos?query=${encodeURIComponent(busca.termo)}`);
                                                                         setContainerAberto(false);
                                                                     }}
                                                                 >
