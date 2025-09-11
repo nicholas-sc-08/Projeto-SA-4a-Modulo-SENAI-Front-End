@@ -3,7 +3,7 @@
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { useRef } from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { AnimatePresence } from 'framer-motion';
@@ -13,11 +13,11 @@ import Header from '@/components/header/Header';
 import Footer from '@/components/footer/Footer';
 import Pop_up_conversa_adicionada from '@/components/pop_up_conversa_adicionada/Pop_up_conversa_adicionanda';
 import Pop_up_usuario_nao_logado from '@/components/pop_up_usuario_nao_logado/Pop_up_usuario_nao_logado.jsx';
-import Pop_up_produto_adicionado from '@/components/pop_up_produto_adicionado/'
+import Pop_up_produto_adicionado from '@/components/pop_up_produto_adicionado/Pop_up_produto_adicionado'
 import Pop_up_conversa_adicionada_sucesso from '@/components/pop_up_conversa_adicionada/Pop_up_conversa_adicionada_com_sucesso';
-import './Produto.css';
+import styles from "@/app/produto/page.module.css";
 
-function Produto() {
+export default function Produto() {
 
     const { array_produtos, set_array_produtos } = useGlobalContext();
     const { array_clientes, set_array_clientes } = useGlobalContext();
@@ -40,7 +40,6 @@ function Produto() {
     const [produto_adicionado_na_sacola, set_produto_adicionado_na_sacola] = useState(false);
     const refencia_do_produto = useRef(null);
     const ir_para_perfil = useRouter();
-
     const cores_simplificadas = [{ nome: "Preto", hex: "#000000" }, { nome: "Branco", hex: "#FFFFFF" }, { nome: "Vermelho", hex: "#FF0000" }, { nome: "Verde", hex: "#008000" }, { nome: "Azul", hex: "#0000FF" }, { nome: "Amarelo", hex: "#FFFF00" }, { nome: "Laranja", hex: "#FFA500" }, { nome: "Roxo", hex: "#800080" }, { nome: "Marrom", hex: "#8B4513" }, { nome: "Cinza", hex: "#808080" }, { nome: "Rosa", hex: "#FFC0CB" }, { nome: "Ciano", hex: "#00FFFF" }, { nome: "Magenta", hex: "#FF00FF" }, { nome: "Vinho", hex: "#800000" }, { nome: "Dourado", hex: "#FFD700" }, { nome: "Prateado", hex: "#C0C0C0" }, { nome: "Bege", hex: "#F5F5DC" }, { nome: "Turquesa", hex: "#40E0D0" }, { nome: "Lima", hex: "#00FF00" }, { nome: "Lavanda", hex: "#E6E6FA" },];
 
     useEffect(() => {
@@ -385,40 +384,40 @@ function Produto() {
     return (
         <AnimatePresence>
 
-            <motion.div className='container_visualizar_produto' ref={refencia_do_produto} initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.4 }}>
+            <motion.div className={styles['container_visualizar_produto']} ref={refencia_do_produto} initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.4 }}>
 
                 {pop_de_chat_ja_adicionado && <Pop_up_conversa_adicionada />}
-                {pop_de_chat_ja_adicionado && <div className='fundo_do_pop_up_conversa_adicionada'></div>}
+                {pop_de_chat_ja_adicionado && <div className={styles['fundo_do_pop_up_conversa_adicionada']}></div>}
                 {pop_up_de_usuario_nao_logado && <Pop_up_usuario_nao_logado />}
                 {produto_adicionado_na_sacola && <Pop_up_produto_adicionado />}
                 {pop_de_chat_adicionado && <Pop_up_conversa_adicionada_sucesso />}
 
                 <Header tipo={tipo_de_header} />
 
-                <div className="container_voltar_para_buscar_produtos">
+                <div className={styles["container_voltar_para_buscar_produtos"]}>
 
-                    <Link to={sacola_ou_produto}><img src='./img/icons/icone_seta_esquerda.svg' />Voltar</Link>
+                    <Link href={sacola_ou_produto}><img src='./img/icons/icone_seta_esquerda.svg' />Voltar</Link>
 
                 </div>
 
-                <div className="container_info_do_produto">
+                <div className={styles["container_info_do_produto"]}>
 
-                    <div className="container_info_do_produto_imagens">
+                    <div className={styles["container_info_do_produto_imagens"]}>
 
-                        <div className="container_imagens_do_produto">
+                        <div className={styles["container_imagens_do_produto"]}>
 
-                            {produto.imagem.map((url, i) => (
+                            {produto.imagem ? produto.imagem.map((url, i) => (
 
-                                <div key={i} className='container_outras_opcoes_de_imagens' style={{ border: imagem_selecionada == i ? produto_visualiazado : `` }}>
+                                <div key={i} className={styles['container_outras_opcoes_de_imagens']} style={{ border: imagem_selecionada == i ? produto_visualiazado : `` }}>
 
-                                    <img src={url} alt="" onClick={() => set_imagem_selecionada(i)} />
+                                    <img src={url} alt="Imagem do produto" onClick={() => set_imagem_selecionada(i)} />
 
                                 </div>
-                            ))}
+                            )) : ``}
 
                         </div>
 
-                        <div className="container_imagem_principal_produto">
+                        <div className={styles["container_imagem_principal_produto"]}>
 
                             <img src={produto.imagem[imagem_selecionada]} alt="" />
 
@@ -426,15 +425,15 @@ function Produto() {
 
                     </div>
 
-                    <div className="container_info_do_produto_conteudo">
+                    <div className={styles["container_info_do_produto_conteudo"]}>
 
-                        <div className="container_info_do_produto_titulo">
+                        <div className={styles["container_info_do_produto_titulo"]}>
 
                             <h1>{produto.nome}</h1>
 
-                            <div className='container_info_brecho_do_produto'>
+                            <div className={styles['container_info_brecho_do_produto']}>
 
-                                <div className='container_info_brecho_logo'>
+                                <div className={styles['container_info_brecho_logo']}>
 
                                     <img src={imagem_do_brecho(produto.fk_id_brecho)} alt="" onMouseEnter={() => exibir_nome_do_brecho(produto.fk_id_brecho)} onClick={() => ir_para_perfil.push_brecho(produto.fk_id_brecho)} onMouseLeave={() => set_exibir_nome_brecho(false)} />
 
@@ -444,7 +443,7 @@ function Produto() {
 
                                     {exibir_nome_brecho &&
 
-                                        <motion.div className='contianer_pop_up_nome_do_brecho' initial={{ opacity: 0, y: 0 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.2 }}>
+                                        <motion.div className={styles['contianer_pop_up_nome_do_brecho']} initial={{ opacity: 0, y: 0 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.2 }}>
 
                                             <span>{nome_do_brecho}</span>
 
@@ -458,25 +457,25 @@ function Produto() {
 
                         </div>
 
-                        <div className="container_info_do_produto_preco">
+                        <div className={styles["container_info_do_produto_preco"]}>
 
                             <h2>{exibir_preco(produto.preco)}</h2>
 
                         </div>
 
-                        <div className="container_info_do_produto_descricao">
+                        <div className={styles["container_info_do_produto_descricao"]}>
 
                             <p>{produto.descricao}</p>
 
                         </div>
 
-                        <div className="container_info_do_produto_tamanho_e_cor">
+                        <div className={styles["container_info_do_produto_tamanho_e_cor"]}>
 
-                            <div className="container_info_do_produto_tamanho">
+                            <div className={styles["container_info_do_produto_tamanho"]}>
 
                                 <h3>Tamanho</h3>
 
-                                <div className="container_fundo_info_do_produto_tamanho">
+                                <div className={styles["container_fundo_info_do_produto_tamanho"]}>
 
                                     <span>{produto.tamanho}</span>
 
@@ -484,11 +483,11 @@ function Produto() {
 
                             </div>
 
-                            <div className="container_info_do_produto_quantidade">
+                            <div className={styles["container_info_do_produto_quantidade"]}>
 
                                 <h3>Quantidade</h3>
 
-                                <div className="container_fundo_info_do_produto_quantidade">
+                                <div className={styles["container_fundo_info_do_produto_quantidade"]}>
 
                                     <span>{produto.quantidade}</span>
 
@@ -496,11 +495,11 @@ function Produto() {
 
                             </div>
 
-                            <div className="container_info_do_produto_composto">
+                            <div className={styles["container_info_do_produto_composto"]}>
 
                                 <h3>Tipo do tecido</h3>
 
-                                <div className='container_fundo_info_do_produto_composto'>
+                                <div className={styles['container_fundo_info_do_produto_composto']}>
 
                                     <span>{produto.composicao}</span>
 
@@ -508,13 +507,13 @@ function Produto() {
 
                             </div>
 
-                            <div className="container_info_do_produto_cor">
+                            <div className={styles["container_info_do_produto_cor"]}>
 
                                 <h3>Cor do Tecido</h3>
 
-                                <div className='container_fundo_info_do_produto_cor'>
+                                <div className={styles['container_fundo_info_do_produto_cor']}>
 
-                                    <div className='cor_do_produto' style={{ backgroundColor: produto.cor[0] }}></div>
+                                    <div className={styles['cor_do_produto']} style={{ backgroundColor: produto.cor[0] }}></div>
                                     <span>{cor_mais_proxima(produto.cor[0])}</span>
 
                                 </div>
@@ -523,12 +522,12 @@ function Produto() {
 
                         </div>
 
-                        <div className="container_info_do_produto_botoes">
+                        <div className={styles["container_info_do_produto_botoes"]}>
 
-                            <div className='container_botoes_do_produto'>
+                            <div className={styles['container_botoes_do_produto']}>
 
-                                <button className='botao_comprar_produto' onClick={() => adicionar_a_sacola()}>Adicionar a Sacola</button>
-                                <button className='botao_conversar_com_brecho' onClick={() => adicionar_conversa_ao_chat()}><img src="./img/icons/icone_chat.png" alt="" />Chat</button>
+                                <button className={styles['botao_comprar_produto']} onClick={() => adicionar_a_sacola()}>Adicionar a Sacola</button>
+                                <button className={styles['botao_conversar_com_brecho']} onClick={() => adicionar_conversa_ao_chat()}><img src="./img/icons/icone_chat.png" alt="" />Chat</button>
 
                             </div>
 
@@ -538,36 +537,36 @@ function Produto() {
 
                 </div>
 
-                <div className="container_voce_tambem_pode_gostar">
+                <div className={styles["container_voce_tambem_pode_gostar"]}>
 
-                    <div className="container_voce_tambem_pode_gostar_titulo">
+                    <div className={styles["container_voce_tambem_pode_gostar_titulo"]}>
 
                         <h2>Você tembém pode gostar</h2>
 
                     </div>
 
-                    <div className="container_produtos_embaralhados">
+                    <div className={styles["container_produtos_embaralhados"]}>
 
                         {produtos_embaralhados.map((produto_embaralhado, i) => (
 
-                            <div key={i} className='container_produto_embaralhado' onClick={() => ir_para_produto_selecionado(produto_embaralhado)}>
+                            <div key={i} className={styles['container_produto_embaralhado']} onClick={() => ir_para_produto_selecionado(produto_embaralhado)}>
 
-                                <div className="container_imagem_do_produto">
+                                <div className={styles["container_imagem_do_produto"]}>
 
                                     <img src={produto_embaralhado.imagem[0]} alt="" />
 
                                 </div>
 
-                                <div className="container_produto_embaralhado_info">
+                                <div className={styles["container_produto_embaralhado_info"]}>
 
-                                    <div className="contianer_produto_embaralhado_titulo">
+                                    <div className={styles["contianer_produto_embaralhado_titulo"]}>
 
                                         <h5>{produto_embaralhado.nome}</h5>
                                         <img src={imagem_do_brecho(produto_embaralhado.fk_id_brecho)} alt="" />
 
                                     </div>
 
-                                    <div className="container_produto_embaralhado_preco">
+                                    <div className={styles["container_produto_embaralhado_preco"]}>
 
                                         <span>{exibir_preco(produto_embaralhado.preco)}</span>
 
