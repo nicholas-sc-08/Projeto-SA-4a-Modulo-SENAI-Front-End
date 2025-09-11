@@ -1,8 +1,10 @@
+"use client";
+
 import styles from '@/components/pop_up_conversa_adicionada/Pop_up_conversa_adicionada.module.css';
 import { AnimatePresence } from 'framer-motion';
 import { motion } from 'framer-motion';
 
-function Pop_up_conversa_adicionada() {
+export default function Pop_up_conversa_adicionada() {
   return (
     <div className={styles['container_conversa_ja_adicionada']}>
 
@@ -23,7 +25,5 @@ function Pop_up_conversa_adicionada() {
       </AnimatePresence>
 
     </div>
-  )
-}
-
-export default Pop_up_conversa_adicionada
+  );
+};

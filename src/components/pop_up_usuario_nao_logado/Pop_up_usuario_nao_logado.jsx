@@ -1,9 +1,11 @@
+"use client";
+
 import React from 'react'
 import { AnimatePresence } from 'framer-motion';
 import { motion } from 'framer-motion';
 import styles from "@/components/pop_up_usuario_nao_logado/Pop_up_usuario_nao_logado.module.css";
 
-function Pop_up_usuario_nao_logado() {
+export default function Pop_up_usuario_nao_logado() {
   return (
     <div className={styles['container_conversa_ja_adicionada']}>
 
@@ -24,7 +26,5 @@ function Pop_up_usuario_nao_logado() {
       </AnimatePresence>
 
     </div>
-  )
-}
-
-export default Pop_up_usuario_nao_logado
+  );
+};
