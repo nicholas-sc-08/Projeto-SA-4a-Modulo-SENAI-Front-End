@@ -11,10 +11,10 @@ import { useGlobalContext } from '@/context/GlobalContext';
 import api from '@/services/api';
 import Header from '@/components/header/Header';
 import Footer from '@/components/footer/Footer';
-import Pop_up_conversa_adicionada from '@/components/pop_up_conversa_adicionada/';
-import Pop_up_usuario_nao_logado from '../../components/pop_up_usuario_nao_logado/Pop_up_usuario_nao_logado';
-import Pop_up_produto_adicionado from '../../components/Pop_produto_adicionado/Pop_up_produto_adicionado.jsx'
-import Pop_up_conversa_adicionada_sucesso from '../../components/pop_up_conversa_adicionada/Pop_up_conversa_adicionada_sucesso.jsx';
+import Pop_up_conversa_adicionada from '@/components/pop_up_conversa_adicionada/Pop_up_conversa_adicionanda';
+import Pop_up_usuario_nao_logado from '@/components/pop_up_usuario_nao_logado/Pop_up_usuario_nao_logado.jsx';
+import Pop_up_produto_adicionado from '@/components/pop_up_produto_adicionado/'
+import Pop_up_conversa_adicionada_sucesso from '@/components/pop_up_conversa_adicionada/Pop_up_conversa_adicionada_com_sucesso';
 import './Produto.css';
 
 function Produto() {
