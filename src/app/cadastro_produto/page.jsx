@@ -1,26 +1,27 @@
 "use client";
 
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "@/app/cadastro_produto/page.module.css";
 import Header from "@/components/header/Header";
 import api from "@/services/api";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from "next/navigation";
 import Footer from '@/components/footer/Footer';
-import Pop_up_cadastro_produto from "@/components/pop_up_cadastro_produto";
-import Pop_up_erro_cadastro_produto from "../../components/Pop_up_cadastro_produto/Pop_up_erro_cadastro_produto";
+import Pop_up_cadastro_produto from "@/components/pop_up_cadastro_produto/Pop_up_cadastro_produto";
+import Pop_up_erro_cadastro_produto from "@/components/pop_up_cadastro_produto/Pop_up_erro_cadastro_produto";
 import { AnimatePresence } from "framer-motion";
 import { motion } from "framer-motion";
+import { useGlobalContext } from "@/context/GlobalContext";
 
 export default function Cadastro_Produto() {
   // Estados globais via Context API
-  const { usuario_logado, set_usuario_logado } = useContext(GlobalContext);
-  const { conversa_aberta, set_conversa_aberta } = useContext(GlobalContext);
-  const { array_estoques, set_array_estoques } = useContext(GlobalContext);
-  const { array_produtos, set_array_produtos } = useContext(GlobalContext);
-  const { tipo_de_header, set_tipo_de_header } = useContext(GlobalContext);
-  const { informacoes_editar_produto, set_informacoes_editar_produto } = useContext(GlobalContext);
+  const { usuario_logado, set_usuario_logado } = useGlobalContext();
+  const { conversa_aberta, set_conversa_aberta } = useGlobalContext();
+  const { array_estoques, set_array_estoques } = useGlobalContext();
+  const { array_produtos, set_array_produtos } = useGlobalContext();
+  const { tipo_de_header, set_tipo_de_header } = useGlobalContext();
+  const { informacoes_editar_produto, set_informacoes_editar_produto } = useGlobalContext();
   const [pop_up_notificacao_cadastro_produto, set_pop_up_notificacao_cadastro_produto] = useState(false);
-  const navigate = useNavigate();
+  const router = useRouter();
 
   // Tecidos sugeridos para autocomplete
   const tecidos_disponiveis = ["Algodão", "Poliéster", "Linho", "Seda", "Jeans", "Sarja", "Couro", "Malha", "Viscose", "Veludo", "Moletom", "Crepe", "Tricoline", "La", "Nylon", "Oxford", "Organza", "Chiffon", "Tule", "Elastano", "Lycra", "Canvas", "Suede", "Vinil", "Sintético", "Cânhamo", "Mesh", "Denim", "Jacquard", "Renda", "PVC", "EVA", "Neoprene"];
@@ -280,7 +281,7 @@ export default function Cadastro_Produto() {
     try {
       await api.put(`/produtos/${informacoes_editar_produto._id}`, array_cadastro_produto);
       buscar_produtos(); // Atualiza a listagem
-      navigate("/gestao_estoque");
+      router.push("/gestao_de_estoque");
 
       // Limpa o estado de edição
       set_informacoes_editar_produto(null);
@@ -402,7 +403,7 @@ export default function Cadastro_Produto() {
       await api.post("/produtos", produtoParaEnviar);
       buscar_produtos();
       set_pop_up_notificacao_cadastro_produto(true);
-      setTimeout(() => navigate("/gestao_estoque"), 2000);
+      setTimeout(() => router.push("/gestao_de_estoque"), 2000);
 
     } catch (error) {
       console.error("Erro ao cadastrar produto", error.response?.data || error.message || error);
@@ -420,25 +421,25 @@ export default function Cadastro_Produto() {
         transition={{ duration: 0.4 }}>
         {pop_up_notificacao_cadastro_produto && <Pop_up_cadastro_produto />}
         <Header tipo={tipo_de_header} />
-        <div className="cabecalho-titulo">
+        <div className={styles["cabecalho-titulo"]}>
 
 
-          <button className="botao-seta-voltar" onClick={() => navigate(-1)}>
+          <button className={styles["botao-seta-voltar"]} onClick={() => router.push(-1)}>
             <img src="/img/seta-esquerda.png" alt="Voltar" />
           </button>
-          <h2 className="titulo">Cadastro Produto</h2>
+          <h2 className={styles["titulo"]}>Cadastro Produto</h2>
         </div>
-        <div className="container-cadastro-produto">
-          <div className="galeria">
+        <div className={styles["container-cadastro-produto"]}>
+          <div className={styles["galeria"]}>
             {[0, 1, 2].map((_, index) => {
               const imagem = imagens[index];
 
               return imagem ? (
-                <div key={index} className="miniatura" onClick={() => selecionarImagemPrincipal(imagem)}>
+                <div key={index} className={styles["miniatura"]} onClick={() => selecionarImagemPrincipal(imagem)}>
                   <img src={imagem} alt={`Imagem ${index}`} />
                   <button
                     type="button"
-                    className="botao-remover-imagem"
+                    className={styles["botao-remover-imagem"]}
                     onClick={(e) => {
                       e.stopPropagation(); // Para não disparar o onClick do pai que seleciona a imagem principal
                       removerImagem(index);
@@ -449,26 +450,26 @@ export default function Cadastro_Produto() {
                   </button>
                 </div>
               ) : (
-                <label key={index} className="miniatura">
+                <label key={index} className={styles["miniatura"]}>
                   <input type="file" onChange={adicionar_imagem} hidden />
-                  <img className="AddImage" src="./img/ImagemAdd.svg" alt="Adicionar" />
+                  <img className={styles["AddImage"]} src="./img/ImagemAdd.svg" alt="Adicionar" />
                 </label>
               );
             })}
           </div>
 
-          <div className={`imagem-principal ${imagemPrincipal ? "has-image" : ""}`}>
+          <div className={styles[`imagem-principal ${imagemPrincipal ? "has-image" : ""}`]}>
             {imagemPrincipal ? (
               <img src={imagemPrincipal} alt="Imagem Principal" />
             ) : (
-              <label className="botao-adicionar-imagem">
+              <label className={styles["botao-adicionar-imagem"]}>
                 <input type="file" onChange={adicionar_imagem} hidden />
-                <img src="./img/ImagemAdd.svg" alt="Adicionar Imagem" className="AddImage" />
+                <img src="./img/ImagemAdd.svg" alt="Adicionar Imagem" className={styles["AddImage"]} />
               </label>
             )}
           </div>
 
-          <div className="detalhes-produto">
+          <div className={styles["detalhes-produto"]}>
             {editandoNome ? (
               <input
                 type="text"
@@ -476,10 +477,10 @@ export default function Cadastro_Produto() {
                 onChange={(e) => setArray_cadastro_produto({ ...array_cadastro_produto, nome: e.target.value })}
                 onBlur={() => setEditandoNome(false)}
                 autoFocus
-                className="inpt-edit"
+                className={styles["inpt-edit"]}
               />
             ) : (
-              <span className="nome-produto" onClick={() => setEditandoNome(true)}>
+              <span className={styles["nome-produto"]} onClick={() => setEditandoNome(true)}>
                 {nomeExibido}
               </span>
             )}
@@ -491,17 +492,17 @@ export default function Cadastro_Produto() {
                 onChange={(e) => setArray_cadastro_produto({ ...array_cadastro_produto, preco: e.target.value })}
                 onBlur={() => setEditandoPreco(false)}
                 autoFocus
-                className="inpt-edit-preco"
+                className={styles["inpt-edit-preco"]}
               />
             ) : (
-              <span className="preco-produto" onClick={() => setEditandoPreco(true)}>
+              <span className={styles["preco-produto"]} onClick={() => setEditandoPreco(true)}>
                 R$ {array_cadastro_produto.preco || "Preço"}
               </span>
             )}
 
-            <div className="input-group-descricao">
+            <div className={styles["input-group-descricao"]}>
               <textarea
-                placeholder="Descrição do produto"
+                placeholder={styles["Descrição do produto"]}
                 value={array_cadastro_produto.descricao}
                 onChange={(e) => setArray_cadastro_produto({ ...array_cadastro_produto, descricao: e.target.value })}
               ></textarea>
@@ -510,14 +511,14 @@ export default function Cadastro_Produto() {
             </div>
             <hr />
 
-            <div className="input-group-alinhados">
+            <div className={styles["input-group-alinhados"]}>
 
 
-              <div className="input-tamanho">
+              <div className={styles["input-tamanho"]}>
                 <label>Tamanho</label>
                 <input
                   type="text"
-                  className="tamanho"
+                  className={styles["tamanho"]}
                   placeholder=""
                   maxlength="2"
                   value={array_cadastro_produto.tamanho}
@@ -528,9 +529,9 @@ export default function Cadastro_Produto() {
               </div>
 
 
-              <div className="quantidade-container">
-                <div className="quantidade-titulo">Quantidade</div>
-                <div className="quantidade">
+              <div className={styles["quantidade-container"]}>
+                <div className={styles["quantidade-titulo"]}>Quantidade</div>
+                <div className={styles["quantidade"]}>
                   <button className="botao-quantidade" onClick={diminuirQuantidade}>
                     <img src="./img/icons/seta-esquerda.png" alt="Diminuir" className="icone-quantidade" />
                   </button>
@@ -581,17 +582,17 @@ export default function Cadastro_Produto() {
               </div>
 
 
-              <div className="cores">
+              <div className={styles["cores"]}>
                 <label>Seleção de Cores</label>
-                <div className="divisao-cores">
-                  <button className="cor-seletor" onClick={selecionarCorEyeDropper}>
-                    <img className="rodaDeCores" src="./img/roda-de-cores.svg" alt="Selecionar Cor" />
+                <div className={styles["divisao-cores"]}>
+                  <button className={styles["cor-seletor"]} onClick={selecionarCorEyeDropper}>
+                    <img className={styles["rodaDeCores"]} src="./img/roda-de-cores.svg" alt="Selecionar Cor" />
                   </button>
-                  <div className="cores-selecionadas">
+                  <div className={styles["cores-selecionadas"]}>
                     {coresSelecionadas.map((cor, index) => (
                       <div
                         key={index}
-                        className="cor-selecionada"
+                        className={styles["cor-selecionada"]}
                         style={{ backgroundColor: cor }}
                         onClick={() => substituirCor(index)}
                         title="Clique para substituir essa cor"
@@ -606,11 +607,11 @@ export default function Cadastro_Produto() {
           </div>
         </div>
 
-        <h2 className="titulo2">Detalhes do Produto</h2>
-        <hr className="linha-titulo-2" />
+        <h2 className={styles["titulo2"]}>Detalhes do Produto</h2>
+        <hr className={styles["linha-titulo-2" ]}/>
 
-        <div className="container-detalhes-produtos">
-          <div className="formulario">
+        <div className={styles["container-detalhes-produtos"]}>
+          <div className={styles["formulario"]}>
 
 
             <div className="input-group">
@@ -619,7 +620,7 @@ export default function Cadastro_Produto() {
                 <input
                   type="text"
                   placeholder="Buscar marcas"
-                  className="input-group-marcas"
+                  className={styles["input-group-marcas"]}
                   value={inputMarca}
                   onChange={(e) => {
                     setInputMarca(e.target.value);
@@ -630,7 +631,7 @@ export default function Cadastro_Produto() {
                   autoComplete="off"
                 />
                 {marcaEmFoco && marcasFiltradas.length > 0 && (
-                  <ul className="lista-marcas">
+                  <ul className={styles["lista-marcas"]}>
                     {marcasFiltradas.map((marca, index) => (
                       <li
                         key={index}
@@ -659,7 +660,7 @@ export default function Cadastro_Produto() {
                 onChange={(e) =>
                   setArray_cadastro_produto({ ...array_cadastro_produto, condicao: e.target.value })
                 }
-                className="input-group-estado"
+                className={styles["input-group-estado"]}
               >
                 <option value="">Selecione o estado</option>
                 {["Novo", "Semi-Novo", "Usado", "Velho"].map((estado, index) => (
@@ -674,12 +675,12 @@ export default function Cadastro_Produto() {
 
           </div>
 
-          <div className="formulario-direito">
+          <div className={styles["formulario-direito"]}>
             <div style={{ position: "relative" }}>
-              <label className="input-categoria-label">Categoria</label>
+              <label className={styles["input-categoria-label"]}>Categoria</label>
               <input
                 type="text"
-                className="input-categoria"
+                className={styles["input-categoria"]}
                 placeholder="Digite para buscar categoria"
                 value={inputCategoria}
                 onChange={(e) => {
@@ -692,7 +693,7 @@ export default function Cadastro_Produto() {
               />
 
               {categoriaEmFoco && categoriasFiltradas.length > 0 && (
-                <ul className="lista-categorias">
+                <ul className={styles["lista-categorias"]}>
                   {categoriasFiltradas.map((cat) => (
                     <li
                       key={cat._id}
@@ -718,7 +719,7 @@ export default function Cadastro_Produto() {
             <button
 
               onClick={informacoes_editar_produto ? editar_produto : cadastrar_produto}
-              className="botao-cadastrar"
+              className={styles["botao-cadastrar"]}
               style={informacoes_editar_produto ? { backgroundColor: "var(--cor_um)" } : {}} >
               {informacoes_editar_produto ? "Salvar Alterações" : "Cadastrar Produto"}
             </button>
