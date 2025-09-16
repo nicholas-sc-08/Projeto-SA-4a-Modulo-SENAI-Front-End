@@ -74,9 +74,9 @@ export default function Footer() {
             {(divAberta === 'ajuda' || !isMobile) && (
               <>
                 <Link href={"/sobre_nos"}>Quem somos nós?</Link>
-                <Link href={"/estamosChegando"}>Contato</Link>
-                <Link href={'/termosDeUso'}>Termos & Condições </Link>
-                <Link href={'/PoliticaDePrivacidade'}>Política de Privacidade</Link>
+                <Link href={"/estamos_chegando"}>Contato</Link>
+                <Link href={'/termos_de_uso'}>Termos & Condições </Link>
+                <Link href={'/politica_de_privacidade'}>Política de Privacidade</Link>
               </>
             )}
 
@@ -85,10 +85,10 @@ export default function Footer() {
             <h3>FAQ</h3>
             {(divAberta == 'faq' || !isMobile) && (
               <>
-                <Link href={"/estamosChegando"}>Vender no Fly</Link>
-                <Link href={"/estamosChegando"}>Como doar roupas</Link>
-                <Link href={"/buscarProdutos"}>Comprar</Link>
-                <Link href={"/estamosChegando"}>Pagamentos</Link>
+                <Link href={"/estamos_chegando"}>Vender no Fly</Link>
+                <Link href={"/estamos_chegando"}>Como doar roupas</Link>
+                <Link href={"/pesquisa_de_produtos"}>Comprar</Link>
+                <Link href={"/estamos_chegando"}>Pagamentos</Link>
               </>
             )}
 

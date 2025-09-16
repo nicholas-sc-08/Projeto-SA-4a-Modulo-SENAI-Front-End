@@ -60,6 +60,12 @@ export default function Produto() {
 
     useEffect(() => {
 
+        console.log(produto)
+        
+    }, [produto]);
+
+    useEffect(() => {
+
         if (pop_up_de_usuario_nao_logado) {
 
 
