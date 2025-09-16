@@ -51,7 +51,7 @@ export default function Pesquisa_de_produtos() {
 
     useEffect(() => {
 
-        set_sacola_ou_produto(`/buscarProdutos`);
+        set_sacola_ou_produto(`/pesquisa_de_produtos`);
 
     }, []);
 

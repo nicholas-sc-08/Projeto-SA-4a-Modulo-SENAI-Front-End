@@ -467,6 +467,54 @@ export default function Tela_incial() {
           </div>
         </div>
 
+        {/* home page seção de teste - Personalização de produtos */}
+        <div className={styles["container-personalizacao-de-produto"]}>
+          <div className={styles["alinhamento-container-personalizacao-de-produto"]}>
+            <div className={styles["container-titulo-personalizacao-de-produto"]}>
+              <p className={styles["titulo-personalizacao-de-produto"]}>PERSONALIZE SEUS PRODUTOS</p>
+
+              {/* <div className={styles["line-personalizacao-de-produto"]}></div> */}
+
+              <p className={styles["subtitulo-personalizacao-de-produto"]}>
+                Novidade no Fly! Agora você pode interagir diretamente com a gente e personalizar suas compras
+                na nossa loja oficial. Dê seu toque único a cada produto!
+              </p>
+            </div>
+
+            <div className={styles["container-card-personalizacao"]}>
+              <div className={styles["container-conteudo-personalizacao"]}>
+                <div className={styles["container-imagem-personalizacao"]}>
+                  <img
+                    src="/img/imagens_telaInicial/CardImagemTresTelaInicial.svg"
+                    alt="Personalização de produtos"
+                    className={styles["imagem-personalizacao"]}
+                  />
+                </div>
+
+                {/* <div className={styles["icone-estrela-amarela-personalizacao"]}>
+                  <img src="./img/Estrela_um_cadastro.svg" alt="estrela amarela" />
+                </div> */}
+
+                <div className={styles["texto-personalizacao"]}>
+                  <h3 className={styles["titulo-card-personalizacao"]}>
+                    Transforme seus produtos com personalização exclusiva
+                  </h3>
+                </div>
+
+                {/* <div className={styles["icone-estrela-verde-personalizacao"]}>
+                  <img src="./img/Estrela_dois_cadastro.svg" alt="estrela verde" />
+                </div> */}
+              </div>
+
+              <div className={styles["container-botao-personalizacao"]}>
+                <button onClick={() => router.push(`/escolha_de_personalizacao_produtos`)}className={styles["botao-avancar-personalizacao"]}>
+                  Avançar
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
         {/* {usuario_logado != `` && !conversa_aberta && <Chat />}
         {conversa_aberta && <Chat_conversa />} */}
 
