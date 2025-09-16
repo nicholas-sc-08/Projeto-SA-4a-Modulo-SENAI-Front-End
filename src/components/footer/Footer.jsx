@@ -62,7 +62,7 @@ export default function Footer() {
               <>
                 <Link href={"/"}>Início</Link>
                 <Link href={"/"}>Explorar brechós</Link>
-                <Link href={"/estamosChegando"}>Doações</Link>
+                <Link href={"/estamnos_chegando"}>Doações</Link>
                 <Link href={"/buscarProdutos"}>Buscar</Link>
               </>
 
