@@ -507,7 +507,7 @@ export default function Tela_incial() {
               </div>
 
               <div className={styles["container-botao-personalizacao"]}>
-                <button onClick={() => router.push(`/escolha_de_personalizacao_produtos`)}className={styles["botao-avancar-personalizacao"]}>
+                <button onClick={() => router.push(`/visualizacao_produtos_personalizados`)}className={styles["botao-avancar-personalizacao"]}>
                   Avançar
                 </button>
               </div>
