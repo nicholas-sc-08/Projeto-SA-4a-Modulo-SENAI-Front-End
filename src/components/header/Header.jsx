@@ -182,7 +182,7 @@ export default function Header({ tipo }) {
         if (tipo === 'usuario') {
             return (
                 <>
-                    <Link href="/EstamosChegando" className={styles["link-texto-navbar-usuario"]}>Doações</Link>
+                    <Link href="/estamos_chegando" className={styles["link-texto-navbar-usuario"]}>Doações</Link>
                     <Link href="/pesquisa_de_produtos" className={styles["link-texto-navbar-usuario"]}>Produtos</Link>
                     <Link href="/sobre_nos" className={styles["link-texto-navbar-usuario"]}>Sobre nós</Link>
                 </>
@@ -192,7 +192,7 @@ export default function Header({ tipo }) {
             return (
                 <>
                     <Link href="/gestao_estoque" className={styles["link-texto-navbar-usuario"]}>Estoque</Link>
-                    <Link href="/EstamosChegando" className={styles["link-texto-navbar-usuario"]}>Informações</Link>
+                    <Link href="/estamos_chegando" className={styles["link-texto-navbar-usuario"]}>Informações</Link>
                     <Link href="/sobre_nos" className={styles["link-texto-navbar-usuario"]}>Sobre Nós</Link>
                 </>
             );
@@ -297,13 +297,13 @@ export default function Header({ tipo }) {
 
         const encontrar_brecho = array_brechos.find(brecho => brecho._id === usuario_logado._id);
         set_brecho_selecionado(usuario_logado);
-        router.push(`/EstamosChegando`);
+        router.push(`/estamos_chegando`);
 
         if (encontrar_brecho) {
 
         } else {
 
-            router.push(`/EstamosChegando`);
+            router.push(`/estamos_chegando`);
         };
     };
 
