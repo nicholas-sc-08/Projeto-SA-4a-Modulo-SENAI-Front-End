@@ -305,7 +305,7 @@ export default function Tela_incial() {
 
 
   const redirecionarParaTelaEmAndamento = () => {
-    router.push(`/estamosChegando`);
+    router.push(`/estamos_chegando`);
   };
 
   return (

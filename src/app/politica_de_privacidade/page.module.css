@@ -1,0 +1,242 @@
+.container-all-page-politica-privacidade {
+    padding-top: 3%;
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+}
+
+.alinhamento-titulo-subtitulo-politica-privacidade {
+    width: 85%;
+
+    padding-bottom: 3%;
+}
+
+.alinhamento-titulo-subtitulo-politica-privacidade h1 {
+    color: var(--cor_um);
+    font-family: var(--tipografia_primaria);
+    letter-spacing: 0.8px;
+    font-weight: 700;
+    font-size: 2.4rem;
+
+    padding-bottom: 2%;
+}
+
+.alinhamento-titulo-subtitulo-politica-privacidade p {
+    color: var(--cor_seis);
+    font-family: var(--tipografia_secundaria);
+    font-size: 0.9rem;
+}
+
+.alinhamento-titulo-subtitulo-politica-privacidade strong {
+    color: var(--cor_um);
+}
+
+.container-alinhamento-topicos-politica-privacidade {
+    width: 85%;
+    padding-bottom: 4%;
+}
+
+.topico-um-politica-privacidade {
+    padding-bottom: 2%;
+}
+
+.topico-um-politica-privacidade h1 {
+    color: var(--cor_um);
+    font-family: var(--tipografia_primaria);
+    letter-spacing: 0.8px;
+    font-weight: 650;
+    font-size: 1.5rem;
+
+    padding-bottom: 0.5%;
+}
+
+.topico-um-politica-privacidade p {
+    color: var(--cor_seis);
+    font-family: var(--tipografia_secundaria);
+    font-size: 0.9rem;
+    font-weight: 450;
+}
+
+.topico-um-politica-privacidade ul {
+    margin-left: 1.5%;
+}
+
+.topico-um-politica-privacidade li {
+    color: var(--cor_seis);
+    font-family: var(--tipografia_secundaria);
+    font-size: 0.9rem;
+    font-weight: 450;
+}
+
+.topico-dois-politica-privacidade {
+    padding-bottom: 2%;
+}
+
+.topico-dois-politica-privacidade h1 {
+    color: var(--cor_um);
+    font-family: var(--tipografia_primaria);
+    letter-spacing: 0.8px;
+    font-weight: 650;
+    font-size: 1.5rem;
+
+    padding-bottom: 0.5%;
+}
+
+.topico-dois-politica-privacidade p {
+    color: var(--cor_seis);
+    font-family: var(--tipografia_secundaria);
+    font-size: 0.9rem;
+    font-weight: 450;
+}
+
+.topico-dois-politica-privacidade ul {
+    margin-left: 1.5%;
+}
+
+.topico-dois-politica-privacidade li {
+    color: var(--cor_seis);
+    font-family: var(--tipografia_secundaria);
+    font-size: 0.9rem;
+    font-weight: 450;
+}
+
+.topico-tres-politica-privacidade {
+    padding-bottom: 2%;
+}
+
+.topico-tres-politica-privacidade h1 {
+    color: var(--cor_um);
+    font-family: var(--tipografia_primaria);
+    letter-spacing: 0.8px;
+    font-weight: 650;
+    font-size: 1.5rem;
+
+    padding-bottom: 0.5%;
+}
+
+.topico-tres-politica-privacidade p {
+    color: var(--cor_seis);
+    font-family: var(--tipografia_secundaria);
+    font-size: 0.9rem;
+    font-weight: 450;
+}
+
+.topico-tres-politica-privacidade strong {
+    color: var(--cor_um);
+}
+
+.topico-quatro-politica-privacidade {
+    padding-bottom: 2%;
+}
+
+.topico-quatro-politica-privacidade h1 {
+    color: var(--cor_um);
+    font-family: var(--tipografia_primaria);
+    letter-spacing: 0.8px;
+    font-weight: 650;
+    font-size: 1.5rem;
+
+    padding-bottom: 0.5%;
+}
+
+.topico-quatro-politica-privacidade p {
+    color: var(--cor_seis);
+    font-family: var(--tipografia_secundaria);
+    font-size: 0.9rem;
+    font-weight: 450;
+}
+
+.topico-cinco-politica-privacidade {
+    padding-bottom: 2%;
+}
+
+.topico-cinco-politica-privacidade h1 {
+    color: var(--cor_um);
+    font-family: var(--tipografia_primaria);
+    letter-spacing: 0.8px;
+    font-weight: 650;
+    font-size: 1.5rem;
+
+    padding-bottom: 0.5%;
+}
+
+.topico-cinco-politica-privacidade p {
+    color: var(--cor_seis);
+    font-family: var(--tipografia_secundaria);
+    font-size: 0.9rem;
+    font-weight: 450;
+}
+
+.topico-cinco-politica-privacidade ul {
+    margin-left: 1.5%;
+}
+
+.topico-cinco-politica-privacidade li {
+    color: var(--cor_seis);
+    font-family: var(--tipografia_secundaria);
+    font-size: 0.9rem;
+    font-weight: 450;
+}
+
+.topico-seis-politica-privacidade {
+    padding-bottom: 2%;
+}
+
+.topico-seis-politica-privacidade h1 {
+    color: var(--cor_um);
+    font-family: var(--tipografia_primaria);
+    letter-spacing: 0.8px;
+    font-weight: 650;
+    font-size: 1.5rem;
+
+    padding-bottom: 0.5%;
+}
+
+.topico-seis-politica-privacidade p {
+    color: var(--cor_seis);
+    font-family: var(--tipografia_secundaria);
+    font-size: 0.9rem;
+    font-weight: 450;
+}
+
+.topico-de-duvidas-contato-politica-privacidade {
+    padding-bottom: 2%;
+}
+
+.topico-de-duvidas-contato-politica-privacidade h1 {
+    color: var(--cor_um);
+    font-family: var(--tipografia_primaria);
+    letter-spacing: 0.8px;
+    font-weight: 650;
+    font-size: 1.5rem;
+
+    padding-bottom: 0.5%;
+}
+
+.topico-de-duvidas-contato-politica-privacidade p {
+    color: var(--cor_seis);
+    font-family: var(--tipografia_secundaria);
+    font-size: 0.9rem;
+    font-weight: 450;
+}
+
+.topico-de-duvidas-contato-politica-privacidade a {
+    color: var(--cor_um);
+    margin-left: 0.5%;
+}
+
+.atualizacao-politica-privacidade{
+    padding-bottom: 2%;
+}
+
+.atualizacao-politica-privacidade h1{
+    color: var(--cor_seis);
+    font-family: var(--tipografia_primaria);
+    letter-spacing: 0.8px;
+    font-weight: 650;
+    font-size: 1.5rem;
+
+    padding-bottom: 0.5%;
+}
