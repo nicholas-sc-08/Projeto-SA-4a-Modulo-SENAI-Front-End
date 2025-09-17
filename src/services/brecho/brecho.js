@@ -19,11 +19,11 @@ export async function buscar_brechos() {
     };
 };
 
-export async function buscar_brechos(id) {
+export async function buscar_brecho(id) {
 
     try {
 
-        const brecho = await api.get(`/brechos${id}`);
+        const brecho = await api.get(`/brechos/${id}`);
         return brecho.data;
 
     } catch (erro) {
