@@ -129,19 +129,6 @@ export default function Pesquisa_de_produtos() {
         };
     };
 
-    async function buscar_brechos() {
-
-        try {
-
-            const brechos = await api.get(`/brechos`);
-            set_array_brechos(brechos.data);
-
-        } catch (erro) {
-
-            console.error(erro);
-        };
-    };
-
     async function buscar_marcas() {
 
         try {
