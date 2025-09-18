@@ -12,7 +12,7 @@ export async function buscar_brechos() {
     } catch (erro) {
 
         console.error(erro);
-        throw new Error(`Erro cadastrar brechós!`);
+        throw new Error(`Erro buscar brechós!`);
     };
 };
 

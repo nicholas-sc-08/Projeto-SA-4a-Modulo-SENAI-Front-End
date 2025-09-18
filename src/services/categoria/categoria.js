@@ -12,7 +12,7 @@ export async function buscar_categorias() {
     } catch (erro) {
 
         console.error(erro);
-        throw new Error(`Erro cadastrar categorias!`);
+        throw new Error(`Erro buscar categorias!`);
     };
 };
 
