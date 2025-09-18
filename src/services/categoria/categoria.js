@@ -1,16 +1,13 @@
 "use client";
 
 import api from "../api";
-import { useGlobalContext } from "@/context/GlobalContext";
-
-const { array_categorias, set_array_categorias } = useGlobalContext();
 
 export async function buscar_categorias() {
 
     try {
 
         const categorias = await api.get(`/categorias`);
-        set_array_categorias(brechos.data);
+        return categorias.data;
 
     } catch (erro) {
 
