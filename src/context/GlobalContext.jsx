@@ -16,6 +16,7 @@ export const GlobalContextProvider = ({ children }) => {
     const [array_estoques, set_array_estoques] = useState([])
     const [array_chat, set_array_chat] = useState([]);
     const [conversa_atual, set_conversa_atual] = useState([]);
+    const [secao_chat, set_secao_chat] = useState("conversas");
     const [conversa_aberta, set_conversa_aberta] = useState(false);
     const [usuario_logado, set_usuario_logado] = useState([]);
     const [pessoa_com_quem_esta_conversando, set_pessoa_com_quem_esta_conversando] = useState(null);
@@ -45,7 +46,6 @@ export const GlobalContextProvider = ({ children }) => {
     const [pop_up_de_excluir_categoria, set_pop_up_de_excluir_categoria] = useState(false);
     const [pop_up_notificacao_excluir_categoria, set_pop_up_notificacao_excluir_categoria] = useState(false);
     const [pop_up_notificacao_excluir_conversa, set_pop_up_notificacao_excluir_conversa] = useState(false);
-    const [chat_aberto, set_chat_aberto] = useState(false);
     const [erro_pagina, set_erro_pagina] = useState(`404 Página não encontrada`);
     const [excluir_mensagens_chat, set_excluir_mensagens_chat] = useState(false);
     const [excluir_conversa_chat, set_excluir_conversa_chat] = useState(false);
@@ -168,8 +168,8 @@ export const GlobalContextProvider = ({ children }) => {
             set_pop_up_de_excluir_categoria,
             pop_up_notificacao_excluir_categoria,
             set_pop_up_notificacao_excluir_categoria,
-            chat_aberto,
-            set_chat_aberto,
+            secao_chat,
+            set_secao_chat,
             array_chat,
             set_array_chat,
             erro_pagina,

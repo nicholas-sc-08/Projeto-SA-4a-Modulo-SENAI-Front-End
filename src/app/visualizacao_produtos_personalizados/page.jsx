@@ -3,8 +3,8 @@
 import Footer from '@/components/footer/Footer'
 import Header from '@/components/header/Header'
 import { useGlobalContext } from '@/context/GlobalContext';
-import React, { useEffect } from 'react'
-import styles from '@/app/page.module.css'
+import React, { useEffect } from 'react';
+import styles from '@/app/visualizacao_produtos_personalizados/page.module.css'
 
 function page() {
 
@@ -32,10 +32,10 @@ function page() {
 
             <div className={styles["container-titulo-personalizacao"]}>
                 <div className={styles["container-numero-de-fase-personalizacao"]}>
-                    2
+                    <p>2</p>
                 </div>
 
-                <p>Personalize do seu jeito: transforme ideias em realidade</p>
+                <h4>Personalize do seu jeito: transforme ideias em realidade</h4>
             </div>
 
             <div className={styles["container-escolhas-personalizacao"]}>
@@ -45,35 +45,104 @@ function page() {
 
                 <div className={styles["container-conteudo-escolha-personalizacao"]}>
                     <div className={styles["container-titulo-descricao"]}>
-                        <p>EcoBag</p>
+                        <h2>EcoBag</h2>
 
                         <div className={styles["container-preço-quantidade"]}>
-                            <p>R$ 5,47 un</p>
+                            <h4>R$ 5,47 un</h4>
 
                             <div className={styles["container-contador-quantidade-produtos"]}>
-                                <button className={styles["diminuir-quantidade-produtos"]}>-</button>
-                                <h5>1</h5>
-                                <button className={styles["aumentar-quantidade-produtos"]}>+</button>
+                                <button
+                                    // disabled={produto_sacola.quantidade_selecionada === 1}
+                                    className={styles['diminuir-quantidade-produtos']}
+                                // onClick={e => {
+                                //     e.stopPropagation();
+                                //     diminuir_quantia_selecionada(produto_sacola);
+                                // }}
+                                >
+                                    -
+                                </button>
+
+                                <span>1</span>
+
+                                <button
+                                    // disabled={produto_sacola.quantidade_selecionada === produto_sacola.quantidade}
+                                    className={styles['aumentar-quantidade-produtos']}
+                                // onClick={e => {
+                                //     e.stopPropagation();
+                                //     aumentar_quantidade_selecionada(produto_sacola);
+                                // }}
+                                >
+                                    +
+                                </button>
                             </div>
-
-                            <p>Uma peça simples, versátil e cheia de propósito. Nossa ecobag foi pensada para quem quer unir estilo
-                                e consciência. Personalize e transforme um acessório do dia a dia em algo único, feito pra você.
-                            </p>
-
-                            <div className={styles["line-personalizar-produtos"]}></div>
                         </div>
 
-                        <div className={styles["container-opcoes-personalizacao"]}>
-                            <div className={styles["escolha-material"]}>
-                                <p>Escolha o material</p>
+                        <p>Uma peça simples, versátil e cheia de propósito. Nossa ecobag foi pensada para quem quer unir estilo
+                            e consciência. Personalize e transforme um acessório do dia a dia em algo único, feito pra você.
+                        </p>
 
-                                <div className={styles["container-alinhamento-button-personalizacao"]}>
-                                    <button>Algodão</button>
-                                    <button>Poliéster reciclável</button>
-                                </div>
+                        <div className={styles["line-personalizar-produtos"]}></div>
+                    </div>
+
+                    <div className={styles["container-opcoes-personalizacao"]}>
+                        <div className={styles["escolha-material"]}>
+                            <label>Escolha o material</label>
+
+                            <div className={styles["container-alinhamento-button-personalizacao"]}>
+                                <button>Algodão</button>
+                                <button>Poliéster reciclável</button>
+                            </div>
+                        </div>
+
+                        <div className={styles["escolha-tamanho"]}>
+                            <label>Escolha o tamanho</label>
+
+                            <div className={styles["container-alinhamento-button-personalizacao"]}>
+                                <button>Médio</button>
+                                <button>Grande</button>
+                            </div>
+                        </div>
+
+                        <div className={styles["container-alinhamento-multiplas-escolhas-cores"]}>
+                            <div className={styles["escolha-padrao"]}>
+                                <label>Escolha o padrão</label>
+
+                                <select id="opcoes" name="opcoes">
+                                    <option disabled>Padrão</option>
+                                    <option value="op1">Logo da Fly</option>
+                                    <option value="op2">Logo da Fly e Nome</option>
+                                    <option value="op3">Logo da Fly embaixo</option>
+                                </select>
+                            </div>
+
+                            <div className={styles["escolha-padrao"]}>
+                                <label>Escolha a cor do corpo</label>
+
+                                <select id="opcoes" name="opcoes">
+                                    <option value="op1">Amarelo</option>
+                                    <option value="op2">Marrom</option>
+                                    <option value="op3">Verde</option>
+                                    <option value="op3">Areia</option>
+                                </select>
+                            </div>
+
+                            <div className={styles["escolha-padrao"]}>
+                                <label>Escolha a cor da alça</label>
+
+                                <select id="opcoes" name="opcoes">
+                                    <option value="op1">Amarelo</option>
+                                    <option value="op3">Verde</option>
+                                    <option value="op3">Areia</option>
+                                </select>
                             </div>
                         </div>
                     </div>
+
+                    <div className={styles["buttons-acoes-personalizacao-produtos"]}>
+                        <button>Comprar</button>
+                        <button>Chat</button>
+                    </div>
+
                 </div>
             </div>
 

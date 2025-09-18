@@ -1,21 +1,18 @@
 "use client";
 
 import api from "../api";
-import { useGlobalContext } from "@/context/GlobalContext";
-
-const { array_brechos, set_array_brechos } = useGlobalContext();
 
 export async function buscar_brechos() {
 
     try {
 
         const brechos = await api.get(`/brechos`);
-        set_array_brechos(brechos.data);
+        return brechos.data;
 
     } catch (erro) {
 
         console.error(erro);
-        throw new Error(`Erro cadastrar brechós!`);
+        throw new Error(`Erro buscar brechós!`);
     };
 };
 

@@ -7,7 +7,7 @@ import api from '@/services/api';
 import Footer from '@/components/footer/Footer';
 // import Chat from '@/components/chat/Chat';
 // import Chat_conversa from '@/components/chat/Chat_conversa';
-import styles from '@/app/page.module.css'
+import styles from '../app/page.module.css'
 import { Link } from 'next/link';
 import { motion, AnimatePresence, useAnimation } from "framer-motion";
 import Header from '@/components/header/Header';
