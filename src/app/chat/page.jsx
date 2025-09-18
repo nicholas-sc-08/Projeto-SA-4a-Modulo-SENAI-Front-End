@@ -5,11 +5,12 @@ import { useEffect } from "react";
 import { buscar_brechos } from "@/services/brecho/brecho";
 import styles from "@/app/chat/page.module.css";
 import { useGlobalContext } from "@/context/GlobalContext";
+import Barra_lateral from "@/components/chat/Barra_lateral";
 
 export default function chat(){
 
     const { array_brechos, set_array_brechos } = useGlobalContext();
-    
+
     useEffect(() => {
 
         buscar_brechos().then(data => set_array_brechos(data));
@@ -19,7 +20,7 @@ export default function chat(){
     
     <div className={styles["container_inicio_chat"]}>
 
-        <p>asdasd</p>
+        <Barra_lateral/>
 
     </div>
 
