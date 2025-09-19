@@ -173,3 +173,54 @@
     color: var(--cor_seis_v_um);
     background-color: var(--cor_quatro);
 }
+
+.container_conversas {
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    width: 95%;
+    height: 80%;
+}
+
+.container_conversa {
+
+    width: 100%;
+    background-color: red;
+}
+
+.container_conversa img {
+
+    width: 15%;
+}
+
+.container_nenhuma_convesa {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    height: 50%;
+}
+
+.container_nenhuma_convesa img {
+
+    width: 10%;
+}
+
+.container_nenhuma_convesa p {
+
+    display: flex;
+    align-items: center;
+    height: 25%;
+
+    font-family: var(--tipografia_secundaria);
+    font-size: 0.8rem;
+    font-weight: 500;
+
+    color: var(--cor_seis_v_um);
+}
