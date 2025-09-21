@@ -139,8 +139,8 @@ function page() {
                     </div>
 
                     <div className={styles["buttons-acoes-personalizacao-produtos"]}>
-                        <button>Comprar</button>
-                        <button>Chat</button>
+                        <button className={styles["button-comprar-produtos-personalizados"]}>Comprar</button>
+                        <button className={styles["button-chat-produtos-personalizados"]}>Chat</button>
                     </div>
 
                 </div>
