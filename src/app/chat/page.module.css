@@ -1,4 +1,4 @@
-.container_inicio_chat{
+.container_inicio_chat {
 
     display: flex;
     width: 100%;
@@ -6,14 +6,14 @@
     background-color: var(--cor_quatro);
 }
 
-.container_fundo_barra_lateral{ 
+.container_fundo_barra_lateral {
 
     width: 8%;
     height: 100%;
     background-color: var(--cor_doze_v_um);
 }
 
-.container_barra_lateral{
+.container_barra_lateral {
 
     display: flex;
     flex-direction: column;
@@ -24,7 +24,7 @@
     height: 100%;
 
     box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
-    
+
     border-top-right-radius: 1vw;
     border-bottom-right-radius: 1vw;
     background-color: var(--cor_quatro);
@@ -39,7 +39,7 @@
     width: 100%;
 }
 
-.container_logo_barra_lateral img{
+.container_logo_barra_lateral img {
 
     width: 90%;
 }
@@ -50,7 +50,7 @@
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
-    
+
     width: 90%;
     height: 60%;
 }
@@ -73,7 +73,7 @@
     background-color: var(--cor_quatro);
 }
 
-.container_botoes_barra_lateral button:hover{
+.container_botoes_barra_lateral button:hover {
 
     background-color: var(--cor_quatro_v_dois);
 }
@@ -107,7 +107,7 @@
 
     border-radius: 100vw;
     border: 0px;
-    
+
     background-color: var(--cor_quatro);
 }
 
@@ -160,7 +160,7 @@
     background-color: var(--cor_quatro);
 }
 
-.container_section_chat_input input{
+.container_section_chat_input input {
 
     width: 90%;
     height: 100%;
@@ -187,13 +187,76 @@
 
 .container_conversa {
 
+    display: flex;
+    justify-content: flex-start;
     width: 100%;
-    background-color: red;
+    height: 15%;
+    border-radius: 1vw;
+
+    transition: 0.4s;
+    cursor: pointer;
+    background-color: var(--cor_doze_v_um);
+}
+
+.container_conversa:hover {
+
+    background-color: var(--cor_doze_v_dois);
+}
+
+.container_conversa aside {
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20%;
+    height: 100%;
 }
 
 .container_conversa img {
 
-    width: 15%;
+    border-radius: 100vw;
+    width: 70%;
+}
+
+.container_contato_info {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    width: 65%;
+    height: 100%;
+}
+
+.container_contato_info h5 {
+
+    font-family: var(--tipografia_primaria);
+    font-size: 0.9rem;
+    font-weight: 700;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    color: var(--cor_seis);
+}
+
+.container_contato_info span {
+
+    font-family: var(--tipografia_secundaria);
+    font-size: 0.7rem;
+    font-weight: 500;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    color: var(--cor_seis_v_um);
+}
+
+.container_header_imagem img {
+
+    width: 5%;
 }
 
 .container_nenhuma_convesa {
@@ -223,4 +286,110 @@
     font-weight: 500;
 
     color: var(--cor_seis_v_um);
+}
+
+.container_nenhum_contato_selecionado {
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    width: 67%;
+    height: 100%;
+}
+
+.container_nenhum_contato_selecionado img {
+
+    width: 5%;
+}
+
+.container_nenhum_contato_selecionado span {
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    height: 5%;
+
+    font-family: var(--tipografia_secundaria);
+    font-size: 0.8rem;
+
+    color: var(--cor_seis_v_um);
+}
+
+.container_principal {
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    width: 67%;
+    height: 100%;
+}
+
+.container_header_da_conversa {
+
+    display: flex;
+    align-items: center;
+
+    height: 13%;
+    box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+}
+
+.container_header_imagem {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 15%;
+    height: 100%;
+}
+
+.container_header_imagem img {
+
+    width: 40%;
+    border-radius: 100vw;
+    box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+}
+
+.container_header_nome {
+
+    display: flex;
+    align-items: center;
+
+    width: 70%;
+    height: 100%;
+}
+
+.container_header_nome h3 {
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    font-family: var(--tipografia_primaria);
+    font-size: 1.2rem;
+    font-weight: 650;
+
+    color: var(--cor_seis);
+}
+
+.container_header_botao {
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 15%;
+    height: 100%;
+}
+
+.container_header_botao button {
+
+    border: none;
+    background-color: transparent;
 }
