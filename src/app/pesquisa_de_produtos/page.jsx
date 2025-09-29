@@ -8,6 +8,7 @@ import { useRouter } from 'next/navigation';
 import { useSearchParams } from 'next/navigation';
 import { AnimatePresence } from 'framer-motion';
 import { motion } from 'framer-motion';
+import { buscar_brechos } from '@/services/brecho/brecho';
 import Header from '@/components/header/Header';
 import Footer from '@/components/footer/Footer';
 import Filtro_de_pesquisa from '@/components/filtro_de_pesquisa/Filtro_de_pesquisa';
@@ -115,32 +116,6 @@ export default function Pesquisa_de_produtos() {
         set_sacola_aberta(false);
 
     }, []);
-
-    async function buscar_categorias() {
-
-        try {
-
-            const categorias = await api.get(`/categorias`);
-            set_array_categorias(categorias.data);
-
-        } catch (erro) {
-
-            console.error(erro);
-        };
-    };
-
-    async function buscar_marcas() {
-
-        try {
-
-            const marcas = await api.get(`/marcas`);
-            set_array_marcas(marcas.data);
-
-        } catch (erro) {
-
-            console.error(erro);
-        };
-    };
 
     async function buscar_produtos() {
         try {
