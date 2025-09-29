@@ -8,17 +8,19 @@ import { buscar_conversas } from "@/services/chat/chat";
 import styles from "@/app/chat/page.module.css";
 import { useGlobalContext } from "@/context/GlobalContext";
 import { buscar_clientes } from "@/services/cliente/cliente";
+import { AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 
 export default function chat() {
 
-    const [perfil_botao, set_perfil_botao] = useState("./img/icons/chat_perfil.svg");
-    const [conversas_botao, set_conversas_botao] = useState("./img/icons/chat_conversas.svg");
-    const [grupos_botao, set_grupos_botao] = useState("./img/icons/chat_grupos.svg");
+    const [perfil_botao, set_perfil_botao] = useState("./img/chat/chat_perfil.svg");
+    const [conversas_botao, set_conversas_botao] = useState("./img/chat/chat_conversas.svg");
+    const [grupos_botao, set_grupos_botao] = useState("./img/chat/chat_grupos.svg");
     const [conversa_atual, set_conversa_atual] = useState(null);
     const [contato, set_contato] = useState();
     const { array_brechos, set_array_brechos } = useGlobalContext();
     const { array_chat, set_array_chat } = useGlobalContext();
-    const { array_clientes, set_array_clientes} = useGlobalContext();
+    const { array_clientes, set_array_clientes } = useGlobalContext();
     const { secao_chat, set_secao_chat } = useGlobalContext();
     const { usuario_logado, set_usuario_logado } = useGlobalContext();
 
@@ -98,7 +100,7 @@ export default function chat() {
                         <button><img src={grupos_botao} alt='grupos' /></button>
                     </nav>
                     <div className={styles["container_sair_barra_lateral"]}>
-                        <button><img src={"./img/icons/chat_sair.svg"} alt="sair" /></button>
+                        <button><img src={"./img/chat/chat_sair.svg"} alt="sair" /></button>
                     </div>
                 </div>
             </aside>
@@ -124,29 +126,47 @@ export default function chat() {
                         </div>
                     )) :
                         <div className={styles["container_nenhuma_convesa"]}>
-                            <img src="./img/icons/chat_nenhuma_conversa.svg" alt="balão" />
+                            <img src="./img/chat/chat_nenhuma_conversa.svg" alt="balão" />
                             <p>Tentamos procurar por conversas mas parece que não conseguimos encontrar nenhuma conversa!</p>
                         </div>}
                 </section>
             </section>
-            { contato ?
-                <section className={styles["container_principal"]}>
-                <header className={styles["container_header_da_conversa"]}>
-                    <div className={styles["container_header_imagem"]}>
-                        <img src={contato.imagem_de_perfil || contato.logo} alt="" />
-                    </div>
-                    <div className={styles["container_header_nome"]}>
-                        <h3>{contato.nome || contato.nome_brecho}</h3>
-                    </div>
-                    <div className={styles["container_header_botao"]}>
-                        <button><img src={"./img/icons/chat_opcoes.svg"} alt="botão"/></button>
-                    </div>
-                </header>
-            </section>
-            : <div className={styles["container_nenhum_contato_selecionado"]}>
-                <img src="./img/icons/chat_perfil.svg" alt="" />
-                <span>Procure adicionar algum contato para poder iniciar uma conversa!</span>
-            </div>
+            {contato ?
+                <AnimatePresence>
+                    <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.4 }} className={styles["container_principal"]}>
+                        <header className={styles["container_header_da_conversa"]}>
+                            <div className={styles["container_header_imagem"]}>
+                                <img src={contato.imagem_de_perfil || contato.logo} alt="" />
+                            </div>
+                            <div className={styles["container_header_nome"]}>
+                                <h3>{contato.nome || contato.nome_brecho}</h3>
+                            </div>
+                            <div className={styles["container_header_botao"]}>
+                                <button><img src={"./img/chat/chat_opcoes.svg"} alt="botão" /></button>
+                            </div>
+                        </header>
+
+                        <main className={styles["container_mensagens"]}>
+                            <div className={styles["container_mensagens_exibidas"]}>
+
+                            </div>
+                            <footer className={styles["container_menu_interacao_conversa"]}>
+                                <div className={styles["container_menu_inpt_conversa"]}>
+                                    <input type="text" placeholder="Digite sua Mensagem..."/>
+                                </div>
+                                <div className={styles["container_menu_alinhamento_botoes"]}>
+                                    <button className={styles["botao_menu_clipes"]}><img src="./img/chat/chat_clipe_de_papel.svg" alt="clipes" /></button>
+                                    <button className={styles["botao_menu_sorriso"]}><img src="./img/chat/chat_sorriso.svg" alt="sorriso" /></button>
+                                    <button className={styles["botao_menu_enviar"]}><img src="./img/chat/chat_enviar.svg" alt="enviar" /></button>
+                                </div>
+                            </footer>
+                        </main>
+                    </motion.div>
+                </AnimatePresence>
+                : <div className={styles["container_nenhum_contato_selecionado"]}>
+                    <img src="./img/chat/chat_perfil.svg" alt="" />
+                    <span>Procure adicionar algum contato para poder iniciar uma conversa!</span>
+                </div>
             }
         </div>
 
