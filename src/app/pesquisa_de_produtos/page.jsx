@@ -9,6 +9,7 @@ import { useSearchParams } from 'next/navigation';
 import { AnimatePresence } from 'framer-motion';
 import { motion } from 'framer-motion';
 import { buscar_brechos } from '@/services/brecho/brecho';
+import { buscar_marcas } from '@/services/marca/marca';
 import Header from '@/components/header/Header';
 import { buscar_categorias } from '@/services/categoria/categoria';
 import Footer from '@/components/footer/Footer';
