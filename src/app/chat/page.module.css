@@ -146,6 +146,18 @@
     color: var(--cor_seis_v_um);
 }
 
+.container_header_section_chat span {
+
+    display: flex;
+    align-items: end;
+    height: 30%;
+
+    font-family: var(--tipografia_primaria);
+    font-weight: 500;
+    font-size: 0.9rem;
+    color: var(--cor_seis_v_um);
+}
+
 .container_section_chat_input {
 
     display: flex;
@@ -179,8 +191,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
 
+    padding-top: 5%;
     width: 95%;
     height: 80%;
 }
@@ -216,6 +228,7 @@
 
     border-radius: 100vw;
     width: 70%;
+    box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
 }
 
 .container_contato_info {
@@ -267,7 +280,7 @@
     align-items: center;
     text-align: center;
 
-    height: 50%;
+    height: 100%;
 }
 
 .container_nenhuma_convesa img {
