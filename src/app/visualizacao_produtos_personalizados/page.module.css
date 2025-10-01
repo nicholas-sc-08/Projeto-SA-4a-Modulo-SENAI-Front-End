@@ -10,8 +10,8 @@
 
 .container-numero-de-fase-personalizacao {
 
-    width: 3.5%;
-    height: auto;
+    width: 2.9%;
+    height: 2.8vw;
 
     background-color: var(--cor_dois);
     padding: 0.9%;
@@ -20,18 +20,19 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    /* border: 1px solid red; */
 }
 
 .container-numero-de-fase-personalizacao p {
     color: var(--cor_quatro);
     font-family: var(--tipografia_primaria);
-    font-weight: 700;
+    font-weight: 650;
     font-size: 120%;
     /* border: 1px solid red; */
 }
 
 .container-titulo-personalizacao h4 {
-    padding-left: 1.5%;
+    padding-left: 1.2%;
     font-family: var(--tipografia_primaria);
     font-size: 135%;
     color: var(--cor_seis);
@@ -324,37 +325,3 @@
 .button-chat-produtos-personalizados:hover {
     background-color: var(--cor_dois_v_um);
 }
-
-/* ESCOLHA DE PRODUTOS */
-.container-seletor-produto {
-    margin-bottom: 2rem;
-    text-align: center;
-}
-
-.botoes-produtos {
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
-    margin-top: 1rem;
-}
-
-.botoes-produtos button {
-    padding: 0.5rem 1rem;
-    border: 2px solid #ccc;
-    background: white;
-    cursor: pointer;
-    border-radius: 4px;
-}
-
-.produto-ativo {
-    background: #007bff !important;
-    color: white !important;
-    border-color: #007bff !important;
-}
-
-.opcao-selecionada {
-    background: #007bff !important;
-    color: white !important;
-}
-
-/* ESCOLHA DE PRODUTOS */
