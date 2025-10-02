@@ -34,6 +34,7 @@ export async function cadastrar_conversa(mensagem){
 
     try {
 
+        console.log(mensagem);
         const resposta = await api.post(`/chats`, mensagem);
         return resposta.data;
         

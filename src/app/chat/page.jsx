@@ -26,7 +26,7 @@ export default function chat() {
     const { array_clientes, set_array_clientes } = useGlobalContext();
     const { secao_chat, set_secao_chat } = useGlobalContext();
     const { usuario_logado, set_usuario_logado } = useGlobalContext();
-    const dia_de_hoje = Date.now();
+    const dia_de_hoje = new Date();
 
     useEffect(() => {
 
@@ -166,7 +166,26 @@ export default function chat() {
 
                         <main className={styles["container_mensagens"]}>
                             <div className={styles["container_mensagens_exibidas"]}>
+                                {conversa_atual.map((conversa, i) => (
 
+                                    <div key={i} className={styles["contianer_mensagem"]}>
+
+                                        {conversa.id_dono_mensagem == usuario_logado._id ?
+
+                                            <div className={styles["container_dono_mensagem"]}>
+                                                <div className={styles["dono_mensagem"]}>
+                                                    <p>{conversa.mensagem}</p>
+                                                </div>
+                                            </div>
+                                            :
+                                            <div className={styles["container_recebedor_mensagem"]}>
+                                                <div className={styles["recebedor_mensagem"]}>
+                                                    <p>{conversa.mensagem}</p>
+                                                </div>
+                                            </div>
+                                        }
+                                    </div>
+                                ))}
                             </div>
                             <footer className={styles["container_menu_interacao_conversa"]}>
                                 <div className={styles["container_menu_inpt_conversa"]}>
@@ -175,7 +194,9 @@ export default function chat() {
                                 <div className={styles["container_menu_alinhamento_botoes"]}>
                                     <button className={styles["botao_menu_clipes"]}><img src="./img/chat/chat_clipe_de_papel.svg" alt="clipes" /></button>
                                     <button className={styles["botao_menu_sorriso"]}><img src="./img/chat/chat_sorriso.svg" alt="sorriso" /></button>
-                                    <button className={styles["botao_menu_enviar"]} onClick={() => mensagem_enviar.trim(" ") ? cadastrar_conversa({ mensagem: mensagem_enviar, id_dono_mensagem: usuario_logado._id, id_quem_recebeu_mensagem: contato._id, data_mensagem: dia_de_hoje, mensagem_lida_quem_recebeu: false, hora: dia_de_hoje.getHours() }) : alert("insira uma informação")}><img src="./img/chat/chat_enviar.svg" alt="enviar" /></button>
+                                    <button className={styles["botao_menu_enviar"]} onClick={() => mensagem_enviar.trim() ? cadastrar_conversa({ mensagem: mensagem_enviar, id_dono_mensagem: usuario_logado._id, id_quem_recebeu_mensagem: contato._id, data_mensagem: dia_de_hoje, mensagem_lida_quem_recebeu: false, hora: `${dia_de_hoje.getHours() < 10 ? `0${dia_de_hoje.getHours()}` : dia_de_hoje.getHours()}:${dia_de_hoje.getMinutes() < 10 ? `0${dia_de_hoje.getMinutes()}` : dia_de_hoje.getMinutes()}` }).then((mensagem) => set_conversa_atual([...conversa_atual, mensagem]
+
+                                    )) : alert("insira uma informação")}><img src="./img/chat/chat_enviar.svg" alt="enviar" /></button>
                                 </div>
                             </footer>
                         </main>
