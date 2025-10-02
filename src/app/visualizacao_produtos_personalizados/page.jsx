@@ -125,7 +125,8 @@ function page() {
             material: selecoes.material,
             padrao: selecoes.padrao,
             tamanho: selecoes.tamanho,
-            valor: Number(produto_atual.preco * quantidade)
+            valor: Number(produto_atual.preco * quantidade),
+            id_brecho: usuario_logado._id
         };
 
         // Adiciona campos opcionais apenas se existirem e foram selecionados
@@ -190,7 +191,6 @@ function page() {
         <div className={styles["container-alinhamento-conteudo-personalizacao"]}>
             <Header tipo={tipo_de_header} />
 
-
             <div className={styles["container-voltar-titulo-personalizacao"]}>
                 <div className={styles["container-titulo-personalizacao"]}>
                     <div className={styles["container-numero-de-fase-personalizacao"]}>
@@ -201,8 +201,7 @@ function page() {
                 </div>
 
                 <div className={styles["container-voltar-pagina"]}>
-                    <button>Voltar</button>
-                    <img src="./img/icons/Voltar-icone-verde.svg" alt="" />
+                    <button onClick={() => navegar_pagina()}>Voltar <img src="./img/icons/Sair-icone.svg" alt="" /></button>
                 </div>
             </div>
 
