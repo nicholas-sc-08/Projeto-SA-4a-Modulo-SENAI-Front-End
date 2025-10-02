@@ -10,6 +10,7 @@ import { useGlobalContext } from "@/context/GlobalContext";
 import { buscar_clientes } from "@/services/cliente/cliente";
 import { AnimatePresence } from "framer-motion";
 import { motion } from "framer-motion";
+import { useRouter } from "next/navigation";
 
 export default function chat() {
 
@@ -27,13 +28,15 @@ export default function chat() {
     const { secao_chat, set_secao_chat } = useGlobalContext();
     const { usuario_logado, set_usuario_logado } = useGlobalContext();
     const dia_de_hoje = new Date();
+    const router = new useRouter();
 
     useEffect(() => {
 
         buscar_brechos().then(data => set_array_brechos(data));
         buscar_conversas().then(mensagem => set_array_chat(mensagem));
         buscar_clientes().then(data => set_array_clientes(data));
-    }, []);
+
+        }, []);
 
     useEffect(() => {
 
@@ -117,7 +120,7 @@ export default function chat() {
                         <button><img src={grupos_botao} alt='grupos' /></button>
                     </nav>
                     <div className={styles["container_sair_barra_lateral"]}>
-                        <button><img src={"./img/chat/chat_sair.svg"} alt="sair" /></button>
+                        <button onClick={() => router.push("/")}><img src={"./img/chat/chat_sair.svg"} alt="sair" /></button>
                     </div>
                 </div>
             </aside>
