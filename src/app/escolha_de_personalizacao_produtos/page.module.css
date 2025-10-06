@@ -1,0 +1,141 @@
+.container-da-pagina{
+    font-family: var(--tipografia_primaria);
+    margin-top: 55px;
+    margin-left: 7%;
+    width: 90%;
+}
+
+.intro-titulo{
+    color: var(--cor_seis);
+    font-size: 23px;      
+    letter-spacing: 3px;
+}
+
+.linha-divisao{
+    color: rgba(245, 245, 220, 0.708)88, 188, 188;
+    margin-top: 10px;
+}
+
+.intro-texto, .intro-pergunta{
+    margin-top: 2%;
+    font-size: 23px;
+    color: var(--cor_dez);
+}
+
+.container-opcoes{
+
+
+
+
+}
+
+.container-titulo-passo1{
+    display: flex;
+}
+
+.titulo-e-bolinha{
+    display: flex;
+    align-items: center;
+   
+}
+
+.passo1-bolinha{
+    width: 50px;
+    height: 50%;
+    background-color: var(--cor_um);
+    border-radius: 19px;
+    color: aliceblue;
+    padding-left: 2%;
+}
+
+.descricao-opcoes{
+    margin-top: 2%;
+    font-size: 23px;
+    color: var(--cor_dez);
+}
+
+.container-produtos{
+    display: flex;
+}
+
+.card-produtos {
+    border: none;
+    background-color: var(--cor_quatro);
+    border-radius: 10px;
+    width: 390px;
+    height: 200px;
+    margin-right: 5%;
+    margin-top: 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    padding: 15px;
+}
+
+.card-produtos:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.produto-imagem {
+    width: 150px;
+    height: 150px;
+    object-fit: contain; /* mantém a proporção da imagem */
+}
+
+.descricao-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.descricao-produto {
+    font-size: 20px;
+    color: var(--cor_um);
+    text-align: center;
+
+}
+
+.container-caracteristicas{
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 3%;
+    padding-bottom: 5%;
+
+}
+
+.card-caracteristicas, .card-caracteristicas2 {
+    border-radius: 7px;
+    background-color: var(--cor_dois_v_dois);
+    width: 597px;
+    height: 100px;
+    margin-right: 8%;
+    margin-top: 5%;
+    display: flex;
+    text-align: center;
+    justify-content: space-around;
+    padding-top: 2%;    
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.titulo-caracteristica{
+    margin-top: 1%;
+    font-size: 24px;
+    color: var(--cor_um);
+}
+
+.icon-caracteristicas{
+    margin-bottom: 10%;
+    width: 50px;
+    height: 50px;
+
+}
+
+
+
+

@@ -78,6 +78,7 @@ export default function Sacola() {
 
 
                     const usuario_atualizado = { ...usuario_logado, sacola: filtrar_produtos };
+                    
                     const cliente_atualizado = await api.put(`/clientes/${usuario_atualizado._id}`, usuario_atualizado);
                     set_usuario_logado(cliente_atualizado.data);
                 } else {
