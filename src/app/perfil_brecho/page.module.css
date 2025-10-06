@@ -1,43 +1,47 @@
-body {
+/* body {
     margin: 0;
-}
+}  */
 
-.toda-a-tela-content {
-    border: 3px solid #18CA00; 
+/* .toda-a-tela-content {
+    border: 1px solid #18CA00; 
 
-    height: 100vh;
+    height: 110vh;
     width: 100%;
 
     display: flex;
     flex-direction: column;
-}
+} */
 
 .entre-navbar-e-footer-content {
-    border: 3px solid #D08E00;
+    border: 1px solid #D08E00;
 
-    height: 100%;
+    min-height: 100vh;
     width: 100%;
 
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: space-evenly;
 }
 
     /* conteudo do PERFIL BRECHÓ */
 
 .perfil-brecho-content {
-    border: 3px solid #6fd000;
+    border: 1px solid red;
 
-    height: 30%;
-    width: 60%;
+    min-height: 400px; /* ou a altura que preferir */
+    width: 80%;
+    max-width: 1200px;
+    /* height: 80%;
+    width: 80%; */
 
     display: flex;
     flex-direction: column;
+    /* margin-top: 10%; */
 }
 
 .parte-azul-superior-content {
-    border: 3px solid #00d0c6;
+    border: 1px solid #00d0c6;
 
     height: 25%;
     width: 100%;
@@ -47,12 +51,12 @@ body {
     justify-content: end;
     padding-right: 0.5%;
 
-    border-radius: 1rem;
+    border-radius: 0.5rem;
     background-color: var(--cor_vinte_um);
 }
 
 .parte-do-meio-logo-nome-content {
-    border: 3px solid #00d0c6;
+    border: 1px solid #00d0c6;
 
     height: 15%;
     width: 100%;
@@ -64,9 +68,9 @@ body {
 }
 
 .nome-brecho-e-avaliacao-content {
-    border: 3px solid #d00092;
+    border: 1px solid #d00092;
 
-    height: 70%;
+    height: 100%;
     width: fit-content;
 
     display: flex;
@@ -76,9 +80,9 @@ body {
 }
 
 .avaliacao-simplificado-brecho-content {
-    border: 3px solid #00d045;
+    border: 1px solid #00d045;
 
-    height: 30%;
+    height: 60%;
     width: 100%;
 
     display: flex;
@@ -88,11 +92,43 @@ body {
 }
 
 .parte-inferior-do-perfil-brecho-content {
-    border: 3px solid #00d0c6;
+    border: 1px solid #00d0c6;
 
     height: 60%;
     width: 100%;
 
     display: flex;
     flex-direction: column;
+}
+
+    /*CONTEUDO DO PRODUTOS DO BRECHÓ*/
+
+.produtos-do-brecho-content {
+    border: 1px solid #D08E00;
+
+    height: 60%;
+    width: 89%;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.titulo-produtos-mais-ver-todos {
+    border: 1px solid #D00000;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5%;
+
+
+}
+
+.produtos-exibidos-do-brecho-content {
+    border: 1px solid #D00000;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
 }
