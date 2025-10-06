@@ -1,0 +1,98 @@
+body {
+    margin: 0;
+}
+
+.toda-a-tela-content {
+    border: 3px solid #18CA00; 
+
+    height: 100vh;
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.entre-navbar-e-footer-content {
+    border: 3px solid #D08E00;
+
+    height: 100%;
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+    /* conteudo do PERFIL BRECHÓ */
+
+.perfil-brecho-content {
+    border: 3px solid #6fd000;
+
+    height: 30%;
+    width: 60%;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.parte-azul-superior-content {
+    border: 3px solid #00d0c6;
+
+    height: 25%;
+    width: 100%;
+
+    display: flex;
+    align-items: flex-end;
+    justify-content: end;
+    padding-right: 0.5%;
+
+    border-radius: 1rem;
+    background-color: var(--cor_vinte_um);
+}
+
+.parte-do-meio-logo-nome-content {
+    border: 3px solid #00d0c6;
+
+    height: 15%;
+    width: 100%;
+
+    display: flex;
+    justify-content: start;
+    padding: 2%;
+    gap: 3rem;
+}
+
+.nome-brecho-e-avaliacao-content {
+    border: 3px solid #d00092;
+
+    height: 70%;
+    width: fit-content;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.avaliacao-simplificado-brecho-content {
+    border: 3px solid #00d045;
+
+    height: 30%;
+    width: 100%;
+
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 4rem;
+}
+
+.parte-inferior-do-perfil-brecho-content {
+    border: 3px solid #00d0c6;
+
+    height: 60%;
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+}
