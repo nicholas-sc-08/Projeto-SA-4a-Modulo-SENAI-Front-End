@@ -20,12 +20,8 @@
     "ngrok": "^5.0.0-beta.2",
     "react": "19.1.0",
     "react-dom": "19.1.0",
-<<<<<<< HEAD
     "react-router-dom": "^7.8.2",
-=======
     "react-imask": "^7.6.1",
-    "react-router-dom": "^7.9.3",
->>>>>>> 69e0ff3ad770dedf504342812ae1d1c8b2acb69a
     "socket.io-client": "^4.8.1"
   },
   "devDependencies": {
