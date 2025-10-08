@@ -26,6 +26,9 @@ importers:
       jwt-decode:
         specifier: ^4.0.0
         version: 4.0.0
+      lucide-react:
+        specifier: ^0.544.0
+        version: 0.544.0(react@19.1.0)
       next:
         specifier: 15.5.2
         version: 15.5.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -42,8 +45,13 @@ importers:
         specifier: ^7.6.1
         version: 7.6.1(react@19.1.0)
       react-router-dom:
+<<<<<<< HEAD
+        specifier: ^7.8.2
+        version: 7.8.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+=======
         specifier: ^7.9.3
         version: 7.9.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+>>>>>>> 69e0ff3ad770dedf504342812ae1d1c8b2acb69a
       socket.io-client:
         specifier: ^4.8.1
         version: 4.8.1
@@ -340,10 +348,13 @@ packages:
   '@rushstack/eslint-patch@1.12.0':
     resolution: {integrity: sha512-5EwMtOqvJMMa3HbmxLlF74e+3/HhwBTMcvt3nqVJgGCozO6hzIPOBlwm8mGVNR9SN2IJpxSnlxczyDjcn7qIyw==}
 
+<<<<<<< HEAD
+=======
   '@sindresorhus/is@4.6.0':
     resolution: {integrity: sha512-t09vSN3MdfsyCHoFcTRCH/iUtG7OJ0CsjzB8cjAmKc/va/kIgeDI/TxsigdncE/4be734m0cvIYwNaV4i2XqAw==}
     engines: {node: '>=10'}
 
+>>>>>>> 69e0ff3ad770dedf504342812ae1d1c8b2acb69a
   '@socket.io/component-emitter@3.1.2':
     resolution: {integrity: sha512-9BCxFwvbGg/RsZK9tjXd8s4UcwR0MWeFQ1XEKIQVVvAGJyINdrqKMcTRyLoK8Rse1GjzLV9cwjWV1olXRWEXVA==}
 
@@ -804,9 +815,12 @@ packages:
   emoji-regex@9.2.2:
     resolution: {integrity: sha512-L18DaJsXSUk2+42pv8mLs5jJT2hqFkFE4j21wOmgbUqsZ2hL72NsUU785g9RXgo3s0ZNgVl42TiHp3ZtOv/Vyg==}
 
+<<<<<<< HEAD
+=======
   end-of-stream@1.4.5:
     resolution: {integrity: sha512-ooEGc6HP26xXq/N+GCGOT0JKCLDGrq2bQUZrQ7gyrJiZANJ/8YDTxTpQBXGMn+WbIQXNVpyWymm7KYVICQnyOg==}
 
+>>>>>>> 69e0ff3ad770dedf504342812ae1d1c8b2acb69a
   engine.io-client@6.6.3:
     resolution: {integrity: sha512-T0iLjnyNWahNyv/lcjS2y4oE358tVS/SYQNxYXGAJ9/GLgH4VCvOQ/mhTjqU88mLZCQgiG8RIegFHYCdVC+j5w==}
 
@@ -1370,6 +1384,11 @@ packages:
     resolution: {integrity: sha512-tqNXrS78oMOE73NMxK4EMLQsQowWf8jKooH9g7xPavRT706R6bkQJ6DY2Te7QukaZsulxa30wQ7bk0pm4XiHmA==}
     engines: {node: '>=8'}
 
+  lucide-react@0.544.0:
+    resolution: {integrity: sha512-t5tS44bqd825zAW45UQxpG2CvcC4urOwn2TrwSH8u+MjeE+1NnWl6QqeQ/6NdjMqdOygyiT9p3Ev0p1NJykxjw==}
+    peerDependencies:
+      react: ^16.5.1 || ^17.0.0 || ^18.0.0 || ^19.0.0
+
   math-intrinsics@1.1.0:
     resolution: {integrity: sha512-/IXtbwEk5HTPyEwyKX6hGkYXxM9nbj64B+ilVJnC/R6B0pH5G4V3b0pVbL7DBj4tkhBAppbQUlf6F6Xl9LHu1g==}
     engines: {node: '>= 0.4'}
@@ -1882,9 +1901,12 @@ packages:
     resolution: {integrity: sha512-BN22B5eaMMI9UMtjrGd5g5eCYPpCPDUy0FJXbYsaT5zYxjFOckS53SQDE3pWkVoWpHXVb3BrYcEN4Twa55B5cA==}
     engines: {node: '>=0.10.0'}
 
+<<<<<<< HEAD
+=======
   wrappy@1.0.2:
     resolution: {integrity: sha512-l4Sp/DRseor9wL6EvV2+TuQn63dMkPjZ/sp9XkghTEbV9KlPS1xUsZ3u7/IQO4wxtcFB4bgpQPRcR3QCvezPcQ==}
 
+>>>>>>> 69e0ff3ad770dedf504342812ae1d1c8b2acb69a
   ws@8.17.1:
     resolution: {integrity: sha512-6XQFvXTkbfUOZOKKILFG1PDK2NDQs4azKQl26T0YS5CxqWLgXajbPZ+h4gZekJyRqFU8pvnbAbbs/3TgRPy+GQ==}
     engines: {node: '>=10.0.0'}
@@ -1901,6 +1923,8 @@ packages:
     resolution: {integrity: sha512-TEU+nJVUUnA4CYJFLvK5X9AOeH4KvDvhIfm0vV1GaQRtchnG0hgK5p8hw/xjv8cunWYCsiPCSDzObPyhEwq3KQ==}
     engines: {node: '>=0.4.0'}
 
+<<<<<<< HEAD
+=======
   yaml@2.8.1:
     resolution: {integrity: sha512-lcYcMxX2PO9XMGvAJkJ3OsNMw+/7FKes7/hgerGUYWIoWu5j/+YQqcZr5JnPZWzOsEBgMbSbiSTn/dv/69Mkpw==}
     engines: {node: '>= 14.6'}
@@ -1909,6 +1933,7 @@ packages:
   yauzl@2.10.0:
     resolution: {integrity: sha512-p4a9I6X6nu6IhoGmBqAcbJy1mlC4j27vEPZX9F4L4/vZT3Lyq1VkFHw/V/PUcB9Buo+DG3iHkT0x3Qya58zc3g==}
 
+>>>>>>> 69e0ff3ad770dedf504342812ae1d1c8b2acb69a
   yocto-queue@0.1.0:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
@@ -2136,8 +2161,11 @@ snapshots:
 
   '@rushstack/eslint-patch@1.12.0': {}
 
+<<<<<<< HEAD
+=======
   '@sindresorhus/is@4.6.0': {}
 
+>>>>>>> 69e0ff3ad770dedf504342812ae1d1c8b2acb69a
   '@socket.io/component-emitter@3.1.2': {}
 
   '@swc/helpers@0.5.15':
@@ -2631,10 +2659,13 @@ snapshots:
 
   emoji-regex@9.2.2: {}
 
+<<<<<<< HEAD
+=======
   end-of-stream@1.4.5:
     dependencies:
       once: 1.4.0
 
+>>>>>>> 69e0ff3ad770dedf504342812ae1d1c8b2acb69a
   engine.io-client@6.6.3:
     dependencies:
       '@socket.io/component-emitter': 3.1.2
@@ -3387,6 +3418,10 @@ snapshots:
 
   lowercase-keys@2.0.0: {}
 
+  lucide-react@0.544.0(react@19.1.0):
+    dependencies:
+      react: 19.1.0
+
   math-intrinsics@1.1.0: {}
 
   merge2@1.4.1: {}
@@ -4023,12 +4058,17 @@ snapshots:
 
   word-wrap@1.2.5: {}
 
+<<<<<<< HEAD
+=======
   wrappy@1.0.2: {}
 
+>>>>>>> 69e0ff3ad770dedf504342812ae1d1c8b2acb69a
   ws@8.17.1: {}
 
   xmlhttprequest-ssl@2.1.2: {}
 
+<<<<<<< HEAD
+=======
   yaml@2.8.1: {}
 
   yauzl@2.10.0:
@@ -4036,4 +4076,5 @@ snapshots:
       buffer-crc32: 0.2.13
       fd-slicer: 1.1.0
 
+>>>>>>> 69e0ff3ad770dedf504342812ae1d1c8b2acb69a
   yocto-queue@0.1.0: {}

@@ -1,17 +1,21 @@
 'use client'
 
-
 import React from 'react'
 import Footer from '@/components/footer/Footer'
 import Header from '@/components/header/Header'
 import styles from "@/app/escolha_de_personalizacao_produtos/page.module.css"
 import { AnimatePresence, motion } from 'framer-motion'
 import { useGlobalContext } from '@/context/GlobalContext'
-
+import { useRouter } from 'next/navigation'
 
 export default function Page() {
-  const { tipo_de_header } = useGlobalContext()
+  const router = useRouter()
+  const { tipo_de_header, set_produto_selecionado } = useGlobalContext()
 
+  const selecionar_produto = (tipo_produto) => {
+    set_produto_selecionado(tipo_produto)
+    router.push('/visualizacao_produtos_personalizados')
+  }
 
   return (
     <AnimatePresence>
@@ -22,7 +26,6 @@ export default function Page() {
         transition={{ duration: 0.4 }}
       >
         <Header tipo={tipo_de_header} />
-
 
         <main className={styles["container-da-pagina"]}>
           <section className={styles["intro-titulo-e-texto"]}>
@@ -43,13 +46,12 @@ export default function Page() {
             </p>
           </section>
 
-
           <section className={styles["container-opcoes"]}>
             <div className={styles["container-titulo-passo1"]}>
-            <h2 className={styles["passo1-bolinha"]}>1</h2>
-            <h2 className={styles["passo1-titulo"]}>
-              Personalize do seu jeito: escolha o produto ideal
-            </h2>
+              <h2 className={styles["passo1-bolinha"]}>1</h2>
+              <h2 className={styles["passo1-titulo"]}>
+                Personalize do seu jeito: escolha o produto ideal
+              </h2>
             </div>
             <p className={styles["descricao-opcoes"]}>
               Escolha entre materiais 100% recicláveis e biodegradáveis.
@@ -58,37 +60,40 @@ export default function Page() {
             </p>
           </section>
 
-
           <section className={styles["container-produtos"]}>
-            <button className={styles["card-produtos"]}>
+            <button
+              className={styles["card-produtos"]}
+              onClick={() => selecionar_produto('caixa')}
+            >
               <img src="./img/caixaKraft-estrelinhas.png" alt="Caixa Kraft" className={styles["produto-imagem"]} />
               <div className={styles["descricao-container"]}>
-              <h3 className={styles["descricao-produto-titulo"]}>Caixas Kraft</h3>
-              <p className={styles["descricao-produto"]}>100% Reciclável</p>
+                <h3 className={styles["descricao-produto-titulo"]}>Caixas Kraft</h3>
+                <p className={styles["descricao-produto"]}>100% Reciclável</p>
               </div>
             </button>
 
-
-            <button className={styles["card-produtos"]}>
+            <button
+              className={styles["card-produtos"]}
+              onClick={() => selecionar_produto('sacola')}
+            >
               <img src="./img/sacolaKraft.png" alt="Sacola" className={styles["produto-imagem"]} />
               <div className={styles["descricao-container"]}>
-              <h3 className={styles["descricao-produto-titulo"]}>Sacolas</h3>
-              <p className={styles["descricao-produto"]}>100% Reciclável</p>
+                <h3 className={styles["descricao-produto-titulo"]}>Sacolas</h3>
+                <p className={styles["descricao-produto"]}>100% Reciclável</p>
               </div>
             </button>
 
-
-            <button className={styles["card-produtos"]}>
+            <button
+              className={styles["card-produtos"]}
+              onClick={() => selecionar_produto('ecobag')}
+            >
               <img src="./img/ecoBags.png" alt="Ecobag" className={styles["produto-imagem"]} />
               <div className={styles["descricao-container"]}>
-              <h3 className={styles["descricao-produto-titulo"]}>Ecobags</h3>
-              <p className={styles["descricao-produto"]}>Tecido Orgânico</p>
+                <h3 className={styles["descricao-produto-titulo"]}>Ecobags</h3>
+                <p className={styles["descricao-produto"]}>Tecido Orgânico</p>
               </div>
             </button>
           </section>
-
-
-
 
           <section className={styles["container-caracteristicas"]}>
             <div className={styles["card-caracteristicas"]}>
@@ -109,7 +114,6 @@ export default function Page() {
             </div>
           </section>
         </main>
-
 
         <Footer />
       </motion.div>

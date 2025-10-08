@@ -5,12 +5,14 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { buscar_brechos } from "@/services/brecho/brecho";
 import { buscar_conversas, cadastrar_conversa } from "@/services/chat/chat";
-import styles from "@/app/chat/page.module.css";
 import { useGlobalContext } from "@/context/GlobalContext";
 import { buscar_clientes } from "@/services/cliente/cliente";
 import { AnimatePresence } from "framer-motion";
 import { motion } from "framer-motion";
-import { useRouter } from "next/navigation";
+import { buscar_ultima_mensagem } from "@/services/chat/chat";
+import { nova_mensagem } from "@/services/chat/chat";
+import styles from "@/app/chat/page.module.css";
+import socket from "@/services/socket";
 
 export default function chat() {
 
@@ -26,9 +28,8 @@ export default function chat() {
     const { array_chat, set_array_chat } = useGlobalContext();
     const { array_clientes, set_array_clientes } = useGlobalContext();
     const { secao_chat, set_secao_chat } = useGlobalContext();
-    const { usuario_logado, set_usuario_logado } = useGlobalContext();
-    const dia_de_hoje = new Date();
-    const router = new useRouter();
+    const { usuario_logado, set_usuario_logado } = useGlobalContext();  
+    const dia_de_hoje = Date.now();
 
     useEffect(() => {
 
@@ -36,7 +37,14 @@ export default function chat() {
         buscar_conversas().then(mensagem => set_array_chat(mensagem));
         buscar_clientes().then(data => set_array_clientes(data));
 
-        }, []);
+        socket.connect();
+        socket.on("receber_mensagem", mensagem => set_conversa_atual(mensagens_anteriores => [...mensagens_anteriores, mensagem]));
+        
+        return () => {
+
+            socket.off("receber_mensagem");
+        };
+    }, []);
 
     useEffect(() => {
 
@@ -50,25 +58,6 @@ export default function chat() {
         };
 
     }, [pesquisa_inpt]);
-
-    function buscar_ultima_mensagem(_id) {
-
-        for (let i = array_chat.length - 1; i >= 0; i--) {
-
-            if (array_chat[i].id_dono_mensagem == _id && usuario_logado._id == array_chat[i].id_quem_recebeu_mensagem) {
-
-                return array_chat[i].mensagem;
-            };
-
-            if (array_chat[i].id_dono_mensagem == usuario_logado._id && array_chat[i].id_quem_recebeu_mensagem == _id) {
-
-                return array_chat[i].mensagem;
-            };
-
-        };
-
-        return `Nenhuma mensagem`;
-    };
 
     function selecionar_conversa(id) {
 
@@ -142,7 +131,7 @@ export default function chat() {
                             </aside>
                             <section className={styles["container_contato_info"]}>
                                 <h5>{conversa.nome || conversa.nome_brecho}</h5>
-                                <span>{buscar_ultima_mensagem(conversa._id)}</span>
+                                <span>{buscar_ultima_mensagem(conversa._id, array_chat, usuario_logado)}</span>
                             </section>
                         </div>
                     )) :
@@ -169,26 +158,12 @@ export default function chat() {
 
                         <main className={styles["container_mensagens"]}>
                             <div className={styles["container_mensagens_exibidas"]}>
-                                {conversa_atual.map((conversa, i) => (
+                                {conversa_atual && conversa_atual.length > 0 ? conversa_atual.map((_, i) => (
 
-                                    <div key={i} className={styles["contianer_mensagem"]}>
-
-                                        {conversa.id_dono_mensagem == usuario_logado._id ?
-
-                                            <div className={styles["container_dono_mensagem"]}>
-                                                <div className={styles["dono_mensagem"]}>
-                                                    <p>{conversa.mensagem}</p>
-                                                </div>
-                                            </div>
-                                            :
-                                            <div className={styles["container_recebedor_mensagem"]}>
-                                                <div className={styles["recebedor_mensagem"]}>
-                                                    <p>{conversa.mensagem}</p>
-                                                </div>
-                                            </div>
-                                        }
+                                    <div key={i} className={styles["container_historico_de_mensagens"]}>
+                                        
                                     </div>
-                                ))}
+                                )) : ``}
                             </div>
                             <footer className={styles["container_menu_interacao_conversa"]}>
                                 <div className={styles["container_menu_inpt_conversa"]}>
