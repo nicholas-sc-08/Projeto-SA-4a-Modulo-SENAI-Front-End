@@ -7,6 +7,7 @@ import React, { useEffect, useState } from 'react';
 import styles from '@/app/visualizacao_produtos_personalizados/page.module.css'
 import api from '@/services/api';
 import { useRouter } from 'next/navigation';
+import { AnimatePresence, motion } from 'framer-motion'
 
 function page() {
     const router = useRouter()
@@ -188,187 +189,196 @@ function page() {
     }
 
     return (
-        <div className={styles["container-alinhamento-conteudo-personalizacao"]}>
-            <Header tipo={tipo_de_header} />
+        <AnimatePresence>
+            <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.4 }}
+            >
+                <div className={styles["container-alinhamento-conteudo-personalizacao"]}>
+                    <Header tipo={tipo_de_header} />
 
-            <div className={styles["container-voltar-titulo-personalizacao"]}>
-                <div className={styles["container-titulo-personalizacao"]}>
-                    <div className={styles["container-numero-de-fase-personalizacao"]}>
-                        <p>2</p>
+                    <div className={styles["container-voltar-titulo-personalizacao"]}>
+                        <div className={styles["container-titulo-personalizacao"]}>
+                            <div className={styles["container-numero-de-fase-personalizacao"]}>
+                                <p>2</p>
+                            </div>
+
+                            <h4>Personalize do seu jeito: transforme ideias em realidade</h4>
+                        </div>
+
+                        <div className={styles["container-voltar-pagina"]}>
+                            <button onClick={() => navegar_pagina()}>Voltar <img src="./img/icons/Sair-icone.svg" alt="" /></button>
+                        </div>
                     </div>
 
-                    <h4>Personalize do seu jeito: transforme ideias em realidade</h4>
-                </div>
+                    <div className={styles["container-escolhas-personalizacao"]}>
+                        <div className={styles["container-imagem-produto-personalizado"]}>
+                            <img src={produto_atual.imagem} alt={produto_atual.nome} />
+                        </div>
 
-                <div className={styles["container-voltar-pagina"]}>
-                    <button onClick={() => navegar_pagina()}>Voltar <img src="./img/icons/Sair-icone.svg" alt="" /></button>
-                </div>
-            </div>
+                        <div className={styles["container-conteudo-escolha-personalizacao"]}>
+                            <div className={styles["container-titulo-descricao"]}>
+                                <h2>{produto_atual.nome}</h2>
 
-            <div className={styles["container-escolhas-personalizacao"]}>
-                <div className={styles["container-imagem-produto-personalizado"]}>
-                    <img src={produto_atual.imagem} alt={produto_atual.nome} />
-                </div>
+                                <div className={styles["container-preço-quantidade"]}>
+                                    <h4>R$ {produto_atual.preco.toFixed(2).replace('.', ',')} un</h4>
 
-                <div className={styles["container-conteudo-escolha-personalizacao"]}>
-                    <div className={styles["container-titulo-descricao"]}>
-                        <h2>{produto_atual.nome}</h2>
+                                    <div className={styles["container-contador-quantidade-produtos"]}>
+                                        <button
+                                            disabled={quantidade === 1}
+                                            className={styles['diminuir-quantidade-produtos']}
+                                            onClick={() => alterar_quantidade('diminuir')}
+                                        >
+                                            -
+                                        </button>
 
-                        <div className={styles["container-preço-quantidade"]}>
-                            <h4>R$ {produto_atual.preco.toFixed(2).replace('.', ',')} un</h4>
+                                        <span>{quantidade}</span>
 
-                            <div className={styles["container-contador-quantidade-produtos"]}>
+                                        <button
+                                            className={styles['aumentar-quantidade-produtos']}
+                                            onClick={() => alterar_quantidade('aumentar')}
+                                        >
+                                            +
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <p>{produto_atual.descricao}</p>
+
+                                <div className={styles["line-personalizar-produtos"]}></div>
+                            </div>
+
+                            <div className={styles["container-opcoes-personalizacao"]}>
+                                {/* Material */}
+                                <div className={styles["escolha-material"]}>
+                                    <label>Escolha o material</label>
+
+                                    <div className={styles["container-alinhamento-button-personalizacao"]}>
+                                        {produto_atual.opcoes.material.map((material, index) => (
+                                            <button
+                                                key={index}
+                                                className={selecoes.material === material ? styles['opcao-selecionada'] : ''}
+                                                onClick={() => atualizar_selecao('material', material)}
+                                            >
+                                                {material}
+                                            </button>
+                                        ))}
+                                    </div>
+                                </div>
+
+                                {/* Tamanho */}
+                                <div className={styles["escolha-tamanho"]}>
+                                    <label>Escolha o tamanho</label>
+
+                                    <div className={styles["container-alinhamento-button-personalizacao"]}>
+                                        {produto_atual.opcoes.tamanho.map((tamanho, index) => (
+                                            <button
+                                                key={index}
+                                                className={selecoes.tamanho === tamanho ? styles['opcao-selecionada'] : ''}
+                                                onClick={() => atualizar_selecao('tamanho', tamanho)}
+                                            >
+                                                {tamanho}
+                                            </button>
+                                        ))}
+                                    </div>
+                                </div>
+
+                                <div className={styles["container-alinhamento-multiplas-escolhas-cores"]}>
+                                    {/* Padrão */}
+                                    <div className={styles["escolha-padrao"]}>
+                                        <label>Escolha o padrão</label>
+
+                                        <select
+                                            id="padrao"
+                                            name="padrao"
+                                            value={selecoes.padrao}
+                                            onChange={(e) => atualizar_selecao('padrao', e.target.value)}
+                                        >
+                                            <option value="" disabled>Padrão</option>
+                                            {produto_atual.opcoes.padrao.map((padrao, index) => (
+                                                <option key={index} value={padrao}>{padrao}</option>
+                                            ))}
+                                        </select>
+                                    </div>
+
+                                    {/* Cor do corpo - só mostra se o produto tiver opções de cor */}
+                                    {produto_atual.opcoes.cor_corpo && produto_atual.opcoes.cor_corpo.length > 0 && (
+                                        <div className={styles["escolha-padrao"]}>
+                                            <label>Escolha a cor do corpo</label>
+
+                                            <select
+                                                id="cor-corpo"
+                                                name="cor-corpo"
+                                                value={selecoes.cor_corpo}
+                                                onChange={(e) => atualizar_selecao('cor_corpo', e.target.value)}
+                                            >
+                                                <option value="" disabled>Cor do corpo</option>
+                                                {produto_atual.opcoes.cor_corpo.map((cor, index) => (
+                                                    <option key={index} value={cor}>{cor}</option>
+                                                ))}
+                                            </select>
+                                        </div>
+                                    )}
+
+                                    {/* Cor da alça - só mostra se o produto tiver essa opção */}
+                                    {produto_atual.opcoes.cor_alca && produto_atual.opcoes.cor_alca.length > 0 && (
+                                        <div className={styles["escolha-padrao"]}>
+                                            <label>Escolha a cor da alça</label>
+
+                                            <select
+                                                id="cor-alca"
+                                                name="cor-alca"
+                                                value={selecoes.cor_alca}
+                                                onChange={(e) => atualizar_selecao('cor_alca', e.target.value)}
+                                            >
+                                                <option value="" disabled>Cor da alça</option>
+                                                {produto_atual.opcoes.cor_alca.map((cor, index) => (
+                                                    <option key={index} value={cor}>{cor}</option>
+                                                ))}
+                                            </select>
+                                        </div>
+                                    )}
+
+                                    {/* Cor dos detalhes - só mostra se o produto tiver essa opção */}
+                                    {produto_atual.opcoes.cor_detalhes && produto_atual.opcoes.cor_detalhes.length > 0 && (
+                                        <div className={styles["escolha-padrao"]}>
+                                            <label>Escolha a cor dos detalhes</label>
+
+                                            <select
+                                                id="cor-detalhes"
+                                                name="cor-detalhes"
+                                                value={selecoes.cor_detalhes}
+                                                onChange={(e) => atualizar_selecao('cor_detalhes', e.target.value)}
+                                            >
+                                                <option value="" disabled>Cor dos detalhes</option>
+                                                {produto_atual.opcoes.cor_detalhes.map((cor, index) => (
+                                                    <option key={index} value={cor}>{cor}</option>
+                                                ))}
+                                            </select>
+                                        </div>
+                                    )}
+                                </div>
+                            </div>
+
+                            <div className={styles["buttons-acoes-personalizacao-produtos"]}>
                                 <button
-                                    disabled={quantidade === 1}
-                                    className={styles['diminuir-quantidade-produtos']}
-                                    onClick={() => alterar_quantidade('diminuir')}
+                                    className={styles["button-comprar-produtos-personalizados"]}
+                                    onClick={enviar_pedido}
                                 >
-                                    -
+                                    Comprar
                                 </button>
-
-                                <span>{quantidade}</span>
-
-                                <button
-                                    className={styles['aumentar-quantidade-produtos']}
-                                    onClick={() => alterar_quantidade('aumentar')}
-                                >
-                                    +
-                                </button>
-                            </div>
-                        </div>
-
-                        <p>{produto_atual.descricao}</p>
-
-                        <div className={styles["line-personalizar-produtos"]}></div>
-                    </div>
-
-                    <div className={styles["container-opcoes-personalizacao"]}>
-                        {/* Material */}
-                        <div className={styles["escolha-material"]}>
-                            <label>Escolha o material</label>
-
-                            <div className={styles["container-alinhamento-button-personalizacao"]}>
-                                {produto_atual.opcoes.material.map((material, index) => (
-                                    <button
-                                        key={index}
-                                        className={selecoes.material === material ? styles['opcao-selecionada'] : ''}
-                                        onClick={() => atualizar_selecao('material', material)}
-                                    >
-                                        {material}
-                                    </button>
-                                ))}
-                            </div>
-                        </div>
-
-                        {/* Tamanho */}
-                        <div className={styles["escolha-tamanho"]}>
-                            <label>Escolha o tamanho</label>
-
-                            <div className={styles["container-alinhamento-button-personalizacao"]}>
-                                {produto_atual.opcoes.tamanho.map((tamanho, index) => (
-                                    <button
-                                        key={index}
-                                        className={selecoes.tamanho === tamanho ? styles['opcao-selecionada'] : ''}
-                                        onClick={() => atualizar_selecao('tamanho', tamanho)}
-                                    >
-                                        {tamanho}
-                                    </button>
-                                ))}
-                            </div>
-                        </div>
-
-                        <div className={styles["container-alinhamento-multiplas-escolhas-cores"]}>
-                            {/* Padrão */}
-                            <div className={styles["escolha-padrao"]}>
-                                <label>Escolha o padrão</label>
-
-                                <select
-                                    id="padrao"
-                                    name="padrao"
-                                    value={selecoes.padrao}
-                                    onChange={(e) => atualizar_selecao('padrao', e.target.value)}
-                                >
-                                    <option value="" disabled>Padrão</option>
-                                    {produto_atual.opcoes.padrao.map((padrao, index) => (
-                                        <option key={index} value={padrao}>{padrao}</option>
-                                    ))}
-                                </select>
+                                <button className={styles["button-chat-produtos-personalizados"]}>Chat</button>
                             </div>
 
-                            {/* Cor do corpo - só mostra se o produto tiver opções de cor */}
-                            {produto_atual.opcoes.cor_corpo && produto_atual.opcoes.cor_corpo.length > 0 && (
-                                <div className={styles["escolha-padrao"]}>
-                                    <label>Escolha a cor do corpo</label>
-
-                                    <select
-                                        id="cor-corpo"
-                                        name="cor-corpo"
-                                        value={selecoes.cor_corpo}
-                                        onChange={(e) => atualizar_selecao('cor_corpo', e.target.value)}
-                                    >
-                                        <option value="" disabled>Cor do corpo</option>
-                                        {produto_atual.opcoes.cor_corpo.map((cor, index) => (
-                                            <option key={index} value={cor}>{cor}</option>
-                                        ))}
-                                    </select>
-                                </div>
-                            )}
-
-                            {/* Cor da alça - só mostra se o produto tiver essa opção */}
-                            {produto_atual.opcoes.cor_alca && produto_atual.opcoes.cor_alca.length > 0 && (
-                                <div className={styles["escolha-padrao"]}>
-                                    <label>Escolha a cor da alça</label>
-
-                                    <select
-                                        id="cor-alca"
-                                        name="cor-alca"
-                                        value={selecoes.cor_alca}
-                                        onChange={(e) => atualizar_selecao('cor_alca', e.target.value)}
-                                    >
-                                        <option value="" disabled>Cor da alça</option>
-                                        {produto_atual.opcoes.cor_alca.map((cor, index) => (
-                                            <option key={index} value={cor}>{cor}</option>
-                                        ))}
-                                    </select>
-                                </div>
-                            )}
-
-                            {/* Cor dos detalhes - só mostra se o produto tiver essa opção */}
-                            {produto_atual.opcoes.cor_detalhes && produto_atual.opcoes.cor_detalhes.length > 0 && (
-                                <div className={styles["escolha-padrao"]}>
-                                    <label>Escolha a cor dos detalhes</label>
-
-                                    <select
-                                        id="cor-detalhes"
-                                        name="cor-detalhes"
-                                        value={selecoes.cor_detalhes}
-                                        onChange={(e) => atualizar_selecao('cor_detalhes', e.target.value)}
-                                    >
-                                        <option value="" disabled>Cor dos detalhes</option>
-                                        {produto_atual.opcoes.cor_detalhes.map((cor, index) => (
-                                            <option key={index} value={cor}>{cor}</option>
-                                        ))}
-                                    </select>
-                                </div>
-                            )}
                         </div>
                     </div>
 
-                    <div className={styles["buttons-acoes-personalizacao-produtos"]}>
-                        <button
-                            className={styles["button-comprar-produtos-personalizados"]}
-                            onClick={enviar_pedido}
-                        >
-                            Comprar
-                        </button>
-                        <button className={styles["button-chat-produtos-personalizados"]}>Chat</button>
-                    </div>
-
+                    <Footer />
                 </div>
-            </div>
-
-            <Footer />
-        </div>
+            </motion.div>
+        </AnimatePresence>
     )
 }
 
