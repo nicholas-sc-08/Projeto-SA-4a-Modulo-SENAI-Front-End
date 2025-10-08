@@ -21,9 +21,15 @@
 .descricao-opcoes {
     font-weight: 600;
     padding-top: 2%; 
-    font-size: 20px;
+    font-size: 19px;
     color: var(--cor_dez);
     width: 95%;
+}
+
+.intro-pergunta:hover{
+    cursor: pointer;
+    color: var(--cor_um);
+    text-decoration: underline;
 }
 
 .container-titulo-passo1 {
@@ -38,7 +44,7 @@
 .passo1-bolinha {
     width: 40px;
     height: 40px;
-    background-color: var(--cor_um);
+    background-color: var(--cor_dois);
     border-radius: 50%;
     color: aliceblue;
     display: flex;
@@ -58,6 +64,7 @@
 }
 
 .card-produtos {
+    cursor: pointer !important;
     border: none;
     background-color: var(--cor_quatro);
     border-radius: 10px;
@@ -77,8 +84,8 @@
 }
 
 .produto-imagem {
-    width: 150px;
-    height: 150px;
+    width: 175px;
+    height: 185px;
     object-fit: contain;
 }
 
@@ -140,8 +147,9 @@
 }
 
 .titulo-caracteristica {
-    padding-top: 1%; 
-    font-size: 24px;
+    padding-bottom: 2%;
+    padding-right: 3%;
+    font-size: 23px;
     color: var(--cor_um);
 }
 
