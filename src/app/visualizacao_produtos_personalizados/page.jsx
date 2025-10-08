@@ -6,15 +6,16 @@ import { useGlobalContext } from '@/context/GlobalContext';
 import React, { useEffect, useState } from 'react';
 import styles from '@/app/visualizacao_produtos_personalizados/page.module.css'
 import api from '@/services/api';
+import { useRouter } from 'next/navigation';
 
 function page() {
-
+    const router = useRouter()
     const { tipo_de_header, set_tipo_de_header } = useGlobalContext();
     const { array_brechos, set_array_brechos } = useGlobalContext();
     const { usuario_logado, set_usuario_logado } = useGlobalContext();
 
     // Estado para controlar qual produto está sendo personalizado
-    const [produto_selecionado, set_produto_selecionado] = useState('ecobag');
+    const { produto_selecionado, set_produto_selecionado } = useGlobalContext();
     const [quantidade, set_quantidade] = useState(1);
 
     // Configuração dos produtos
@@ -79,6 +80,25 @@ function page() {
         };
     }, []);
 
+    // Resetar seleções quando o produto muda
+    useEffect(() => {
+        if (!produto_selecionado) {
+            // Se não houver produto selecionado, redireciona para a página de escolha
+            router.push('/escolha_de_personalizacao_produtos')
+            return
+        }
+
+        set_selecoes({
+            material: '',
+            tamanho: '',
+            padrao: '',
+            cor_corpo: '',
+            cor_alca: '',
+            cor_detalhes: ''
+        });
+        set_quantidade(1);
+    }, [produto_selecionado]);
+
     // Função para alterar a quantidade
     const alterar_quantidade = (operacao) => {
         if (operacao === 'diminuir' && quantidade > 1) {
@@ -105,7 +125,8 @@ function page() {
             material: selecoes.material,
             padrao: selecoes.padrao,
             tamanho: selecoes.tamanho,
-            valor: Number(produto_atual.preco * quantidade)
+            valor: Number(produto_atual.preco * quantidade),
+            id_brecho: usuario_logado._id
         };
 
         // Adiciona campos opcionais apenas se existirem e foram selecionados
@@ -154,43 +175,33 @@ function page() {
         }
     };
 
+    // Verificação se o produto existe
+    if (!produto_selecionado || !produtos_config[produto_selecionado]) {
+        return null; // Retorna null enquanto redireciona
+    }
+
     // Obter configuração do produto atual
     const produto_atual = produtos_config[produto_selecionado];
+
+    const navegar_pagina = () => {
+        router.push('/escolha_de_personalizacao_produtos')
+    }
 
     return (
         <div className={styles["container-alinhamento-conteudo-personalizacao"]}>
             <Header tipo={tipo_de_header} />
 
-            <div className={styles["container-titulo-personalizacao"]}>
-                <div className={styles["container-numero-de-fase-personalizacao"]}>
-                    <p>2</p>
+            <div className={styles["container-voltar-titulo-personalizacao"]}>
+                <div className={styles["container-titulo-personalizacao"]}>
+                    <div className={styles["container-numero-de-fase-personalizacao"]}>
+                        <p>2</p>
+                    </div>
+
+                    <h4>Personalize do seu jeito: transforme ideias em realidade</h4>
                 </div>
 
-                <h4>Personalize do seu jeito: transforme ideias em realidade</h4>
-            </div>
-
-            {/* Seletor de produto */}
-            <div className={styles["container-seletor-produto"]}>
-                <h3>Escolha o produto para personalizar:</h3>
-                <div className={styles["botoes-produtos"]}>
-                    <button
-                        className={produto_selecionado === 'ecobag' ? styles['produto-ativo'] : ''}
-                        onClick={() => set_produto_selecionado('ecobag')}
-                    >
-                        EcoBag
-                    </button>
-                    <button
-                        className={produto_selecionado === 'sacola' ? styles['produto-ativo'] : ''}
-                        onClick={() => set_produto_selecionado('sacola')}
-                    >
-                        Sacola
-                    </button>
-                    <button
-                        className={produto_selecionado === 'caixa' ? styles['produto-ativo'] : ''}
-                        onClick={() => set_produto_selecionado('caixa')}
-                    >
-                        Caixa
-                    </button>
+                <div className={styles["container-voltar-pagina"]}>
+                    <button onClick={() => navegar_pagina()}>Voltar <img src="./img/icons/Sair-icone.svg" alt="" /></button>
                 </div>
             </div>
 

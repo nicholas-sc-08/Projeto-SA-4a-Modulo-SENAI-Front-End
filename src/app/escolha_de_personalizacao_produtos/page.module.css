@@ -1,0 +1,152 @@
+.container-da-pagina {
+    font-family: var(--tipografia_primaria);
+    padding-top: 55px;              
+    margin-inline: 9%;              
+    width: 86%;
+}
+
+.intro-titulo {
+    color: var(--cor_seis);
+    font-size: 25px;
+}
+
+.linha-divisao {
+    width: 95%;
+    background-color: rgba(252, 252, 239, 0.966);
+    margin-top: 15px;
+}
+
+.intro-texto,
+.intro-pergunta,
+.descricao-opcoes {
+    font-weight: 600;
+    padding-top: 2%; 
+    font-size: 20px;
+    color: var(--cor_dez);
+    width: 95%;
+}
+
+.container-titulo-passo1 {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 1%;          
+    padding-top: 2%;  
+    text-align: center;
+}
+
+.passo1-bolinha {
+    width: 40px;
+    height: 40px;
+    background-color: var(--cor_um);
+    border-radius: 50%;
+    color: aliceblue;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.passo1-titulo {
+    font-size: 22px;
+}
+
+.container-produtos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5%;             
+    padding-top: 5%;     
+}
+
+.card-produtos {
+    border: none;
+    background-color: var(--cor_quatro);
+    border-radius: 10px;
+    width: 370px;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    padding: 15px;
+}
+
+.card-produtos:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.produto-imagem {
+    width: 150px;
+    height: 150px;
+    object-fit: contain;
+}
+
+.descricao-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5%; 
+}
+
+.descricao-produto {
+    font-size: 20px;
+    color: var(--cor_um);
+    text-align: center;
+}
+
+.descricao-produto-titulo {
+    font-size: 22px;
+    color: var(--cor_seis);
+    font-weight: 700;
+}
+
+.container-caracteristicas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5% 8%;          
+    padding-top: 6%;     
+    padding-bottom: 5%;
+}
+
+.card-caracteristicas{
+    border-radius: 7px;
+    background-color: var(--cor_dois_v_dois);
+    width: 567px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    text-align: center;
+    padding-top: 0.5%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card-caracteristicas2{
+    border-radius: 7px;
+    background-color: var(--cor_dois_v_dois);
+    width: 567px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    text-align: center;
+    padding-top: 0.5%;
+    margin-top: 4%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.titulo-caracteristica {
+    padding-top: 1%; 
+    font-size: 24px;
+    color: var(--cor_um);
+}
+
+.icon-caracteristicas {
+    width: 50px;
+    height: 50px;
+    transform: translateY(-10%); 
+}

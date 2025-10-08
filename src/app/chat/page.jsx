@@ -109,7 +109,7 @@ export default function chat() {
                         <button><img src={grupos_botao} alt='grupos' /></button>
                     </nav>
                     <div className={styles["container_sair_barra_lateral"]}>
-                        <button><img src={"./img/chat/chat_sair.svg"} alt="sair" /></button>
+                        <button onClick={() => router.push("/")}><img src={"./img/chat/chat_sair.svg"} alt="sair" /></button>
                     </div>
                 </div>
             </aside>
@@ -172,7 +172,9 @@ export default function chat() {
                                 <div className={styles["container_menu_alinhamento_botoes"]}>
                                     <button className={styles["botao_menu_clipes"]}><img src="./img/chat/chat_clipe_de_papel.svg" alt="clipes" /></button>
                                     <button className={styles["botao_menu_sorriso"]}><img src="./img/chat/chat_sorriso.svg" alt="sorriso" /></button>
-                                    <button className={styles["botao_menu_enviar"]} onClick={() => mensagem_enviar.trim(" ") ? cadastrar_conversa({ mensagem: mensagem_enviar, id_dono_mensagem: usuario_logado._id, id_quem_recebeu_mensagem: contato._id, data_mensagem: dia_de_hoje, mensagem_lida_quem_recebeu: false, hora: dia_de_hoje.getHours() }) : alert("insira uma informação")}><img src="./img/chat/chat_enviar.svg" alt="enviar" /></button>
+                                    <button className={styles["botao_menu_enviar"]} onClick={() => mensagem_enviar.trim() ? cadastrar_conversa({ mensagem: mensagem_enviar, id_dono_mensagem: usuario_logado._id, id_quem_recebeu_mensagem: contato._id, data_mensagem: dia_de_hoje, mensagem_lida_quem_recebeu: false, hora: `${dia_de_hoje.getHours() < 10 ? `0${dia_de_hoje.getHours()}` : dia_de_hoje.getHours()}:${dia_de_hoje.getMinutes() < 10 ? `0${dia_de_hoje.getMinutes()}` : dia_de_hoje.getMinutes()}` }).then((mensagem) => set_conversa_atual([...conversa_atual, mensagem]
+
+                                    )) : alert("insira uma informação")}><img src="./img/chat/chat_enviar.svg" alt="enviar" /></button>
                                 </div>
                             </footer>
                         </main>

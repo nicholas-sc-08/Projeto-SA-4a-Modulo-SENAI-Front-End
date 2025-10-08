@@ -5,13 +5,56 @@
     padding-top: 3%;
 
     margin-bottom: 3%;
+    width: 100%;
     align-items: center;
+}
+
+.container-voltar-pagina {
+    /* border: 1px solid red; */
+    display: flex;
+    width: 20%;
+    align-items: center;
+}
+
+.container-voltar-pagina img {
+    width: 35%;
+    margin-left: 10%;
+}
+
+.container-voltar-pagina button {
+    border: var(--cor_quatro);
+    background-color: transparent;
+    font-family: var(--tipografia_primaria);
+    color: var(--cor_um);
+    font-weight: 600;
+    font-size: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* border: 1px solid red; */
+    height: fit-content;
+    width: 30%;
+    margin-left: 20%;
+    cursor: pointer;
+    transition: 0.7s;
+    padding-bottom: 1.5%;
+}
+
+.container-voltar-pagina button:hover {
+    border-bottom: 1px solid var(--cor_um);
+}
+
+.container-voltar-titulo-personalizacao {
+    /* border: 1px solid blue; */
+    display: flex;
+    justify-content: space-between;
 }
 
 .container-numero-de-fase-personalizacao {
 
-    width: 3.5%;
-    height: auto;
+    width: 3.7%;
+    height: 2.8vw;
 
     background-color: var(--cor_dois);
     padding: 0.9%;
@@ -20,18 +63,19 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    /* border: 1px solid red; */
 }
 
 .container-numero-de-fase-personalizacao p {
     color: var(--cor_quatro);
     font-family: var(--tipografia_primaria);
-    font-weight: 700;
+    font-weight: 650;
     font-size: 120%;
     /* border: 1px solid red; */
 }
 
 .container-titulo-personalizacao h4 {
-    padding-left: 1.5%;
+    padding-left: 1.2%;
     font-family: var(--tipografia_primaria);
     font-size: 135%;
     color: var(--cor_seis);
@@ -200,6 +244,11 @@
     opacity: 80%;
 }
 
+.opcao-selecionada{
+    background-color: var(--cor_um) !important;
+    color: var(--cor_quatro) !important;
+}
+
 .container-alinhamento-button-personalizacao {
     /* border: 1px solid black; */
     display: flex;
@@ -324,37 +373,3 @@
 .button-chat-produtos-personalizados:hover {
     background-color: var(--cor_dois_v_um);
 }
-
-/* ESCOLHA DE PRODUTOS */
-.container-seletor-produto {
-    margin-bottom: 2rem;
-    text-align: center;
-}
-
-.botoes-produtos {
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
-    margin-top: 1rem;
-}
-
-.botoes-produtos button {
-    padding: 0.5rem 1rem;
-    border: 2px solid #ccc;
-    background: white;
-    cursor: pointer;
-    border-radius: 4px;
-}
-
-.produto-ativo {
-    background: #007bff !important;
-    color: white !important;
-    border-color: #007bff !important;
-}
-
-.opcao-selecionada {
-    background: #007bff !important;
-    color: white !important;
-}
-
-/* ESCOLHA DE PRODUTOS */

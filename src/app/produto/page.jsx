@@ -294,7 +294,9 @@ export default function Produto() {
 
                             set_usuario_logado(usuario_atualizado);
                             set_sacola(usuario_atualizado.sacola);
-
+                            
+                            console.log(usuario_atualizado);
+                            
                             const cliente = await api.put(`/clientes/${usuario_atualizado._id}`, usuario_atualizado);
                             set_usuario_logado(cliente.data);
                             set_produto_adicionado_na_sacola(true);
