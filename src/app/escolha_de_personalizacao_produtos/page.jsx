@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react'
+import React, { useState } from 'react'
 import Footer from '@/components/footer/Footer'
 import Header from '@/components/header/Header'
 import styles from "@/app/escolha_de_personalizacao_produtos/page.module.css"
@@ -11,6 +11,7 @@ import { useRouter } from 'next/navigation'
 export default function Page() {
   const router = useRouter()
   const { tipo_de_header, set_produto_selecionado } = useGlobalContext()
+  const [mostrarTexto, setMostrarTexto] = useState(false)
 
   const selecionar_produto = (tipo_produto) => {
     set_produto_selecionado(tipo_produto)
@@ -37,13 +38,33 @@ export default function Page() {
               Novidade no Fly! Agora você pode interagir diretamente com a gente
               e personalizar suas compras na nossa loja oficial. Dê seu toque único a cada produto!
             </p>
-            <p className={styles["intro-pergunta"]}>Por que esta iniciativa é tão importante?</p>
-            <p className={styles["intro-texto"]}>
-              Além de ser uma forma mais sustentável para o meio ambiente, essa iniciativa
-              também é um passo importante na construção de uma identidade única para o seu brechó.
-              Ao comprar na loja do Fly, você não só contribui para a redução de resíduos,
-              como também deixa seu brechó com mais personalidade e autenticidade.
+
+            {/* Pergunta clicavel */}
+            <p
+              className={styles["intro-pergunta"]}
+              onClick={() => setMostrarTexto(!mostrarTexto)}
+              style={{ cursor: 'pointer' }}
+            >
+              Por que esta iniciativa é tão importante?
             </p>
+
+            {/* Aqui faz com que o texto apareça e desapareça*/}
+            <motion.div
+              initial={false}
+              animate={{
+                height: mostrarTexto ? 'auto' : 0,
+                opacity: mostrarTexto ? 1 : 0,
+              }}
+              transition={{ duration: 0.4, ease: 'easeInOut' }}
+              style={{ overflow: 'hidden' }}
+            >
+              <p className={styles["intro-texto"]}>
+                Além de ser uma forma mais sustentável para o meio ambiente, essa iniciativa
+                também é um passo importante na construção de uma identidade única para o seu brechó.
+                Ao comprar na loja do Fly, você não só contribui para a redução de resíduos,
+                como também deixa seu brechó com mais personalidade e autenticidade.
+              </p>
+            </motion.div>
           </section>
 
           <section className={styles["container-opcoes"]}>
@@ -63,6 +84,7 @@ export default function Page() {
           <section className={styles["container-produtos"]}>
             <button
               className={styles["card-produtos"]}
+              style={{ cursor: 'pointer' }}
               onClick={() => selecionar_produto('caixa')}
             >
               <img src="./img/caixaKraft-estrelinhas.png" alt="Caixa Kraft" className={styles["produto-imagem"]} />
@@ -74,6 +96,7 @@ export default function Page() {
 
             <button
               className={styles["card-produtos"]}
+              style={{ cursor: 'pointer' }}
               onClick={() => selecionar_produto('sacola')}
             >
               <img src="./img/sacolaKraft.png" alt="Sacola" className={styles["produto-imagem"]} />
@@ -85,6 +108,7 @@ export default function Page() {
 
             <button
               className={styles["card-produtos"]}
+              style={{ cursor: 'pointer' }}
               onClick={() => selecionar_produto('ecobag')}
             >
               <img src="./img/ecoBags.png" alt="Ecobag" className={styles["produto-imagem"]} />
