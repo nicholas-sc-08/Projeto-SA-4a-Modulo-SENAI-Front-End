@@ -1,3 +1,15 @@
 .config-container{
     border: 1px solid red;
+    padding-top: 4%;
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-bottom: 4%;
+}
+
+.escolha-config{
+    border: 1px solid blue;
+}
+
+.info-perfil{
+    border: 1px solid red;
 }

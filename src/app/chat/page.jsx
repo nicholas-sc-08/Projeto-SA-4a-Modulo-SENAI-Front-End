@@ -4,13 +4,14 @@ import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import { buscar_brechos } from "@/services/brecho/brecho";
-import { buscar_conversas, cadastrar_conversa } from "@/services/chat/chat";
+import { buscar_conversas } from "@/services/chat/chat";
 import { useGlobalContext } from "@/context/GlobalContext";
 import { buscar_clientes } from "@/services/cliente/cliente";
 import { AnimatePresence } from "framer-motion";
 import { motion } from "framer-motion";
 import { buscar_ultima_mensagem } from "@/services/chat/chat";
 import { nova_mensagem } from "@/services/chat/chat";
+import api from "@/services/api";
 import styles from "@/app/chat/page.module.css";
 import socket from "@/services/socket";
 
@@ -28,8 +29,8 @@ export default function chat() {
     const { array_chat, set_array_chat } = useGlobalContext();
     const { array_clientes, set_array_clientes } = useGlobalContext();
     const { secao_chat, set_secao_chat } = useGlobalContext();
-    const { usuario_logado, set_usuario_logado } = useGlobalContext();  
-    const dia_de_hoje = Date.now();
+    const { usuario_logado, set_usuario_logado } = useGlobalContext();
+    const dia_de_hoje = new Date();
 
     useEffect(() => {
 
@@ -39,7 +40,7 @@ export default function chat() {
 
         socket.connect();
         socket.on("receber_mensagem", mensagem => set_conversa_atual(mensagens_anteriores => [...mensagens_anteriores, mensagem]));
-        
+
         return () => {
 
             socket.off("receber_mensagem");
@@ -58,6 +59,30 @@ export default function chat() {
         };
 
     }, [pesquisa_inpt]);
+
+    async function cadastrar_conversa() {
+
+        try {
+
+            const mensagem = {
+                mensagem: mensagem_enviar,
+                id_dono_mensagem: usuario_logado._id,
+                id_quem_recebeu_mensagem: contato._id,
+                data_mensagem: dia_de_hoje,
+                mensagem_lida_quem_recebeu: false,
+                hora: `${dia_de_hoje.getHours() < 10 ? `0${dia_de_hoje.getHours()}` : dia_de_hoje.getHours()}:${dia_de_hoje.getMinutes() < 10 ? `0${dia_de_hoje.getMinutes()}` : dia_de_hoje.getMinutes()}`
+            };
+
+            const resposta = await api.post(`/chats`, mensagem);
+            socket.emit("enviar_mensagem", resposta.data);
+            set_mensagem_enviar("");
+
+        } catch (erro) {
+
+            console.error(erro);
+            throw new Error("Erro axios ao cadastrar a mensagem!");
+        };
+    };
 
     function selecionar_conversa(id) {
 
@@ -161,7 +186,19 @@ export default function chat() {
                                 {conversa_atual && conversa_atual.length > 0 ? conversa_atual.map((_, i) => (
 
                                     <div key={i} className={styles["container_historico_de_mensagens"]}>
-                                        
+
+                                        {_.id_dono_mensagem == usuario_logado._id ?
+                                            <div className={styles["container_fundo_mensagem_dono"]}>
+                                                <div className={styles["mensagem_dono"]}>
+                                                    <p>{_.mensagem}</p>
+                                                </div>
+                                            </div> :
+                                            <div className={styles["container_fundo_mensagem_recebedor"]}>
+                                                <div className={styles["mensagem_recebedor"]}>
+                                                    <p>{_.mensagem}</p>
+                                                </div>
+                                            </div>
+                                        }
                                     </div>
                                 )) : ``}
                             </div>
@@ -172,9 +209,7 @@ export default function chat() {
                                 <div className={styles["container_menu_alinhamento_botoes"]}>
                                     <button className={styles["botao_menu_clipes"]}><img src="./img/chat/chat_clipe_de_papel.svg" alt="clipes" /></button>
                                     <button className={styles["botao_menu_sorriso"]}><img src="./img/chat/chat_sorriso.svg" alt="sorriso" /></button>
-                                    <button className={styles["botao_menu_enviar"]} onClick={() => mensagem_enviar.trim() ? cadastrar_conversa({ mensagem: mensagem_enviar, id_dono_mensagem: usuario_logado._id, id_quem_recebeu_mensagem: contato._id, data_mensagem: dia_de_hoje, mensagem_lida_quem_recebeu: false, hora: `${dia_de_hoje.getHours() < 10 ? `0${dia_de_hoje.getHours()}` : dia_de_hoje.getHours()}:${dia_de_hoje.getMinutes() < 10 ? `0${dia_de_hoje.getMinutes()}` : dia_de_hoje.getMinutes()}` }).then((mensagem) => set_conversa_atual([...conversa_atual, mensagem]
-
-                                    )) : alert("insira uma informação")}><img src="./img/chat/chat_enviar.svg" alt="enviar" /></button>
+                                    <button className={styles["botao_menu_enviar"]} onClick={() => cadastrar_conversa()}><img src="./img/chat/chat_enviar.svg" alt="enviar" /></button>
                                 </div>
                             </footer>
                         </main>

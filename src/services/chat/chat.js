@@ -11,7 +11,7 @@ export async function buscar_conversas() {
 
     } catch (erro) {
 
-        console.error(erro.message);
+        console.error(erro);
         throw new Error(`Erro ao buscar as conversas`);
     };
 };
@@ -25,7 +25,7 @@ export async function buscar_conversa(id) {
 
     } catch (erro) {
 
-        console.error(erro.message);
+        console.error(erro);
         throw new Error("Erro axios ao buscar a conversa pelo ID");
     };
 };
@@ -40,7 +40,7 @@ export async function cadastrar_conversa(mensagem) {
 
     } catch (erro) {
 
-        console.error(erro.message);
+        console.error(erro);
         throw new Error("Erro axios ao cadastrar a mensagem!");
     };
 };
@@ -54,7 +54,7 @@ export async function atualizar_conversa(id, mensagem) {
 
     } catch (erro) {
 
-        console.error(erro.message);
+        console.error(erro);
         throw new Error("Erro axios ao atualizar a mensagem");
     };
 };
@@ -67,7 +67,7 @@ export async function deletar_conversa(id) {
 
     } catch (erro) {
 
-        console.error(erro.message);
+        console.error(erro);
         throw new Error("Erro axios ao deletar a mensagem pelo ID");
     };
 };
