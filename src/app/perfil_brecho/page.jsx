@@ -35,20 +35,29 @@ function page() {
           </div>
 
           <div className={styles["parte-inferior-do-perfil-brecho-content"]}>
-            <div className={styles["topicos-de-informaca-sobre-perfil-content"]}>
+            <div className={styles["topicos-de-informacao-sobre-perfil-content"]}>
               <button>Informações</button>
               <button>Endereço</button>
               <button>Sobre o brechó</button>
               <button>Rede Sociais</button>
             </div>
-            <div className={styles["titulo-topico-selecionado-content"]}>
-              <p>topico</p>
-            </div>
-            <div className="informacos-topicos-selecionado-content">
-              
-            </div>
-          </div>
 
+            <div className={styles["informacoes-exibidas-content"]}>
+
+              <div className={styles["titulo-topico-exibido-content"]}>
+                <p>a</p>
+              </div>
+
+              <div className={styles["infos-cadastradas-sub-div"]}>
+
+                
+
+
+              </div>
+
+            </div>
+
+          </div>
         </div>
 
         <div className={styles["produtos-do-brecho-content"]}>
