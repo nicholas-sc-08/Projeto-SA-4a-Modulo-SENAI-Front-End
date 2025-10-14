@@ -44,13 +44,78 @@ function page() {
 
             <div className={styles["informacoes-exibidas-content"]}>
 
-              <div className={styles["titulo-topico-exibido-content"]}>
-                <p>a</p>
+
+              <div className={styles["opcao-button-informacao"]}> {/*vai ser trocado depois pra div Ativa = informacoes */}
+
+                <div className={styles["titulo-topico-exibido-content"]}>
+                  <p>Informações de Contato</p>
+                </div>
+
+                <div className={styles["infos-cadastradas-sub-div"]}>
+
+                  <label className={styles["labels-info"]}>Nome: </label>
+                  <span className={styles["dados-cadastradas-exibidos"]}></span>
+
+                  <label className={styles["labels-info"]}>Email: </label>
+                  <span className={styles["dados-cadastradas-exibidos"]}></span>
+
+                  <label className={styles["labels-info"]}>Telefone: </label>
+                  <span className={styles["dados-cadastradas-exibidos"]}></span>
+
+                  <label className={styles["labels-info"]}>CNPJ: </label>
+                  <span className={styles["dados-cadastradas-exibidos"]}></span>
+
+                </div>
+
               </div>
 
-              <div className={styles["infos-cadastradas-sub-div"]}>
+              <div className={styles["opcao-button-enderreco"]}>  {/*vai ser trocado depois pra div Ativa = endereco */}
 
-                
+                <div className={styles["titulo-topico-exibido-content"]}>
+                  <p>Informações de Endereco</p>
+                </div>
+
+                <div className={styles["infos-cadastradas-sub-div"]}>
+
+                  <label className={styles["labels-info"]}>Estado: </label> {/* pensei em inicialmente exibir só essas informações, ai no edicao de perfil ter uma pergunta "deseja exibir todo o endereço?" serviria para os brechós q tem de loja física */}
+                  <span className={styles["dados-cadastradas-exibidos"]}></span>
+
+                  <label className={styles["labels-info"]}>Cidade: </label>
+                  <span className={styles["dados-cadastradas-exibidos"]}></span>
+
+                </div>
+
+
+              </div>
+
+              <div className={styles["opcao-button-sobre-o-brecho"]}> {/*vai ser trocado depois pra div Ativa = sobre-brecho */}
+
+                <div className={styles["titulo-topico-exibido-content"]}>
+                  <p>Informações de Sobre o Brechó</p>
+                </div>
+
+                <div className={styles["infos-cadastradas-sub-div"]}>
+                  <span className={styles["dados-cadastradas-exibidos"]}></span>
+                </div>
+
+
+              </div>
+
+              <div className={styles["opcao-button-redes-sociais"]}>    {/*vai ser trocado depois pra div Ativa = redes-sociais */}
+
+                <div className={styles["titulo-topico-exibido-content"]}>
+                  <p>Informações de Redes Sociais</p>
+                </div>
+
+                <div className={styles["infos-cadastradas-sub-div"]}>
+
+                  <label className={styles["labels-info"]}>Instagram: </label>
+                  <span className={styles["dados-cadastradas-exibidos"]}></span>
+
+                  <label className={styles["labels-info"]}>Facebook: </label>
+                  <span className={styles["dados-cadastradas-exibidos"]}></span>
+
+                </div>
 
 
               </div>
