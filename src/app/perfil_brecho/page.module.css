@@ -100,30 +100,73 @@
 }
 
 .topicos-de-informacao-sobre-perfil-content {
+    border: 1px solid #4C00D0;
 
+    height: 15vh;
+    width: 100%;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding-left: 1%;
+    gap: 2rem;
 }
 
 .topicos-de-informacao-sobre-perfil-content button {
+    width: fit-content;
+    height: 49%;
+    background-color: var(--cor_quatro);
 
+    font-family: var(--tipografia_primaria);
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--cor_um);
+    cursor: pointer;
+    border: none;
 }
 
 
 .informacoes-exibidas-content {
+    border: 1px solid #4C00D0;
 
+    height: 77vh;
+    width: 99%;
+
+    display: flex;
+    flex-direction: column;
 }
 
 
 /* GERAL - className que foi usado em várias tags */
 
 .titulo-topico-exibido-content {
+    border: 1px solid #D07900;
 
+    height: 17%;
+    width: 99%;
+
+    display: flex;
+
+    align-items: center;
+    padding-left: 1%;
 }
 
 .infos-cadastradas-sub-div{
+    border: 1px solid #D07900;
 
+    height: 80%;
+    width: 99%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding: 1%;
+    /* padding-left: 1%; */
 }
 
 .labels-info {
+
 
 }
 
