@@ -1,15 +1,18 @@
 "use client";
 
-import { useGlobalContext } from '@/context/GlobalContext';
-
 import Header from '@/components/header/Header';
 import Footer from '@/components/footer/Footer';
 import styles from '@/app/perfil_brecho/page.module.css';
+
+import { useGlobalContext } from '@/context/GlobalContext';
+import { useState } from 'react';
 
 
 function page() {
 
   const { tipo_de_header, set_tipo_de_header } = useGlobalContext();
+
+  const [divAtiva, setDivAtiva] = useState("informacoes")
 
   return (
 
@@ -36,24 +39,97 @@ function page() {
 
           <div className={styles["parte-inferior-do-perfil-brecho-content"]}>
             <div className={styles["topicos-de-informacao-sobre-perfil-content"]}>
-              <button>Informações</button>
-              <button>Endereço</button>
-              <button>Sobre o brechó</button>
-              <button>Rede Sociais</button>
+              <button onClick={() => setDivAtiva("informacoes")}>Informações</button>
+              <button onClick={() => setDivAtiva("endereco")}>Endereço</button>
+              <button onClick={() => setDivAtiva("sobre-brecho")}>Sobre o brechó</button>
+              <button onClick={() => setDivAtiva("redes-sociais")}>Redes Sociais</button>
             </div>
 
             <div className={styles["informacoes-exibidas-content"]}>
 
-              <div className={styles["titulo-topico-exibido-content"]}>
-                <p>a</p>
-              </div>
+              {divAtiva === "informacoes" && (
+                <>
 
-              <div className={styles["infos-cadastradas-sub-div"]}>
+                  <div className={styles["titulo-topico-exibido-content"]}>
+                    <p>Informações de Contato</p>
+                  </div>
 
-                
+                  <div className={styles["infos-cadastradas-sub-div"]}>
+
+                    <label className={styles["labels-info"]}>Nome: </label>
+                    <span className={styles["dados-cadastradas-exibidos"]}></span>
+
+                    <label className={styles["labels-info"]}>Email: </label>
+                    <span className={styles["dados-cadastradas-exibidos"]}></span>
+
+                    <label className={styles["labels-info"]}>Telefone: </label>
+                    <span className={styles["dados-cadastradas-exibidos"]}></span>
+
+                    <label className={styles["labels-info"]}>CNPJ: </label>
+                    <span className={styles["dados-cadastradas-exibidos"]}></span>
+
+                  </div>
 
 
-              </div>
+                </>
+              )}
+
+              {divAtiva === "endereco" && (
+                <>
+
+                  <div className={styles["titulo-topico-exibido-content"]}>
+                    <p>Informações de Endereco</p>
+                  </div>
+
+                  <div className={styles["infos-cadastradas-sub-div"]}>
+
+                    <label className={styles["labels-info"]}>Estado: </label> {/* pensei em inicialmente exibir só essas informações, ai no edicao de perfil ter uma pergunta "deseja exibir todo o endereço?" serviria para os brechós q tem de loja física */}
+                    <span className={styles["dados-cadastradas-exibidos"]}></span>
+
+                    <label className={styles["labels-info"]}>Cidade: </label>
+                    <span className={styles["dados-cadastradas-exibidos"]}></span>
+
+                  </div>
+
+                </>
+              )}
+
+
+              {divAtiva === "sobre-brecho" && (
+                <>
+
+                  <div className={styles["titulo-topico-exibido-content"]}>
+                    <p>Informações de Sobre o Brechó</p>
+                  </div>
+
+                  <div className={styles["infos-cadastradas-sub-div"]}>
+                    <span className={styles["dados-cadastradas-exibidos"]}></span>
+                  </div>
+
+                </>
+              )}
+
+
+              {divAtiva === "redes-sociais" && (
+                <>
+
+                  <div className={styles["titulo-topico-exibido-content"]}>
+                    <p>Informações de Redes Sociais</p>
+                  </div>
+
+                  <div className={styles["infos-cadastradas-sub-div"]}>
+
+                    <label className={styles["labels-info"]}>Instagram: </label>
+                    <span className={styles["dados-cadastradas-exibidos"]}></span>
+
+                    <label className={styles["labels-info"]}>Facebook: </label>
+                    <span className={styles["dados-cadastradas-exibidos"]}></span>
+
+                  </div>
+
+
+                </>
+              )}
 
             </div>
 
