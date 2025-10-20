@@ -12,9 +12,18 @@ function page() {
 
   const { tipo_de_header, set_tipo_de_header } = useGlobalContext();
 
-  //const [tres_pontos_botao, set_tres_pontos_botao] = useState("./img/"); //colocar aqui o icone
+  const [tres_pontos_botao, set_tres_pontos_botao] = useState("./img/icons/tres_pontos_menu.svg"); //colocar aqui o icone
 
   const [divAtiva, setDivAtiva] = useState("informacoes")
+  const [mostrarPopUpConfiguracoes, setMostrarPopUpConfiguracoes] = useState(false)
+
+  const abrirPopUpConfig = () => {
+    setMostrarPopUpConfiguracoes(true)
+  }
+
+  const fecharPopUpConfig = () => {
+    setMostrarPopUpConfiguracoes(false)
+  }
 
   return (
 
@@ -25,17 +34,18 @@ function page() {
         <div className={styles["perfil-brecho-content"]}>
 
           <div className={styles["parte-azul-superior-content"]}>
-            <button>
-              {/* <img src={tres_pontos_botao} alt='configuracoes' /> */}
-              </button>
+
+            <button onClick={() => setMostrarPopUpConfiguracoes(true)} className={styles["tres-pontos-icon"]}>
+              <img src={tres_pontos_botao} alt='configuracoes' />
+            </button>
           </div>
 
           <div className={styles["parte-do-meio-logo-nome-content"]}>
 
             <div className={styles["logo-brecho-content"]}>
-              <img src="./img/logo/logo-brecho-exemplo.png" alt="logo-brecho" />
+              <img src="./img/logo_brecho/logo-indigo-brecho.svg" alt="logo-brecho" />
             </div>
-            
+
             <div className={styles["nome-brecho-content"]}>
               <h1>Project Indigo Brechó</h1>
             </div>
@@ -160,6 +170,10 @@ function page() {
         </div> */}
 
       </div>
+
+      {/* {mostrarPopUpConfiguracoes && (
+        <Pop_up_de_excluir_perfil fecharPopUpConfig={() => setMmostrarPopUpConfiguracoes(false)} />
+      )} */}
 
       <Footer />
     </div>

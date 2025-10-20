@@ -55,6 +55,13 @@
     background-color: var(--cor_vinte_um);
 }
 
+.tres-pontos-icon {
+    padding: 1%;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+}
+
 .parte-do-meio-logo-nome-content {
     border: 1px solid #00d0c6;
 
@@ -83,8 +90,8 @@
 
 .logo-brecho-content img {
     border-radius: 7rem;
-    height: 100px;
-    width: 100px;
+    height: 10rem;
+    width: 10rem;
 }
 
 .nome-brecho-content {
@@ -106,17 +113,6 @@
     color: var(--cor_dezesete);
 }
 
-/* .avaliacao-simplificado-brecho-content {
-    border: 1px solid #00d045;
-
-    height: 60%;
-    width: 100%;
-
-    display: flex;
-    justify-content: space-around; 
-    align-items: center;
-    gap: 4rem;} */
-
 .parte-inferior-do-perfil-brecho-content {
     border: 1px solid red;
 
@@ -128,7 +124,7 @@
 }
 
 .topicos-de-informacao-sobre-perfil-content {
-    border: 1px solid #4C00D0;
+    border-bottom: 1px solid var(--cor_nove_v_um);
 
     height: 19vh;
     width: 100%;
@@ -144,7 +140,7 @@
 .topicos-de-informacao-sobre-perfil-content button {
     width: fit-content;
     height: 49%;
-    background-color: var(--cor_quatro);
+    background-color: transparent;
 
     font-family: var(--tipografia_primaria);
     font-weight: 700;
@@ -205,13 +201,12 @@
 }
 
 .labels-info {
-
     padding-right: 1%;
 
     font-family: var(--tipografia_primaria);
-    font-weight: 600;
-    font-size: 1rem;
-    color: var(--cor_dezesete);
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--cor_vinte_dois);
 }
 
 .dados-cadastradas-exibidos {
