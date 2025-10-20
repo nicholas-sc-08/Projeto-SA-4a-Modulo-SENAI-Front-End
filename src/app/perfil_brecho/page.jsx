@@ -12,6 +12,8 @@ function page() {
 
   const { tipo_de_header, set_tipo_de_header } = useGlobalContext();
 
+  //const [tres_pontos_botao, set_tres_pontos_botao] = useState("./img/"); //colocar aqui o icone
+
   const [divAtiva, setDivAtiva] = useState("informacoes")
 
   return (
@@ -23,18 +25,21 @@ function page() {
         <div className={styles["perfil-brecho-content"]}>
 
           <div className={styles["parte-azul-superior-content"]}>
-            <p>a</p>
+            <button>
+              {/* <img src={tres_pontos_botao} alt='configuracoes' /> */}
+              </button>
           </div>
 
           <div className={styles["parte-do-meio-logo-nome-content"]}>
-            <img src="" alt="" />
-            <div className={styles["nome-brecho-content"]}>
-              <p>Project Indigo Brechó</p>
-              {/* <div className={styles["avaliacao-simplificado-brecho-content"]}>
-                <p>4.5/5</p>
-                <p>⭐⭐⭐⭐</p>
-              </div> */}
+
+            <div className={styles["logo-brecho-content"]}>
+              <img src="./img/logo/logo-brecho-exemplo.png" alt="logo-brecho" />
             </div>
+            
+            <div className={styles["nome-brecho-content"]}>
+              <h1>Project Indigo Brechó</h1>
+            </div>
+
           </div>
 
           <div className={styles["parte-inferior-do-perfil-brecho-content"]}>
