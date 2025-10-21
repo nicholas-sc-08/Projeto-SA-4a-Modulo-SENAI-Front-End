@@ -23,6 +23,7 @@ export default function chat() {
     const [conversa_atual, set_conversa_atual] = useState(null);
     const [pesquisa_inpt, set_pesquisa_inpt] = useState("");
     const [mensagem_enviar, set_mensagem_enviar] = useState("");
+    const [enviar_enter, set_enviar_mensagem] = useState(null);
     const [array_de_pesquisa, set_array_de_pesquisa] = useState([]);
     const [contato, set_contato] = useState();
     const { array_brechos, set_array_brechos } = useGlobalContext();
@@ -54,8 +55,17 @@ export default function chat() {
             set_array_de_pesquisa(usuario_logado.conversas);
         } else {
 
-            const filtrar_conversas = usuario_logado.conversas.filter(conversa => conversa.nome_brecho.trim(` `).toUpperCase().includes(pesquisa_inpt.trim(` `).toUpperCase()));
-            set_array_de_pesquisa(filtrar_conversas);
+            const cliente = array_clientes.find(cliente => cliente._id == usuario_logado._id);
+
+            if (cliente) {
+
+                const filtrar_conversas = usuario_logado.conversas.filter(conversa => conversa.nome_brecho.trim(` `).toUpperCase().includes(pesquisa_inpt.trim(` `).toUpperCase()));
+                set_array_de_pesquisa(filtrar_conversas);
+            } else {
+
+                const filtrar_conversas = usuario_logado.conversas.filter(conversa => conversa.nome.trim(` `).toUpperCase().includes(pesquisa_inpt.trim(` `).toUpperCase()));
+                set_array_de_pesquisa(filtrar_conversas);
+            };
         };
 
     }, [pesquisa_inpt]);
@@ -188,23 +198,27 @@ export default function chat() {
                                     <div key={i} className={styles["container_historico_de_mensagens"]}>
 
                                         {_.id_dono_mensagem == usuario_logado._id ?
-                                            <div className={styles["container_fundo_mensagem_dono"]}>
-                                                <div className={styles["mensagem_dono"]}>
-                                                    <p>{_.mensagem}</p>
-                                                </div>
-                                            </div> :
-                                            <div className={styles["container_fundo_mensagem_recebedor"]}>
-                                                <div className={styles["mensagem_recebedor"]}>
-                                                    <p>{_.mensagem}</p>
-                                                </div>
-                                            </div>
+                                            <AnimatePresence>
+                                                <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.4 }} className={styles["container_fundo_mensagem_dono"]}>
+                                                    <div className={styles["mensagem_dono"]}>
+                                                        <p>{_.mensagem}</p>
+                                                    </div>
+                                                </motion.div>
+                                            </AnimatePresence> :
+                                            <AnimatePresence>
+                                                <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.4 }} className={styles["container_fundo_mensagem_recebedor"]}>
+                                                    <div className={styles["mensagem_recebedor"]}>
+                                                        <p>{_.mensagem}</p>
+                                                    </div>
+                                                </motion.div>
+                                            </AnimatePresence>
                                         }
                                     </div>
                                 )) : ``}
                             </div>
                             <footer className={styles["container_menu_interacao_conversa"]}>
                                 <div className={styles["container_menu_inpt_conversa"]}>
-                                    <input type="text" placeholder="Digite sua Mensagem..." value={mensagem_enviar} onChange={e => set_mensagem_enviar(e.target.value)} />
+                                    <input type="text" placeholder="Digite sua Mensagem..." value={mensagem_enviar} onChange={e => set_mensagem_enviar(e.target.value)} onKeyDown={e => e.key == "Enter" ? cadastrar_conversa() : ""}/>
                                 </div>
                                 <div className={styles["container_menu_alinhamento_botoes"]}>
                                     <button className={styles["botao_menu_clipes"]}><img src="./img/chat/chat_clipe_de_papel.svg" alt="clipes" /></button>
