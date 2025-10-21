@@ -71,17 +71,25 @@ function page() {
 
                   <div className={styles["infos-cadastradas-sub-div"]}>
 
-                    <label className={styles["labels-info"]}>Nome: </label>
-                    <span className={styles["dados-cadastradas-exibidos"]}></span>
+                    <div className={styles["labels-e-dados-cadastrados-content"]}>
+                      <label className={styles["labels-info"]}>Nome: </label>
+                      <span className={styles["dados-cadastradas-exibidos"]}></span>
+                    </div>
 
-                    <label className={styles["labels-info"]}>Email: </label>
-                    <span className={styles["dados-cadastradas-exibidos"]}></span>
+                    <div className={styles["labels-e-dados-cadastrados-content"]}>
+                      <label className={styles["labels-info"]}>Email: </label>
+                      <span className={styles["dados-cadastradas-exibidos"]}></span>
+                    </div>
 
-                    <label className={styles["labels-info"]}>Telefone: </label>
-                    <span className={styles["dados-cadastradas-exibidos"]}></span>
+                    <div className={styles["labels-e-dados-cadastrados-content"]}>
+                      <label className={styles["labels-info"]}>Telefone: </label>
+                      <span className={styles["dados-cadastradas-exibidos"]}>aaaa</span>
+                    </div>
 
-                    <label className={styles["labels-info"]}>CNPJ: </label>
-                    <span className={styles["dados-cadastradas-exibidos"]}></span>
+                    <div className={styles["labels-e-dados-cadastrados-content"]}>
+                      <label className={styles["labels-info"]}>CNPJ: </label>
+                      <span className={styles["dados-cadastradas-exibidos"]}></span>
+                    </div>
 
                   </div>
 
