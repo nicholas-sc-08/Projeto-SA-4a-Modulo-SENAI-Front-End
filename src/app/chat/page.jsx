@@ -1,8 +1,10 @@
 "use client";
 
 import React from "react";
+import EmojiPicker from "emoji-picker-react";
 import { useEffect } from "react";
 import { useState } from "react";
+import { useRef } from "react";
 import { buscar_brechos } from "@/services/brecho/brecho";
 import { buscar_conversas } from "@/services/chat/chat";
 import { useGlobalContext } from "@/context/GlobalContext";
@@ -10,19 +12,22 @@ import { buscar_clientes } from "@/services/cliente/cliente";
 import { AnimatePresence } from "framer-motion";
 import { motion } from "framer-motion";
 import { buscar_ultima_mensagem } from "@/services/chat/chat";
-import { nova_mensagem } from "@/services/chat/chat";
 import api from "@/services/api";
 import styles from "@/app/chat/page.module.css";
 import socket from "@/services/socket";
 
 export default function chat() {
 
+    const ref_final_conversa = useRef(null);
+    const [estado_emoji, set_estado_emoji] = useState(false);
     const [perfil_botao, set_perfil_botao] = useState("./img/chat/chat_perfil.svg");
     const [conversas_botao, set_conversas_botao] = useState("./img/chat/chat_conversas.svg");
+    const [titulo, set_titulo] = useState("");
     const [grupos_botao, set_grupos_botao] = useState("./img/chat/chat_grupos.svg");
     const [conversa_atual, set_conversa_atual] = useState(null);
     const [pesquisa_inpt, set_pesquisa_inpt] = useState("");
     const [mensagem_enviar, set_mensagem_enviar] = useState("");
+    const [enviar_enter, set_enviar_mensagem] = useState(null);
     const [array_de_pesquisa, set_array_de_pesquisa] = useState([]);
     const [contato, set_contato] = useState();
     const { array_brechos, set_array_brechos } = useGlobalContext();
@@ -49,16 +54,53 @@ export default function chat() {
 
     useEffect(() => {
 
+        if (secao_chat == "conversas") {
+
+            set_titulo("Conversas");
+        } else if (secao_chat == "perfil") {
+
+            set_titulo("Meu Perfil");
+        } else {
+
+            set_titulo("Grupos");
+        };
+
+    }, [secao_chat]);
+
+    useEffect(() => {
+
+        if (ref_final_conversa.current) {
+
+            ref_final_conversa.current.scrollIntoView({ behavior: "smooth" });
+        };
+    }, [conversa_atual]);
+
+    useEffect(() => {
+
         if (pesquisa_inpt == "") {
 
             set_array_de_pesquisa(usuario_logado.conversas);
         } else {
 
-            const filtrar_conversas = usuario_logado.conversas.filter(conversa => conversa.nome_brecho.trim(` `).toUpperCase().includes(pesquisa_inpt.trim(` `).toUpperCase()));
-            set_array_de_pesquisa(filtrar_conversas);
+            const cliente = array_clientes.find(cliente => cliente._id == usuario_logado._id);
+
+            if (cliente) {
+
+                const filtrar_conversas = usuario_logado.conversas.filter(conversa => conversa.nome_brecho.trim(` `).toUpperCase().includes(pesquisa_inpt.trim(` `).toUpperCase()));
+                set_array_de_pesquisa(filtrar_conversas);
+            } else {
+
+                const filtrar_conversas = usuario_logado.conversas.filter(conversa => conversa.nome.trim(` `).toUpperCase().includes(pesquisa_inpt.trim(` `).toUpperCase()));
+                set_array_de_pesquisa(filtrar_conversas);
+            };
         };
 
     }, [pesquisa_inpt]);
+
+    function botao_emoji(emoji_object) {
+
+        set_mensagem_enviar(`${mensagem_enviar} ${emoji_object.emoji}`);
+    };
 
     async function cadastrar_conversa() {
 
@@ -129,9 +171,9 @@ export default function chat() {
                         <img src="./img/logo/logo-verdeCamadinha.svg" alt="" />
                     </div>
                     <nav className={styles["container_botoes_barra_lateral"]}>
-                        <button><img src={perfil_botao} alt='perfil' /></button>
-                        <button><img src={conversas_botao} alt='conversas' /></button>
-                        <button><img src={grupos_botao} alt='grupos' /></button>
+                        <button onClick={() => set_secao_chat("perfil")}><img src={perfil_botao} alt='perfil' /></button>
+                        <button onClick={() => set_secao_chat("conversas")}><img src={conversas_botao} alt='conversas' /></button>
+                        <button onClick={() => set_secao_chat("grupos")}><img src={grupos_botao} alt='grupos' /></button>
                     </nav>
                     <div className={styles["container_sair_barra_lateral"]}>
                         <button onClick={() => router.push("/")}><img src={"./img/chat/chat_sair.svg"} alt="sair" /></button>
@@ -140,13 +182,30 @@ export default function chat() {
             </aside>
             <section className={styles["container_section_chat"]}>
                 <header className={styles["container_header_section_chat"]}>
-                    <h2>Conversas</h2>
+                    <h2>{titulo}</h2>
+                    {secao_chat == "conversas" ? 
+                    
                     <div className={styles["container_section_chat_input"]}>
                         <img src="./img/LupaIcon.svg" alt="" />
                         <input type="text" placeholder="Procurar por Conversa" value={pesquisa_inpt} onChange={e => set_pesquisa_inpt(e.target.value)} />
                     </div>
+                    : ""}
+                    {secao_chat == "conversas"? 
+                    
                     <span>Recentes({array_de_pesquisa ? (array_de_pesquisa.length) : 0})</span>
+                    : ""}
                 </header>
+                {secao_chat == "perfil" ? 
+
+                    <AnimatePresence>
+                        <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.4 }}>
+                            <div>
+                                <img src={usuario_logado.imagem_de_perfil ? usuario_logado.imagem_de_perfil : usuario_logado.logo} alt="" />
+                            </div>
+                        </motion.div>
+                    </AnimatePresence>
+                : ""}
+                {secao_chat == "conversas" ? 
                 <section className={styles["container_conversas"]}>
                     {array_de_pesquisa && array_de_pesquisa.length > 0 ? array_de_pesquisa.map((conversa, i) => (
 
@@ -165,6 +224,7 @@ export default function chat() {
                             <p>Tentamos procurar por conversas mas parece que não conseguimos encontrar nenhuma conversa!</p>
                         </div>}
                 </section>
+                : ""}
             </section>
             {contato ?
                 <AnimatePresence>
@@ -188,27 +248,33 @@ export default function chat() {
                                     <div key={i} className={styles["container_historico_de_mensagens"]}>
 
                                         {_.id_dono_mensagem == usuario_logado._id ?
-                                            <div className={styles["container_fundo_mensagem_dono"]}>
-                                                <div className={styles["mensagem_dono"]}>
-                                                    <p>{_.mensagem}</p>
-                                                </div>
-                                            </div> :
-                                            <div className={styles["container_fundo_mensagem_recebedor"]}>
-                                                <div className={styles["mensagem_recebedor"]}>
-                                                    <p>{_.mensagem}</p>
-                                                </div>
-                                            </div>
+                                            <AnimatePresence>
+                                                <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.4 }} className={styles["container_fundo_mensagem_dono"]}>
+                                                    <div className={styles["mensagem_dono"]}>
+                                                        <p>{_.mensagem}</p>
+                                                    </div>
+                                                </motion.div>
+                                            </AnimatePresence> :
+                                            <AnimatePresence>
+                                                <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.4 }} className={styles["container_fundo_mensagem_recebedor"]}>
+                                                    <div className={styles["mensagem_recebedor"]}>
+                                                        <p>{_.mensagem}</p>
+                                                    </div>
+                                                </motion.div>
+                                            </AnimatePresence>
                                         }
                                     </div>
                                 )) : ``}
                             </div>
+                            <div ref={ref_final_conversa}></div>
+                            {estado_emoji && (<motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.4 }} style={{ position: "absolute", top: 100, right: 1, zIndex: 10 }}><EmojiPicker onEmojiClick={botao_emoji} /></motion.div>)}
                             <footer className={styles["container_menu_interacao_conversa"]}>
                                 <div className={styles["container_menu_inpt_conversa"]}>
-                                    <input type="text" placeholder="Digite sua Mensagem..." value={mensagem_enviar} onChange={e => set_mensagem_enviar(e.target.value)} />
+                                    <input type="text" placeholder="Digite sua Mensagem..." value={mensagem_enviar} onChange={e => set_mensagem_enviar(e.target.value)} onKeyDown={e => e.key == "Enter" ? cadastrar_conversa() : ""} />
                                 </div>
                                 <div className={styles["container_menu_alinhamento_botoes"]}>
                                     <button className={styles["botao_menu_clipes"]}><img src="./img/chat/chat_clipe_de_papel.svg" alt="clipes" /></button>
-                                    <button className={styles["botao_menu_sorriso"]}><img src="./img/chat/chat_sorriso.svg" alt="sorriso" /></button>
+                                    <button className={styles["botao_menu_sorriso"]} onClick={() => set_estado_emoji(!estado_emoji)} aria-expanded={estado_emoji}><img src="./img/chat/chat_sorriso.svg" alt="sorriso" /></button>
                                     <button className={styles["botao_menu_enviar"]} onClick={() => cadastrar_conversa()}><img src="./img/chat/chat_enviar.svg" alt="enviar" /></button>
                                 </div>
                             </footer>

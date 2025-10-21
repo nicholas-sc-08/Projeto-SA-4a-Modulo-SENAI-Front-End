@@ -13,6 +13,7 @@
     "axios": "^1.12.2",
     "color-namer": "^1.4.0",
     "emailjs-com": "^3.2.0",
+    "emoji-picker-react": "^4.14.2",
     "framer-motion": "^12.23.24",
     "jwt-decode": "^4.0.0",
     "lucide-react": "^0.544.0",
