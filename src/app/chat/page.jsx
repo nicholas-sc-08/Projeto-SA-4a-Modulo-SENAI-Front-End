@@ -1,8 +1,10 @@
 "use client";
 
 import React from "react";
+import EmojiPicker from "emoji-picker-react";
 import { useEffect } from "react";
 import { useState } from "react";
+import { useRef } from "react";
 import { buscar_brechos } from "@/services/brecho/brecho";
 import { buscar_conversas } from "@/services/chat/chat";
 import { useGlobalContext } from "@/context/GlobalContext";
@@ -10,13 +12,14 @@ import { buscar_clientes } from "@/services/cliente/cliente";
 import { AnimatePresence } from "framer-motion";
 import { motion } from "framer-motion";
 import { buscar_ultima_mensagem } from "@/services/chat/chat";
-import { nova_mensagem } from "@/services/chat/chat";
 import api from "@/services/api";
 import styles from "@/app/chat/page.module.css";
 import socket from "@/services/socket";
 
 export default function chat() {
 
+    const ref_final_conversa = useRef(null);
+    const [estado_emoji, set_estado_emoji] = useState(false);
     const [perfil_botao, set_perfil_botao] = useState("./img/chat/chat_perfil.svg");
     const [conversas_botao, set_conversas_botao] = useState("./img/chat/chat_conversas.svg");
     const [grupos_botao, set_grupos_botao] = useState("./img/chat/chat_grupos.svg");
@@ -50,6 +53,14 @@ export default function chat() {
 
     useEffect(() => {
 
+        if(ref_final_conversa.current){
+
+            ref_final_conversa.current.scrollIntoView({behavior: "smooth"});
+        };
+    }, [conversa_atual]);
+
+    useEffect(() => {
+
         if (pesquisa_inpt == "") {
 
             set_array_de_pesquisa(usuario_logado.conversas);
@@ -69,6 +80,11 @@ export default function chat() {
         };
 
     }, [pesquisa_inpt]);
+
+    function botao_emoji(emoji_object){
+
+        set_mensagem_enviar(`${mensagem_enviar} ${emoji_object.emoji}`);
+    };
 
     async function cadastrar_conversa() {
 
@@ -216,13 +232,15 @@ export default function chat() {
                                     </div>
                                 )) : ``}
                             </div>
+                            <div ref={ref_final_conversa}></div>
+                            {estado_emoji && (<motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.4 }} style={{position: "absolute", top: 100, right: 1, zIndex: 10}}><EmojiPicker onEmojiClick={botao_emoji}/></motion.div>)}
                             <footer className={styles["container_menu_interacao_conversa"]}>
                                 <div className={styles["container_menu_inpt_conversa"]}>
                                     <input type="text" placeholder="Digite sua Mensagem..." value={mensagem_enviar} onChange={e => set_mensagem_enviar(e.target.value)} onKeyDown={e => e.key == "Enter" ? cadastrar_conversa() : ""}/>
                                 </div>
                                 <div className={styles["container_menu_alinhamento_botoes"]}>
                                     <button className={styles["botao_menu_clipes"]}><img src="./img/chat/chat_clipe_de_papel.svg" alt="clipes" /></button>
-                                    <button className={styles["botao_menu_sorriso"]}><img src="./img/chat/chat_sorriso.svg" alt="sorriso" /></button>
+                                    <button className={styles["botao_menu_sorriso"]} onClick={() => set_estado_emoji(!estado_emoji)} aria-expanded={estado_emoji}><img src="./img/chat/chat_sorriso.svg" alt="sorriso" /></button>
                                     <button className={styles["botao_menu_enviar"]} onClick={() => cadastrar_conversa()}><img src="./img/chat/chat_enviar.svg" alt="enviar" /></button>
                                 </div>
                             </footer>
