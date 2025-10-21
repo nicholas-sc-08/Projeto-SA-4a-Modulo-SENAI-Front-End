@@ -1,0 +1,200 @@
+#root,
+body,
+html {
+
+    overflow-x: hidden;
+    min-height: 100vh;
+    max-width: 100%;
+
+    --cor_um: #466330;
+    --cor_um_v_um: #466330b5;
+    --cor_um_v_dois: #2d411f;
+    --cor_um_v_tres: #466330c2;
+    --cor_um_v_quatro: #46633053;
+    --cor_um_v_cinco: #4663306a;
+    --cor_dois: #9DA650;
+    --cor_dois_v_um: #8f9749;
+    --cor_dois_v_dois: #9da65058;
+    --cor_tres: #E7E8CE;
+    --cor_quatro: #FFFDF7;
+    --cor_quatro_v_um: #e2e0da;
+    --cor_quatro_v_dois: #f0eee9;
+    --cor_quatro_v_tres: #fcf7e9;
+    --cor_cinco: #E4CD80;
+    --cor_seis: #3E2A21;
+    --cor_seis_v_um: #3e2a219e;
+    --cor_sete: #FF3333;
+    --cor_sete_v_um: #ff333399;
+    --cor_oito: #2f2e304d;
+    --cor_oito_v_um: #0000001a;
+    --cor_nove: #FFFFFF;
+    --cor_nove_v_um: #ffffff96;
+    --cor_nove_v_dois: #F0F0F0;
+    --cor_dez: #5c5c5c;
+    --cor_onze: #9D0000;
+    --cor_doze: #F0EEED;
+    --cor_doze_v_um: #e1e1e0;
+    --cor_doze_v_dois: #d3d3d3;
+    --cor_treze: #6d0000;
+    --cor_quatorze: #ab9489;
+    --cor_quinze: #FFF4D1;
+    --cor_vinte: #DB4444;
+    --cor_vinte_um: #181F3C;
+    --cor_vinte_dois: #593F28;
+
+    --tipografia_primaria: "Montserrat", serif;
+    --tipografia_secundaria: "Poppins", serif;
+}
+
+.container-alinhamento-componente {
+    margin-top: -3%;
+}
+
+/* MEU PERFIL */
+.container-meu-perfil h4 {
+    /* border: 1px solid red; */
+    font-family: var(--tipografia_primaria);
+    color: var(--cor_seis);
+    font-weight: 600;
+}
+
+.line-meu-perfil {
+    border-bottom: 1px solid var(--cor_seis);
+    opacity: 30%;
+    padding-top: 1%;
+}
+
+.container-alinhamento-imagens-meu-perfil {
+    /* border: 1px solid red; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 3%;
+    margin-top: 3%;
+}
+
+.container-foto-meu-perfil {
+    /* border: 1px solid blue; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container-foto-meu-perfil img {
+    width: 50%;
+    height: auto;
+}
+
+.container-alinhamento-texto-meu-perfil {
+    margin-left: -30%;
+}
+
+.alinhamento-button-excluir-meu-perfil button {
+    border: none;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    gap: 12%;
+    width: fit-content;
+    margin-top: 5%;
+    cursor: pointer;
+    color: var(--cor_seis);
+    font-family: var(--tipografia_secundaria);
+}
+
+.alinhamento-button-excluir-meu-perfil button:hover {
+    opacity: 70%;
+}
+
+.alinhamento-button-excluir-meu-perfil img {
+    width: 100%;
+}
+
+.container-alinhamento-texto-meu-perfil-layout {
+    margin-left: -35%;
+}
+
+.alinhamento-button-excluir-meu-perfil-layout button {
+    border: none;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    gap: 12%;
+    width: fit-content;
+    margin-top: 7%;
+    cursor: pointer;
+    color: var(--cor_seis);
+    font-family: var(--tipografia_secundaria);
+}
+
+.alinhamento-button-excluir-meu-perfil-layout button:hover {
+    opacity: 70%;
+}
+
+/* DADOS PESSOAIS - DADOS DO BRECHÓ - DADOS DE ENDEREÇO */
+.container-secoes-dados{
+    margin-bottom: 3%;
+}
+
+.container-alinhamento-titulo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.container-alinhamento-titulo h4 {
+    font-family: var(--tipografia_primaria);
+    color: var(--cor_seis);
+    font-weight: 600;
+}
+
+.container-alinhamento-titulo button {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.container-alinhamento-titulo img {
+    /* border: 1px solid red; */
+    width: 90%;
+}
+
+.container-alinhamento-titulo button:hover {
+    opacity: 70%;
+}
+
+.container-informacoes-edicao {
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
+
+.container-informacoes-edicao p {
+    font-family: var(--tipografia_secundaria);
+    color: var(--cor_seis);
+    font-size: 90%;
+    padding-top: 0.5%;
+}
+
+.alinhamento-button-salvar-alteracoes-meu-perfil {
+    display: flex;
+    align-items: end;
+    justify-content: end;
+}
+
+.alinhamento-button-salvar-alteracoes-meu-perfil button{
+    border: none;
+    background-color: var(--cor_dois);
+    color: var(--cor_quatro);
+    font-family: var(--tipografia_secundaria);
+    font-weight: 500;
+
+    width: 15%;
+    padding: 0.7%;
+    border-radius: 2vw;
+    cursor: pointer;
+    transition: 0.4s;
+}
+
+.alinhamento-button-salvar-alteracoes-meu-perfil button:hover{
+    background-color: var(--cor_dois_v_um);
+}
