@@ -151,7 +151,7 @@
 }
 
 .topicos-de-informacao-sobre-perfil-content button:active {
-    border-bottom: 1px var(cor-tres);
+    border-bottom: 1px var(--cor_tres);
     border-bottom-style: solid;
 }
 

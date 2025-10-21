@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from '@/components/opcoes_configuracoes/Meu_perfil.module.css'
+import styles from '@/components/opcoes_configuracoes/meu_perfil/Meu_perfil.module.css'
 
 function Meu_perfil() {
     return (
@@ -12,7 +12,9 @@ function Meu_perfil() {
 
                 <div className={styles["container-alinhamento-imagens-meu-perfil"]}>
                     <div className={styles["container-foto-meu-perfil"]}>
-                        <img src="./img/fotoPerfil.png" alt="" />
+                        <div className={styles["container-imagem-tamanho"]}>
+                            <img src="./img/fotoPerfil.png" alt="" />
+                        </div>
 
                         <div className={styles['container-alinhamento-texto-meu-perfil']}>
                             <h4>Foto de perfil</h4>
@@ -24,12 +26,14 @@ function Meu_perfil() {
                     </div>
 
                     <div className={styles["container-foto-meu-perfil"]}>
-                        <img src="./img/fotoPerfil.png" alt="" />
+                        <div className={styles["container-imagem-tamanho"]}>
+                            <img src="./img/fotoPerfil.png" alt="" />
+                        </div>
 
-                        <div className={styles['container-alinhamento-texto-meu-perfil']}>
+                        <div className={styles['container-alinhamento-texto-meu-perfil-layout']}>
                             <h4>Layout</h4>
 
-                            <div className={styles["alinhamento-button-excluir-meu-perfil"]}>
+                            <div className={styles["alinhamento-button-excluir-meu-perfil-layout"]}>
                                 <button><img src="./img/icons/lixeira.svg" alt="" /> Excluir</button>
                             </div>
                         </div>
@@ -45,6 +49,8 @@ function Meu_perfil() {
                     <button><img src="./img/icons/edit.svg" alt="" /></button>
                 </div>
 
+                <div className={styles["line-meu-perfil"]}></div>
+
                 {/* Aqui quando se aperta em editar tem que mudar para inputs e dps apertar no botão de salvar alterações */}
                 <div className={styles["container-informacoes-edicao"]}>
                     <p>Nome do dono do brechó</p>
@@ -54,7 +60,9 @@ function Meu_perfil() {
                     <p>Senha</p>
                 </div>
 
-                <button>Salvas alterações</button>
+                <div className={styles["alinhamento-button-salvar-alteracoes-meu-perfil"]}>
+                    <button>Salvar alterações</button>
+                </div>
             </div>
 
             {/* Dados do brechó */}
@@ -65,6 +73,8 @@ function Meu_perfil() {
                     <button><img src="./img/icons/edit.svg" alt="" /></button>
                 </div>
 
+                <div className={styles["line-meu-perfil"]}></div>
+
                 {/* Aqui quando se aperta em editar tem que mudar para inputs e dps apertar no botão de salvar alterações */}
                 <div className={styles["container-informacoes-edicao"]}>
                     <p>Nome do brechó</p>
@@ -73,7 +83,9 @@ function Meu_perfil() {
                     <p>CNPJ</p>
                 </div>
 
-                <button>Salvas alterações</button>
+                <div className={styles["alinhamento-button-salvar-alteracoes-meu-perfil"]}>
+                    <button>Salvar alterações</button>
+                </div>
             </div>
 
             {/* Dados de endereço */}
@@ -83,6 +95,8 @@ function Meu_perfil() {
 
                     <button><img src="./img/icons/edit.svg" alt="" /></button>
                 </div>
+
+                <div className={styles["line-meu-perfil"]}></div>
 
                 {/* Aqui quando se aperta em editar tem que mudar para inputs e dps apertar no botão de salvar alterações */}
                 <div className={styles["container-informacoes-edicao"]}>
@@ -95,7 +109,9 @@ function Meu_perfil() {
                     <p>Complemento</p>
                 </div>
 
-                <button>Salvas alterações</button>
+                <div className={styles["alinhamento-button-salvar-alteracoes-meu-perfil"]}>
+                    <button>Salvar alterações</button>
+                </div>
             </div>
         </div>
     )

@@ -4,7 +4,7 @@ import React, { useState } from 'react'
 import styles from '@/app/configuracoes_brecho/page.module.css'
 import Header from '@/components/header/Header';
 import Footer from '@/components/footer/Footer';
-import Meu_perfil from '@/components/opcoes_configuracoes/Meu_perfil';
+import Meu_perfil from '@/components/opcoes_configuracoes/meu_perfil/Meu_perfil';
 
 function Page() {
     const [secaoAtiva, setSecaoAtiva] = useState('meu-perfil');
