@@ -44,11 +44,18 @@ export default function chat() {
         buscar_clientes().then(data => set_array_clientes(data));
 
         socket.connect();
-        socket.on("receber_mensagem", mensagem => set_conversa_atual(mensagens_anteriores => [...mensagens_anteriores, mensagem]));
+
+        function nova_mensagem(mensagem) {
+
+            set_conversa_atual(mensagens_anteriores => [...mensagens_anteriores, mensagem])
+        };
+
+        socket.on("receber_mensagem", nova_mensagem);
 
         return () => {
 
             socket.off("receber_mensagem");
+
         };
     }, []);
 
@@ -117,6 +124,7 @@ export default function chat() {
 
             const resposta = await api.post(`/chats`, mensagem);
             socket.emit("enviar_mensagem", resposta.data);
+            set_conversa_atual([...conversa_atual, resposta.data])
             set_mensagem_enviar("");
 
         } catch (erro) {
