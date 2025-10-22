@@ -123,8 +123,8 @@ export default function chat() {
             };
 
             const resposta = await api.post(`/chats`, mensagem);
+            set_conversa_atual([...conversa_atual, resposta.data]);
             socket.emit("enviar_mensagem", resposta.data);
-            set_conversa_atual([...conversa_atual, resposta.data])
             set_mensagem_enviar("");
 
         } catch (erro) {
