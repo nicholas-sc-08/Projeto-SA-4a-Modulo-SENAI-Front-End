@@ -93,11 +93,11 @@ export default function chat() {
 
             if (cliente) {
 
-                const filtrar_conversas = usuario_logado.conversas.filter(conversa => conversa.nome_brecho.trim(` `).toUpperCase().includes(pesquisa_inpt.trim(` `).toUpperCase()));
+                const filtrar_conversas = usuario_logado.conversas.filter(conversa => conversa.nome_brecho.trim(``).toUpperCase().includes(pesquisa_inpt.trim(``).toUpperCase()));
                 set_array_de_pesquisa(filtrar_conversas);
             } else {
 
-                const filtrar_conversas = usuario_logado.conversas.filter(conversa => conversa.nome.trim(` `).toUpperCase().includes(pesquisa_inpt.trim(` `).toUpperCase()));
+                const filtrar_conversas = usuario_logado.conversas.filter(conversa => conversa.nome.trim(``).toUpperCase().includes(pesquisa_inpt.trim(``).toUpperCase()));
                 set_array_de_pesquisa(filtrar_conversas);
             };
         };

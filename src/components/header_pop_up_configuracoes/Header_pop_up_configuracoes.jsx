@@ -8,6 +8,7 @@ function Header_pop_up_configuracoes() {
     const { usuario_logado, set_usuario_logado } = useGlobalContext();
     const { brecho_selecionado, set_brecho_selecionado } = useGlobalContext();
     const { array_brechos, set_array_brechos } = useGlobalContext();
+    const { sacola, set_sacola } = useGlobalContext();
     const router = useRouter();
 
     function ir_ate_perfil() {

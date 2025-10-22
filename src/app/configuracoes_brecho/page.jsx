@@ -5,9 +5,19 @@ import styles from '@/app/configuracoes_brecho/page.module.css'
 import Header from '@/components/header/Header';
 import Footer from '@/components/footer/Footer';
 import Meu_perfil from '@/components/opcoes_configuracoes/meu_perfil/Meu_perfil';
+import { useGlobalContext } from '@/context/GlobalContext';
+import { useRouter } from 'next/navigation';
+import Pop_up_confirmacao_excluir_conta from '@/components/pop_up_confirmacao_excluir_conta/Pop_up_confirmacao_excluir_conta';
 
 function Page() {
     const [secaoAtiva, setSecaoAtiva] = useState('meu-perfil');
+    const { usuario_logado, set_usuario_logado } = useGlobalContext();
+    const { brecho_selecionado, set_brecho_selecionado } = useGlobalContext();
+    const { array_brechos, set_array_brechos } = useGlobalContext();
+    const { sacola, set_sacola } = useGlobalContext();
+    const router = useRouter();
+
+    const [popupExcluirAberto, setPopupExcluirAberto] = useState(false)
 
     const renderizarConteudo = () => {
         switch (secaoAtiva) {
@@ -37,6 +47,13 @@ function Page() {
             router.push(`/estamos_chegando`);
         }
     }
+
+    function deslogar_usuario() {
+
+        set_usuario_logado([]);
+        set_sacola([]);
+        router.push('/');
+    };
 
     return (
         <div>
@@ -97,7 +114,7 @@ function Page() {
 
                     <div className={styles["container-escolhas-perigosas"]}>
                         <div className={styles["container-sair-da-conta"]}>
-                            <button>
+                            <button onClick={deslogar_usuario}>
                                 <img src="./img/icons/logout-marrom.svg" alt="" />
                                 Sair da conta
                             </button>
@@ -106,7 +123,7 @@ function Page() {
                         </div>
 
                         <div className={styles["container-excluir-conta"]}>
-                            <button>
+                            <button onClick={() => setPopupExcluirAberto(true)}>
                                 <img src="./img/icons/lixeira.svg" alt="" />
                                 Excluir minha conta
                             </button>
@@ -123,6 +140,11 @@ function Page() {
             </div>
 
             <Footer />
+
+            {popupExcluirAberto && (
+                <Pop_up_confirmacao_excluir_conta />
+            )}
+
         </div>
     )
 }
