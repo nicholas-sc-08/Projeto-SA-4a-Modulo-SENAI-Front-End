@@ -43,6 +43,11 @@ export default function chat() {
         buscar_conversas().then(mensagem => set_array_chat(mensagem));
         buscar_clientes().then(data => set_array_clientes(data));
 
+                if (ref_final_conversa.current) {
+
+            ref_final_conversa.current.scrollIntoView({ behavior: "smooth" });
+        };
+
         socket.connect();
 
         function nova_mensagem(mensagem) {
@@ -76,10 +81,7 @@ export default function chat() {
 
     useEffect(() => {
 
-        if (ref_final_conversa.current) {
 
-            ref_final_conversa.current.scrollIntoView({ behavior: "smooth" });
-        };
     }, [conversa_atual]);
 
     useEffect(() => {
@@ -93,11 +95,11 @@ export default function chat() {
 
             if (cliente) {
 
-                const filtrar_conversas = usuario_logado.conversas.filter(conversa => conversa.nome_brecho.trim(` `).toUpperCase().includes(pesquisa_inpt.trim(` `).toUpperCase()));
+                const filtrar_conversas = usuario_logado.conversas.filter(conversa => conversa.nome_brecho.trim(``).toUpperCase().includes(pesquisa_inpt.trim(``).toUpperCase()));
                 set_array_de_pesquisa(filtrar_conversas);
             } else {
 
-                const filtrar_conversas = usuario_logado.conversas.filter(conversa => conversa.nome.trim(` `).toUpperCase().includes(pesquisa_inpt.trim(` `).toUpperCase()));
+                const filtrar_conversas = usuario_logado.conversas.filter(conversa => conversa.nome.trim(``).toUpperCase().includes(pesquisa_inpt.trim(``).toUpperCase()));
                 set_array_de_pesquisa(filtrar_conversas);
             };
         };
