@@ -43,6 +43,11 @@ export default function chat() {
         buscar_conversas().then(mensagem => set_array_chat(mensagem));
         buscar_clientes().then(data => set_array_clientes(data));
 
+                if (ref_final_conversa.current) {
+
+            ref_final_conversa.current.scrollIntoView({ behavior: "smooth" });
+        };
+
         socket.connect();
 
         function nova_mensagem(mensagem) {
@@ -76,10 +81,7 @@ export default function chat() {
 
     useEffect(() => {
 
-        if (ref_final_conversa.current) {
 
-            ref_final_conversa.current.scrollIntoView({ behavior: "smooth" });
-        };
     }, [conversa_atual]);
 
     useEffect(() => {

@@ -8,6 +8,7 @@ import Meu_perfil from '@/components/opcoes_configuracoes/meu_perfil/Meu_perfil'
 import { useGlobalContext } from '@/context/GlobalContext';
 import { useRouter } from 'next/navigation';
 import Pop_up_confirmacao_excluir_conta from '@/components/pop_up_confirmacao_excluir_conta/Pop_up_confirmacao_excluir_conta';
+import Pop_up_confirmacao_sair_da_conta from '@/components/pop_up_confirmacao_sair_da_conta/Pop_up_confirmacao_sair_da_conta';
 
 function Page() {
     const [secaoAtiva, setSecaoAtiva] = useState('meu-perfil');
@@ -18,6 +19,7 @@ function Page() {
     const router = useRouter();
 
     const [popupExcluirAberto, setPopupExcluirAberto] = useState(false)
+    const [popupSairAberto, setPopupSairAberto] = useState(false);
 
     const renderizarConteudo = () => {
         switch (secaoAtiva) {
@@ -47,13 +49,6 @@ function Page() {
             router.push(`/estamos_chegando`);
         }
     }
-
-    function deslogar_usuario() {
-
-        set_usuario_logado([]);
-        set_sacola([]);
-        router.push('/');
-    };
 
     return (
         <div>
@@ -114,7 +109,7 @@ function Page() {
 
                     <div className={styles["container-escolhas-perigosas"]}>
                         <div className={styles["container-sair-da-conta"]}>
-                            <button onClick={deslogar_usuario}>
+                            <button onClick={() => setPopupSairAberto(true)}>
                                 <img src="./img/icons/logout-marrom.svg" alt="" />
                                 Sair da conta
                             </button>
@@ -143,6 +138,10 @@ function Page() {
 
             {popupExcluirAberto && (
                 <Pop_up_confirmacao_excluir_conta />
+            )}
+
+            {popupSairAberto && (
+                <Pop_up_confirmacao_sair_da_conta />
             )}
 
         </div>
