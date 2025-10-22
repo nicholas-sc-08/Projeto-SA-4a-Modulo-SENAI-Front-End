@@ -1,0 +1,128 @@
+.sidebar {
+  width: 230px;
+  height: 70.6vh; /* ocupa sempre toda a altura da tela */
+  margin-top:60px;
+  background-color: #FFFDF7;
+  border-right: 2px solid #eee;
+  border-top: 2px solid #eee;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 30px 10px;
+  border-top-right-radius: 126px;
+  gap: 40px;
+  padding-top: 25%;
+  font-family: poppins, sans-serif;
+  box-sizing: border-box;
+  overflow: hidden; /* evita scroll lateral/vertical */
+}
+
+.sidebar-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 2px;          
+  padding: 40px 25px 10px 25px; /* controla espaço no topo */
+  margin-bottom: 10px;
+  margin-left: 30px;
+}
+
+.logoIcon {
+  width: 100px;
+  height: 100px;
+}
+
+.logoText {
+  font-size: 22px;
+  font-weight: 700;
+  font-family: "Poppins", sans-serif;
+  color: #7c9f5b; /* cor da borboleta */
+  letter-spacing: 1px;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 18px 25px;
+  cursor: pointer;
+  font-size: 16px;
+  color: #3a4a3a;
+  position: relative;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.item:hover {
+  color: #1e3b1e;
+  transform: scale(1.03);
+}
+
+.active {
+  font-weight: 600;
+  color: #234d23;
+  transform: scale(1.05);
+}
+
+.active::after {
+  content: "";
+  position: absolute;
+  bottom: 6px;
+  left: 25px;
+  width: 0;
+  height: 2px;
+  background-color: #234d23;
+  border-radius: 4px;
+  animation: lineExpand 0.3s ease forwards;
+}
+
+.icon {
+  width: 30px;
+  height: 30px;
+  transition: transform 0.3s ease;
+}
+
+.active .icon {
+  transform: scale(1.0);
+}
+
+@keyframes lineExpand {
+  from {
+    width: 0;
+  }
+  to {
+    width: 70%;
+  }
+}
+
+.sidebar-footer {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 18px 25px;
+  cursor: pointer;
+  font-size: 16px;
+  color: #3a4a3a;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.sidebar-footer:hover {
+  color: #1e3b1e;
+  transform: scale(1.03);
+}
+
+.sidebar-footer.active {
+  font-weight: 600;
+  color: #234d23;
+  transform: scale(1.05);
+}
+
+.sidebar-footer.active .icon {
+  transform: scale(1.0);
+}
+
