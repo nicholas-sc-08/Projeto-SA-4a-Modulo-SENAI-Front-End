@@ -296,15 +296,16 @@ export default function Header({ tipo }) {
 
                 <div className={styles["button-container-navbar-alinhamento"]} ref={buttonPerfilRef}>
 
-                    {tipo == 'usuario' && (
-
-                        <button className={styles["button-sacola-navbar"]} onClick={() => sacola_perfil(`sacola`)}>
-                            <img src="/img/icons/IconeSacola.svg" alt="Sacola" />
-                            <span>{quantidade_de_produtos_sacola()}</span>
-                        </button>
-
+                    {(tipo === 'usuario' || tipo === 'brecho') && (
+                        <>
+                            <button className={styles["button-sacola-navbar"]} onClick={() => sacola_perfil(`sacola`)}>
+                                <img src="/img/icons/IconeSacola.svg" alt="Sacola" />
+                                <span>{quantidade_de_produtos_sacola()}</span>
+                            </button>
+                            {sacola_aberta && <Sacola />}
+                        </>
                     )}
-                    {sacola_aberta && <Sacola />}
+
 
                     {tipo === 'brecho' && (
                         <button className={styles["button-chat-navbar"]} onClick={() => fechar_chat()}>
