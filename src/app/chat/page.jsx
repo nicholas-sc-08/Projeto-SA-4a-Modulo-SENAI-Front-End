@@ -181,57 +181,82 @@ export default function chat() {
                 </div>
             </aside>
             <section className={styles["container_section_chat"]}>
-                <header className={styles["container_header_section_chat"]}>
-                    <h2>{titulo}</h2>
-                    {secao_chat == "conversas" ? 
-                    
-                    <div className={styles["container_section_chat_input"]}>
-                        <img src="./img/LupaIcon.svg" alt="" />
-                        <input type="text" placeholder="Procurar por Conversa" value={pesquisa_inpt} onChange={e => set_pesquisa_inpt(e.target.value)} />
-                    </div>
-                    : ""}
-                    {secao_chat == "conversas"? 
-                    
-                    <span>Recentes({array_de_pesquisa ? (array_de_pesquisa.length) : 0})</span>
-                    : ""}
-                </header>
-                {secao_chat == "perfil" ? 
+                {secao_chat == "conversas" ?
+                    <header className={styles["container_header_section_chat"]}>
+                        <h2>{titulo}</h2>
+                        {secao_chat == "conversas" ?
 
+                            <div className={styles["container_section_chat_input"]}>
+                                <img src="./img/LupaIcon.svg" alt="" />
+                                <input type="text" placeholder="Procurar por Conversa" value={pesquisa_inpt} onChange={e => set_pesquisa_inpt(e.target.value)} />
+                            </div>
+                            : ""}
+                        {secao_chat == "conversas" ?
+
+                            <span>Recentes({array_de_pesquisa ? (array_de_pesquisa.length) : 0})</span>
+                            : ""}
+                    </header>
+                    : ""}
+                {secao_chat == "perfil" ?
                     <AnimatePresence>
-                        <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.4 }}>
-                            <div>
-                                <img src={usuario_logado.imagem_de_perfil ? usuario_logado.imagem_de_perfil : usuario_logado.logo} alt="" />
+                        <motion.div className={styles["container_secao_perfil"]} initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.4 }}>
+                            <h2>{titulo}</h2>
+                            <div className={styles["container_secao_perfil_imagem"]}>
+                                <img src={usuario_logado.imagem_de_perfil ? usuario_logado.imagem_de_perfil : usuario_logado.logo} referrerPolicy="no-referrer" crossOrigin="anonymous" alt="" />
+                            </div>
+                            <div className={styles["container_secao_perfil_conteudo"]}>
+                                <h3>{usuario_logado.nome_brecho ? usuario_logado.nome_brecho : usuario_logado.nome}</h3>
+                                <p>Um brechó é um estabelecimento comercial, físico ou online, que vende artigos usados, como roupas, calçados, acessórios, livros, objetos de decoração e outros itens. A prática de comprar e vender artigos usados tem ganhado popularidade devido a fatores como a busca por preços mais acessíveis, a preocupação com a sustentabilidade e a valorização de peças únicas e com história. </p>
+                            </div>
+                            <div className={styles["container_secao_perfil_info"]}>
+                                <div className={styles["container_secao_perfil_info_nome"]}>
+                                    <h5>Nome:</h5>
+                                    <span>{usuario_logado.nome_brecho ? usuario_logado.nome_brecho : usuario_logado.nome}</span>
+                                </div>
+                                <div className={styles["container_secao_perfil_info_email"]}>
+                                    <h5>Email:</h5>
+                                    <span>{usuario_logado.email}</span>
+                                </div>
+                                <div className={styles["container_secao_perfil_info_telefone"]}>
+                                    <h5>Telefone:</h5>
+                                    <span>{usuario_logado.telefone || "-"}</span>
+                                </div>
+                            </div>
+                            <div className={styles["container_secao_perfil_botao"]}>
+                                <button>Visualizar Perfil Completo</button>
                             </div>
                         </motion.div>
                     </AnimatePresence>
-                : ""}
-                {secao_chat == "conversas" ? 
-                <section className={styles["container_conversas"]}>
-                    {array_de_pesquisa && array_de_pesquisa.length > 0 ? array_de_pesquisa.map((conversa, i) => (
+                    : ""}
+                {secao_chat == "conversas" ?
+                    <AnimatePresence>
+                        <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.4 }} className={styles["container_conversas"]}>
+                            {array_de_pesquisa && array_de_pesquisa.length > 0 ? array_de_pesquisa.map((conversa, i) => (
 
-                        <div key={i} className={styles["container_conversa"]} onClick={() => selecionar_conversa(conversa._id)}>
-                            <aside>
-                                <img src={conversa.imagem_de_perfil || conversa.logo} alt="" />
-                            </aside>
-                            <section className={styles["container_contato_info"]}>
-                                <h5>{conversa.nome || conversa.nome_brecho}</h5>
-                                <span>{buscar_ultima_mensagem(conversa._id, array_chat, usuario_logado)}</span>
-                            </section>
-                        </div>
-                    )) :
-                        <div className={styles["container_nenhuma_convesa"]}>
-                            <img src="./img/chat/chat_nenhuma_conversa.svg" alt="balão" />
-                            <p>Tentamos procurar por conversas mas parece que não conseguimos encontrar nenhuma conversa!</p>
-                        </div>}
-                </section>
-                : ""}
+                                <div key={i} className={styles["container_conversa"]} onClick={() => selecionar_conversa(conversa._id)}>
+                                    <aside>
+                                        <img src={conversa.imagem_de_perfil || conversa.logo} referrerPolicy="no-referrer" crossOrigin="anonymous" alt="" />
+                                    </aside>
+                                    <section className={styles["container_contato_info"]}>
+                                        <h5>{conversa.nome || conversa.nome_brecho}</h5>
+                                        <span>{buscar_ultima_mensagem(conversa._id, array_chat, usuario_logado)}</span>
+                                    </section>
+                                </div>
+                            )) :
+                                <div className={styles["container_nenhuma_convesa"]}>
+                                    <img src="./img/chat/chat_nenhuma_conversa.svg" alt="balão" />
+                                    <p>Tentamos procurar por conversas mas parece que não conseguimos encontrar nenhuma conversa!</p>
+                                </div>}
+                        </motion.div>
+                    </AnimatePresence>
+                    : ""}
             </section>
             {contato ?
                 <AnimatePresence>
                     <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.4 }} className={styles["container_principal"]}>
                         <header className={styles["container_header_da_conversa"]}>
                             <div className={styles["container_header_imagem"]}>
-                                <img src={contato.imagem_de_perfil || contato.logo} alt="" />
+                                <img src={contato.imagem_de_perfil || contato.logo} referrerPolicy="no-referrer" crossOrigin="anonymous" alt="" />
                             </div>
                             <div className={styles["container_header_nome"]}>
                                 <h3>{contato.nome || contato.nome_brecho}</h3>
@@ -244,9 +269,7 @@ export default function chat() {
                         <main className={styles["container_mensagens"]}>
                             <div className={styles["container_mensagens_exibidas"]}>
                                 {conversa_atual && conversa_atual.length > 0 ? conversa_atual.map((_, i) => (
-
                                     <div key={i} className={styles["container_historico_de_mensagens"]}>
-
                                         {_.id_dono_mensagem == usuario_logado._id ?
                                             <AnimatePresence>
                                                 <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.4 }} className={styles["container_fundo_mensagem_dono"]}>
