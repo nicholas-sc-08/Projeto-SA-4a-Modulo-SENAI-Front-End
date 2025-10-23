@@ -11,6 +11,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Sacola from '@/components/sacola/Sacola';
 import api from '@/services/api';
 import Link from 'next/link';
+import Header_pop_up_configuracoes from '../header_pop_up_configuracoes/Header_pop_up_configuracoes';
 
 export default function Header({ tipo }) {
     const [menuOpen, setMenuOpen] = useState(false);
@@ -286,27 +287,6 @@ export default function Header({ tipo }) {
         };
     };
 
-    function deslogar_usuario() {
-
-        set_usuario_logado([]);
-        set_sacola([]);
-        router.push('/');
-    };
-
-    function ir_ate_perfil() {
-
-        const encontrar_brecho = array_brechos.find(brecho => brecho._id === usuario_logado._id);
-        set_brecho_selecionado(usuario_logado);
-        router.push(`/estamos_chegando`);
-
-        if (encontrar_brecho) {
-
-        } else {
-
-            router.push(`/estamos_chegando`);
-        };
-    };
-
     function renderIcons() {
 
         const estaLogado = usuario_logado && Object.keys(usuario_logado).length > 0;
@@ -316,15 +296,16 @@ export default function Header({ tipo }) {
 
                 <div className={styles["button-container-navbar-alinhamento"]} ref={buttonPerfilRef}>
 
-                    {tipo == 'usuario' && (
-
-                        <button className={styles["button-sacola-navbar"]} onClick={() => sacola_perfil(`sacola`)}>
-                            <img src="/img/icons/IconeSacola.svg" alt="Sacola" />
-                            <span>{quantidade_de_produtos_sacola()}</span>
-                        </button>
-
+                    {(tipo === 'usuario' || tipo === 'brecho') && (
+                        <>
+                            <button className={styles["button-sacola-navbar"]} onClick={() => sacola_perfil(`sacola`)}>
+                                <img src="/img/icons/IconeSacola.svg" alt="Sacola" />
+                                <span>{quantidade_de_produtos_sacola()}</span>
+                            </button>
+                            {sacola_aberta && <Sacola />}
+                        </>
                     )}
-                    {sacola_aberta && <Sacola />}
+
 
                     {tipo === 'brecho' && (
                         <button className={styles["button-chat-navbar"]} onClick={() => fechar_chat()}>
@@ -350,10 +331,7 @@ export default function Header({ tipo }) {
                             >
                                 {estaLogado ? (
                                     <>
-                                        <div className={styles_perfil['janela_button_perfil_logout']}>
-                                            <button onClick={() => ir_ate_perfil()} className={styles_perfil['container-imagem-pefil-usuario-header']}><img referrerPolicy="no-referrer" crossOrigin="anonymous" src={usuario_logado._id ? usuario_logado.imagem_de_perfil || usuario_logado.logo : `/img/icons/IconePerfil.svg`} alt="" /> Olá! {usuario_logado.nome}</button>
-                                            <button onClick={() => deslogar_usuario()} className={styles_perfil['img-sair-da-conta']}> <img src="/img/icons/Logout.svg" alt="Sair da minha conta" /> </button>
-                                        </div>
+                                        <Header_pop_up_configuracoes />
                                     </>
                                 ) : (
                                     <>
