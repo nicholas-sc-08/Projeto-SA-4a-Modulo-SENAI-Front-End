@@ -9,6 +9,7 @@ export const GlobalContextProvider = ({ children }) => {
 
     const [array_clientes, set_array_clientes] = useState([]);
     const [array_brechos, set_array_brechos] = useState([]);
+    const [array_sacola_brecho, set_array_sacola_brecho] = useState([]);
     const [array_produtos, set_array_produtos] = useState([]);
     const [array_categorias, set_array_categorias] = useState([]);
     const [array_marcas, set_array_marcas] = useState([]);
@@ -124,6 +125,8 @@ export const GlobalContextProvider = ({ children }) => {
             set_array_enderecos,
             array_brechos,
             set_array_brechos,
+            array_sacola_brecho,
+            set_array_sacola_brecho,
             array_produtos,
             set_array_produtos,
             array_categorias,

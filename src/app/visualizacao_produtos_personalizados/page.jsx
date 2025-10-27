@@ -8,11 +8,13 @@ import styles from "@/app/visualizacao_produtos_personalizados/page.module.css";
 import api from "@/services/api";
 import { useRouter } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
+import { buscar_sacolas_brechos } from "@/services/sacolas_brechos/sacolas_brecho";
 
 function page() {
   const router = useRouter();
   const { tipo_de_header, set_tipo_de_header } = useGlobalContext();
   const { array_brechos } = useGlobalContext();
+  const { array_sacola_brecho, set_array_sacola_brecho } = useGlobalContext();
   const { usuario_logado } = useGlobalContext();
   const { produto_selecionado } = useGlobalContext();
   const [quantidade, set_quantidade] = useState(1);
@@ -232,6 +234,7 @@ function page() {
 
     try {
       await api.post("/sacolas_brechos", pedido);
+      buscar_sacolas_brechos().then(sacolas => set_array_sacola_brecho(sacolas));
       alert("Pedido enviado com sucesso!");
     } catch (error) {
       console.error("Erro ao enviar pedido:", error);

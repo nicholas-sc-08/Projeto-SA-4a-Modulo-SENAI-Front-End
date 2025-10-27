@@ -6,12 +6,16 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { useGlobalContext } from '@/context/GlobalContext';
 import { useRouter } from 'next/navigation';
 import api from "../../services/api";
-import styles from '@/components/sacola/Sacola.module.css';
+import styles from '@/components/sacola_brecho/Sacola_brecho.module.css';
+import { buscar_brechos } from '@/services/brecho/brecho';
+import { buscar_clientes } from '@/services/cliente/cliente';
+import { buscar_sacolas_brechos } from '@/services/sacolas_brechos/sacolas_brecho';
 
-export default function Sacola() {
+export default function Sacola_brecho() {
 
     const { array_clientes, set_array_clientes } = useGlobalContext();
     const { array_brechos, set_array_brechos } = useGlobalContext();
+    const { array_sacola_brecho, set_array_sacola_brecho } = useGlobalContext();
     const { usuario_logado, set_usuario_logado } = useGlobalContext();
     const { sacola, set_sacola } = useGlobalContext();
     const { sacola_aberta, set_sacola_aberta } = useGlobalContext();
@@ -19,50 +23,29 @@ export default function Sacola() {
 
     useEffect(() => {
 
-        buscar_brechos();
-        buscar_clientes();
+        buscar_brechos().then(brechos => set_array_brechos(brechos));
+        buscar_clientes().then(clientes => set_array_clientes(clientes));
+        buscar_sacolas_brechos().then(sacolas => set_array_sacola_brecho(sacolas));
 
-        if (usuario_logado._id) {
+        const sacola_brecho = array_sacola_brecho.filter(produto => produto.id_brecho === usuario_logado._id);
 
-            set_sacola(usuario_logado.sacola);
+        if (sacola_brecho) {
+
+            set_sacola(sacola_brecho);
         };
 
     }, []);
 
     useEffect(() => {
 
-        if (usuario_logado._id) {
+        const sacola_brecho = array_sacola_brecho.filter(produto => produto.id_brecho === usuario_logado._id);
 
-            set_sacola(usuario_logado.sacola);
+        if (sacola_brecho) {
+
+            set_sacola(sacola_brecho);
         };
 
-    }, [usuario_logado]);
-
-    async function buscar_brechos() {
-
-        try {
-
-            const brechos = await api.get(`/brechos`);
-            set_array_brechos(brechos.data);
-
-        } catch (erro) {
-
-            console.error(erro);
-        };
-    };
-
-    async function buscar_clientes() {
-
-        try {
-
-            const clientes = await api.get(`/clientes`);
-            set_array_clientes(clientes.data);
-
-        } catch (erro) {
-
-            console.error(erro);
-        };
-    };
+    }, [array_sacola_brecho]);
 
     async function diminuir_produto(produto_selecionado) {
 
@@ -75,12 +58,9 @@ export default function Sacola() {
                 const filtrar_produtos = sacola.filter(produto => produto._id != produto_selecionado._id);
 
                 if (usuario_logado._id) {
-
-
-                    const usuario_atualizado = { ...usuario_logado, sacola: filtrar_produtos };
                     
-                    const cliente_atualizado = await api.put(`/clientes/${usuario_atualizado._id}`, usuario_atualizado);
-                    set_usuario_logado(cliente_atualizado.data);
+                    const sacola_atualizada = await api.put(`/sacolas_brechos/${produto_atualizado._id}`, produto_atualizado);
+                    set_sacola([...sacola, sacola_atualizada.data]);
                 } else {
 
                     set_sacola(filtrar_produtos);
@@ -92,9 +72,8 @@ export default function Sacola() {
 
                 if (usuario_logado._id) {
 
-                    const usuario_atualizado = { ...usuario_logado, sacola: produtos };
-                    const cliente_atualizado = await api.put(`/clientes/${usuario_atualizado._id}`, usuario_atualizado);
-                    set_usuario_logado(cliente_atualizado.data);
+                    const sacola_atualizada = await api.put(`/sacolas_brechos/${produto_atualizado._id}`, produto_atualizado);
+                    set_sacola([...sacola, sacola_atualizada.data]);
                 } else {
 
                     set_sacola(produtos);
@@ -116,10 +95,8 @@ export default function Sacola() {
 
             if (usuario_logado._id) {
 
-
-                const usuario_atualizado = { ...usuario_logado, sacola: produtos };
-                const cliente_atualizado = await api.put(`/clientes/${usuario_atualizado._id}`, usuario_atualizado);
-                set_usuario_logado(cliente_atualizado.data);
+                const sacola_atualizada = await api.put(`/sacolas_brechos/${produto_atualizado._id}`, produto_atualizado);
+                set_usuario_logado(sacola_atualizada.data);
 
             } else {
 
@@ -144,7 +121,7 @@ export default function Sacola() {
 
     function exibir_preco(produto_selecionado) {
 
-        const preco_total = produto_selecionado.preco * produto_selecionado.quantidade_selecionada;
+        const preco_total = produto_selecionado.valor;
         const preco_formatado = preco_total.toFixed(2).replace('.', ',');
 
         return `R$${preco_formatado}`;
@@ -153,7 +130,21 @@ export default function Sacola() {
     function ir_sacola_geral() {
 
         set_sacola_aberta(false);
-        ir_para_sacola.push(`/sacola`);
+        ir_para_sacola.push(`/sacolas_brechos`);
+    };
+
+    function nome_produto(tipo){
+
+        if(tipo == "caixa"){
+
+            return "Caixa";
+        } else if(tipo == "ecobag"){
+
+            return "EcoBag"
+        } else {
+
+            return "Sacola"
+        };
     };
 
     return (
@@ -180,7 +171,7 @@ export default function Sacola() {
 
                             <div className={styles["container_imagem_do_produto_sacola"]}>
 
-                                <img src={produto._id ? produto.imagem[0] : ``} alt="" />
+                                {/* <img src={produto._id ? produto.imagem[0] : ``} alt="" /> */}
 
                             </div>
 
@@ -192,7 +183,7 @@ export default function Sacola() {
 
                                         <div className={styles["container_info_produto_titulo_sacola"]}>
 
-                                            <h3>{produto.nome}</h3>
+                                            <h3>{nome_produto(produto.tipo)}</h3>
                                         </div>
 
                                         <div className={styles["container_contador_de_produtos"]}>
@@ -206,7 +197,7 @@ export default function Sacola() {
 
                                     <div className={styles["container_info_produto_preco_e_logo"]}>
 
-                                        <img src={imagem_do_brecho(produto.fk_id_brecho)} alt="" />
+                                        <img src={imagem_do_brecho(produto.id_brecho)} alt="" />
                                         <span className={styles['preco_do_produto_sacola']}>{exibir_preco(produto)}</span>
 
                                     </div>

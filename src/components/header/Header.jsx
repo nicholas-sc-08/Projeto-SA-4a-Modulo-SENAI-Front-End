@@ -12,6 +12,7 @@ import Sacola from '@/components/sacola/Sacola';
 import api from '@/services/api';
 import Link from 'next/link';
 import Header_pop_up_configuracoes from '../header_pop_up_configuracoes/Header_pop_up_configuracoes';
+import Sacola_brecho from '../sacola_brecho/Sacola_brecho';
 
 export default function Header({ tipo }) {
     const [menuOpen, setMenuOpen] = useState(false);
@@ -242,13 +243,6 @@ export default function Header({ tipo }) {
             set_sacola_aberta(true);
             setButtonPefilAberto(false);
             setContainerAberto(false);
-            set_altura_inicial_chat(`10%`);
-
-            setTimeout(() => {
-
-                set_altura_inicial_header_chat(`100%`);
-
-            }, 325);
 
         } else {
 
@@ -296,7 +290,7 @@ export default function Header({ tipo }) {
 
                 <div className={styles["button-container-navbar-alinhamento"]} ref={buttonPerfilRef}>
 
-                    {(tipo === 'usuario' || tipo === 'brecho') && (
+                    {(tipo === 'usuario') && (
                         <>
                             <button className={styles["button-sacola-navbar"]} onClick={() => sacola_perfil(`sacola`)}>
                                 <img src="/img/icons/IconeSacola.svg" alt="Sacola" />
@@ -306,6 +300,15 @@ export default function Header({ tipo }) {
                         </>
                     )}
 
+                    {(tipo === 'brecho') && (
+                        <>
+                            <button className={styles["button-sacola-navbar"]} onClick={() => sacola_perfil(`sacola`)}>
+                                <img src="/img/icons/IconeSacola.svg" alt="Sacola" />
+                                <span>{quantidade_de_produtos_sacola()}</span>
+                            </button>
+                            {sacola_aberta && <Sacola_brecho />}
+                        </>
+                    )}
 
                     {tipo === 'brecho' && (
                         <button className={styles["button-chat-navbar"]} onClick={() => fechar_chat()}>
