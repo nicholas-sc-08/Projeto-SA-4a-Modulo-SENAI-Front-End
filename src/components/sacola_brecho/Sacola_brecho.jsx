@@ -9,7 +9,7 @@ import api from "../../services/api";
 import styles from '@/components/sacola_brecho/Sacola_brecho.module.css';
 import { buscar_brechos } from '@/services/brecho/brecho';
 import { buscar_clientes } from '@/services/cliente/cliente';
-import { buscar_sacolas_brechos, imagem_produto_sacola_brecho } from '@/services/sacolas_brechos/sacolas_brecho';
+import { buscar_sacolas_brechos, imagem_produto_sacola_brecho, nome_produto } from '@/services/sacolas_brechos/sacolas_brecho';
 
 export default function Sacola_brecho() {
 
@@ -131,20 +131,6 @@ export default function Sacola_brecho() {
 
         set_sacola_aberta(false);
         ir_para_sacola.push(`/sacola_brecho`);
-    };
-
-    function nome_produto(tipo){
-
-        if(tipo == "caixa"){
-
-            return "Caixa";
-        } else if(tipo == "ecobag"){
-
-            return "EcoBag"
-        } else {
-
-            return "Sacola"
-        };
     };
 
     return (

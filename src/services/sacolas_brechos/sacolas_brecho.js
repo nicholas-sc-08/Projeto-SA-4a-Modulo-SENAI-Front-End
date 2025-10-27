@@ -71,21 +71,52 @@ export async function deletar_sacolas_brecho(id) {
     };
 };
 
+export function nome_produto(tipo) {
+
+    if (tipo == "caixa") {
+
+        return "Caixa";
+    } else if (tipo == "ecobag") {
+
+        return "EcoBag"
+    } else {
+
+        return "Sacola"
+    };
+};
+
 export function imagem_produto_sacola_brecho(tipo, padrao) {
-    
-    switch(tipo == "caixa"){
+
+    switch (tipo == "caixa") {
 
         case padrao == "logo_fly":
-        return "./img/produtos_personalizados/caixa/caixa-meio-virada-logo-embaixo.svg";
+            return "./img/produtos_personalizados/caixa/caixa-meio-virada-logo-embaixo.svg";
 
         case padrao == "logo_fly_embaixo":
-        return "./img/produtos_personalizados/caixa/caixa-meio-virada-logo-nome-emcima.svg";
+            return "./img/produtos_personalizados/caixa/caixa-meio-virada-logo-nome-emcima.svg";
 
         case padrao == "logo_fly_nome":
-        return "./img/produtos_personalizados/caixa/caixa-meio-virada-logo-nome-embaixo.svg";
+            return "./img/produtos_personalizados/caixa/caixa-meio-virada-logo-nome-embaixo.svg";
 
         case padrao == "sem_logo":
-        return "./img/produtos_personalizados/caixa/caixa_normal.svg";
+            return "./img/produtos_personalizados/caixa/caixa_normal.svg";
+    };
+};
 
+export function padrao_produto_sacola_brecho(padrao){
+
+    switch(true){
+
+        case padrao == "logo_fly":
+            return "Logo da Fly";
+        
+        case padrao == "logo_fly_nome":
+            return "Logo da Fly com Nome";
+
+        case padrao == "logo_fly_embaixo":
+            return "Logo da Fly em Cima";
+
+        case padrao == "sem_logo":
+            return "Sem Logo";
     };
 };

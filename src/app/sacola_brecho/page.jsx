@@ -16,12 +16,14 @@ import Footer from '@/components/footer/Footer';
 // import Chat from '../../components/chat/Chat.jsx';
 // import Chat_conversa from '../../components/chat/Chat_conversa.jsx';
 import styles from '@/app/sacola/page.module.css';
+import { buscar_sacolas_brechos, imagem_produto_sacola_brecho, nome_produto, padrao_produto_sacola_brecho } from '@/services/sacolas_brechos/sacolas_brecho';
 
 export default function Sacola_geral() {
 
     const { tipo_de_header, set_tipo_de_header } = useGlobalContext();
     const { usuario_logado, set_usuario_logado } = useGlobalContext();
     const { sacola, set_sacola } = useGlobalContext();
+    const { array_sacola_brecho, set_array_sacola_brecho } = useGlobalContext();
     const { conversa_aberta, set_conversa_aberta } = useGlobalContext();
     const { sacola_aberta, set_sacola_aberta } = useGlobalContext();
     const { sacola_ou_produto, set_sacola_ou_produto } = useGlobalContext();
@@ -35,25 +37,39 @@ export default function Sacola_geral() {
 
     useEffect(() => {
 
-        set_sacola_ou_produto(`/sacola`);
-
+        set_sacola_ou_produto(`/sacola_brecho`);
+        
     }, [set_sacola_ou_produto]);
 
     useEffect(() => {
+        
+        buscar_sacolas_brechos().then(sacolas => set_array_sacola_brecho(sacolas));
+        const sacola_brecho = array_sacola_brecho.filter(produto => produto.id_brecho === usuario_logado._id);
 
-        if (usuario_logado._id) {
+        if (sacola_brecho) {
 
-            set_sacola(usuario_logado.sacola);
+            set_sacola(sacola_brecho);
         };
 
-    }, [usuario_logado, set_sacola]);
+    }, []);
 
     useEffect(() => {
 
-        if(pop_up_usuario_nao_logado){
+        const sacola_brecho = array_sacola_brecho.filter(produto => produto.id_brecho === usuario_logado._id);
+
+        if (sacola_brecho) {
+
+            set_sacola(sacola_brecho);
+        };
+
+    }, [array_sacola_brecho]);
+
+    useEffect(() => {
+
+        if (pop_up_usuario_nao_logado) {
 
             setTimeout(() => {
-                
+
                 set_pop_up_usuario_nao_logado(false);
 
             }, 2000);
@@ -61,12 +77,12 @@ export default function Sacola_geral() {
 
     }, [pop_up_usuario_nao_logado]);
 
-        useEffect(() => {
+    useEffect(() => {
 
-        if(pop_up_sacola_vazia){
+        if (pop_up_sacola_vazia) {
 
             setTimeout(() => {
-                
+
                 set_pop_up_sacola_vazia(false);
 
             }, 2000);
@@ -88,19 +104,8 @@ export default function Sacola_geral() {
         try {
 
             const array_com_produto_removido = sacola.filter(p => p._id !== produto_selecionado._id);
-
-            if (usuario_logado._id) {
-
-                const usuario_atualizado = { ...usuario_logado, sacola: array_com_produto_removido };
-                const atualizar_usuario = await api.put(`/clientes/${usuario_atualizado._id}`, usuario_atualizado);
-
-                set_usuario_logado(atualizar_usuario.data);
-
-            } else {
-
-                set_sacola(array_com_produto_removido);
-            };
-
+             await api.delete(`/sacolas_brechos/${produto_selecionado._id}`);
+            set_sacola(array_com_produto_removido);
             set_clicou_em_excluir(true);
 
         } catch (erro) {
@@ -111,8 +116,8 @@ export default function Sacola_geral() {
 
     function preco_dos_produtos(produto_sacola) {
 
-        const calcular_preco = produto_sacola.preco * produto_sacola.quantidade_selecionada;
-        const preco_final = calcular_preco.toFixed(2).replace(`.`, `,`);
+        const calcular_preco = produto_sacola.valor;
+        const preco_final = calcular_preco.toFixed(2).replace(`.`, `,`);        
 
         return `R$${preco_final}`;
     };
@@ -124,7 +129,7 @@ export default function Sacola_geral() {
         if (sacola) {
 
             for (let i = 0; i < sacola.length; i++) {
-                contador += (sacola[i].preco * sacola[i].quantidade_selecionada);
+                contador += (sacola[i].valor);
             };
         };
 
@@ -154,12 +159,12 @@ export default function Sacola_geral() {
                 set_sacola(produtos);
 
             } else {
-                
+
                 set_sacola(produtos);
             };
 
         } catch (erro) {
-            
+
             console.error(erro);
         };
     };
@@ -199,18 +204,18 @@ export default function Sacola_geral() {
                 return;
             };
 
-            if(usuario_logado._id){
-                
+            if (usuario_logado._id) {
+
                 const response = await api.post(`/criar-checkout`, { itens: sacola });
-                
+
                 if (response.data?.url) {
                     // Redireciona para o checkout do Stripe
-                    window.location.href = response.data.url;                            
+                    window.location.href = response.data.url;
                     atualizar_usuario_pos_compra();
                 };
-                
+
             } else {
-            
+
                 set_pop_up_usuario_nao_logado(true);
             };
         } catch (error) {
@@ -237,8 +242,8 @@ export default function Sacola_geral() {
                 transition={{ duration: 0.4 }}
                 ref={referencia_sacola}
             >
-                {pop_up_sacola_vazia && <Pop_up_sacola_vazia/>}
-                {pop_up_usuario_nao_logado && <Pop_up_usuario_nao_logado/>}
+                {pop_up_sacola_vazia && <Pop_up_sacola_vazia />}
+                {pop_up_usuario_nao_logado && <Pop_up_usuario_nao_logado />}
                 {clicou_em_excluir && <Pop_up_excluir_produto_sacola />}
                 {mostrarPopupCompra && <Pop_up_notificacao_comprado fechar={fecharPopupSucesso} />}
 
@@ -257,14 +262,14 @@ export default function Sacola_geral() {
                                 <div key={i} className={styles['container_produto_sacola_geral']} onClick={() => ir_para_produto(produto_sacola)}>
 
                                     <div className={styles["container_imagem_do_produto_sacola_geral"]}>
-                                        <img src={produto_sacola.imagem[0]} alt="" />
+                                        <img src={imagem_produto_sacola_brecho(produto_sacola.tipo, produto_sacola.padrao)} alt="" />
                                     </div>
 
                                     <div className={styles["container_info_produto_sacola_geral"]}>
 
                                         <div className={styles["container_titulo_produto_sacola_geral"]}>
 
-                                            <h2>{produto_sacola.nome}</h2>
+                                            <h2>{nome_produto(produto_sacola.tipo)}</h2>
 
                                             <button
                                                 onClick={e => {
@@ -278,8 +283,8 @@ export default function Sacola_geral() {
                                         </div>
 
                                         <div className={styles["container_info_extra_produto"]}>
-                                            <p>Tamanho: <span>{produto_sacola.tamanho}</span></p>
-                                            <p>Cor: <span>{produto_sacola.cor[0]}</span></p>
+                                            <p>Material: <span>{produto_sacola.material}</span></p>
+                                            <p>Padrão: <span>{padrao_produto_sacola_brecho(produto_sacola.padrao)}</span></p>
                                         </div>
 
                                         <div className={styles["container_preco_produto_sacola_geral"]}>
@@ -299,7 +304,7 @@ export default function Sacola_geral() {
                                                     -
                                                 </button>
 
-                                                <span>{produto_sacola.quantidade_selecionada}</span>
+                                                <span>1</span>
 
                                                 <button
                                                     disabled={produto_sacola.quantidade_selecionada === produto_sacola.quantidade}
@@ -364,9 +369,6 @@ export default function Sacola_geral() {
                 </div>
 
                 <Footer />
-
-                {/* {usuario_logado != `` && !conversa_aberta && <Chat />}
-                {conversa_aberta && <Chat_conversa />} */}
 
             </motion.div>
         </AnimatePresence>

@@ -197,7 +197,7 @@
 .container_contador_quantidade_produtos {
 
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     width: 17%;
     height: 100%;
@@ -211,6 +211,7 @@
 
 .container_contador_quantidade_produtos span{
 
+    width: 100%;
     font-family: var(--tipografia_primaria);
     font-size: 1.2rem;
     font-weight: 550;
