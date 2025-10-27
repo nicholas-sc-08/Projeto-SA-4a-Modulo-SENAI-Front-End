@@ -9,6 +9,25 @@
     align-items: center;
 }
 
+/* Container da imagem do produto */
+.container-imagem-produto-personalizado {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%; /* ocupa toda a largura disponível */
+  max-width: 400px; /* largura máxima para a imagem */
+  margin: 0 auto; /* centraliza */
+  padding: 10px;
+}
+
+/* Imagem do produto */
+.container-imagem-produto-personalizado img {
+  width: 100%; /* ocupa 100% do container */
+  max-height: 300px; /* altura máxima */
+  object-fit: contain; /* mantém proporção e não corta */
+}
+
+
 .container-voltar-pagina {
     /* border: 1px solid red; */
     display: flex;

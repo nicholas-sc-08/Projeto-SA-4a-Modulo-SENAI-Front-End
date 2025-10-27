@@ -70,7 +70,7 @@
 
     display: flex;
     flex-direction: row;
-    padding-left: 2%;
+    padding-left: 3%;
     gap: 3rem;
 }
 
@@ -84,7 +84,6 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-
     
 }
 
@@ -108,7 +107,7 @@
 .nome-brecho-content h1 {
     font-family: "Montserrat", sans serif;
     font-weight: 600;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     letter-spacing: 1px;
     color: var(--cor_dezesete);
 }
@@ -116,7 +115,7 @@
 .parte-inferior-do-perfil-brecho-content {
     border: 1px solid red;
 
-    height: 34vh;
+    height: 29vh;
     width: 100%;
 
     display: flex;
@@ -126,7 +125,7 @@
 .topicos-de-informacao-sobre-perfil-content {
     border-bottom: 1px solid var(--cor_nove_v_um);
 
-    height: 19vh;
+    height: 13vh;
     width: 100%;
 
     display: flex;
@@ -139,7 +138,7 @@
 
 .topicos-de-informacao-sobre-perfil-content button {
     width: fit-content;
-    height: 49%;
+    height: 100%;
     background-color: transparent;
 
     font-family: var(--tipografia_primaria);
@@ -153,10 +152,11 @@
 .topicos-de-informacao-sobre-perfil-content button:active {
     border-bottom: 1px var(--cor_tres);
     border-bottom-style: solid;
+    border-radius: 0.8px;
 }
 
 .informacoes-exibidas-content {
-    border: 1px solid #4C00D0;
+    border: 1px solid #4c00d0;
 
     height: 77vh;
     width: 99%;
@@ -171,7 +171,7 @@
 .titulo-topico-exibido-content {
     border: 1px solid #D07900;
 
-    height: 17%;
+    height: 20%;
     width: 99%;
 
     display: flex;
@@ -183,7 +183,7 @@
 .titulo-topico-exibido-content p {
     font-family: var(--tipografia_primaria);
     font-weight: 600;
-    font-size: 1rem;
+    font-size: 0.9rem;
     color: var(--cor_seis);
 }
 
@@ -197,7 +197,18 @@
     flex-direction: column;
     justify-content: space-evenly; /* talvez mudar para gap */
     padding: 1%;
+    gap: 3%;
     /* padding-left: 1%; */
+}
+
+.labels-e-dados-cadastrados-content {
+    /* border: 3px solid red; */
+
+    width: 100%;
+    height: fit-content;
+
+    display: flex;
+    
 }
 
 .labels-info {
@@ -205,15 +216,15 @@
 
     font-family: var(--tipografia_primaria);
     font-weight: 700;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     color: var(--cor_vinte_dois);
 }
 
 .dados-cadastradas-exibidos {
     font-family: var(--tipografia_primaria);
-    font-weight: 550;
-    font-size: 1rem;
-    color: var(--cor_dezoito);
+    font-weight: 590;
+    font-size: 0.8rem;
+    color: var(--cor_dez);
 }
 
 

@@ -310,6 +310,7 @@ export default function Tela_incial() {
 
   return (
     <AnimatePresence>
+      
 
       {compra_realizada && <Compra_realizada />}
 
@@ -319,6 +320,7 @@ export default function Tela_incial() {
 
         {/* home page seção um */}
         <div className={styles["home-page-secao-um-container"]}>
+          
           <div className={styles["secao-um-texto-container-home-page"]}>
             <h1>ENCONTRE ROUPAS QUE COMBINAM COM SEU ESTILO</h1>
             <p>Explore nossa seleção exclusiva de roupas em brechós cuidadosamente curados, onde cada peça reflete personalidade e estilo único. Encontre itens que combinam com você e expressam sua individualidade de forma autêntica.</p>
