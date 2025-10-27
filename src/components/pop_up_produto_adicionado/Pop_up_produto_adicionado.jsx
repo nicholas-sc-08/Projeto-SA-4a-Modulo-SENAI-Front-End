@@ -7,7 +7,7 @@ import styles from "@/components/pop_up_produto_adicionado/Pop_up_produto_adicio
 export default function Pop_up_notificacao_comprado() {
 
   return (
-    <div className={styles['container_fundo_pop_up_excluir_poduto_sacola']}>
+    <div className={styles['container_fundo_pop_up_comprado_poduto_sacola']}>
 
       <AnimatePresence>
 
@@ -16,7 +16,7 @@ export default function Pop_up_notificacao_comprado() {
           transition={{
             duration: 0.4,
             scale: { type: "spring", visualDuration: 0.4, bounce: 0.5 },
-          }} className={styles["container_pop_up_excluir_produto_sacola"]}>
+          }} className={styles["container_pop_up_comprado_produto_sacola"]}>
 
           <img src="./img/gif/checkAnimation.gif" alt="" className={styles['gif-animation']} />
           <p>Produto Adicionado a Sacola!</p>
