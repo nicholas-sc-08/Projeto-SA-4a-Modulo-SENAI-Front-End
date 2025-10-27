@@ -72,19 +72,20 @@ export async function deletar_sacolas_brecho(id) {
 };
 
 export function imagem_produto_sacola_brecho(tipo, padrao) {
+    
+    switch(tipo == "caixa"){
 
-    switch(true){
+        case padrao == "logo_fly":
+        return "./img/produtos_personalizados/caixa/caixa-meio-virada-logo-embaixo.svg";
 
-        case tipo == "caixa" && padrao == "logo_fly":
-        return "";
+        case padrao == "logo_fly_embaixo":
+        return "./img/produtos_personalizados/caixa/caixa-meio-virada-logo-nome-emcima.svg";
 
-        case tipo == "caixa" && padrao == "logo_fly_embaixo":
-        return "";
+        case padrao == "logo_fly_nome":
+        return "./img/produtos_personalizados/caixa/caixa-meio-virada-logo-nome-embaixo.svg";
 
-        case tipo == "caixa" && padrao == "logo_fly_nome":
-        return "";
+        case padrao == "sem_logo":
+        return "./img/produtos_personalizados/caixa/caixa_normal.svg";
 
-        case tipo == "caixa" && padrao == "sem_logo":
-        return "";
-    }
+    };
 };
