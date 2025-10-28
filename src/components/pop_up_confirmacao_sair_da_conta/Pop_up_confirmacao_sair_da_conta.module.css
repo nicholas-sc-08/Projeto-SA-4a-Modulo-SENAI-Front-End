@@ -1,0 +1,110 @@
+/* === Overlay escurecido e centralização === */
+.overlay-sair-conta {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: var(--cor_oito_v_um);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(3px);
+    z-index: 1000;
+    animation: fadeIn 0.3s ease;
+}
+
+/* === Container principal do pop-up === */
+.alinhamento-container-sair-conta {
+    background-color: var(--cor_quatro);
+    padding: 3%;
+    border-radius: 0.6vw;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    text-align: center;
+    width: 28vw;
+    min-width: 320px;
+    animation: slideUp 0.3s ease;
+}
+
+/* === Texto principal === */
+.alinhamento-container-sair-conta h4 {
+    font-family: var(--tipografia_primaria);
+    color: var(--cor_seis);
+    font-weight: 700;
+    font-size: 120%;
+    margin-bottom: 1em;
+}
+
+/* === Texto secundário === */
+.descricao-sair-conta {
+    font-family: var(--tipografia_secundaria);
+    color: var(--cor_dez);
+    font-size: 0.95rem;
+    margin-bottom: 1.8em;
+    line-height: 1.4em;
+}
+
+/* === Área dos botões === */
+.container-alinhamento-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1.2em;
+}
+
+/* === Botão Voltar === */
+.botao-voltar {
+    background-color: var(--cor_quatro_v_dois);
+    border: 1px solid var(--cor_doze_v_dois);
+    color: var(--cor_seis);
+    font-family: var(--tipografia_secundaria);
+    font-weight: 600;
+    padding: 0.7em 1.8em;
+    border-radius: 2vw;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.botao-voltar:hover {
+    background-color: var(--cor_quatro_v_tres);
+}
+
+/* === Botão Sair === */
+.botao-sair {
+    background-color: var(--cor_um);
+    border: none;
+    color: var(--cor_nove);
+    font-family: var(--tipografia_secundaria);
+    font-weight: 600;
+    padding: 0.7em 1.8em;
+    border-radius: 2vw;
+    cursor: pointer;
+    transition: 0.25s ease;
+}
+
+.botao-sair:hover {
+    background-color: var(--cor_um_v_dois);
+    transform: scale(1.05);
+}
+
+/* === Animações suaves === */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(15px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}

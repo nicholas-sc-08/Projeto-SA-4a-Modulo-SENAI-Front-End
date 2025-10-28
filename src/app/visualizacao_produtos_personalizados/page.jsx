@@ -126,75 +126,75 @@ function page() {
       else setImagemAtual(produto_atual.imagem);
     }
 
-   // --- Sacola ---
-if (produto === "sacola") {
-  const cor = selecaoAtual.cor_corpo;
-  const padrao = selecaoAtual.padrao;
+    // --- Sacola ---
+    if (produto === "sacola") {
+      const cor = selecaoAtual.cor_corpo;
+      const padrao = selecaoAtual.padrao;
 
-  if (cor && padrao) {
-    // Combinações de cor + padrão
-    if (cor === "Verde") {
-      switch (padrao) {
-        case "Logo da Fly":
-          setImagemAtual("/img/produtos_personalizados/sacola/sacola-verde-meio-virada-logo-nome-meio.png");
-          break;
-        case "Logo da Fly e Nome":
-          setImagemAtual("/img/produtos_personalizados/sacola/sacola-verde-meio-virada-logo-nome-embaixo.png");
-          break;
-        case "Logo da Fly embaixo":
-          setImagemAtual("/img/produtos_personalizados/sacola/sacola-verde-meio-virada-logo-embaixo.png");
-          break;
-        default:
+      if (cor && padrao) {
+        // Combinações de cor + padrão
+        if (cor === "Verde") {
+          switch (padrao) {
+            case "Logo da Fly":
+              setImagemAtual("/img/produtos_personalizados/sacola/sacola-verde-meio-virada-logo-nome-meio.png");
+              break;
+            case "Logo da Fly e Nome":
+              setImagemAtual("/img/produtos_personalizados/sacola/sacola-verde-meio-virada-logo-nome-embaixo.png");
+              break;
+            case "Logo da Fly embaixo":
+              setImagemAtual("/img/produtos_personalizados/sacola/sacola-verde-meio-virada-logo-embaixo.png");
+              break;
+            default:
+              setImagemAtual("/img/produtos_personalizados/sacola/sacola-verde-meio-virada.png");
+          }
+        } else if (cor === "Branca") {
+          switch (padrao) {
+            case "Logo da Fly":
+              setImagemAtual("/img/produtos_personalizados/sacola/sacola-branca-meio-virada-logo-nome-meio.png.png");
+              break;
+            case "Logo da Fly e Nome":
+              setImagemAtual("/img/produtos_personalizados/sacola/sacola-branca-meio-virada-logo-nome-embaixo.png");
+              break;
+            case "Logo da Fly embaixo":
+              setImagemAtual("/img/produtos_personalizados/sacola/sacola-branca-meio-virada-logo-embaixo.png");
+              break;
+            default:
+              setImagemAtual("/img/produtos_personalizados/sacola/sacola-branca-meio-virada.png");
+          }
+        } else {
+          setImagemAtual(produto_atual.imagem);
+        }
+
+      } else if (cor) {
+        // Se só a cor foi escolhida
+        if (cor === "Verde")
           setImagemAtual("/img/produtos_personalizados/sacola/sacola-verde-meio-virada.png");
-      }
-    } else if (cor === "Branca") {
-      switch (padrao) {
-        case "Logo da Fly":
-          setImagemAtual("/img/produtos_personalizados/sacola/sacola-branca-meio-virada-logo-nome-meio.png.png");
-          break;
-        case "Logo da Fly e Nome":
-          setImagemAtual("/img/produtos_personalizados/sacola/sacola-branca-meio-virada-logo-nome-embaixo.png");
-          break;
-        case "Logo da Fly embaixo":
-          setImagemAtual("/img/produtos_personalizados/sacola/sacola-branca-meio-virada-logo-embaixo.png");
-          break;
-        default:
+        else if (cor === "Branca")
           setImagemAtual("/img/produtos_personalizados/sacola/sacola-branca-meio-virada.png");
-      }
-    } else {
-      setImagemAtual(produto_atual.imagem);
-    }
+        else
+          setImagemAtual(produto_atual.imagem);
 
-  } else if (cor) {
-    // Se só a cor foi escolhida
-    if (cor === "Verde")
-      setImagemAtual("/img/produtos_personalizados/sacola/sacola-verde-meio-virada.png");
-    else if (cor === "Branca")
-      setImagemAtual("/img/produtos_personalizados/sacola/sacola-branca-meio-virada.png");
-    else
-      setImagemAtual(produto_atual.imagem);
+      } else if (padrao) {
+        // Se só o padrão foi escolhido (cor continua padrão)
+        switch (padrao) {
+          case "Logo da Fly":
+            setImagemAtual("/img/produtos_personalizados/sacola/sacola-padrao-meio-virada-logo-nome-meio.png");
+            break;
+          case "Logo da Fly e Nome":
+            setImagemAtual("/img/produtos_personalizados/sacola/sacola-padrao-meio-virada-logo-nome-embaixo.png");
+            break;
+          case "Logo da Fly embaixo":
+            setImagemAtual("/img/produtos_personalizados/sacola/sacola-padrao-meio-virada-logo-embaixo.png");
+            break;
+          default:
+            setImagemAtual(produto_atual.imagem);
+        }
 
-  } else if (padrao) {
-    // Se só o padrão foi escolhido (cor continua padrão)
-    switch (padrao) {
-      case "Logo da Fly":
-        setImagemAtual("/img/produtos_personalizados/sacola/sacola-padrao-meio-virada-logo-nome-meio.png");
-        break;
-      case "Logo da Fly e Nome":
-        setImagemAtual("/img/produtos_personalizados/sacola/sacola-padrao-meio-virada-logo-nome-embaixo.png");
-        break;
-      case "Logo da Fly embaixo":
-        setImagemAtual("/img/produtos_personalizados/sacola/sacola-padrao-meio-virada-logo-embaixo.png");
-        break;
-      default:
+      } else {
+        // Nenhuma opção escolhida
         setImagemAtual(produto_atual.imagem);
+      }
     }
-
-  } else {
-    // Nenhuma opção escolhida
-    setImagemAtual(produto_atual.imagem);
-  }
-}
 
 
     // --- Caixa ---

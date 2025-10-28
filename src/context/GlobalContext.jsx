@@ -92,6 +92,8 @@ export const GlobalContextProvider = ({ children }) => {
 
     const [produto_selecionado, set_produto_selecionado] = useState('ecobag');
 
+    const [popupExcluirAberto, setPopupExcluirAberto] = useState(false)
+    const [popupSairAberto, setPopupSairAberto] = useState(false)
 
     // função para quando alguém der F5/atualizar a página, os dados do usuário logado sejam guardados no localStorage
     useEffect(() => {
@@ -274,8 +276,12 @@ export const GlobalContextProvider = ({ children }) => {
             set_pop_up_notificacao_excluir_marca,
             id_marca_selecionada,
             set_id_marca_selecionada,
-            produto_selecionado, 
-            set_produto_selecionado
+            produto_selecionado,
+            set_produto_selecionado,
+            popupExcluirAberto,
+            setPopupExcluirAberto,
+            popupSairAberto,
+            setPopupSairAberto
         }}>
             {children}
         </GlobalContext.Provider>
