@@ -9,6 +9,7 @@ import { useGlobalContext } from '@/context/GlobalContext';
 import { useRouter } from 'next/navigation';
 import Pop_up_confirmacao_excluir_conta from '@/components/pop_up_confirmacao_excluir_conta/Pop_up_confirmacao_excluir_conta';
 import Pop_up_confirmacao_sair_da_conta from '@/components/pop_up_confirmacao_sair_da_conta/Pop_up_confirmacao_sair_da_conta';
+import Redes_sociais from '@/components/opcoes_configuracoes/redes_sociais/Redes_sociais';
 
 function Page() {
     const [secaoAtiva, setSecaoAtiva] = useState('meu-perfil');
@@ -18,15 +19,15 @@ function Page() {
     const { sacola, set_sacola } = useGlobalContext();
     const router = useRouter();
 
-    const [popupExcluirAberto, setPopupExcluirAberto] = useState(false)
-    const [popupSairAberto, setPopupSairAberto] = useState(false);
+    const { popupExcluirAberto, setPopupExcluirAberto } = useGlobalContext(false)
+    const { popupSairAberto, setPopupSairAberto } = useGlobalContext(false);
 
     const renderizarConteudo = () => {
         switch (secaoAtiva) {
             case 'meu-perfil':
                 return <Meu_perfil />;
             case 'redes-sociais':
-                return <div>Componente Redes Sociais</div>;
+                return <Redes_sociais />
             case 'eventos':
                 return <div>Componente Eventos</div>;
             case 'saiba-mais':
@@ -85,7 +86,7 @@ function Page() {
                             className={secaoAtiva === 'redes-sociais' ? styles['ativo'] : ''}
                             onClick={() => setSecaoAtiva('redes-sociais')}
                         >
-                            Redes sociais
+                            Sobre o brechó
                         </button>
                         <button
                             className={secaoAtiva === 'eventos' ? styles['ativo'] : ''}
@@ -132,17 +133,19 @@ function Page() {
                 <div className={styles["conteudo-dinamico"]}>
                     {renderizarConteudo()}
                 </div>
+
+                {popupExcluirAberto && (
+                    <Pop_up_confirmacao_excluir_conta />
+                )}
+
+                {popupSairAberto && (
+                    <Pop_up_confirmacao_sair_da_conta />
+                )}
             </div>
+
 
             <Footer />
 
-            {popupExcluirAberto && (
-                <Pop_up_confirmacao_excluir_conta />
-            )}
-
-            {popupSairAberto && (
-                <Pop_up_confirmacao_sair_da_conta />
-            )}
 
         </div>
     )
