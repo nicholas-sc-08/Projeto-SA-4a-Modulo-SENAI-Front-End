@@ -9,7 +9,7 @@ import api from "../../services/api";
 import styles from '@/components/sacola_brecho/Sacola_brecho.module.css';
 import { buscar_brechos } from '@/services/brecho/brecho';
 import { buscar_clientes } from '@/services/cliente/cliente';
-import { buscar_sacolas_brechos, imagem_produto_sacola_brecho, nome_produto } from '@/services/sacolas_brechos/sacolas_brecho';
+import { buscar_sacolas_brechos, imagem_produto_sacola_brecho, nome_produto, padrao_produto_sacola_brecho } from '@/services/sacolas_brechos/sacolas_brecho';
 
 export default function Sacola_brecho() {
 
@@ -171,12 +171,8 @@ export default function Sacola_brecho() {
 
                                             <h3>{nome_produto(produto.tipo)}</h3>
                                         </div>
-
-                                        <div className={styles["container_contador_de_produtos"]}>
-
-                                            <button className={styles['diminuir_quantidade_de_produto']} onClick={() => diminuir_produto(produto)}>-</button>
-                                            <h5>{produto.quantidade_selecionada}</h5>
-                                            <button className={styles['aumentar_quantidade_de_produto']} disabled={produto.quantidade_selecionada == produto.quantidade} onClick={() => aumentar_produto(produto)}>+</button>
+                                        <div className={styles["container_info_produto_material_sacola"]}>
+                                            <p>Material: <span>{produto.material}</span></p>
                                         </div>
 
                                     </div>

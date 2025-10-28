@@ -95,12 +95,14 @@
     align-items: center;
 
     width: 130%;
-    height: 30%;
+    height: 50%;
 }
 
 .container_info_produto_titulo_sacola h3 {
 
+    display: flex;
     width: 100%;
+    margin-left: 5%;
 
     font-family: var(--tipografia_primaria);
     font-size: 0.8rem;
@@ -113,100 +115,29 @@
     color: var(--cor_seis);
 }
 
-.container_contador_de_produtos {
+.container_info_produto_material_sacola {
 
-    display: flex;
-    justify-content: space-between;
-    width: 70%;
-    height: 30%;
-
-    border-radius: 100vw;
-    box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
-    background-color: var(--cor_nove_v_dois);
+    width: 100%;
+    margin-left: 5%;
 }
 
-.container_contador_de_produtos h5 {
+.container_info_produto_material_sacola p {
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    
-    width: 20%;
-
+    width: 100%;
+    font-size: 0.75rem;
     font-family: var(--tipografia_primaria);
-    font-size: 1rem;
     font-weight: 550;
 
     color: var(--cor_seis);
 }
 
-.diminuir_quantidade_de_produto {
+.container_info_produto_material_sacola span {
 
-    cursor: pointer;
-    transition: 0.3s;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    width: 35%;
-    height: 100%;
-
-    border: none;
-
-    font-family: var(--tipografia_primaria);
-    font-size: 1.4rem;
-    font-weight: 500;
-
-    color: var(--cor_seis);
-    background-color: transparent;
-}
-
-.diminuir_quantidade_de_produto:hover {
-
-    border-top-left-radius: 100vw;
-    border-bottom-left-radius: 100vw;
-    background-color: var(--cor_doze_v_um);
-}
-
-.aumentar_quantidade_de_produto {
-
-    cursor: pointer;
-    transition: 0.3s;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    width: 35%;
-    height: 100%;
-
-    border: none;
-
-    font-family: var(--tipografia_primaria);
-    font-size: 1.4rem;
-    font-weight: 450;
-
-    color: var(--cor_seis);
-    background-color: transparent;
-}
-
-.aumentar_quantidade_de_produto:hover {
-
-    border-top-right-radius: 100vw;
-    border-bottom-right-radius: 100vw;
-    background-color: var(--cor_doze_v_um);
-}
-
-
-.container_info_produto_quantidade_e_nome {
-
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    width: 50%;
-    height: 100%;
-    margin-left: 5%;
+    color: var(--cor_seis_v_um);
 }
 
 .container_imagem_do_produto_sacola img {
