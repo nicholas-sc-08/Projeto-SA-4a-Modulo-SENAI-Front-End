@@ -57,7 +57,7 @@ function page() {
               <button onClick={() => setDivAtiva("informacoes")}>Informações</button>
               <button onClick={() => setDivAtiva("endereco")}>Endereço</button>
               <button onClick={() => setDivAtiva("sobre-brecho")}>Sobre o brechó</button>
-              {/* <button onClick={() => setDivAtiva("redes-sociais")}>Redes Sociais</button> */}
+              <button onClick={() => setDivAtiva("redes-sociais")}>Redes Sociais</button>
             </div>
 
             <div className={styles["informacoes-exibidas-content"]}>
@@ -121,19 +121,19 @@ function page() {
               {divAtiva === "sobre-brecho" && (
                 <>
 
-                  <div className={styles["titulo-topico-exibido-content"]}>
+                  <div className={styles["titulo-topico-exibido-sobre-content"]}>
                     <p>Informações de Sobre o Brechó</p>
                   </div>
 
                   <div className={styles["infos-cadastradas-sobre-sub-div"]}>
-                    <span className={styles["dados-cadastradas-exibidos"]}> adas e não tenha medo de experimentar diferentes estilos. Nos bazares, chegue cedo para garantir as melhores ofertas e esteja preparado para pechinchar. Leve dinheiro em espécie, pois muitos bazares não aceitam cartões. Os bazares se destacam pela variedade de itens e pelo propósito beneficente. Muitas vezes organizados por instituições de caridade, escolas ou igrejas, os bazares reúnem uma grande quantidade de produtos doados por membros da comunidade. Isso não só promove a reciclagem e o reuso de itens, mas também ajuda a arrecadar fundos para diversas causas. Participar de um bazar é uma forma de contribuir para a comunidade, ao mesmo tempo que você encontra produtos variados a preços acessíveis. Os bazares se destacam pela variedade de itens e pelo propósito beneficente. Muitas vezes organizados por instituições de caridade, escolas ou igrejas, os bazares reúnem uma grande quantidade de produtos doados por membros da comunidade. Isso não só promove a reciclagem e o reuso de itens, mas também ajuda a arrecadar fundos para diversas causas. Participar de um bazar é uma forma de contribuir para a comunidade, ao mesmo tempo que você encontra produtos variados a preços acessíveis. E, acima de tudo, divirta-se explorando e apoiando boas causas. Comprar em brechós oferece inúmeros benefícios. Primeiramente, você pode encontrar peças exclusivas e vintage que não estão disponíveis nas lojas convencionais. Além disso, ao comprar de segunda mão, você está contribuindo para a sustentabilidade, reduzindo o desperdício e a demanda por novos produtos. Outro benefício é o custo, muitas vezes mais baixo do que o de itens novos, permitindo que você economize enquanto adquire peças de qualidade.</span>
+                    <span className={styles["dados-cadastradas-exibidos"]}> dufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieauEDRGERGAERGAsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieauEDRGERGAERGAsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieauEDRGERGAERGAsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieauEDRGERGAERGAsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieauEDRGERGAERGAgrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieauEDRGERGAERGAEAEAEAEAEAEAEAEAEAEAEAEAEAEAEAEAEAEAEAEAEAEAEGGGGGGGGGGGGGaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaagiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvudiaufuwhefroHEFOIHsaoihfosihdofsdihfoihsaofihoahhc  hdfiawshdhsafiuaas, saidfsiaud , iudsiuhsddi h,ksiduhf iushadfiuhafwheaiufhIOHSJHDCSJDBVUEYGRFEQR8WEHFDhihIUHHHFIUHSIFUHIUHGVIDFSUIGHIUSIUGVfícios. Primeiramente, você pode encontrar peças exclusivas e vintage que não estão disponíveis nas lojas convencionais. Além disso, ao comprar de segunda mão, você está contribuindo para a sustentabilidade, reduzindo o desperdício e a demanda por novos produtos. Outro benefício é o custo, muitas vezes mais baixo do que o de itens novos, permitindo que você economize enquanto adquire peças de qualidade.</span>
                   </div>
 
                 </>
               )}
 
 
-              {/* {divAtiva === "redes-sociais" && (
+              {divAtiva === "redes-sociais" && (
                 <>
 
                   <div className={styles["titulo-topico-exibido-content"]}>
@@ -148,11 +148,13 @@ function page() {
                     <label className={styles["labels-info"]}>Facebook: </label>
                     <span className={styles["dados-cadastradas-exibidos"]}></span>
 
+                     <label className={styles["labels-info"]}>Whatsapp: </label>
+                    <span className={styles["dados-cadastradas-exibidos"]}></span>
                   </div>
 
 
                 </>
-              )} */}
+              )}
 
             </div>
 
