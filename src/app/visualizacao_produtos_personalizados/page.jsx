@@ -68,8 +68,8 @@ function page() {
       descricao:
         "Caixa resistente e elegante, ideal para embalar seus produtos com cuidado e estilo. Personalize e transforme a experiência de entrega em algo memorável e sustentável.",
       opcoes: {
-        material: ["Papelão"],
-        tamanho: ["Pequeno", "Médio", "Grande"],
+        material: ["papelao_reciclavel"],
+        tamanho: ["pequeno", "medio", "grande"],
         padrao: ["logo_fly", "logo_fly_nome", "logo_fly_embaixo"],
         cor_corpo: [],
         cor_detalhes: [],
