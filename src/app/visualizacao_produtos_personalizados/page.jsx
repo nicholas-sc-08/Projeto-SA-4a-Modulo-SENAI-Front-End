@@ -32,37 +32,37 @@ function page() {
   // 🔹 Configuração dos produtos
   const produtos_config = {
     ecobag: {
-      nome: "EcoBag",
+      nome: "ecobag",
       preco: 5.47,
       imagem: "/img/produtos_personalizados/ecobag/sacola_ecobag_normal.svg",
       descricao:
         "Uma peça simples, versátil e cheia de propósito. Nossa ecobag foi pensada para quem quer unir estilo e consciência. Personalize e transforme um acessório do dia a dia em algo único, feito pra você.",
       opcoes: {
-        material: ["Algodão", "Poliéster reciclável"],
-        tamanho: ["Médio", "Grande"],
+        material: ["algodao", "poliester_reciclavel"],
+        tamanho: ["medio", "grande"],
         padrao: ["logo_fly", "logo_fly_nome", "logo_fly_embaixo"],
-        cor_corpo: ["Amarelo", "Marrom", "Verde", "Areia"],
-        cor_alca: ["Amarelo", "Verde", "Areia"],
+        cor_corpo: ["amarelo", "marrom", "verde", "areia"],
+        cor_alca: ["amarelo", "verde", "areia"],
       },
     },
     sacola: {
-      nome: "Sacola",
+      nome: "sacola",
       preco: 0.16,
       imagem: "/img/produtos_personalizados/sacola/sacola-padrao-meio-virada.png",
       descricao:
         "Esta sacola é pra você que valoriza moda feita com sentido: reutilizável, personalizável e amiga do meio ambiente. Transforme-a em algo só seu e mostre ao mundo que agir bem com o planeta também é tendência.",
       opcoes: {
         material: [
-          "Sacola plástica biodegradável",
-          "Sacola de papel kraft (cor original)",
+          "plastico_biodegradavel",
+          "papel_kraft",
         ],
-        tamanho: ["Pequeno", "Médio", "Grande"],
+        tamanho: ["pequeno", "medio", "grande"],
         padrao: ["logo_fly", "logo_fly_nome", "logo_fly_embaixo"],
-        cor_corpo: ["Verde", "Branca"],
+        cor_corpo: ["verde", "branco"],
       },
     },
     caixa: {
-      nome: "Caixa",
+      nome: "caixa",
       preco: 0.85,
       imagem: "/img/produtos_personalizados/caixa/caixa_normal.svg",
       descricao:
