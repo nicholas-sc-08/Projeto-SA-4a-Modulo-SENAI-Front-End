@@ -144,7 +144,7 @@ function page() {
    // --- Sacola ---
 if (produto === "sacola") {
   const cor = selecaoAtual.cor_corpo;
-  const padrao = selecaoAtual.padrao;
+  const padrao = selecaoAtual.padrao;  
 
       if (cor && padrao) {
         // Combinações de cor + padrão
@@ -162,7 +162,7 @@ if (produto === "sacola") {
             default:
               setImagemAtual("/img/produtos_personalizados/sacola/sacola-verde-meio-virada.png");
           }
-        } else if (cor === "Branca") {
+        } else if (cor === "branco") {
           switch (padrao) {
             case "logo_fly":
               setImagemAtual("/img/produtos_personalizados/sacola/sacola-branca-meio-virada-logo-nome-meio.png.png");
