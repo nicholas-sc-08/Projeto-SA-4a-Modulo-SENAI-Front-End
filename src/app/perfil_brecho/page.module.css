@@ -113,7 +113,7 @@
 }
 
 .parte-inferior-do-perfil-brecho-content {
-    /* border: 1px solid red; */
+    border: 1px solid red;
 
     height: 29vh;
     width: 100%;
@@ -133,6 +133,7 @@
     justify-content: flex-start;
     align-items: center;
     padding-left: 1%;
+    padding-bottom: 1%;
     gap: 2rem;
 }
 
@@ -171,7 +172,7 @@
 .titulo-topico-exibido-content {
     /* border: 1px solid #D07900; */
 
-    height: 20%;
+    height: 15%;
     width: 99%;
 
     display: flex;
@@ -204,7 +205,8 @@
 /* ----- div sobre o brechó -----*/
 
 .titulo-topico-exibido-sobre-content {
-    height: 20%;
+    border: 1px solid #D07900;
+    height: 10%;
     width: 99%;
 
     display: flex;
@@ -223,7 +225,7 @@
 .infos-cadastradas-sobre-sub-div {
     border: 1px solid #D07900;
     
-    height: 79%;
+    height: 26%;
     width: 99%;
 
     display: flex;
