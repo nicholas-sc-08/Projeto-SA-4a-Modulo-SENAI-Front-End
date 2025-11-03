@@ -19,15 +19,35 @@ function page() {
   const { produto_selecionado } = useGlobalContext();
   const [quantidade, set_quantidade] = useState(1);
 
+  // 🔹 Tradução de padrões, cores, material e tamanho para exibição
+  const traducaoPadroes = {
+    logo_fly: "Logo da Fly",
+    logo_fly_nome: "Logo da Fly e Nome",
+    logo_fly_embaixo: "Logo da Fly embaixo",
+    sem_logo: "Sem Logo",
+  };
 
+  const traducaoCores = {
+    amarelo: "Amarelo",
+    marrom: "Marrom",
+    verde: "Verde",
+    areia: "Areia",
+    branco: "Branco",
+  };
 
-     // 🔹 Dicionário de tradução dos padrões (só para exibição)
-    const traducaoPadroes = {
-      logo_fly: "Logo da Fly",
-      logo_fly_nome: "Logo da Fly e Nome",
-      logo_fly_embaixo: "Logo da Fly embaixo",
-      sem_logo: "Sem Logo",
-    };
+  const traducaoMaterial = {
+    algodao: "Algodão",
+    poliester_reciclavel: "Poliéster Reciclável",
+    plastico_biodegradavel: "Plástico Biodegradável",
+    papel_kraft: "Papel Kraft",
+    papelao_reciclavel: "Papelão Reciclável",
+  };
+
+  const traducaoTamanho = {
+    pequeno: "Pequeno",
+    medio: "Médio",
+    grande: "Grande",
+  };
 
   // 🔹 Configuração dos produtos
   const produtos_config = {
@@ -52,13 +72,11 @@ function page() {
       descricao:
         "Esta sacola é pra você que valoriza moda feita com sentido: reutilizável, personalizável e amiga do meio ambiente. Transforme-a em algo só seu e mostre ao mundo que agir bem com o planeta também é tendência.",
       opcoes: {
-        material: [
-          "plastico_biodegradavel",
-          "papel_kraft",
-        ],
+        material: ["plastico_biodegradavel", "papel_kraft"],
         tamanho: ["pequeno", "medio", "grande"],
         padrao: ["logo_fly", "logo_fly_nome", "logo_fly_embaixo"],
         cor_corpo: ["verde", "branco"],
+        cor_alca: [],
       },
     },
     caixa: {
@@ -86,25 +104,23 @@ function page() {
     cor_detalhes: "",
   });
 
+  const produto_atual = produtos_config[produto_selecionado];
+  const [imagemAtual, setImagemAtual] = useState(produto_atual?.imagem || "");
+
+  // 🔹 Define header conforme brecho ou usuario
   useEffect(() => {
     const encontrar_brecho = array_brechos.find(
-      (brecho) => brecho._id == usuario_logado._id
+      (brecho) => brecho._id === usuario_logado._id
     );
-
-    if (encontrar_brecho) {
-      set_tipo_de_header("brecho");
-    } else {
-      set_tipo_de_header("usuario");
-    }
+    set_tipo_de_header(encontrar_brecho ? "brecho" : "usuario");
   }, []);
 
-  // Resetar seleções quando o produto muda
+  // 🔹 Resetar seleções ao mudar produto
   useEffect(() => {
     if (!produto_selecionado) {
       router.push("/escolha_de_personalizacao_produtos");
       return;
     }
-
     set_selecoes({
       material: "",
       tamanho: "",
@@ -114,41 +130,23 @@ function page() {
       cor_detalhes: "",
     });
     set_quantidade(1);
+    setImagemAtual(produto_atual.imagem);
   }, [produto_selecionado]);
 
-  const produto_atual = produtos_config[produto_selecionado];
-  const [imagemAtual, setImagemAtual] = useState(produto_atual.imagem);
-
-  // 🔹 Atualiza a imagem com base nas seleções
+  // 🔹 Atualiza a imagem conforme seleções
   const atualizar_imagem_dinamica = (selecaoAtual) => {
-    const produto = produto_selecionado;
+    const cor = selecaoAtual.cor_corpo?.toLowerCase();
+    const padrao = selecaoAtual.padrao;
 
+    switch (produto_selecionado) {
+      case "ecobag":
+        if (cor && ["amarelo", "marrom", "verde", "areia"].includes(cor))
+          setImagemAtual(`/img/produtos_personalizados/ecobag/ecobag_${cor}.svg`);
+        else setImagemAtual(produto_atual.imagem);
+        break;
 
- 
-
-
-
-    // --- Ecobag ---
-    if (produto === "ecobag") {
-      if (selecaoAtual.cor_corpo === "Amarelo")
-        setImagemAtual("/img/produtos_personalizados/ecobag/ecobag_amarelo.svg");
-      else if (selecaoAtual.cor_corpo === "Marrom")
-        setImagemAtual("/img/produtos_personalizados/ecobag/ecobag_marrom.svg");
-      else if (selecaoAtual.cor_corpo === "Verde")
-        setImagemAtual("/img/produtos_personalizados/ecobag/ecobag_verde.svg");
-      else if (selecaoAtual.cor_corpo === "Areia")
-        setImagemAtual("/img/produtos_personalizados/ecobag/ecobag_areia.svg");
-      else setImagemAtual(produto_atual.imagem);
-    }
-
-   // --- Sacola ---
-if (produto === "sacola") {
-  const cor = selecaoAtual.cor_corpo;
-  const padrao = selecaoAtual.padrao;
-
-      if (cor && padrao) {
-        // Combinações de cor + padrão
-        if (cor === "Verde") {
+      case "sacola":
+        if (cor === "verde") {
           switch (padrao) {
             case "logo_fly":
               setImagemAtual("/img/produtos_personalizados/sacola/sacola-verde-meio-virada-logo-nome-meio.png");
@@ -162,10 +160,10 @@ if (produto === "sacola") {
             default:
               setImagemAtual("/img/produtos_personalizados/sacola/sacola-verde-meio-virada.png");
           }
-        } else if (cor === "Branca") {
+        } else if (cor === "branco") {
           switch (padrao) {
             case "logo_fly":
-              setImagemAtual("/img/produtos_personalizados/sacola/sacola-branca-meio-virada-logo-nome-meio.png.png");
+              setImagemAtual("/img/produtos_personalizados/sacola/sacola-branca-meio-virada-logo-nome-meio.png");
               break;
             case "logo_fly_nome":
               setImagemAtual("/img/produtos_personalizados/sacola/sacola-branca-meio-virada-logo-nome-embaixo.png");
@@ -176,61 +174,47 @@ if (produto === "sacola") {
             default:
               setImagemAtual("/img/produtos_personalizados/sacola/sacola-branca-meio-virada.png");
           }
+        } else if (padrao) {
+          switch (padrao) {
+            case "logo_fly":
+              setImagemAtual("/img/produtos_personalizados/sacola/sacola-padrao-meio-virada-logo-nome-meio.png");
+              break;
+            case "logo_fly_nome":
+              setImagemAtual("/img/produtos_personalizados/sacola/sacola-padrao-meio-virada-logo-nome-embaixo.png");
+              break;
+            case "logo_fly_embaixo":
+              setImagemAtual("/img/produtos_personalizados/sacola/sacola-padrao-meio-virada-logo-embaixo.png");
+              break;
+            default:
+              setImagemAtual(produto_atual.imagem);
+          }
         } else {
           setImagemAtual(produto_atual.imagem);
         }
+        break;
 
-      } else if (cor) {
-        // Se só a cor foi escolhida
-        if (cor === "Verde")
-          setImagemAtual("/img/produtos_personalizados/sacola/sacola-verde-meio-virada.png");
-        else if (cor === "Branca")
-          setImagemAtual("/img/produtos_personalizados/sacola/sacola-branca-meio-virada.png");
-        else
-          setImagemAtual(produto_atual.imagem);
-
-      } else if (padrao) {
-        // Se só o padrão foi escolhido (cor continua padrão)
+      case "caixa":
         switch (padrao) {
           case "logo_fly":
-            setImagemAtual("/img/produtos_personalizados/sacola/sacola-padrao-meio-virada-logo-nome-meio.png");
+            setImagemAtual("/img/produtos_personalizados/caixa/caixa-meio-virada-logo-embaixo.svg");
             break;
           case "logo_fly_nome":
-            setImagemAtual("/img/produtos_personalizados/sacola/sacola-padrao-meio-virada-logo-nome-embaixo.png");
+            setImagemAtual("/img/produtos_personalizados/caixa/caixa-meio-virada-logo-nome-emcima.svg");
             break;
           case "logo_fly_embaixo":
-            setImagemAtual("/img/produtos_personalizados/sacola/sacola-padrao-meio-virada-logo-embaixo.png");
+            setImagemAtual("/img/produtos_personalizados/caixa/caixa-meio-virada-logo-nome-embaixo.svg");
             break;
           default:
             setImagemAtual(produto_atual.imagem);
         }
+        break;
 
-      } else {
-        // Nenhuma opção escolhida
+      default:
         setImagemAtual(produto_atual.imagem);
-      }
-    }
-
-
-    // --- Caixa ---
-    if (produto === "caixa") {
-      switch (selecaoAtual.padrao) {
-        case "logo_fly":
-          setImagemAtual("/img/produtos_personalizados/caixa/caixa-meio-virada-logo-embaixo.svg");
-          break;
-        case "logo_fly_nome":
-          setImagemAtual("/img/produtos_personalizados/caixa/caixa-meio-virada-logo-nome-emcima.svg");
-          break;
-        case "logo_fly_embaixo":
-          setImagemAtual("/img/produtos_personalizados/caixa/caixa-meio-virada-logo-nome-embaixo.svg");
-          break;
-        default:
-          setImagemAtual(produto_atual.imagem);
-      }
     }
   };
 
-  // 🔹 Atualizar seleções
+  // 🔹 Atualiza seleções
   const atualizar_selecao = (tipo, valor) => {
     set_selecoes((prev) => {
       const novasSelecoes = { ...prev, [tipo]: valor };
@@ -253,25 +237,22 @@ if (produto === "sacola") {
       valor: Number(produto_atual.preco * quantidade),
       id_brecho: usuario_logado._id,
     };
-
     if (selecoes.cor_corpo) objeto.cor_corpo = selecoes.cor_corpo;
     if (selecoes.cor_alca) objeto.cor_alca = selecoes.cor_alca;
-    if (selecoes.cor_detalhes) objeto.cor = selecoes.cor_detalhes;
+    if (selecoes.cor_detalhes) objeto.cor_detalhes = selecoes.cor_detalhes;
 
     return objeto;
   };
 
   const enviar_pedido = async () => {
     const pedido = criar_objeto_pedido();
-
     if (!pedido.material || !pedido.padrao || !pedido.tamanho) {
       alert("Por favor, selecione todas as opções obrigatórias");
       return;
     }
-
     try {
       await api.post("/sacolas_brechos", pedido);
-      buscar_sacolas_brechos().then(sacolas => set_array_sacola_brecho(sacolas));
+      buscar_sacolas_brechos().then((sacolas) => set_array_sacola_brecho(sacolas));
       alert("Pedido enviado com sucesso!");
     } catch (error) {
       console.error("Erro ao enviar pedido:", error);
@@ -336,7 +317,6 @@ if (produto === "sacola") {
                 <div className={styles["line-personalizar-produtos"]}></div>
               </div>
 
-              {/* Opções de personalização */}
               <div className={styles["container-opcoes-personalizacao"]}>
                 {/* Material */}
                 <div className={styles["escolha-material"]}>
@@ -345,12 +325,10 @@ if (produto === "sacola") {
                     {produto_atual.opcoes.material.map((m, i) => (
                       <button
                         key={i}
-                        className={
-                          selecoes.material === m ? styles["opcao-selecionada"] : ""
-                        }
+                        className={selecoes.material === m ? styles["opcao-selecionada"] : ""}
                         onClick={() => atualizar_selecao("material", m)}
                       >
-                        {m}
+                        {traducaoMaterial[m] || m}
                       </button>
                     ))}
                   </div>
@@ -363,17 +341,16 @@ if (produto === "sacola") {
                     {produto_atual.opcoes.tamanho.map((t, i) => (
                       <button
                         key={i}
-                        className={
-                          selecoes.tamanho === t ? styles["opcao-selecionada"] : ""
-                        }
+                        className={selecoes.tamanho === t ? styles["opcao-selecionada"] : ""}
                         onClick={() => atualizar_selecao("tamanho", t)}
                       >
-                        {t}
+                        {traducaoTamanho[t] || t}
                       </button>
                     ))}
                   </div>
                 </div>
 
+                {/* Padrão e cores */}
                 <div className={styles["container-alinhamento-multiplas-escolhas-cores"]}>
                   {/* Padrão */}
                   <div className={styles["escolha-padrao"]}>
@@ -387,14 +364,13 @@ if (produto === "sacola") {
                       </option>
                       {produto_atual.opcoes.padrao.map((p, i) => (
                         <option key={i} value={p}>
-                          {traducaoPadroes[p] || p} {/* Exibe traduzido, mas mantém valor original */}
+                          {traducaoPadroes[p] || p}
                         </option>
                       ))}
                     </select>
-
                   </div>
 
-                  {/* Cores (opcionais) */}
+                  {/* Cores corpo */}
                   {produto_atual.opcoes.cor_corpo?.length > 0 && (
                     <div className={styles["escolha-padrao"]}>
                       <label>Escolha a cor do corpo</label>
@@ -407,13 +383,14 @@ if (produto === "sacola") {
                         </option>
                         {produto_atual.opcoes.cor_corpo.map((c, i) => (
                           <option key={i} value={c}>
-                            {c}
+                            {traducaoCores[c] || c}
                           </option>
                         ))}
                       </select>
                     </div>
                   )}
 
+                  {/* Cores alça */}
                   {produto_atual.opcoes.cor_alca?.length > 0 && (
                     <div className={styles["escolha-padrao"]}>
                       <label>Escolha a cor da alça</label>
@@ -426,7 +403,7 @@ if (produto === "sacola") {
                         </option>
                         {produto_atual.opcoes.cor_alca.map((c, i) => (
                           <option key={i} value={c}>
-                            {c}
+                            {traducaoCores[c] || c}
                           </option>
                         ))}
                       </select>
