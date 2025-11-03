@@ -85,7 +85,7 @@ export function nome_produto(tipo) {
     };
 };
 
-export function imagem_produto_sacola_brecho(tipo, padrao) {
+export function imagem_produto_sacola_brecho(tipo, padrao, cor_corpo) {
 
     switch (tipo == "caixa") {
 
@@ -100,6 +100,12 @@ export function imagem_produto_sacola_brecho(tipo, padrao) {
 
         case padrao == "sem_logo":
             return "./img/produtos_personalizados/caixa/caixa_normal.svg";
+    };
+
+    switch (tipo == "sacola") {
+
+        case padrao == "logo_fly" && cor_corpo == "verde":
+            return "./img/produtos_personalizados/"
     };
 };
 
