@@ -8,7 +8,7 @@ import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { AnimatePresence } from 'framer-motion';
 import { useGlobalContext } from '@/context/GlobalContext';
-import api from '@/services/api';
+import api from '../../services/api';
 import Header from '@/components/header/Header';
 import Footer from '@/components/footer/Footer';
 import Pop_up_conversa_adicionada from '@/components/pop_up_conversa_adicionada/Pop_up_conversa_adicionanda';

@@ -9,6 +9,7 @@ export const GlobalContextProvider = ({ children }) => {
 
     const [array_clientes, set_array_clientes] = useState([]);
     const [array_brechos, set_array_brechos] = useState([]);
+    const [array_sacola_brecho, set_array_sacola_brecho] = useState([]);
     const [array_produtos, set_array_produtos] = useState([]);
     const [array_categorias, set_array_categorias] = useState([]);
     const [array_marcas, set_array_marcas] = useState([]);
@@ -91,6 +92,8 @@ export const GlobalContextProvider = ({ children }) => {
 
     const [produto_selecionado, set_produto_selecionado] = useState('ecobag');
 
+    const [popupExcluirAberto, setPopupExcluirAberto] = useState(false)
+    const [popupSairAberto, setPopupSairAberto] = useState(false)
 
     // função para quando alguém der F5/atualizar a página, os dados do usuário logado sejam guardados no localStorage
     useEffect(() => {
@@ -124,6 +127,8 @@ export const GlobalContextProvider = ({ children }) => {
             set_array_enderecos,
             array_brechos,
             set_array_brechos,
+            array_sacola_brecho,
+            set_array_sacola_brecho,
             array_produtos,
             set_array_produtos,
             array_categorias,
@@ -271,8 +276,12 @@ export const GlobalContextProvider = ({ children }) => {
             set_pop_up_notificacao_excluir_marca,
             id_marca_selecionada,
             set_id_marca_selecionada,
-            produto_selecionado, 
-            set_produto_selecionado
+            produto_selecionado,
+            set_produto_selecionado,
+            popupExcluirAberto,
+            setPopupExcluirAberto,
+            popupSairAberto,
+            setPopupSairAberto
         }}>
             {children}
         </GlobalContext.Provider>

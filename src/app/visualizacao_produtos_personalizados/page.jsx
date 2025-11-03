@@ -15,6 +15,7 @@ function page() {
   const { tipo_de_header, set_tipo_de_header } = useGlobalContext();
   const { array_brechos } = useGlobalContext();
   const { array_sacola_brecho, set_array_sacola_brecho } = useGlobalContext();
+  const { array_sacola_brecho, set_array_sacola_brecho } = useGlobalContext();
   const { usuario_logado } = useGlobalContext();
   const { produto_selecionado } = useGlobalContext();
   const [quantidade, set_quantidade] = useState(1);
@@ -41,6 +42,7 @@ function page() {
         material: ["Algodão", "Poliéster reciclável"],
         tamanho: ["Médio", "Grande"],
         padrao: ["logo_fly", "logo_fly_nome", "logo_fly_embaixo"],
+        padrao: ["logo_fly", "logo_fly_nome", "logo_fly_embaixo"],
         cor_corpo: ["Amarelo", "Marrom", "Verde", "Areia"],
         cor_alca: ["Amarelo", "Verde", "Areia"],
       },
@@ -58,6 +60,7 @@ function page() {
         ],
         tamanho: ["Pequeno", "Médio", "Grande"],
         padrao: ["logo_fly", "logo_fly_nome", "logo_fly_embaixo"],
+        padrao: ["logo_fly", "logo_fly_nome", "logo_fly_embaixo"],
         cor_corpo: ["Verde", "Branca"],
       },
     },
@@ -70,6 +73,7 @@ function page() {
       opcoes: {
         material: ["Papelão"],
         tamanho: ["Pequeno", "Médio", "Grande"],
+        padrao: ["logo_fly", "logo_fly_nome", "logo_fly_embaixo"],
         padrao: ["logo_fly", "logo_fly_nome", "logo_fly_embaixo"],
         cor_corpo: [],
         cor_detalhes: [],
@@ -141,10 +145,10 @@ function page() {
       else setImagemAtual(produto_atual.imagem);
     }
 
-   // --- Sacola ---
-if (produto === "sacola") {
-  const cor = selecaoAtual.cor_corpo;
-  const padrao = selecaoAtual.padrao;
+    // --- Sacola ---
+    if (produto === "sacola") {
+      const cor = selecaoAtual.cor_corpo;
+      const padrao = selecaoAtual.padrao;
 
       if (cor && padrao) {
         // Combinações de cor + padrão
@@ -188,6 +192,14 @@ if (produto === "sacola") {
           setImagemAtual("/img/produtos_personalizados/sacola/sacola-branca-meio-virada.png");
         else
           setImagemAtual(produto_atual.imagem);
+      } else if (cor) {
+        // Se só a cor foi escolhida
+        if (cor === "Verde")
+          setImagemAtual("/img/produtos_personalizados/sacola/sacola-verde-meio-virada.png");
+        else if (cor === "Branca")
+          setImagemAtual("/img/produtos_personalizados/sacola/sacola-branca-meio-virada.png");
+        else
+          setImagemAtual(produto_atual.imagem);
 
       } else if (padrao) {
         // Se só o padrão foi escolhido (cor continua padrão)
@@ -205,6 +217,11 @@ if (produto === "sacola") {
             setImagemAtual(produto_atual.imagem);
         }
 
+      } else {
+        // Nenhuma opção escolhida
+        setImagemAtual(produto_atual.imagem);
+      }
+    }
       } else {
         // Nenhuma opção escolhida
         setImagemAtual(produto_atual.imagem);
@@ -271,6 +288,7 @@ if (produto === "sacola") {
 
     try {
       await api.post("/sacolas_brechos", pedido);
+      buscar_sacolas_brechos().then(sacolas => set_array_sacola_brecho(sacolas));
       buscar_sacolas_brechos().then(sacolas => set_array_sacola_brecho(sacolas));
       alert("Pedido enviado com sucesso!");
     } catch (error) {
