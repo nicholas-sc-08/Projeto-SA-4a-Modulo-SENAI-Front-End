@@ -301,16 +301,7 @@ function page() {
                 <div className={styles["container-preço-quantidade"]}>
                   <h4>R$ {produto_atual.preco.toFixed(2).replace(".", ",")} un</h4>
 
-                  <div className={styles["container-contador-quantidade-produtos"]}>
-                    <button
-                      disabled={quantidade === 1}
-                      onClick={() => alterar_quantidade("diminuir")}
-                    >
-                      -
-                    </button>
-                    <span>{quantidade}</span>
-                    <button onClick={() => alterar_quantidade("aumentar")}>+</button>
-                  </div>
+                  
                 </div>
 
                 <p>{produto_atual.descricao}</p>
