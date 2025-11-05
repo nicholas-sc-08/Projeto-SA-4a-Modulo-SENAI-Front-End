@@ -2,21 +2,27 @@
     margin: 0;
 }  */
 
+
 /* .toda-a-tela-content {
-    border: 1px solid #18CA00; 
+    border: 1px solid #18CA00;
+
 
     height: 110vh;
     width: 100%;
+
 
     display: flex;
     flex-direction: column;
 } */
 
+
 .entre-navbar-e-footer-content {
     border: 1px solid #D08E00;
 
+
     min-height: 180vh;
     width: 100%;
+
 
     display: flex;
     flex-direction: column;
@@ -24,10 +30,13 @@
     justify-content: space-evenly;
 }
 
+
 /* conteudo do PERFIL BRECHÓ */
+
 
 .perfil-brecho-content {
     /* border: 1px solid #D08E00; */
+
 
     min-height: 400px;
     width: 80%;
@@ -35,25 +44,31 @@
     /* height: 80%;
     width: 80%; */
 
+
     display: flex;
     flex-direction: column;
 }
 
+
 .parte-azul-superior-content {
     border: 1px solid #00d0c6;
 
+
     height: 25vh;
     width: 100%;
+
 
     display: flex;
     align-items: flex-start;
     justify-content: flex-end;
     padding-right: 0.5%;
 
+
     border-top-left-radius: 0.8rem;
     border-top-right-radius: 0.8rem;
     background-color: var(--cor_vinte_um);
 }
+
 
 .tres-pontos-icon {
     padding: 1%;
@@ -62,11 +77,14 @@
     border: none;
 }
 
+
 .parte-do-meio-logo-nome-content {
     border: 1px solid #00d0c6;
 
+
     height: 17vh;
     width: 100%;
+
 
     display: flex;
     flex-direction: row;
@@ -74,18 +92,23 @@
     gap: 3rem;
 }
 
+
 .logo-brecho-content {
     border: 3px solid rgb(43, 255, 0);
 
+
     height: 79%;
     width: 10%;
+
 
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
 
+
 }
+
 
 .logo-brecho-content img {
     border-radius: 7rem;
@@ -93,16 +116,20 @@
     width: 10rem;
 }
 
+
 .nome-brecho-content {
     /* border: 1px solid #d00092; */
 
+
     height: 70%;
     width: fit-content;
+
 
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
 }
+
 
 .nome-brecho-content h1 {
     font-family: "Montserrat", sans serif;
@@ -112,35 +139,43 @@
     color: var(--cor_seis);
 }
 
+
 .parte-inferior-do-perfil-brecho-content {
     border: 1px solid red;
 
+
     height: 29vh;
     width: 100%;
+
 
     display: flex;
     flex-direction: column;
 }
 
+
 .topicos-de-informacao-sobre-perfil-content {
     border-bottom: 1px solid var(--cor_nove_v_um);
 
+
     height: 15vh;
     width: 100%;
+
 
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
     padding-left: 1%;
-    padding-bottom: 1%;
+    padding-top: 1%;
     gap: 2rem;
 }
+
 
 .topicos-de-informacao-sobre-perfil-content button {
     width: fit-content;
     height: 100%;
     background-color: transparent;
+
 
     font-family: var(--tipografia_primaria);
     font-weight: 700;
@@ -150,36 +185,47 @@
     border: none;
 }
 
+
 .topicos-de-informacao-sobre-perfil-content button:active {
     border-bottom: 1.2px var(--cor_um);
     border-bottom-style: solid;
     border-radius: 0.8px;
 }
 
+
 .informacoes-exibidas-content {
     /* border: 1px solid #4c00d0; */
 
+
     height: 77vh;
     width: 99%;
+
 
     display: flex;
     flex-direction: column;
 }
 
 
+
+
 /* GERAL - className que foi usado em várias tags */
+
 
 .titulo-topico-exibido-content {
     /* border: 1px solid #D07900; */
 
+
     height: 15%;
     width: 99%;
 
+
     display: flex;
+
 
     align-items: center;
     padding-left: 1%;
 }
+
 
 .titulo-topico-exibido-content p {
     font-family: var(--tipografia_primaria);
@@ -188,11 +234,14 @@
     color: var(--cor_seis);
 }
 
+
 .infos-cadastradas-sub-div {
     /* border: 1px solid #D07900; */
 
+
     height: 79%;
     width: 99%;
+
 
     display: flex;
     flex-direction: column;
@@ -202,18 +251,23 @@
     /* padding-left: 1%; */
 }
 
+
 /* ----- div sobre o brechó -----*/
+
 
 .titulo-topico-exibido-sobre-content {
     border: 1px solid #D07900;
-    height: 10%;
+    height: 7%;
     width: 99%;
 
+
     display: flex;
+
 
     align-items: center;
     padding-left: 1%;
 }
+
 
 .titulo-topico-exibido-sobre-content p {
     font-family: var(--tipografia_primaria);
@@ -222,46 +276,55 @@
     color: var(--cor_seis);
 }
 
+
 .infos-cadastradas-sobre-sub-div {
     border: 1px solid #D07900;
-    
+   
     height: 26%;
     width: 99%;
+
 
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     padding: 1%;
 
+
     overflow-y: auto;
     word-wrap: break-word;
     overflow-wrap: break-word;
 }
 
+
 /* ------------ */
 
-/* .infos-cadastradas-sobre-sub-div span {
-    max-height: 20rem;
-} */
+
+
 
 .labels-e-dados-cadastrados-content {
     /* border: 3px solid red; */
 
+
     width: 100%;
     height: fit-content;
 
+
     display: flex;
+
 
 }
 
+
 .labels-info {
     padding-right: 1%;
+
 
     font-family: var(--tipografia_primaria);
     font-weight: 700;
     font-size: 0.8rem;
     color: var(--cor_vinte_dois);
 }
+
 
 .dados-cadastradas-exibidos {
     font-family: var(--tipografia_primaria);
@@ -271,23 +334,31 @@
 }
 
 
+
+
 /*CONTEUDO DO PRODUTOS DO BRECHÓ*/
+
 
 .produtos-do-brecho-content {
     border: 1px solid #D08E00;
 
+
     min-height: 70vh;
     width: 89%;
+
 
     display: flex;
     flex-direction: column;
 }
 
+
 .titulo-produtos-mais-ver-todos {
     border: 1px solid #D00000;
 
+
     height: 90%;
     width: 100%;
+
 
     display: flex;
     justify-content: space-between;
@@ -295,15 +366,19 @@
     padding: 1%;
 }
 
+
 .produtos-exibidos-do-brecho-content {
     border: 1px solid #D00000;
+
 
     height: 63vh;
     width: 100%;
 
+
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
+
 
     /* align-items: center; */
 }
