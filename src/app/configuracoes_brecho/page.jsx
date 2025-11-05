@@ -10,6 +10,7 @@ import { useRouter } from 'next/navigation';
 import Pop_up_confirmacao_excluir_conta from '@/components/pop_up_confirmacao_excluir_conta/Pop_up_confirmacao_excluir_conta';
 import Pop_up_confirmacao_sair_da_conta from '@/components/pop_up_confirmacao_sair_da_conta/Pop_up_confirmacao_sair_da_conta';
 import Redes_sociais from '@/components/opcoes_configuracoes/redes_sociais/Redes_sociais';
+import Meus_pedidos from '@/components/opcoes_configuracoes/meus_pedidos/Meus_pedidos';
 
 function Page() {
     const [secaoAtiva, setSecaoAtiva] = useState('meu-perfil');
@@ -28,8 +29,8 @@ function Page() {
                 return <Meu_perfil />;
             case 'redes-sociais':
                 return <Redes_sociais />
-            case 'eventos':
-                return <div>Componente Eventos</div>;
+            case 'meus-pedidos':
+                return <Meus_pedidos />;
             case 'saiba-mais':
                 return <div>Componente Saiba Mais</div>;
             case 'ajuda-faq':
@@ -89,10 +90,10 @@ function Page() {
                             Sobre o brechó
                         </button>
                         <button
-                            className={secaoAtiva === 'eventos' ? styles['ativo'] : ''}
-                            onClick={() => setSecaoAtiva('eventos')}
+                            className={secaoAtiva === 'meus-pedidos' ? styles['ativo'] : ''}
+                            onClick={() => setSecaoAtiva('meus-pedidos')}
                         >
-                            Eventos
+                            Meus pedidos
                         </button>
                         <button
                             className={secaoAtiva === 'saiba-mais' ? styles['ativo'] : ''}
