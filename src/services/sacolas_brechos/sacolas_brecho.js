@@ -87,6 +87,23 @@ export function nome_produto(tipo) {
 
 export function imagem_produto_sacola_brecho(tipo, padrao, cor_corpo) {
 
+    console.log(cor_corpo);
+
+    if(tipo == "sacola"){
+
+        switch (true) {
+    
+            case padrao == "logo_fly" && cor_corpo == "verde":
+                return "./img/produtos_personalizados/sacola/sacola-verde-meio-virada-logo-nome-meio.png";
+    
+            case padrao == "logo_fly_embaixo" && cor_corpo == "verde":
+                return "./img/produtos_personalizados/sacola/sacola-verde-meio-virada-logo-embaixo.png";
+        
+            case padrao == "logo_fly_nome" && cor_corpo == "verde":
+                return "./img/produtos_personalizados/sacola/sacola-verde-meio-virada-logo-nome-embaixo.png";
+        };
+    };
+
     switch (tipo == "caixa") {
 
         case padrao == "logo_fly":
@@ -102,20 +119,15 @@ export function imagem_produto_sacola_brecho(tipo, padrao, cor_corpo) {
             return "./img/produtos_personalizados/caixa/caixa_normal.svg";
     };
 
-    switch (tipo == "sacola") {
-
-        case padrao == "logo_fly" && cor_corpo == "verde":
-            return "./img/produtos_personalizados/"
-    };
 };
 
-export function padrao_produto_sacola_brecho(padrao){
+export function padrao_produto_sacola_brecho(padrao) {
 
-    switch(true){
+    switch (true) {
 
         case padrao == "logo_fly":
             return "Logo da Fly";
-        
+
         case padrao == "logo_fly_nome":
             return "Logo da Fly com Nome";
 

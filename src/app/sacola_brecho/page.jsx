@@ -262,7 +262,7 @@ export default function Sacola_geral() {
                                 <div key={i} className={styles['container_produto_sacola_geral']} onClick={() => ir_para_produto(produto_sacola)}>
 
                                     <div className={styles["container_imagem_do_produto_sacola_geral"]}>
-                                        <img src={imagem_produto_sacola_brecho(produto_sacola.tipo, produto_sacola.padrao)} alt="" />
+                                        <img src={imagem_produto_sacola_brecho(produto_sacola.tipo, produto_sacola.padrao, produto_sacola.cor_corpo)} alt="" />
                                     </div>
 
                                     <div className={styles["container_info_produto_sacola_geral"]}>
