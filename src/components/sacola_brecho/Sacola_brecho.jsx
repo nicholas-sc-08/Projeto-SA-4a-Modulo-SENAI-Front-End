@@ -156,8 +156,7 @@ export default function Sacola_brecho() {
                         <div key={i} className={styles['container_produtos_a_exibir_sacola']}>
 
                             <div className={styles["container_imagem_do_produto_sacola"]}>
-
-                                <img src={imagem_produto_sacola_brecho(produto.tipo, produto.padrao)} alt="" />
+                                <img src={imagem_produto_sacola_brecho(produto.tipo, produto.padrao, produto.cor_corpo)} alt="" />
 
                             </div>
 
