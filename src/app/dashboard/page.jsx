@@ -7,7 +7,7 @@ import { buscar_marcas } from '@/services/marca/marca';
 import { buscar_brechos } from '@/services/brecho/brecho';
 import { buscar_clientes } from '@/services/cliente/cliente';
 import Inicio_dashboard from '../../components/dashboard/Inicio_dashboard';
-// import Clientes_dashboard from '../../components/dashboard/Clientes_dashboard.jsx';
+import Clientes_dashboard from '@/components/dashboard/Clientes_dashboard';
 // import Categorias_dashboard from '../../components/dashboard/Categorias_dashboard.jsx';
 import Produtos_dashboard from '@/components/dashboard/Produto_dashboard';
 import Brechos_dashboard from '@/components/dashboard/Brechos_dashboard';
@@ -48,7 +48,7 @@ export default function DashBoard() {
             <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.4 }}>
 
                 {inicio_dashboard && <Inicio_dashboard />}
-                {/* {clientes_dashboard && <Clientes_dashboard />} */}
+                 {clientes_dashboard && <Clientes_dashboard />}
                 {/* {categorias_dashboard && <Categorias_dashboard />} */}
                 {produtos_dashboard && <Produtos_dashboard />}
                  {brechos_dashboard && <Brechos_dashboard />}

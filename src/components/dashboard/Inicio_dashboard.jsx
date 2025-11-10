@@ -8,6 +8,7 @@ import Header from '../Header/Header.jsx';
 import { useGlobalContext } from '@/context/GlobalContext';
 import { buscar_marcas } from '@/services/marca/marca';
 import { buscar_brechos } from '@/services/brecho/brecho';
+import { buscar_clientes } from '@/services/cliente/cliente.js';
 
 
 export default function Inicio_dashboard() {
@@ -48,6 +49,7 @@ export default function Inicio_dashboard() {
 
         buscar_marcas();
         buscar_brechos();
+        buscar_clientes();
     }, []);
 
     useEffect(() => {

@@ -2,7 +2,7 @@ import { useGlobalContext } from "@/context/GlobalContext";
 import React  from 'react';
 import { useEffect } from "react";
 import { buscar_clientes } from "@/services/cliente/cliente";
-import buscar_enderecos from "@/services/enderecos/enderecos";
+import {buscar_enderecos} from "@/services/enderecos/enderecos";
 import  styles from "@/components/pop_up_dashboard/Pop_up_de_excluir.module.css";
 
 export default function Pop_up_de_excluir() {

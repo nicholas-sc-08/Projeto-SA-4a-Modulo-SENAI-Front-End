@@ -3,11 +3,10 @@
 import { useEffect } from 'react';
 import { useRef } from 'react';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { AnimatePresence } from 'framer-motion';
-import Pop_up_de_excluir from '../pop_up_dashboard/Pop_up_de_excluir.jsx';
-import Pop_up_de_notificacao_dashboard from '../pop_up_dashboard/Pop_up_de_notificacao_dashboard.jsx';
+import Pop_up_de_excluir from '@/components/pop_up_dashboard/Pop_up_de_excluir.jsx';
+import Pop_up_de_notificacao_dashboard from '@/components/pop_up_dashboard/Pop_up_de_notificacao_dashboard.jsx';
 import Header from '../Header/Header.jsx';
 import { buscar_clientes } from '@/services/cliente/cliente.js';
 import { buscar_enderecos } from '@/services/enderecos/enderecos.js';
@@ -31,7 +30,6 @@ export default function Clientes_dashboard() {
   const [resultado_de_pesquisa_endereco, set_resultado_de_pesquisa_endereco] = useState([]);
   const [ids_filtrado, set_ids_filtrado] = useState(``);
   const referencia_do_inpt = useRef(null);
-  const navegar = useNavigate(``);
 
   function voltar_para_o_inicio() {
 
@@ -77,205 +75,126 @@ export default function Clientes_dashboard() {
 
   return (
     <AnimatePresence>
-
-      <motion.div className='container_clientes_dashbord' initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.4 }}>
-
+      <motion.div className={styles['container_clientes_dashbord']} initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.4 }}>
         <Header tipo='admin' />
 
-        {abrir_pop_up_dashboard && <div className="container_sombra_para_visualizar_pop_up"></div>}
+        {abrir_pop_up_dashboard && <div className={styles["container_sombra_para_visualizar_pop_up"]}></div>}
         {abrir_pop_up_dashboard && <Pop_up_de_excluir />}
-        {pop_up_notificacao_excluir_dashboard && <div className="container_sombra_para_visualizar_pop_up"></div>}
+        {pop_up_notificacao_excluir_dashboard && <div className={styles["container_sombra_para_visualizar_pop_up"]}></div>}
         {pop_up_notificacao_excluir_dashboard && <Pop_up_de_notificacao_dashboard />}
 
-        <div className="container-alinhamento-imagem-titulo-usuarios-dashboard">
-          <div className="container-alinhamento-imagem-usuarios-dashboard">
-            <div className="container-alinhamento-imagem-titulo-quantidade-usuarios-dashboard">
-              <div className="fundo-cinza-imagem-usuarios-dashboard">
-                <div className="fundo-verde-imagem-usuarios-dashboard">
+        <div className={styles["container-alinhamento-imagem-titulo-usuarios-dashboard"]}>
+          <div className={styles["container-alinhamento-imagem-usuarios-dashboard"]}>
+            <div className={styles["container-alinhamento-imagem-titulo-quantidade-usuarios-dashboard"]}>
+              <div className={styles["fundo-cinza-imagem-usuarios-dashboard"]}>
+                <div className={styles["fundo-verde-imagem-usuarios-dashboard"]}>
                   <img src="./img/icone-brecho-dashboard.svg" alt="Icone usuarios dashboard" />
                 </div>
               </div>
-
-              <div className="container-alinhamento-titulo-usuarios-dashboard">
-                <p className='titulo-um-usuarios-dashboard'>Clientes</p>
-                <p className='numero-de-usuarios-dashboard'>{array_clientes.length}</p>
+              <div className={styles["container-alinhamento-titulo-usuarios-dashboard"]}>
+                <p className={styles['titulo-um-usuarios-dashboard']}>Clientes</p>
+                <p className={styles['numero-de-usuarios-dashboard']}>{array_clientes.length}</p>
               </div>
             </div>
-
-            <div className="container-sair-de-usuarios-dashboard" onClick={voltar_para_o_inicio}>
+            <div className={styles["container-sair-de-usuarios-dashboard"]} onClick={voltar_para_o_inicio}>
               <p>Voltar</p>
-
               <img src="./img/icone_dashboard_sair.svg" alt="" />
             </div>
           </div>
         </div>
-
-        <div className="container_tabela_cliente_alinhamento">
-
-          <div className="container_tabela_clientes">
-
-            <div className="container_tabela_clientes_header">
-
-              <div className="container_barra_de_pesquisa" onClick={() => referencia_do_inpt.current.focus()}>
-
+        <div className={styles["container_tabela_cliente_alinhamento"]}>
+          <div className={styles["container_tabela_clientes"]}>
+            <div className={styles["container_tabela_clientes_header"]}>
+              <div className={styles["container_barra_de_pesquisa"]} onClick={() => referencia_do_inpt.current.focus()}>
                 <img src="./img/LupaIcon.svg" alt="lupa" />
                 <input type="text" placeholder="Buscar cliente" value={barra_de_pesquisa} onChange={e => set_barra_de_pesquisa(e.target.value)} />
-
               </div>
-
-              <div className="container_excluir_usuario">
-
+              <div className={styles["container_excluir_usuario"]}>
                 <button onClick={() => set_escolher_qual_excluir(!escolher_qual_excluir)}>{!escolher_qual_excluir ? <img src='./img/Lixeira_icon_v_dois.svg' alt='lixeira' /> : <img src='./img/icons/close-icon.png' alt='cancelar' />}</button>
-
               </div>
-
             </div>
-
-            <div className="container_separacao_de_informacoes_e_da_scrollbar">
-
-              <div className="container_alinhamento_de_informacoes_tabela_clientes">
-
-                <div className="container_titulos_da_tabela_clientes">
-
-                  <div className="container_titulos_informacoes_tabela_clientes">
-
-                    <span className='titulo_dashboard_nome'>Nome de Usuário</span>
-                    <span className='titulo_dashboard_email'>Email</span>
-                    <span className='titulo_dashboard_telefone'>Telefone</span>
-                    <span className='titulo_dashboard_senha'>Senha</span>
-                    <span className='titulo_dashboard_cep'>CPF</span>
-
+            <div className={styles["container_separacao_de_informacoes_e_da_scrollbar"]}>
+              <div className={styles["container_alinhamento_de_informacoes_tabela_clientes"]}>
+                <div className={styles["container_titulos_da_tabela_clientes"]}>
+                  <div className={styles["container_titulos_informacoes_tabela_clientes"]}>
+                    <span className={styles['titulo_dashboard_nome']}>Nome de Usuário</span>
+                    <span className={styles['titulo_dashboard_email']}>Email</span>
+                    <span className={styles['titulo_dashboard_telefone']}>Telefone</span>
+                    <span className={styles['titulo_dashboard_senha']}>Senha</span>
+                    <span className={styles['titulo_dashboard_cep']}>CPF</span>
                   </div>
-
                 </div>
-
-                <div className="container_tabela_clientes_resultados">
-
-                  <div className="container_sombreamento">
-
-
-                  </div>
-                  <div className="b">
-
-
+                <div className={styles["container_tabela_clientes_resultados"]}>
+                  <div className={styles["container_sombreamento"]}></div>
+                  <div className={styles["b"]}>
                     {!barra_de_pesquisa &&
-
                       array_clientes.map((cliente, i) => (
-
-                        <div key={i} className='container_colunas_serie_a'>
-
-                          <div className="container_coluna_imagem_de_perfil_cliente">
-
+                        <div key={i} className={styles['container_colunas_serie_a']}>
+                          <div className={styles["container_coluna_imagem_de_perfil_cliente"]}>
                             <img src={cliente.imagem_de_perfil} referrerPolicy="no-referrer" crossOrigin="anonymous" alt="" />
-
                           </div>
-
-                          <div className='container_colunas_serie_b'>
-
-                            <div className="container_coluna_nome_cliente">
-
+                          <div className={styles['container_colunas_serie_b']}>
+                            <div className={styles["container_coluna_nome_cliente"]}>
                               <span>{cliente.nome}</span>
-
                             </div>
-
-                            <div className="container_coluna_email_cliente">
-
+                            <div className={styles["container_coluna_email_cliente"]}>
                               <span>{cliente.email}</span>
-
                             </div>
-
-                            <div className="container_coluna_telefone_cliente">
-
+                            <div className={styles["container_coluna_telefone_cliente"]}>
                               <span>{cliente.telefone || "-"}</span>
-
                             </div>
-
-                            <div className="container_coluna_senha_cliente">
-
+                            <div className={styles["container_coluna_senha_cliente"]}>
                               <span>{cliente.senha || "-"}</span>
-
                             </div>
-
-                            <div className="container_coluna_cpf_cliente">
-
+                            <div className={styles["container_coluna_cpf_cliente"]}>
                               <span>{cliente.cpf || "-"}</span>
-
                             </div>
-
                           </div>
-
                           {escolher_qual_excluir && (
                             <button
-                              className="botao-excluir-individual-cliente"
+                              className={styles["botao-excluir-individual-cliente"]}
                               onClick={() => armazenar_id_do_cliente(cliente._id)}
                             >
                               <img src="./img/icons/lixeira-vermelha-icon.svg" alt="Excluir" />
                             </button>
                           )}
-
                         </div>
                       ))}
-
                     {barra_de_pesquisa && resultado_de_pesquisa.map((cliente, i) => (
-
-                      <div key={i} className='container_colunas_serie_a'>
-
-                        <div className="container_coluna_imagem_de_perfil_cliente">
-
+                      <div key={i} className={styles['container_colunas_serie_a']}>
+                        <div className={styles["container_coluna_imagem_de_perfil_cliente"]}>
                           <img src={cliente.imagem_de_perfil} alt="" />
-
                         </div>
-
-                        <div className='container_colunas_serie_b'>
-
-                          <div className="container_coluna_nome_cliente">
-
+                        <div className={styles['container_colunas_serie_b']}>
+                          <div className={styles["container_coluna_nome_cliente"]}>
                             <p>{cliente.nome}</p>
-
                           </div>
-
-                          <div className="container_coluna_email_cliente">
-
+                          <div className={styles["container_coluna_email_cliente"]}>
                             <p>{cliente.email}</p>
-
                           </div>
-
-                          <div className="container_coluna_telefone_cliente">
-
+                          <div className={styles["container_coluna_telefone_cliente"]}>
                             <p>{cliente.telefone || "-"}</p>
-
                           </div>
-
-                          <div className="container_coluna_cpf_cliente">
-
+                          <div className={styles["container_coluna_cpf_cliente"]}>
                             <p>{cliente.cpf || "-"}</p>
-
                           </div>
-
                         </div>
-
                         {escolher_qual_excluir && (
                           <button
-                            className="botao-excluir-individual-cliente"
+                            className={styles["botao-excluir-individual-cliente"]}
                             onClick={() => armazenar_id_do_cliente(cliente._id)}
                           >
                             <img src="./img/icons/lixeira-vermelha-icon.svg" alt="Excluir" />
                           </button>
                         )}
-
                       </div>
                     ))}
-
                   </div>
                 </div>
-
               </div>
-
             </div>
           </div>
-
         </div>
-
       </motion.div>
     </AnimatePresence>
   );
