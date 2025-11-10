@@ -1,187 +1,60 @@
 "use client";
 
-import React from "react";
-import styles from "@/app/dashboard/page.module.css";
-import Sidebar from "@/components/sidebar_brecho/Siderbar";
-import { Bell } from "lucide-react";
+import { useEffect } from 'react';
+import { AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
+import { buscar_marcas } from '@/services/marca/marca';
+import { buscar_brechos } from '@/services/brecho/brecho';
+import { buscar_clientes } from '@/services/cliente/cliente';
+import Inicio_dashboard from '../../components/dashboard/Inicio_dashboard';
+// import Clientes_dashboard from '../../components/dashboard/Clientes_dashboard.jsx';
+// import Categorias_dashboard from '../../components/dashboard/Categorias_dashboard.jsx';
+import Produtos_dashboard from '@/components/dashboard/Produto_dashboard';
+import Brechos_dashboard from '@/components/dashboard/Brechos_dashboard';
+// import Marcas_dashboard from '../../components/dashboard/Marcas_dashboard.jsx';
+import { buscar_categorias } from '@/services/categoria/categoria';
+import { buscar_produtos } from '@/services/produto/produto';
+import { useGlobalContext } from '@/context/GlobalContext';
 
-export default function Dashboard() {
-  return (
-    <div className={styles.page}>
-      {/* Sidebar fixa */}
-      <Sidebar />
+export default function DashBoard() {
 
-      {/* Conteúdo principal */}
-      <div className={styles.dashboardContent}>
-        {/* Header */}
-        <div className={styles.header}>
-          <div className={styles.dateBox}></div>
-          <div className={styles.userInfo}></div>
-        </div>
+    const { array_clientes, set_array_clientes } = useGlobalContext();
+    const { array_brechos, set_array_brechos } = useGlobalContext();
+    const { array_categorias, set_array_categorias } = useGlobalContext();
+    const { array_produtos, set_array_produtos } = useGlobalContext();
+    const {array_marcas, set_array_marcas} = useGlobalContext();
 
-        {/* Grid geral */}
-        <div className={styles.mainGrid}>
-          {/* Lado esquerdo */}
-          <div className={styles.leftContent}>
-            <div className={styles.topCards}>
-              <div className={styles.card}></div>
-              <div className={styles.card}></div>
-            </div>
-            <div className={styles.bigGraph}></div>
-          </div>
+    const { inicio_dashboard, set_incio_dashboard } = useGlobalContext();
+    const { clientes_dashboard, set_clientes_dashboard } = useGlobalContext();
+    const { categorias_dashboard, set_categorias_dashboard } = useGlobalContext();
+    const { produtos_dashboard, set_produtos_dashboard } = useGlobalContext();
+    const { brechos_dashboard, set_brechos_dashboard } = useGlobalContext()
+    const {marcas_dashboard, set_marcas_dashboard} = useGlobalContext()
 
-          {/* Lado direito */}
-          <div className={styles.rightPanel}>
-            {/* === Fatura === */}
-            <div className={styles.invoiceWrapper}>
-              {/* Box esquerda */}
-              <div className={styles.invoiceLeft}>
-                <div className={styles.invoiceTop}>
-                  <h4>Fatura</h4>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className={styles.chartIcon}
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <line x1="18" y1="20" x2="18" y2="10" />
-                    <line x1="12" y1="20" x2="12" y2="4" />
-                    <line x1="6" y1="20" x2="6" y2="14" />
-                  </svg>
-                </div>
+    const { erro_pagina, set_erro_pagina } = useGlobalContext();
 
-                <div className={styles.invoiceValue}>R$ 3.0000</div>
+    useEffect(() => {
 
-                <div className={styles.invoiceTabs}>
-                  <button className={styles.tab}>Quinzenal</button>
-                  <button className={`${styles.tab} ${styles.activeTab}`}>Mensal</button>
-                  <button className={styles.tab}>Semanal</button>
-                </div>
-              </div>
+        buscar_brechos();
+        buscar_clientes();
+        buscar_produtos();
+        buscar_marcas();
+        buscar_categorias();
+    }, []);
 
-              {/* Box direita */}
-              <div className={styles.statusPanel}>
-                <div className={styles.statusRow}>
-                  <div className={styles.statusItem}>
-                    <p className={styles.statusLabel}>Concluídos</p>
-                    <p className={styles.statusValue}>17</p>
-                  </div>
-                  <div className={styles.statusItem}>
-                    <p className={styles.statusLabel}>Pendentes</p>
-                    <p className={styles.statusValue}>8</p>
-                  </div>
-                </div>
-                <div className={styles.divider}></div>
-                <div className={styles.statusItemSingle}>
-                  <p className={styles.statusLabel}>Devoluções</p>
-                  <p className={styles.statusValue}>2</p>
-                </div>
-              </div>
-            </div>
+    return (
+        <AnimatePresence>
 
+            <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.4 }}>
 
-            {/* === Calendário === */}
-            <div className={styles.calendarBox}>
-              <div className={styles.calendarHeader}>
-                <h3 className={styles.calendarTitle}>
-                  Acompanhar calendário
-                  <span className={styles.tooltipWrapper}>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className={styles.helpIcon}
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    >
-                      <circle cx="12" cy="12" r="10" />
-                      <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />
-                      <line x1="12" y1="17" x2="12" y2="17" />
-                    </svg>
-                    <span className={styles.tooltipText}>
-                      Aqui você pode acompanhar os pedidos da semana.
-                    </span>
-                  </span>
-                </h3>
+                {inicio_dashboard && <Inicio_dashboard />}
+                {/* {clientes_dashboard && <Clientes_dashboard />} */}
+                {/* {categorias_dashboard && <Categorias_dashboard />} */}
+                {produtos_dashboard && <Produtos_dashboard />}
+                 {brechos_dashboard && <Brechos_dashboard />}
+                {/* {marcas_dashboard && <Marcas_dashboard />}  */}
+            </motion.div>
 
-                <div className={styles.calendarControls}>
-                  <button className={styles.arrowButton}>‹</button>
-                  <button className={styles.arrowButton}>›</button>
-                  <button className={styles.monthButton}>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className={styles.calendarIcon}
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    >
-                      <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
-                      <line x1="16" y1="2" x2="16" y2="6" />
-                      <line x1="8" y1="2" x2="8" y2="6" />
-                      <line x1="3" y1="10" x2="21" y2="10" />
-                    </svg>
-                    Agosto
-                  </button>
-                </div>
-              </div>
-
-              <div className={styles.daysRow}>
-                {["Seg", "Ter", "Qua", "Qui", "Sex", "Sab", "Dom"].map((dia, index) => (
-                  <div
-                    key={index}
-                    className={`${styles.dayItem} ${index === 1 ? styles.activeDay : ""
-                      }`}
-                  >
-                    <span className={styles.dayName}>{dia}</span>
-                    <span className={styles.dayNumber}>{11 + index}</span>
-                  </div>
-                ))}
-              </div>
-
-              <div className={styles.cardsRow}>
-                <div className={styles.dayCard}></div>
-                <div className={styles.dayCard}></div>
-                <div className={styles.dayCard}></div>
-              </div>
-
-              <div className={styles.pagination}>
-                <span></span>
-                <span className={styles.activeDot}></span>
-                <span></span>
-              </div>
-            </div>
-
-
-            {/* Pagamento */}
-            <div className={styles.paymentBox}>
-              <h3>Pagamento</h3>
-              <div className={styles.cardContainer}>
-                {/* Imagem do cartão */}
-                <img
-                  src="/img/icons/cartaoAdd.svg"
-                  alt="Adicionar Cartão"
-                  className={styles.creditCard}
-                />
-
-                <div className={styles.actionButtons}>
-                  <div className={styles.addButton}></div>
-                  <div className={styles.deleteButton}></div>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
+        </AnimatePresence>
+    );
+};
