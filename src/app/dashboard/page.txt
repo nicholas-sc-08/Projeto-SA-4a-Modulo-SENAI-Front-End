@@ -146,21 +146,17 @@ export default function Dashboard() {
                   </div>
                 ))}
               </div>
-
               <div className={styles.cardsRow}>
                 <div className={styles.dayCard}></div>
                 <div className={styles.dayCard}></div>
                 <div className={styles.dayCard}></div>
               </div>
-
               <div className={styles.pagination}>
                 <span></span>
                 <span className={styles.activeDot}></span>
                 <span></span>
               </div>
             </div>
-
-
             {/* Pagamento */}
             <div className={styles.paymentBox}>
               <h3>Pagamento</h3>
@@ -171,14 +167,12 @@ export default function Dashboard() {
                   alt="Adicionar Cartão"
                   className={styles.creditCard}
                 />
-
                 <div className={styles.actionButtons}>
                   <div className={styles.addButton}></div>
                   <div className={styles.deleteButton}></div>
                 </div>
               </div>
             </div>
-
           </div>
         </div>
       </div>

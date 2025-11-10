@@ -8,7 +8,7 @@ import { buscar_brechos } from '@/services/brecho/brecho';
 import { buscar_clientes } from '@/services/cliente/cliente';
 import Inicio_dashboard from '../../components/dashboard/Inicio_dashboard';
 import Clientes_dashboard from '@/components/dashboard/Clientes_dashboard';
-// import Categorias_dashboard from '../../components/dashboard/Categorias_dashboard.jsx';
+import Categorias_dashboard from '@/components/dashboard/Categorias_dashboard';
 import Produtos_dashboard from '@/components/dashboard/Produto_dashboard';
 import Brechos_dashboard from '@/components/dashboard/Brechos_dashboard';
 // import Marcas_dashboard from '../../components/dashboard/Marcas_dashboard.jsx';
@@ -18,19 +18,12 @@ import { useGlobalContext } from '@/context/GlobalContext';
 
 export default function DashBoard() {
 
-    const { array_clientes, set_array_clientes } = useGlobalContext();
-    const { array_brechos, set_array_brechos } = useGlobalContext();
-    const { array_categorias, set_array_categorias } = useGlobalContext();
-    const { array_produtos, set_array_produtos } = useGlobalContext();
-    const {array_marcas, set_array_marcas} = useGlobalContext();
-
     const { inicio_dashboard, set_incio_dashboard } = useGlobalContext();
     const { clientes_dashboard, set_clientes_dashboard } = useGlobalContext();
     const { categorias_dashboard, set_categorias_dashboard } = useGlobalContext();
     const { produtos_dashboard, set_produtos_dashboard } = useGlobalContext();
     const { brechos_dashboard, set_brechos_dashboard } = useGlobalContext()
-    const {marcas_dashboard, set_marcas_dashboard} = useGlobalContext()
-
+    const { marcas_dashboard, set_marcas_dashboard } = useGlobalContext()
     const { erro_pagina, set_erro_pagina } = useGlobalContext();
 
     useEffect(() => {
@@ -48,10 +41,10 @@ export default function DashBoard() {
             <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.4 }}>
 
                 {inicio_dashboard && <Inicio_dashboard />}
-                 {clientes_dashboard && <Clientes_dashboard />}
-                {/* {categorias_dashboard && <Categorias_dashboard />} */}
+                {clientes_dashboard && <Clientes_dashboard />}
+                {categorias_dashboard && <Categorias_dashboard />}
                 {produtos_dashboard && <Produtos_dashboard />}
-                 {brechos_dashboard && <Brechos_dashboard />}
+                {brechos_dashboard && <Brechos_dashboard />}
                 {/* {marcas_dashboard && <Marcas_dashboard />}  */}
             </motion.div>
 

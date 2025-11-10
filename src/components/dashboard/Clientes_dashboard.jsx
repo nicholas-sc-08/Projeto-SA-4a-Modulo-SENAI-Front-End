@@ -58,8 +58,8 @@ export default function Clientes_dashboard() {
 
   useEffect(() => {
 
-    buscar_clientes();
-    buscar_enderecos();
+    buscar_clientes().then(clientes => set_array_clientes(clientes));
+    buscar_enderecos().then(clientes => set_array_clientes(clientes));
 
   }, []);
 

@@ -55,7 +55,7 @@ export default function Brechos_dashboard() {
 
     useEffect(() => {
 
-        buscar_brechos();
+        buscar_brechos().then(brechos => set_array_brechos(brechos));
 
     }, []);
 

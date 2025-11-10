@@ -47,9 +47,9 @@ export default function Inicio_dashboard() {
 
     useEffect(() => {
 
-        buscar_marcas();
-        buscar_brechos();
-        buscar_clientes();
+        buscar_marcas().then(marcas => set_array_marcas(marcas));
+        buscar_brechos().then(brechos => set_array_brechos(brechos));
+        buscar_clientes().then(clientes => set_array_clientes(clientes));
     }, []);
 
     useEffect(() => {
