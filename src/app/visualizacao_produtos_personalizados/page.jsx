@@ -250,18 +250,48 @@ function page() {
     return objeto;
   };
 
+  // const enviar_pedido = async () => {
+  //   const pedido = criar_objeto_pedido();
+  //   if (!pedido.material || !pedido.padrao || !pedido.tamanho) {
+  //     alert("Por favor, selecione todas as opções obrigatórias");
+  //     return;
+  //   }
+  //   try {
+  //     await api.post("/sacolas_brechos", pedido);
+  //     buscar_sacolas_brechos().then((sacolas) => set_array_sacola_brecho(sacolas));
+  //     alert("Pedido enviado com sucesso!");
+  //   } catch (error) {
+  //     console.error("Erro ao enviar pedido:", error);
+  //   }
+  // };
+
   const enviar_pedido = async () => {
     const pedido = criar_objeto_pedido();
+
+    // Validação
     if (!pedido.material || !pedido.padrao || !pedido.tamanho) {
       alert("Por favor, selecione todas as opções obrigatórias");
       return;
     }
+
     try {
-      await api.post("/sacolas_brechos", pedido);
+      // 1. Salvar no banco de dados (sacola_brecho)
+      const sacola_salva = await api.post("/sacolas_brechos", pedido);
+
+      // 2. Converter para formato da máquina
+      await pedido_sacola_para_maquina(sacola_salva.data);
+
+      // 3. Atualizar lista de sacolas
       buscar_sacolas_brechos().then((sacolas) => set_array_sacola_brecho(sacolas));
+
       alert("Pedido enviado com sucesso!");
+
+      // Opcional: redirecionar para página de rastreamento
+      router.push(`/rastreamento_pedidos}`);
+
     } catch (error) {
       console.error("Erro ao enviar pedido:", error);
+      alert(error.response?.data?.message || "Erro ao enviar pedido. Tente novamente.");
     }
   };
 
@@ -307,7 +337,7 @@ function page() {
                 <div className={styles["container-preço-quantidade"]}>
                   <h4>R$ {produto_atual.preco.toFixed(2).replace(".", ",")} un</h4>
 
-                  
+
                 </div>
 
                 <p>{produto_atual.descricao}</p>
