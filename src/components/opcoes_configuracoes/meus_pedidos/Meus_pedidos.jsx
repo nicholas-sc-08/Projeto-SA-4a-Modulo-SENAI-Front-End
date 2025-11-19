@@ -1,45 +1,34 @@
 import React, { useState } from 'react'
 import styles from '@/components/opcoes_configuracoes/meus_pedidos/Meus_pedidos.module.css'
 import Rastreamento_pedidos from '../rastreamento_pedidos/Rastreamento_pedidos';
+import { useEffect } from 'react';
 
 function Meus_pedidos() {
     const [pedidoExpandido, setPedidoExpandido] = useState(null);
     const [mostrarRastreamento, setMostrarRastreamento] = useState(false);
     const [pedidoSelecionado, setPedidoSelecionado] = useState(null);
 
+    const [pedidos, setPedidos] = useState([]);
+    const [loading, setLoading] = useState(true);
+
     // Dados de exemplo - depois você pode buscar de uma API
-    const pedidos = [
-        {
-            id: 12345,
-            total: 'R$ 10,00',
-            produtos: [
-                {
-                    nome: 'Ecobag cor areia alça verde',
-                    descricao: 'Logo verde no meio',
-                    quantidade: 1,
-                    imagem: '📦'
-                },
-                {
-                    nome: 'Ecobag cor areia alça verde',
-                    descricao: 'Logo verde no meio',
-                    quantidade: 1,
-                    imagem: '📦'
-                }
-            ]
-        },
-        {
-            id: 98754,
-            total: 'R$ 25,00',
-            produtos: [
-                {
-                    nome: 'Produto exemplo',
-                    descricao: 'Descrição do produto',
-                    quantidade: 2,
-                    imagem: '📦'
-                }
-            ]
-        }
-    ];
+    useEffect(() => {
+        // Buscar pedidos da API
+        fetch('/http://localhost:8080/pedidos') // ou a rota correta da sua API
+            .then(res => res.json())
+            .then(data => {
+                setPedidos(data);
+                setLoading(false);
+            })
+            .catch(error => {
+                console.error('Erro ao buscar pedidos:', error);
+                setLoading(false);
+            });
+    }, []);
+
+    if (loading) {
+        return <div>Carregando pedidos...</div>;
+    }
 
     const togglePedido = (pedidoId) => {
         setPedidoExpandido(pedidoExpandido === pedidoId ? null : pedidoId);
@@ -75,19 +64,19 @@ function Meus_pedidos() {
                         {/* Header do pedido - clicável */}
                         <div
                             className={styles["pedido-header"]}
-                            onClick={() => togglePedido(pedido.id)}
+                            onClick={() => togglePedido(pedido._id)}
                         >
                             <div className={styles["pedido-info"]}>
                                 <span className={styles["pedido-numero"]}>
-                                    Pedido Nº {pedido.id}
+                                    Pedido Nº {pedido._id}
                                 </span>
                                 <span className={styles["pedido-total"]}>
-                                    Total: {pedido.total}
+                                    Total: {pedido.valorTotal.toFixed(2)}
                                 </span>
                             </div>
                             <button
                                 className={styles["btn-detalhes"]}
-                                onClick={(e) => handleVerDetalhes(e, pedido.id)}
+                                onClick={(e) => handleVerDetalhes(e, pedido._id)}
                             >
                                 Ver detalhes
                             </button>

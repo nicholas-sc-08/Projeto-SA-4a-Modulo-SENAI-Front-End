@@ -19,7 +19,7 @@ function page() {
   const { produto_selecionado } = useGlobalContext();
   const [quantidade, set_quantidade] = useState(1);
 
-  // 🔹 Tradução de padrões, cores, material e tamanho para exibição
+  // 🔹 Traduções
   const traducaoPadroes = {
     logo_fly: "Logo da Fly",
     logo_fly_nome: "Logo da Fly e Nome",
@@ -143,14 +143,94 @@ function page() {
   const atualizar_imagem_dinamica = (selecaoAtual) => {
     const cor = selecaoAtual.cor_corpo?.toLowerCase();
     const padrao = selecaoAtual.padrao;
+    const alca = selecaoAtual.cor_alca?.toLowerCase();
 
     switch (produto_selecionado) {
+      // === 🟢 LÓGICA ECOSBAG ===
       case "ecobag":
-        if (cor && ["amarelo", "marrom", "verde", "areia"].includes(cor))
-          setImagemAtual(`/img/produtos_personalizados/ecobag/ecobag_${cor}.svg`);
-        else setImagemAtual(produto_atual.imagem);
-        break;
+  switch (true) {
+    // 🔹 COR + ALÇA + PADRÃO
+    case cor === "amarelo" && alca === "amarelo" && padrao === "logo_fly":
+      setImagemAtual("URL_AQUI");
+      break;
+    case cor === "amarelo" && alca === "amarelo" && padrao === "logo_fly_nome":
+      setImagemAtual("URL_AQUI");
+      break;
+    case cor === "amarelo" && alca === "amarelo" && padrao === "logo_fly_embaixo":
+      setImagemAtual("URL_AQUI");
+      break;
 
+    case cor === "amarelo" && alca === "verde" && padrao === "logo_fly":
+      setImagemAtual("URL_AQUI");
+      break;
+    case cor === "amarelo" && alca === "areia" && padrao === "logo_fly":
+      setImagemAtual("URL_AQUI");
+      break;
+
+    // 🔹 COR + ALÇA (sem padrão)
+    case cor === "amarelo" && alca === "verde":
+      setImagemAtual("URL_AQUI");
+      break;
+    case cor === "amarelo" && alca === "areia":
+      setImagemAtual("URL_AQUI");
+      break;
+
+    // 🔹 COR + PADRÃO (sem alça)
+    case cor === "amarelo" && padrao === "logo_fly":
+      setImagemAtual("URL_AQUI");
+      break;
+    case cor === "amarelo" && padrao === "logo_fly_nome":
+      setImagemAtual("URL_AQUI");
+      break;
+    case cor === "amarelo" && padrao === "logo_fly_embaixo":
+      setImagemAtual("URL_AQUI");
+      break;
+
+    // 🔹 Só COR
+    case cor === "amarelo":
+      setImagemAtual("/img/produtos_personalizados/ecobaag/cores/ecobag-cor-base-amarelo.png");
+      break;
+    case cor === "marrom":
+      setImagemAtual("/img/produtos_personalizados/ecobaag/cores/ecobag-cor-base-marrom.png");
+      break;
+    case cor === "verde":
+      setImagemAtual("/img/produtos_personalizados/ecobaag/cores/ecobag-cor-base-verde.png");
+      break;
+    case cor === "areia":
+      setImagemAtual("/img/produtos_personalizados/ecobaag/cores/ecobag-cor-base-areia.png");
+      break;
+
+    // 🔹 Só ALÇA
+    case alca === "amarelo":
+      setImagemAtual("URL_AQUI");
+      break;
+    case alca === "verde":
+      setImagemAtual("URL_AQUI");
+      break;
+    case alca === "areia":
+      setImagemAtual("URL_AQUI");
+      break;
+
+    // 🔹 Só PADRÃO
+    case padrao === "logo_fly":
+      setImagemAtual("/img/produtos_personalizados/ecobaag/padrao/ecobag-nome-logo-meio.png");
+      break;
+    case padrao === "logo_fly_nome":
+      setImagemAtual("/img/produtos_personalizados/ecobaag/padrao/ecobag-nome-logo-embaixo.png");
+      break;
+    case padrao === "logo_fly_embaixo":
+      setImagemAtual("/img/produtos_personalizados/ecobaag/padrao/ecobag-logo.png");
+      break;
+
+    // ⚪ Nenhuma opção
+    default:
+      setImagemAtual(produto_atual.imagem);
+      break;
+  }
+  break;
+
+
+      // === 🟠 LÓGICA SACOLA ===
       case "sacola":
         if (cor === "verde") {
           switch (padrao) {
@@ -169,7 +249,7 @@ function page() {
         } else if (cor === "branco") {
           switch (padrao) {
             case "logo_fly":
-              setImagemAtual("/img/produtos_personalizados/sacola/sacola-branca-meio-virada-logo-nome-meio.png");
+              setImagemAtual("/img/produtos_personalizados/sacola/sacola-branca-meio-virada-logo-nome-meio.png.png");
               break;
             case "logo_fly_nome":
               setImagemAtual("/img/produtos_personalizados/sacola/sacola-branca-meio-virada-logo-nome-embaixo.png");
@@ -199,6 +279,7 @@ function page() {
         }
         break;
 
+      // === 🟣 LÓGICA CAIXA ===
       case "caixa":
         switch (padrao) {
           case "logo_fly":
@@ -250,18 +331,48 @@ function page() {
     return objeto;
   };
 
+  // const enviar_pedido = async () => {
+  //   const pedido = criar_objeto_pedido();
+  //   if (!pedido.material || !pedido.padrao || !pedido.tamanho) {
+  //     alert("Por favor, selecione todas as opções obrigatórias");
+  //     return;
+  //   }
+  //   try {
+  //     await api.post("/sacolas_brechos", pedido);
+  //     buscar_sacolas_brechos().then((sacolas) => set_array_sacola_brecho(sacolas));
+  //     alert("Pedido enviado com sucesso!");
+  //   } catch (error) {
+  //     console.error("Erro ao enviar pedido:", error);
+  //   }
+  // };
+
   const enviar_pedido = async () => {
     const pedido = criar_objeto_pedido();
+
+    // Validação
     if (!pedido.material || !pedido.padrao || !pedido.tamanho) {
       alert("Por favor, selecione todas as opções obrigatórias");
       return;
     }
+
     try {
-      await api.post("/sacolas_brechos", pedido);
+      // 1. Salvar no banco de dados (sacola_brecho)
+      const sacola_salva = await api.post("/sacolas_brechos", pedido);
+
+      // 2. Converter para formato da máquina
+      await pedido_sacola_para_maquina(sacola_salva.data);
+
+      // 3. Atualizar lista de sacolas
       buscar_sacolas_brechos().then((sacolas) => set_array_sacola_brecho(sacolas));
+
       alert("Pedido enviado com sucesso!");
+
+      // Opcional: redirecionar para página de rastreamento
+      router.push(`/rastreamento_pedidos}`);
+
     } catch (error) {
       console.error("Erro ao enviar pedido:", error);
+      alert(error.response?.data?.message || "Erro ao enviar pedido. Tente novamente.");
     }
   };
 
@@ -306,8 +417,6 @@ function page() {
 
                 <div className={styles["container-preço-quantidade"]}>
                   <h4>R$ {produto_atual.preco.toFixed(2).replace(".", ",")} un</h4>
-
-                  
                 </div>
 
                 <p>{produto_atual.descricao}</p>
@@ -367,7 +476,7 @@ function page() {
                     </select>
                   </div>
 
-                  {/* Cores corpo */}
+                  {/* Cor corpo */}
                   {produto_atual.opcoes.cor_corpo?.length > 0 && (
                     <div className={styles["escolha-padrao"]}>
                       <label>Escolha a cor do corpo</label>
@@ -387,7 +496,7 @@ function page() {
                     </div>
                   )}
 
-                  {/* Cores alça */}
+                  {/* Cor alça */}
                   {produto_atual.opcoes.cor_alca?.length > 0 && (
                     <div className={styles["escolha-padrao"]}>
                       <label>Escolha a cor da alça</label>
