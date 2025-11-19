@@ -11,6 +11,7 @@ import Pop_up_confirmacao_excluir_conta from '@/components/pop_up_confirmacao_ex
 import Pop_up_confirmacao_sair_da_conta from '@/components/pop_up_confirmacao_sair_da_conta/Pop_up_confirmacao_sair_da_conta';
 import Redes_sociais from '@/components/opcoes_configuracoes/redes_sociais/Redes_sociais';
 import Meus_pedidos from '@/components/opcoes_configuracoes/meus_pedidos/Meus_pedidos';
+import { useEffect } from 'react';
 
 function Page() {
     const [secaoAtiva, setSecaoAtiva] = useState('meu-perfil');
@@ -19,6 +20,7 @@ function Page() {
     const { array_brechos, set_array_brechos } = useGlobalContext();
     const { sacola, set_sacola } = useGlobalContext();
     const router = useRouter();
+    const { tipo_de_header, set_tipo_de_header } = useGlobalContext();
 
     const { popupExcluirAberto, setPopupExcluirAberto } = useGlobalContext(false)
     const { popupSairAberto, setPopupSairAberto } = useGlobalContext(false);
@@ -52,9 +54,16 @@ function Page() {
         }
     }
 
+    useEffect(() => {
+        const encontrar_brecho = array_brechos.find(
+            (brecho) => brecho._id === usuario_logado._id
+        );
+        set_tipo_de_header(encontrar_brecho ? "brecho" : "usuario");
+    }, []);
+
     return (
         <div>
-            <Header />
+            <Header tipo={tipo_de_header} />
 
             <div className={styles["config-container"]}>
                 {/* MENU LATERAL ESQUERDO */}
