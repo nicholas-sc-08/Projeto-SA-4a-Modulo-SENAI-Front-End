@@ -10,7 +10,7 @@ import Pop_up_notificacao_excluir_produto from '@/components/pop_up_excluir_prod
 import styles from "@/components/dashboard/Produto_dashboard.module.css";
 import { buscar_estoques, buscar_produtos } from '@/services/produto/produto';
 import { useGlobalContext } from '@/context/GlobalContext';
-import { imagem_produto_sacola_brecho } from '@/services/sacolas_brechos/sacolas_brecho';
+import { imagem_produto_sacola_brecho, nome_produto } from '@/services/sacolas_brechos/sacolas_brecho';
 
 export default function Produtos_dashboard() {
 
@@ -132,7 +132,7 @@ export default function Produtos_dashboard() {
                                             <img src={produto.imagem[0]} alt="" />
                                         </div>
                                         <div className={styles["nome-categoria-produto-dashboard"]}>
-                                            <p className={styles['nome-do-produto-dashboard']}>{produto.nome}</p>
+                                            <p className={styles['nome-do-produto-dashboard']}>{}</p>
                                             <p className={styles["categoria-cor-dashboard"]}>
                                                 {array_categorias.find(
                                                     (categoria) => categoria._id === produto.fk_id_categoria
@@ -226,10 +226,10 @@ export default function Produtos_dashboard() {
                                     <p>Nome do produto</p>
                                 </div>
                                 <div className={styles["alinhamento-titulos-gerais-dashboard"]}>
-                                    <p className={styles['p-titulos-produtos-dashboard']}>Preço</p>
-                                    <p className={styles['p-titulos-produtos-dashboard']}>Estoque</p>
-                                    <p className={styles['p-titulos-produtos-dashboard']}>Conservação</p>
+                                    <p className={styles['p-titulos-produtos-dashboard']}>Quantidade</p>
+                                    <p className={styles['p-titulos-produtos-dashboard']}>Material</p>
                                     <p className={styles['p-titulos-produtos-dashboard']}>Tamanho</p>
+                                    <p className={styles['p-titulos-produtos-dashboard']}>Padrão</p>
                                 </div>
                             </div>
                         </div>
@@ -243,25 +243,21 @@ export default function Produtos_dashboard() {
                                             <img src={imagem_produto_sacola_brecho(produto.tipo, produto.padrao, produto.cor_corpo)} alt="" />
                                         </div>
                                         <div className={styles["nome-categoria-produto-dashboard"]}>
-                                            <p className={styles['nome-do-produto-dashboard']}>{produto.nome}</p>
                                             <p className={styles["categoria-cor-dashboard"]}>
-                                                {array_categorias.find(
-                                                    (categoria) => categoria._id === produto.fk_id_categoria
-                                                )?.nome || "Sem categoria"}{" "}
-                                                - {(produto.cor)}
+                                                {nome_produto(produto.tipo)}
                                             </p>
                                         </div>
                                     </div>
                                     <div className={styles["grupo-dois-informacoes-produto-dashboard"]}>
-                                        <p className={styles["preco-produto-dashboard"]}>R${produto.preco}</p>
+                                        <p className={styles["preco-produto-dashboard"]}>{produto.quantidade} Uni</p>
                                         <div className={styles["alinhamento-informacoes-gerais-unidade-dashboard"]}>
-                                            <p className={styles['p-grupo-dois-informacoes-produto-dashboard']}>{produto.quantidade}</p>
+                                            <p className={styles['p-grupo-dois-informacoes-produto-dashboard']}>{produto.material}</p>
                                         </div>
                                         <div className={styles["alinhamento-informacoes-gerais-conservacao-dashboard"]}>
-                                            <p className={styles['p-grupo-dois-informacoes-produto-dashboard']}>{produto.condicao}</p>
+                                            <p className={styles['p-grupo-dois-informacoes-produto-dashboard']}>{produto.tamanho}</p>
                                         </div>
                                         <div className={styles["alinhamento-informacoes-gerais-tamanho-dashboard"]}>
-                                            <p className={styles['p-grupo-dois-informacoes-produto-dashboard']}>{produto.tamanho}</p>
+                                            <p className={styles['p-grupo-dois-informacoes-produto-dashboard']}>{produto.padrao}</p>
                                         </div>
                                     </div>
                                     {escolher_qual_excluir && (

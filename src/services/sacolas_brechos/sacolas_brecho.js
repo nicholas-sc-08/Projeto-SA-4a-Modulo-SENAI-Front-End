@@ -102,8 +102,12 @@ export function imagem_produto_sacola_brecho(tipo, padrao, cor_corpo) {
             case padrao == "logo_fly_nome" && cor_corpo == "verde":
                 return "./img/produtos_personalizados/sacola/sacola-verde-meio-virada-logo-nome-embaixo.png";
 
-            case padrao == "logo_fly" && cor_corpo == "":
-                return;
+            case padrao == "logo_fly" && cor_corpo == "branco":
+                return "./img/sacola-branca-meio-virada-logo-nome-meio.png";
+            case padrao == "logo_fly_embaixo" && cor_corpo == "branco":
+                return "./img/sacola-branca-meio-virada-logo-embaixo.png";
+            case padrao == "logo_fly_nome":
+                return "./img/sacola-branca-meio-virada-logo-embaixosacola-branca-meio-virada-logo-embaixo.png";
         };
     };
 
