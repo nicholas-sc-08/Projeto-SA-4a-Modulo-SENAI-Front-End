@@ -280,7 +280,7 @@
 .infos-cadastradas-sobre-sub-div {
     border: 1px solid #D07900;
    
-    height: 26%;
+    height: auto;
     width: 99%;
 
 
@@ -290,11 +290,22 @@
     padding: 1%;
 
 
-    overflow-y: auto;
+    /* overflow-y: auto; */
     word-wrap: break-word;
     overflow-wrap: break-word;
 }
 
+.dados-cadastradas-sobre-exibidos {
+    font-family: var(--tipografia_primaria);
+    font-weight: 590;
+    font-size: 0.8rem;
+    color: var(--cor_dez);
+
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal; /* Permite quebra de linha */
+    display: block; /* Transforma em bloco para ocupar largura total */
+}
 
 /* ------------ */
 
@@ -381,4 +392,23 @@
 
 
     /* align-items: center; */
+}
+
+.card-produto-brecho-content {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s;
+
+    width: 22%;
+    height: 40%;
+    margin-right: 1%;
+    margin-bottom: 3%;
+    padding-bottom: 2%;
+
+    border-radius: 1vw;
+    border: none;
+    background-color: transparent;
 }
