@@ -5,10 +5,11 @@ import React from 'react';
 import { useRouter } from 'next/navigation';
 
 function Header_pop_up_configuracoes() {
+    const { setSecaoAtiva } = useGlobalContext();
     const { usuario_logado, set_usuario_logado } = useGlobalContext();
     const { brecho_selecionado, set_brecho_selecionado } = useGlobalContext();
-    const { array_brechos, set_array_brechos } = useGlobalContext();
-    const { sacola, set_sacola } = useGlobalContext();
+    const { array_brechos } = useGlobalContext();
+    const { set_sacola } = useGlobalContext();
     const router = useRouter();
 
     function ir_ate_perfil() {
@@ -16,23 +17,27 @@ function Header_pop_up_configuracoes() {
         set_brecho_selecionado(usuario_logado);
 
         if (encontrar_brecho) {
-            router.push(`/perfil_brecho`);
-
+            router.push('/perfil_brecho');
         } else {
-            router.push(`/estamos_chegando`);
+            router.push('/estamos_chegando');
         }
     }
 
     function ir_para_configuracoes() {
+        setSecaoAtiva('meu-perfil'); 
+        router.push('/configuracoes_brecho');
+    }
+
+    function ir_para_pedidos() {
+        setSecaoAtiva('meus-pedidos'); 
         router.push('/configuracoes_brecho');
     }
 
     function deslogar_usuario() {
-
         set_usuario_logado([]);
         set_sacola([]);
         router.push('/');
-    };
+    }
 
     return (
         <AnimatePresence>
@@ -54,12 +59,13 @@ function Header_pop_up_configuracoes() {
                                     ? usuario_logado.imagem_de_perfil || usuario_logado.logo
                                     : "/img/icons/IconePerfil.svg"
                             }
+                            alt="Perfil"
                         />
 
                         <p>Olá! {usuario_logado.nome_brecho}</p>
 
                         <button
-                            onClick={() => ir_ate_perfil()}
+                            onClick={ir_ate_perfil}
                             className={styles['button-ir-para-perfil']}
                         >
                             Minha conta
@@ -71,18 +77,16 @@ function Header_pop_up_configuracoes() {
                     <div className={styles["topicos-redirecionamento"]}>
                         <ul>
                             <li><button onClick={ir_para_configuracoes}>Configurações</button></li>
-                            <li><button>Meus pedidos</button></li>
-                            <li><button>Lista de desejos</button></li>
-                            <li><button>Eventos</button></li>
-                            <li><button>Ajuda</button></li>
-                            <li><button>Informar um problema</button></li>
+                            <li><button onClick={ir_para_pedidos}>Meus pedidos</button></li>
+                            <li><button>Saiba mais</button></li>
+                            <li><button>Ajuda (FAQ)</button></li>
                             <li><button onClick={deslogar_usuario}>Sair</button></li>
                         </ul>
                     </div>
                 </motion.div>
             </div>
         </AnimatePresence>
-    )
+    );
 }
 
 export default Header_pop_up_configuracoes;

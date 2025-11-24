@@ -95,6 +95,8 @@ export const GlobalContextProvider = ({ children }) => {
     const [popupExcluirAberto, setPopupExcluirAberto] = useState(false)
     const [popupSairAberto, setPopupSairAberto] = useState(false)
 
+    const [secaoAtiva, setSecaoAtiva] = useState('meu-perfil');
+
     // função para quando alguém der F5/atualizar a página, os dados do usuário logado sejam guardados no localStorage
     useEffect(() => {
 
@@ -281,7 +283,9 @@ export const GlobalContextProvider = ({ children }) => {
             popupExcluirAberto,
             setPopupExcluirAberto,
             popupSairAberto,
-            setPopupSairAberto
+            setPopupSairAberto,
+            secaoAtiva, 
+            setSecaoAtiva,
         }}>
             {children}
         </GlobalContext.Provider>

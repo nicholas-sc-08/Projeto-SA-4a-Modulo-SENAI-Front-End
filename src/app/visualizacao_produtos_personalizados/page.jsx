@@ -443,21 +443,6 @@ function page() {
     return objeto;
   };
 
-  // const enviar_pedido = async () => {
-  //   const pedido = criar_objeto_pedido();
-  //   if (!pedido.material || !pedido.padrao || !pedido.tamanho) {
-  //     alert("Por favor, selecione todas as opções obrigatórias");
-  //     return;
-  //   }
-  //   try {
-  //     await api.post("/sacolas_brechos", pedido);
-  //     buscar_sacolas_brechos().then((sacolas) => set_array_sacola_brecho(sacolas));
-  //     alert("Pedido enviado com sucesso!");
-  //   } catch (error) {
-  //     console.error("Erro ao enviar pedido:", error);
-  //   }
-  // };
-
   const enviar_pedido = async () => {
     const pedido = criar_objeto_pedido();
 

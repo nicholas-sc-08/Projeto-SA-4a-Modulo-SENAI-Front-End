@@ -53,7 +53,7 @@
 .topicos-redirecionamento{
     /* border: 1px solid red; */
     margin-top: 3%;
-    height: 12vw;
+    height: fit-content;
 }
 
 .topicos-redirecionamento button{
