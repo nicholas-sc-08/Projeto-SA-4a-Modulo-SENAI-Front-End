@@ -29,7 +29,6 @@ function page() {
 
   const traducaoCores = {
     amarelo: "Amarelo",
-    marrom: "Marrom",
     verde: "Verde",
     areia: "Areia",
     branco: "Branco",
@@ -60,14 +59,14 @@ function page() {
     ecobag: {
       nome: "ecobag",
       preco: 5.47,
-      imagem: "/img/produtos_personalizados/ecobag/sacola_ecobag_normal.svg",
+      imagem: "/img/produtos_personalizados/ecobaag/padrao/sacola-ecobag-sem-fundo.png",
       descricao:
         "Uma peça simples, versátil e cheia de propósito. Nossa ecobag foi pensada para quem quer unir estilo e consciência. Personalize e transforme um acessório do dia a dia em algo único, feito pra você.",
       opcoes: {
         material: ["algodao", "poliester_reciclavel"],
         tamanho: ["medio", "grande"],
         padrao: ["logo_fly", "logo_fly_nome", "logo_fly_embaixo"],
-        cor_corpo: ["amarelo", "marrom", "verde", "areia"],
+        cor_corpo: ["amarelo", "verde", "areia"],
         cor_alca: ["amarelo", "verde", "areia"],
       },
     },
@@ -146,88 +145,160 @@ function page() {
     const alca = selecaoAtual.cor_alca?.toLowerCase();
 
     switch (produto_selecionado) {
-      // === 🟢 LÓGICA ECOSBAG ===
+      // === 🟢 LÓGICA ECOSBAG (48 casos: 36 triplos + 12 cor+padrao) ===
       case "ecobag":
-  switch (true) {
-    // 🔹 COR + ALÇA + PADRÃO
-    case cor === "amarelo" && alca === "amarelo" && padrao === "logo_fly":
-      setImagemAtual("URL_AQUI");
-      break;
-    case cor === "amarelo" && alca === "amarelo" && padrao === "logo_fly_nome":
-      setImagemAtual("URL_AQUI");
-      break;
-    case cor === "amarelo" && alca === "amarelo" && padrao === "logo_fly_embaixo":
-      setImagemAtual("URL_AQUI");
-      break;
+        switch (true) {
+          // --- 36 CASOS: COR + ALÇA + PADRÃO ---
+          case cor === "amarelo" && alca === "amarelo" && padrao === "logo_fly":
+            setImagemAtual("/img/produtos_personalizados/ecobaag/cores/amarelo/ecobag-amarelo-alca-amarela-logo-meio.png");
+            break;
+          case cor === "amarelo" && alca === "amarelo" && padrao === "logo_fly_nome":
+            setImagemAtual("/img/produtos_personalizados/ecobaag/cores/amarelo/ecobag-amarelo-alca-amarelo-logo-nome-em-baixo.png");
+            break;
+          case cor === "amarelo" && alca === "amarelo" && padrao === "logo_fly_embaixo":
+            setImagemAtual("/img/produtos_personalizados/ecobaag/cores/amarelo/ecobag-amarelo-alca-amarelo-logo-em-baixo.png");
+            break;
 
-    case cor === "amarelo" && alca === "verde" && padrao === "logo_fly":
-      setImagemAtual("URL_AQUI");
-      break;
-    case cor === "amarelo" && alca === "areia" && padrao === "logo_fly":
-      setImagemAtual("URL_AQUI");
-      break;
+          case cor === "amarelo" && alca === "verde" && padrao === "logo_fly":
+            setImagemAtual("/img/produtos_personalizados/ecobaag/cores/amarelo/amarelo-verde/ecobag-amarelo-alca-verde-logo-meio.png");
+            break;
+          case cor === "amarelo" && alca === "verde" && padrao === "logo_fly_nome":
+            setImagemAtual("/img/produtos_personalizados/ecobaag/cores/amarelo/amarelo-verde/ecobag-amarelo-alca-verde-logo-nome-em-baixo.png");
+            break;
+          case cor === "amarelo" && alca === "verde" && padrao === "logo_fly_embaixo":
+            setImagemAtual("/img/produtos_personalizados/ecobaag/cores/amarelo/amarelo-verde/ecobag-amarelo-alca-verde-logo-em-baixo.png");
+            break;
 
-    // 🔹 COR + ALÇA (sem padrão)
-    case cor === "amarelo" && alca === "verde":
-      setImagemAtual("URL_AQUI");
-      break;
-    case cor === "amarelo" && alca === "areia":
-      setImagemAtual("URL_AQUI");
-      break;
+          case cor === "amarelo" && alca === "areia" && padrao === "logo_fly":
+            setImagemAtual("/img/produtos_personalizados/ecobaag/cores/amarelo/amarelo-areia/ecobag-amarelo-alca-areia-logo-meio.png");
+            break;
+          case cor === "amarelo" && alca === "areia" && padrao === "logo_fly_nome":
+            setImagemAtual("/img/produtos_personalizados/ecobaag/cores/amarelo/amarelo-areia/ecobag-amarelo-alca-areia-logo-nome-em-baixo.png");
+            break;
+          case cor === "amarelo" && alca === "areia" && padrao === "logo_fly_embaixo":
+            setImagemAtual("/img/produtos_personalizados/ecobaag/cores/amarelo/amarelo-areia/ecobag-amarelo-alca-areia-logo-em-baixo.png");
+            break;
 
-    // 🔹 COR + PADRÃO (sem alça)
-    case cor === "amarelo" && padrao === "logo_fly":
-      setImagemAtual("URL_AQUI");
-      break;
-    case cor === "amarelo" && padrao === "logo_fly_nome":
-      setImagemAtual("URL_AQUI");
-      break;
-    case cor === "amarelo" && padrao === "logo_fly_embaixo":
-      setImagemAtual("URL_AQUI");
-      break;
 
-    // 🔹 Só COR
-    case cor === "amarelo":
-      setImagemAtual("/img/produtos_personalizados/ecobaag/cores/ecobag-cor-base-amarelo.png");
-      break;
-    case cor === "marrom":
-      setImagemAtual("/img/produtos_personalizados/ecobaag/cores/ecobag-cor-base-marrom.png");
-      break;
-    case cor === "verde":
-      setImagemAtual("/img/produtos_personalizados/ecobaag/cores/ecobag-cor-base-verde.png");
-      break;
-    case cor === "areia":
-      setImagemAtual("/img/produtos_personalizados/ecobaag/cores/ecobag-cor-base-areia.png");
-      break;
+          case cor === "verde" && alca === "amarelo" && padrao === "logo_fly":
+            setImagemAtual("/img/produtos_personalizados/ecobaag/comb/verde-amarelo-logo_fly.png");
+            break;
+          case cor === "verde" && alca === "amarelo" && padrao === "logo_fly_nome":
+            setImagemAtual("/img/produtos_personalizados/ecobaag/comb/verde-amarelo-logo_fly_nome.png");
+            break;
+          case cor === "verde" && alca === "amarelo" && padrao === "logo_fly_embaixo":
+            setImagemAtual("/img/produtos_personalizados/ecobaag/comb/verde-amarelo-logo_fly_embaixo.png");
+            break;
 
-    // 🔹 Só ALÇA
-    case alca === "amarelo":
-      setImagemAtual("URL_AQUI");
-      break;
-    case alca === "verde":
-      setImagemAtual("URL_AQUI");
-      break;
-    case alca === "areia":
-      setImagemAtual("URL_AQUI");
-      break;
+          case cor === "verde" && alca === "verde" && padrao === "logo_fly":
+            setImagemAtual("/img/produtos_personalizados/ecobaag/comb/verde-verde-logo_fly.png");
+            break;
+          case cor === "verde" && alca === "verde" && padrao === "logo_fly_nome":
+            setImagemAtual("/img/produtos_personalizados/ecobaag/comb/verde-verde-logo_fly_nome.png");
+            break;
+          case cor === "verde" && alca === "verde" && padrao === "logo_fly_embaixo":
+            setImagemAtual("/img/produtos_personalizados/ecobaag/comb/verde-verde-logo_fly_embaixo.png");
+            break;
 
-    // 🔹 Só PADRÃO
-    case padrao === "logo_fly":
-      setImagemAtual("/img/produtos_personalizados/ecobaag/padrao/ecobag-nome-logo-meio.png");
-      break;
-    case padrao === "logo_fly_nome":
-      setImagemAtual("/img/produtos_personalizados/ecobaag/padrao/ecobag-nome-logo-embaixo.png");
-      break;
-    case padrao === "logo_fly_embaixo":
-      setImagemAtual("/img/produtos_personalizados/ecobaag/padrao/ecobag-logo.png");
-      break;
+          case cor === "verde" && alca === "areia" && padrao === "logo_fly":
+            setImagemAtual("/img/produtos_personalizados/ecobaag/comb/verde-areia-logo_fly.png");
+            break;
+          case cor === "verde" && alca === "areia" && padrao === "logo_fly_nome":
+            setImagemAtual("/img/produtos_personalizados/ecobaag/comb/verde-areia-logo_fly_nome.png");
+            break;
+          case cor === "verde" && alca === "areia" && padrao === "logo_fly_embaixo":
+            setImagemAtual("/img/produtos_personalizados/ecobaag/comb/verde-areia-logo_fly_embaixo.png");
+            break;
 
-    // ⚪ Nenhuma opção
-    default:
-      setImagemAtual(produto_atual.imagem);
-      break;
-  }
-  break;
+          case cor === "areia" && alca === "amarelo" && padrao === "logo_fly":
+            setImagemAtual("/img/produtos_personalizados/ecobaag/comb/areia-amarelo-logo_fly.png");
+            break;
+          case cor === "areia" && alca === "amarelo" && padrao === "logo_fly_nome":
+            setImagemAtual("/img/produtos_personalizados/ecobaag/comb/areia-amarelo-logo_fly_nome.png");
+            break;
+          case cor === "areia" && alca === "amarelo" && padrao === "logo_fly_embaixo":
+            setImagemAtual("/img/produtos_personalizados/ecobaag/comb/areia-amarelo-logo_fly_embaixo.png");
+            break;
+
+          case cor === "areia" && alca === "verde" && padrao === "logo_fly":
+            setImagemAtual("/img/produtos_personalizados/ecobaag/comb/areia-verde-logo_fly.png");
+            break;
+          case cor === "areia" && alca === "verde" && padrao === "logo_fly_nome":
+            setImagemAtual("/img/produtos_personalizados/ecobaag/comb/areia-verde-logo_fly_nome.png");
+            break;
+          case cor === "areia" && alca === "verde" && padrao === "logo_fly_embaixo":
+            setImagemAtual("/img/produtos_personalizados/ecobaag/comb/areia-verde-logo_fly_embaixo.png");
+            break;
+
+          case cor === "areia" && alca === "areia" && padrao === "logo_fly":
+            setImagemAtual("/img/produtos_personalizados/ecobaag/comb/areia-areia-logo_fly.png");
+            break;
+          case cor === "areia" && alca === "areia" && padrao === "logo_fly_nome":
+            setImagemAtual("/img/produtos_personalizados/ecobaag/comb/areia-areia-logo_fly_nome.png");
+            break;
+          case cor === "areia" && alca === "areia" && padrao === "logo_fly_embaixo":
+            setImagemAtual("/img/produtos_personalizados/ecobaag/comb/areia-areia-logo_fly_embaixo.png");
+            break;
+
+          // --- 12 CASOS: COR + PADRÃO (sem alça) ---
+          case cor === "amarelo" && padrao === "logo_fly":
+            setImagemAtual("/img/produtos_personalizados/ecobaag/cores/amarelo/ecobag-amarelo-alca-amarela-logo-meio.png");
+            break;
+          case cor === "amarelo" && padrao === "logo_fly_nome":
+            setImagemAtual("/img/produtos_personalizados/ecobaag/cores/amarelo/ecobag-amarelo-alca-amarelo-logo-nome-em-baixo.png");
+            break;
+          case cor === "amarelo" && padrao === "logo_fly_embaixo":
+            setImagemAtual("/img/produtos_personalizados/ecobaag/cores/amarelo/ecobag-amarelo-alca-amarelo-logo-em-baixo.png");
+            break;
+
+
+          case cor === "verde" && padrao === "logo_fly":
+            setImagemAtual("/img/produtos_personalizados/ecobaag/comb/verde-logo_fly.png");
+            break;
+          case cor === "verde" && padrao === "logo_fly_nome":
+            setImagemAtual("/img/produtos_personalizados/ecobaag/comb/verde-logo_fly_nome.png");
+            break;
+          case cor === "verde" && padrao === "logo_fly_embaixo":
+            setImagemAtual("/img/produtos_personalizados/ecobaag/comb/verde-logo_fly_embaixo.png");
+            break;
+
+          case cor === "areia" && padrao === "logo_fly":
+            setImagemAtual("/img/produtos_personalizados/ecobaag/comb/areia-logo_fly.png");
+            break;
+          case cor === "areia" && padrao === "logo_fly_nome":
+            setImagemAtual("/img/produtos_personalizados/ecobaag/comb/areia-logo_fly_nome.png");
+            break;
+          case cor === "areia" && padrao === "logo_fly_embaixo":
+            setImagemAtual("/img/produtos_personalizados/ecobaag/comb/areia-logo_fly_embaixo.png");
+            break;
+
+          // --- CASOS RESTANTES: SÓ COR / SÓ PADRÃO / FALLBACK ---
+          case cor === "amarelo":
+            setImagemAtual("/img/produtos_personalizados/ecobaag/cores/amarelo/ecobag-cor-base-amarelo.png");
+            break;
+          case cor === "verde":
+            setImagemAtual("/img/produtos_personalizados/ecobaag/cores/ecobag-cor-base-verde.png");
+            break;
+          case cor === "areia":
+            setImagemAtual("/img/produtos_personalizados/ecobaag/cores/ecobag-cor-base-areia.png");
+            break;
+          
+
+          case padrao === "logo_fly":
+            setImagemAtual("/img/produtos_personalizados/ecobaag/padrao/ecobag-nome-logo-meio.png");
+            break;
+          case padrao === "logo_fly_nome":
+            setImagemAtual("/img/produtos_personalizados/ecobaag/padrao/ecobag-nome-logo-embaixo.png");
+            break;
+          case padrao === "logo_fly_embaixo":
+            setImagemAtual("/img/produtos_personalizados/ecobaag/padrao/ecobag-logo.png");
+            break;
+
+          default:
+            setImagemAtual(produto_atual.imagem);
+            break;
+        }
+        break;
 
 
       // === 🟠 LÓGICA SACOLA ===
@@ -305,6 +376,17 @@ function page() {
   const atualizar_selecao = (tipo, valor) => {
     set_selecoes((prev) => {
       const novasSelecoes = { ...prev, [tipo]: valor };
+
+      // Se mudou a cor do corpo e a cor da alça for igual, limpar a alça
+      if (tipo === "cor_corpo" && prev.cor_alca && prev.cor_alca === valor) {
+        novasSelecoes.cor_alca = "";
+      }
+
+      // Se mudou a alça e ficou igual à cor do corpo (defensivo), limpar a cor do corpo
+      if (tipo === "cor_alca" && prev.cor_corpo && prev.cor_corpo === valor) {
+        novasSelecoes.cor_corpo = "";
+      }
+
       atualizar_imagem_dinamica(novasSelecoes);
       return novasSelecoes;
     });
@@ -502,11 +584,13 @@ function page() {
                         <option value="" disabled>
                           Cor da alça
                         </option>
-                        {produto_atual.opcoes.cor_alca.map((c, i) => (
-                          <option key={i} value={c}>
-                            {traducaoCores[c] || c}
-                          </option>
-                        ))}
+                        {produto_atual.opcoes.cor_alca
+                          .filter((c) => c !== selecoes.cor_corpo)
+                          .map((c, i) => (
+                            <option key={i} value={c}>
+                              {traducaoCores[c] || c}
+                            </option>
+                          ))}
                       </select>
                     </div>
                   )}

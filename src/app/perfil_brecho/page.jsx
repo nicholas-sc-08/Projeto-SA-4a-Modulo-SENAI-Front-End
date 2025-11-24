@@ -7,7 +7,6 @@ import styles from '@/app/perfil_brecho/page.module.css';
 import { useGlobalContext } from '@/context/GlobalContext';
 import { useState } from 'react';
 
-
 function page() {
 
   const { tipo_de_header, set_tipo_de_header } = useGlobalContext();
@@ -24,6 +23,9 @@ function page() {
   const fecharPopUpConfig = () => {
     setMostrarPopUpConfiguracoes(false)
   }
+
+  const { array_produtos, set_array_produtos } = useGlobalContext();
+  const { produto, set_produto } = useGlobalContext();
 
   return (
 
@@ -128,8 +130,8 @@ function page() {
                     <p>Informações de Sobre o Brechó</p>
                   </div>
 
-                  <div className={styles["infos-cadastradas-sub-div"]}>
-                    <span className={styles["dados-cadastradas-exibidos"]}> rfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieauEDRGERGAERGAsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieauEDRGERGAERGAsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieauEDRGERGAERGAsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieauEDRGERGAERGAsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieauEDRGERGAERGAgrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieauEDRGERGAERGAEAEAEAEAEAEAEAEAEAEAEAEAEAEAEAEAEAEAEAEAEAEAEGGGGGGGGGGGGGaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaagiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvsdufhieugrfiueairufieaugiuearieugeuriuvaisvudiaufuwhefroHEFOIHsaoihfosihdofsdihfoihsaofihoahhc  hdfiawshdhsafiuaas, saidfsiaud , iudsiuhsddi h,ksiduhf iushadfiuhafwheaiufhIOHSJHDCSJDBVUEYGRFEQR8WEHFDhihIUHHHFIUHSIFUHIUHGVIDFSUIGHIUSIUGVfícios. Primeiramente, você pode encontrar peças exclusivas e vintage que não estão disponíveis nas lojas convencionais. Além disso, ao comprar de segunda mão, você está contribuindo para a sustentabilidade, reduzindo o desperdício e a demanda por novos produtos. Outro benefício é o custo, muitas vezes mais baixo do que o de itens novos, permitindo que você economize enquanto adquire peças de qualidade.</span>
+                  <div className={styles["infos-cadastradas-sobre-sub-div"]}>
+                    <span className={styles["dados-cadastradas-sobre-exibidos"]}> Primeiramente, você pode encontrar peças exclusivas e vintage que não estão disponíveis nas lojas convencionais. Além disso, ao comprar de segunda mão, você está contribuindo para a sustentabilidade, reduzindo o desperdício e a demanda por novos produtos. Outro benefício é o custo, muitas vezes mais baixo do que o de itens novos, permitindo que você economize enquanto adquire peças de qualidade.</span>
                   </div>
 
                 </>
@@ -151,7 +153,7 @@ function page() {
                     <label className={styles["labels-info"]}>Facebook: </label>
                     <span className={styles["dados-cadastradas-exibidos"]}></span>
 
-                     <label className={styles["labels-info"]}>Whatsapp: </label>
+                    <label className={styles["labels-info"]}>Whatsapp: </label>
                     <span className={styles["dados-cadastradas-exibidos"]}></span>
                   </div>
 
@@ -170,17 +172,51 @@ function page() {
             <button>Ver todos</button>
           </div>
           <div className={styles["produtos-exibidos-do-brecho-content"]}>
-            <div className="card-produto-brecho-content">
+
+            <div className={styles["card-produto-brecho-content"]}>
+
+              <div className={styles["img-produto-card-content"]}>
+                <img src="" alt="" />
+              </div>
+
+              <div className="info-produto-card-content">
+                <p>Camiseta off the wall vans</p>
+
+                <p>R$45,00</p>
+              </div>
+
+
+
+            </div>
+
+            {/* <div className={styles["card-produto-brecho-content"]}>
               <img src="" alt="" />
               <p>Camiseta off the wall vans</p>
               <p>R$45,00</p>
             </div>
 
+             <div className={styles["card-produto-brecho-content"]}>
+              <img src="" alt="" />
+              <p>Camiseta off the wall vans</p>
+              <p>R$45,00</p>
+            </div>
+
+             <div className={styles["card-produto-brecho-content"]}>
+              <img src="" alt="" />
+              <p>Camiseta off the wall vans</p>
+              <p>R$45,00</p>
+            </div>
+
+             <div className={styles["card-produto-brecho-content"]}>
+              <img src="" alt="" />
+              <p>Camiseta off the wall vans</p>
+              <p>R$45,00</p>
+            </div> */}
+
           </div>
         </div>
 
-        {/* <div className={styles["avaliacoes-do-brecho-content"]}>
-        </div> */}
+
 
       </div>
 
