@@ -356,18 +356,13 @@ function page() {
     }
 
     try {
-      // 1. Salvar no banco de dados (sacola_brecho)
       const sacola_salva = await api.post("/sacolas_brechos", pedido);
 
-      // 2. Converter para formato da máquina
       await pedido_sacola_para_maquina(sacola_salva.data);
 
-      // 3. Atualizar lista de sacolas
       buscar_sacolas_brechos().then((sacolas) => set_array_sacola_brecho(sacolas));
 
       alert("Pedido enviado com sucesso!");
-
-      // Opcional: redirecionar para página de rastreamento
       router.push(`/rastreamento_pedidos}`);
 
     } catch (error) {
