@@ -56,10 +56,23 @@ function page() {
 
           <div className={styles["parte-inferior-do-perfil-brecho-content"]}>
             <div className={styles["topicos-de-informacao-sobre-perfil-content"]}>
-              <button onClick={() => setDivAtiva("informacoes")}>Informações</button>
-              <button onClick={() => setDivAtiva("endereco")}>Endereço</button>
-              <button onClick={() => setDivAtiva("sobre-brecho")}>Sobre o brechó</button>
-              <button onClick={() => setDivAtiva("redes-sociais")}>Redes Sociais</button>
+
+              <button onClick={() => setDivAtiva("informacoes")}
+              className={divAtiva === "informacoes" ? styles["ativo"] : ""}
+                >Informações</button>
+
+              <button onClick={() => setDivAtiva("endereco")}
+              className={divAtiva === "endereco" ? styles["ativo"] : ""}
+                >Endereço</button>
+
+              <button onClick={() => setDivAtiva("sobre-brecho")}
+              className={divAtiva === "sobre-brecho" ? styles["ativo"] : ""}
+                >Sobre o brechó</button>
+
+              <button onClick={() => setDivAtiva("redes-sociais")}
+              className={divAtiva === "redes-sociais" ? styles["ativo"] : ""}
+                >Redes Sociais</button>
+              
             </div>
 
             <div className={styles["informacoes-exibidas-content"]}>
@@ -182,36 +195,12 @@ function page() {
               <div className="info-produto-card-content">
                 <p>Camiseta off the wall vans</p>
 
-                <p>R$45,00</p>
+                <span>R$45,00</span>
               </div>
 
 
 
             </div>
-
-            {/* <div className={styles["card-produto-brecho-content"]}>
-              <img src="" alt="" />
-              <p>Camiseta off the wall vans</p>
-              <p>R$45,00</p>
-            </div>
-
-             <div className={styles["card-produto-brecho-content"]}>
-              <img src="" alt="" />
-              <p>Camiseta off the wall vans</p>
-              <p>R$45,00</p>
-            </div>
-
-             <div className={styles["card-produto-brecho-content"]}>
-              <img src="" alt="" />
-              <p>Camiseta off the wall vans</p>
-              <p>R$45,00</p>
-            </div>
-
-             <div className={styles["card-produto-brecho-content"]}>
-              <img src="" alt="" />
-              <p>Camiseta off the wall vans</p>
-              <p>R$45,00</p>
-            </div> */}
 
           </div>
         </div>
