@@ -14,7 +14,7 @@ import Meus_pedidos from '@/components/opcoes_configuracoes/meus_pedidos/Meus_pe
 import { useEffect } from 'react';
 
 function Page() {
-    const [secaoAtiva, setSecaoAtiva] = useState('meu-perfil');
+    const {secaoAtiva, setSecaoAtiva} = useGlobalContext();
     const { usuario_logado, set_usuario_logado } = useGlobalContext();
     const { brecho_selecionado, set_brecho_selecionado } = useGlobalContext();
     const { array_brechos, set_array_brechos } = useGlobalContext();

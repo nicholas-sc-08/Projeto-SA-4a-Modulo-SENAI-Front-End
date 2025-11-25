@@ -63,3 +63,67 @@ export async function deletar_produto(id){
         console.error(erro);
     };
 };
+
+export async function buscar_estoques(){
+
+    try {
+
+        const resposta = await api.get("/estoques");
+        return resposta.data;
+        
+    } catch (erro) {
+      
+        console.error(erro);
+    };
+};
+
+export async function buscar_estoque(id){
+
+    try {
+
+        const resposta = await api.get(`/estoques/${id}`);
+        return resposta.data;
+        
+    } catch (erro) {
+      
+        console.error(erro);
+    };
+};
+
+export async function cadastrar_estoque(estoque){
+
+    try {
+
+        const resposta = await api.post("/estoques", estoque);
+        return resposta.data;
+        
+    } catch (erro) {
+      
+        console.error(erro);
+    };
+};
+
+export async function atualizar_estoque(estoque, id){
+
+    try {
+
+        const resposta = await api.put(`/estoques/${id}`, estoque);
+        return resposta.data;
+        
+    } catch (erro) {
+      
+        console.error(erro);
+    };
+};
+
+export async function deletar_estoque(id){
+
+    try {
+
+        const resposta = await api.delete(`/estoques/${id}`);
+        
+    } catch (erro) {
+      
+        console.error(erro);
+    };
+};
