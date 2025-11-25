@@ -9,6 +9,7 @@ import { useGlobalContext } from '@/context/GlobalContext';
 import { buscar_marcas } from '@/services/marca/marca';
 import { buscar_brechos } from '@/services/brecho/brecho';
 import { buscar_clientes } from '@/services/cliente/cliente.js';
+import { buscar_estoques } from '@/services/produto/produto.js';
 
 
 export default function Inicio_dashboard() {
@@ -16,6 +17,7 @@ export default function Inicio_dashboard() {
     const { array_clientes, set_array_clientes } = useGlobalContext();
     const { array_brechos, set_array_brechos } = useGlobalContext();
     const { array_produtos, set_array_produtos } = useGlobalContext();
+    const { array_estoque, set_array_estoque } = useGlobalContext();
     const { array_categorias, set_array_categorias } = useGlobalContext();
     const { array_marcas, set_array_marcas } = useGlobalContext();
 
@@ -50,46 +52,49 @@ export default function Inicio_dashboard() {
         buscar_marcas().then(marcas => set_array_marcas(marcas));
         buscar_brechos().then(brechos => set_array_brechos(brechos));
         buscar_clientes().then(clientes => set_array_clientes(clientes));
+        buscar_estoques().then(estoques => set_array_estoque(estoques));
+        
     }, []);
 
     useEffect(() => {
 
         const controle = animate(contador_brechos, array_brechos.length, { duration: 1 });
-       
+
         return () => controle.stop();
-    
+
     }, [array_brechos]);
 
     useEffect(() => {
 
         const controle = animate(contador_clientes, array_clientes.length, { duration: 1 });
-    
+
         return () => controle.stop();
-    
+
     }, [array_clientes]);
 
     useEffect(() => {
 
-        const controle = animate(contador_produtos, array_produtos.length, { duration: 1 });
-    
+        const soma = array_estoque.length + array_produtos.length;
+        const controle = animate(contador_produtos, soma, { duration: 1 });
+
         return () => controle.stop();
-    
+
     }, [array_produtos]);
 
     useEffect(() => {
 
         const controle = animate(contador_categorias, array_categorias.length, { duration: 1 });
-    
+
         return () => controle.stop();
-    
+
     }, [array_categorias]);
 
     useEffect(() => {
 
         const controle = animate(contador_marcas, array_marcas.length, { duration: 1 });
-    
+
         return () => controle.stop();
-    
+
     }, [array_marcas]);
 
     function ir_para_clientes() {

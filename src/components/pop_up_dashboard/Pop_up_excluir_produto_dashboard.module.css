@@ -1,8 +1,14 @@
 .container_pop_up_de_excluir{
     z-index: 1;
     position: fixed;
+    top: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 100%;
     height: 100%;
+    background-color: #00000054;
 }
 
 .pop_up_de_excluir{
@@ -10,7 +16,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: space-around;
 
     width: 30%;
     height: 45%;
@@ -43,7 +49,7 @@
 .pop_up_de_excluir_botoes{
 
     width: 100%;
-    height: fit-content;
+    height: 13%;
 
     display: flex;
     justify-content: center;
@@ -94,6 +100,6 @@
 
 .pop_up_de_excluir_botao_sair:hover{
 
-    border: 0.1vw solid var(--cor_onze);
-    background-color: var(--cor_onze);
+    border: 0.1vw solid var(--cor_dois_v_um);
+    background-color: var(--cor_dois_v_um);
 }
