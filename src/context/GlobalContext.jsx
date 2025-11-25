@@ -11,6 +11,7 @@ export const GlobalContextProvider = ({ children }) => {
     const [array_brechos, set_array_brechos] = useState([]);
     const [array_sacola_brecho, set_array_sacola_brecho] = useState([]);
     const [array_produtos, set_array_produtos] = useState([]);
+    const [array_estoque, set_array_estoque] = useState([]);
     const [array_categorias, set_array_categorias] = useState([]);
     const [array_marcas, set_array_marcas] = useState([]);
     const [array_enderecos, set_array_enderecos] = useState([]);
@@ -95,6 +96,8 @@ export const GlobalContextProvider = ({ children }) => {
     const [popupExcluirAberto, setPopupExcluirAberto] = useState(false)
     const [popupSairAberto, setPopupSairAberto] = useState(false)
 
+    const [secaoAtiva, setSecaoAtiva] = useState('meu-perfil');
+
     // função para quando alguém der F5/atualizar a página, os dados do usuário logado sejam guardados no localStorage
     useEffect(() => {
 
@@ -131,6 +134,8 @@ export const GlobalContextProvider = ({ children }) => {
             set_array_sacola_brecho,
             array_produtos,
             set_array_produtos,
+            array_estoque,
+            set_array_estoque,
             array_categorias,
             set_array_categorias,
             form_de_cadastro_cliente,
@@ -281,7 +286,9 @@ export const GlobalContextProvider = ({ children }) => {
             popupExcluirAberto,
             setPopupExcluirAberto,
             popupSairAberto,
-            setPopupSairAberto
+            setPopupSairAberto,
+            secaoAtiva, 
+            setSecaoAtiva,
         }}>
             {children}
         </GlobalContext.Provider>
