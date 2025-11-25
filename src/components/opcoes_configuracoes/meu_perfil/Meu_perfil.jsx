@@ -75,14 +75,20 @@ function Meu_perfil() {
 
             setDadosUsuario(data)
 
+            // Formatar data para o input type="date" (YYYY-MM-DD)
+            let dataFormatada = ''
+            if (data.data_de_nascimento) {
+                const dataObj = new Date(data.data_de_nascimento)
+                dataFormatada = dataObj.toISOString().split('T')[0]
+            }
+
             setDadosPessoais({
                 nome: data.nome || '',
-                data_de_nascimento: data.data_de_nascimento ? new Date(data.data_de_nascimento).toISOString().split('T')[0] : '',
+                data_de_nascimento: dataFormatada,
                 telefone: data.telefone || '',
                 senha: ''
             })
 
-            // 🔹 CARREGAR DADOS DE ENDEREÇO
             setDadosEndereco({
                 cep: data.cep || '',
                 bairro: data.bairro || '',
@@ -105,9 +111,16 @@ function Meu_perfil() {
 
             setDadosUsuario(data)
 
+            // Formatar data para o input type="date" (YYYY-MM-DD)
+            let dataFormatada = ''
+            if (data.data_de_nascimento_vendedor) {
+                const dataObj = new Date(data.data_de_nascimento_vendedor)
+                dataFormatada = dataObj.toISOString().split('T')[0]
+            }
+
             setDadosPessoais({
                 nome_vendedor: data.nome_vendedor || '',
-                data_de_nascimento_vendedor: data.data_de_nascimento_vendedor ? new Date(data.data_de_nascimento_vendedor).toISOString().split('T')[0] : '',
+                data_de_nascimento_vendedor: dataFormatada,
                 telefone: data.telefone || '',
                 senha: ''
             })
@@ -120,7 +133,6 @@ function Meu_perfil() {
                 horario_funcionamento: data.horario_funcionamento || ''
             })
 
-            // 🔹 CARREGAR DADOS DE ENDEREÇO DO BRECHÓ
             setDadosEndereco({
                 cep: data.cep || '',
                 bairro: data.bairro || '',
@@ -137,53 +149,58 @@ function Meu_perfil() {
     }
 
     const handleSalvarDadosPessoais = async () => {
-        console.log('🔍 ANTES DE PROCESSAR:')
-        console.log('dadosPessoais completo:', dadosPessoais)
-        console.log('data_de_nascimento_vendedor:', dadosPessoais.data_de_nascimento_vendedor)
-        console.log('Tipo:', typeof dadosPessoais.data_de_nascimento_vendedor)
-
         try {
             const dadosParaAtualizar = {}
 
             if (tipoUsuario === 'cliente') {
-                dadosParaAtualizar.nome = dadosPessoais.nome
-                dadosParaAtualizar.telefone = dadosPessoais.telefone
-
-                if (dadosPessoais.data_de_nascimento && dadosPessoais.data_de_nascimento !== '') {
-                    // 🔹 Converte string "YYYY-MM-DD" para Date object
-                    dadosParaAtualizar.data_de_nascimento = new Date(dadosPessoais.data_de_nascimento + 'T12:00:00.000Z')
+                // Validação: só envia se tiver valor
+                if (dadosPessoais.nome && dadosPessoais.nome.trim() !== '') {
+                    dadosParaAtualizar.nome = dadosPessoais.nome.trim()
+                }
+                if (dadosPessoais.data_de_nascimento) {
+                    dadosParaAtualizar.data_de_nascimento = dadosPessoais.data_de_nascimento
+                }
+                if (dadosPessoais.telefone && dadosPessoais.telefone.trim() !== '') {
+                    dadosParaAtualizar.telefone = dadosPessoais.telefone.trim()
+                }
+                if (dadosPessoais.senha && dadosPessoais.senha.trim() !== '') {
+                    dadosParaAtualizar.senha = dadosPessoais.senha
                 }
             } else {
-                dadosParaAtualizar.nome_vendedor = dadosPessoais.nome_vendedor
-                dadosParaAtualizar.telefone = dadosPessoais.telefone
+                // Para brechó - só envia campos que têm valor
+                if (dadosPessoais.nome_vendedor && dadosPessoais.nome_vendedor.trim() !== '') {
+                    dadosParaAtualizar.nome_vendedor = dadosPessoais.nome_vendedor.trim()
+                }
+                if (dadosPessoais.data_de_nascimento_vendedor) {
+                    dadosParaAtualizar.data_de_nascimento_vendedor =
+                        new Date(dadosPessoais.data_de_nascimento_vendedor)
+                }
 
-                if (dadosPessoais.data_de_nascimento_vendedor && dadosPessoais.data_de_nascimento_vendedor !== '') {
-                    // 🔹 Converte string "YYYY-MM-DD" para Date object
-                    dadosParaAtualizar.data_de_nascimento_vendedor = new Date(dadosPessoais.data_de_nascimento_vendedor + 'T12:00:00.000Z')
+                if (dadosPessoais.telefone && dadosPessoais.telefone.trim() !== '') {
+                    dadosParaAtualizar.telefone = dadosPessoais.telefone.trim()
+                }
+                if (dadosPessoais.senha && dadosPessoais.senha.trim() !== '') {
+                    dadosParaAtualizar.senha = dadosPessoais.senha
                 }
             }
 
-            // Só inclui a senha se foi preenchida
-            if (dadosPessoais.senha && dadosPessoais.senha !== '') {
-                dadosParaAtualizar.senha = dadosPessoais.senha
-            }
+            console.log('📤 Tipo de usuário:', tipoUsuario)
+            console.log('📤 Enviando dados:', dadosParaAtualizar)
 
             const endpoint = tipoUsuario === 'cliente'
                 ? `/clientes/${usuario_logado._id}`
                 : `/brechos/${usuario_logado._id}`
 
             console.log('📤 Endpoint:', endpoint)
-            console.log('📤 Dados para atualizar (DEPOIS DA CONVERSÃO):', dadosParaAtualizar)
-            console.log('📅 Tipo da data agora:', typeof dadosParaAtualizar.data_de_nascimento_vendedor)
-            console.log('📅 Valor da data:', dadosParaAtualizar.data_de_nascimento_vendedor)
 
             const response = await api.put(endpoint, dadosParaAtualizar)
+
+            console.log('✅ Resposta do servidor:', response.data)
 
             setDadosUsuario(response.data)
             setEditandoDadosPessoais(false)
             alert('Dados pessoais atualizados com sucesso!')
 
-            // Recarrega os dados
             if (tipoUsuario === 'cliente') {
                 await buscarDadosCliente()
             } else {
@@ -192,8 +209,9 @@ function Meu_perfil() {
 
         } catch (erro) {
             console.error('❌ Erro completo:', erro)
-            console.error('❌ Resposta do servidor:', erro.response?.data)
-            alert(`Erro ao salvar dados pessoais: ${erro.response?.data?.message || erro.message}`)
+            console.error('❌ Resposta do erro:', erro.response?.data)
+            console.error('❌ Status:', erro.response?.status)
+            alert(`Erro ao salvar dados pessoais: ${JSON.stringify(erro.response?.data)}`)
         }
     }
 
@@ -213,13 +231,14 @@ function Meu_perfil() {
             setEditandoDadosBrecho(false)
             alert('Dados do brechó atualizados com sucesso!')
 
+            await buscarDadosBrecho()
+
         } catch (erro) {
             console.error('Erro ao salvar dados do brechó:', erro)
             alert('Erro ao salvar dados do brechó')
         }
     }
 
-    // 🔹 NOVA FUNÇÃO PARA SALVAR ENDEREÇO
     const handleSalvarDadosEndereco = async () => {
         try {
             const dadosParaAtualizar = {
@@ -242,7 +261,6 @@ function Meu_perfil() {
             setEditandoDadosEndereco(false)
             alert('Dados de endereço atualizados com sucesso!')
 
-            // Recarrega os dados
             if (tipoUsuario === 'cliente') {
                 await buscarDadosCliente()
             } else {
@@ -521,7 +539,6 @@ function Meu_perfil() {
 
                 {editandoDadosEndereco && (
                     <div className={styles["alinhamento-button-salvar-alteracoes-meu-perfil"]}>
-                        {/* 🔹 ADICIONADO onClick */}
                         <button onClick={handleSalvarDadosEndereco}>Salvar alterações</button>
                     </div>
                 )}
