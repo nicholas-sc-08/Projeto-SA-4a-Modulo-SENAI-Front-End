@@ -85,7 +85,7 @@ export function nome_produto(tipo) {
     };
 };
 
-export function imagem_produto_sacola_brecho(tipo, padrao, cor_corpo) {
+export function imagem_produto_sacola_brecho(tipo, padrao, cor_corpo, cor_alca) {
 
     console.log(cor_corpo);
 
@@ -104,10 +104,12 @@ export function imagem_produto_sacola_brecho(tipo, padrao, cor_corpo) {
 
             case padrao == "logo_fly" && cor_corpo == "branco":
                 return "./img/sacola-branca-meio-virada-logo-nome-meio.png";
+
             case padrao == "logo_fly_embaixo" && cor_corpo == "branco":
                 return "./img/sacola-branca-meio-virada-logo-embaixo.png";
+
             case padrao == "logo_fly_nome":
-                return "./img/sacola-branca-meio-virada-logo-embaixosacola-branca-meio-virada-logo-embaixo.png";
+                return "./img/produtos_personalizados/sacola/sacola-branca-meio-virada-logo-embaixosacola-branca-meio-virada-logo-embaixo.png";
         };
     };
 
@@ -128,6 +130,66 @@ export function imagem_produto_sacola_brecho(tipo, padrao, cor_corpo) {
                 return "./img/produtos_personalizados/caixa/caixa_normal.svg";
         };
     };
+
+    if (tipo == "ecobag") {
+
+        switch (tipo == "ecobag") {
+
+            case padrao == "logo_fly" && cor_corpo == "amarelo" && cor_alca == "verde":
+                return "./img/produtos_personalizados/ecobaag/cores/amarelo/amarelo-verde/ecobag-amarelo-alca-verde-logo-meio.png";
+
+            case padrao == "logo_fly" && cor_corpo == "amarelo" && cor_alca == "areia":
+                return "./img/produtos_personalizados/ecobaag/cores/amarelo/amarelo-areia/ecobag-amarelo-alca-areia-logo-meio.png";
+
+            case padrao == "logo_fly" && cor_corpo == "verde" && cor_alca == "verde":
+                return "";
+
+            case padrao == "logo_fly" && cor_corpo == "verde" && cor_alca == "areia":
+                return "";
+
+            case padrao == "logo_fly" && cor_corpo == "areia" && cor_alca == "verde":
+                return "";
+
+            case padrao == "logo_fly" && cor_corpo == "areia" && cor_alca == "areia":
+                return "";
+
+            case padrao == "logo_fly_embaixo" && cor_corpo == "amarelo" && cor_alca == "verde":
+                return "./img/produtos_personalizados/ecobaag/amarelo/amarelo-verde/ecobag-amarelo-alca-verde-logo-meio.png";
+
+            case padrao == "logo_fly_embaixo" && cor_corpo == "amarelo" && cor_alca == "areia":
+                return "./img/produtos_personalizados/ecobaag/amarelo/amarelo-areia/ecobag-amarelo-alca-areia-logo-nome-em-baixo.png";
+
+            case padrao == "logo_fly_embaixo" && cor_corpo == "verde" && cor_alca == "verde":
+                return "";
+
+            case padrao == "logo_fly_embaixo" && cor_corpo == "verde" && cor_alca == "areia":
+                return "";
+
+            case padrao == "logo_fly_embaixo" && cor_corpo == "areia" && cor_alca == "verde":
+                return "";
+
+            case padrao == "logo_fly_embaixo" && cor_corpo == "areia" && cor_alca == "areia":
+                return "";
+
+            case padrao == "logo_fly_nome" && cor_corpo == "amarelo" && cor_alca == "verde":
+                return "./img/produtos_personalizados/ecobaag/amarelo/amarelo-verde/ecobag-amarelo-alca-verde-logo-meio.png";
+
+            case padrao == "logo_fly_nome" && cor_corpo == "amarelo" && cor_alca == "areia":
+                return "./img/produtos_personalizados/ecobaag/amarelo/amarelo-areia/ecobag-amarelo-alca-areia-logo-meio.png";
+
+            case padrao == "logo_fly_nome" && cor_corpo == "verde" && cor_alca == "verde":
+                return "";
+
+            case padrao == "logo_fly_nome" && cor_corpo == "verde" && cor_alca == "areia":
+                return "";
+
+            case padrao == "logo_fly_nome" && cor_corpo == "areia" && cor_alca == "verde":
+                return "";
+
+            case padrao == "logo_fly_nome" && cor_corpo == "areia" && cor_alca == "areia":
+                return "";
+        };
+    };
 };
 
 export function padrao_produto_sacola_brecho(padrao) {
@@ -145,5 +207,41 @@ export function padrao_produto_sacola_brecho(padrao) {
 
         case padrao == "sem_logo":
             return "Sem Logo";
+    };
+};
+
+export function material_produto_sacola_brecho(material) {
+
+    switch (material) {
+
+        case "papelao_reclivavel":
+            return "Papelão Reciclável";
+
+        case "plastico_biodegradavel":
+            return "Plástico Biodegradável";
+
+        case "papel_kraft":
+            return "Papel Kraft";
+
+        case "algodao":
+            return "Algodão";
+
+        case "poliester_reciclavel":
+            return "Poliéster Reciclável";
+    };
+};
+
+export function tamanho_produto_sacola_brecho(tamanho) {
+
+    switch (tamanho) {
+
+        case "pequeno":
+            return "Pequeno";
+
+        case "medio":
+            return "Médio";
+
+        case "grande":
+            return "Grande";
     };
 };

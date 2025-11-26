@@ -13,7 +13,7 @@ import Produtos_dashboard from '@/components/dashboard/Produto_dashboard';
 import Brechos_dashboard from '@/components/dashboard/Brechos_dashboard';
 // import Marcas_dashboard from '../../components/dashboard/Marcas_dashboard.jsx';
 import { buscar_categorias } from '@/services/categoria/categoria';
-import { buscar_produtos } from '@/services/produto/produto';
+import { buscar_estoques, buscar_produtos } from '@/services/produto/produto';
 import { useGlobalContext } from '@/context/GlobalContext';
 
 export default function DashBoard() {
@@ -22,17 +22,22 @@ export default function DashBoard() {
     const { clientes_dashboard, set_clientes_dashboard } = useGlobalContext();
     const { categorias_dashboard, set_categorias_dashboard } = useGlobalContext();
     const { produtos_dashboard, set_produtos_dashboard } = useGlobalContext();
-    const { brechos_dashboard, set_brechos_dashboard } = useGlobalContext()
-    const { marcas_dashboard, set_marcas_dashboard } = useGlobalContext()
-    const { erro_pagina, set_erro_pagina } = useGlobalContext();
+    const { brechos_dashboard, set_brechos_dashboard } = useGlobalContext();
+    const { array_clientes, set_array_clientes } = useGlobalContext();
+    const { array_produtos, set_array_produtos } = useGlobalContext();
+    const { array_categorias, set_array_categorias } = useGlobalContext();
+    const { array_brechos, set_array_brechos } = useGlobalContext();
+    const { array_estoque, set_array_estoque } = useGlobalContext();
 
     useEffect(() => {
 
-        buscar_brechos();
-        buscar_clientes();
-        buscar_produtos();
+        buscar_brechos().then(b => set_array_brechos(b));
+        buscar_clientes().then(c => set_array_clientes(c));
+        buscar_produtos().then(p => set_array_produtos(p));
         buscar_marcas();
-        buscar_categorias();
+        buscar_categorias().then(c => set_array_categorias(c));
+        buscar_estoques().then(e => set_array_estoque(e));
+        
     }, []);
 
     return (
