@@ -211,13 +211,13 @@ function page() {
             break;
 
           case cor === "areia" && alca === "amarelo" && padrao === "logo_fly":
-            setImagemAtual("/img/produtos_personalizados/ecobaag/comb/areia-amarelo-logo_fly.png");
+            setImagemAtual("/img/produtos_personalizados/ecobaag/cores/areia/areia-amarelo/ecobag-areia-clara-alca-amarela-logo-meio.png");
             break;
           case cor === "areia" && alca === "amarelo" && padrao === "logo_fly_nome":
-            setImagemAtual("/img/produtos_personalizados/ecobaag/comb/areia-amarelo-logo_fly_nome.png");
+            setImagemAtual("/img/produtos_personalizados/ecobaag/cores/areia/areia-amarelo/ecobag-areia-alca-amarelo-logo-nome-em-baixo.png");
             break;
           case cor === "areia" && alca === "amarelo" && padrao === "logo_fly_embaixo":
-            setImagemAtual("/img/produtos_personalizados/ecobaag/comb/areia-amarelo-logo_fly_embaixo.png");
+            setImagemAtual("/img/produtos_personalizados/ecobaag/cores/areia/areia-amarelo/ecobag-areia-alca-amarelo-logo-em-baixo.png");
             break;
 
           case cor === "areia" && alca === "verde" && padrao === "logo_fly":
@@ -230,14 +230,14 @@ function page() {
             setImagemAtual("/img/produtos_personalizados/ecobaag/comb/areia-verde-logo_fly_embaixo.png");
             break;
 
-          case cor === "areia" && alca === "areia" && padrao === "logo_fly":
-            setImagemAtual("/img/produtos_personalizados/ecobaag/comb/areia-areia-logo_fly.png");
+          case cor === "areia" && padrao === "logo_fly":
+            setImagemAtual("/img/produtos_personalizados/ecobaag/cores/areia/ecobag-areia-alca-areia-logo-nome-meio.png");
             break;
-          case cor === "areia" && alca === "areia" && padrao === "logo_fly_nome":
-            setImagemAtual("/img/produtos_personalizados/ecobaag/comb/areia-areia-logo_fly_nome.png");
+          case cor === "areia" && padrao === "logo_fly_nome":
+            setImagemAtual("/img/produtos_personalizados/ecobaag/cores/areia/ecobag-areia-alca-areia-logo-nome-em-baixo.png");
             break;
-          case cor === "areia" && alca === "areia" && padrao === "logo_fly_embaixo":
-            setImagemAtual("/img/produtos_personalizados/ecobaag/comb/areia-areia-logo_fly_embaixo.png");
+          case cor === "areia" && padrao === "logo_fly_embaixo":
+            setImagemAtual("/img/produtos_personalizados/ecobaag/cores/areia/ecobag-areia-alca-areia-logo-em-baixo.png");
             break;
 
           // --- 12 CASOS: COR + PADRÃO (sem alça) ---
