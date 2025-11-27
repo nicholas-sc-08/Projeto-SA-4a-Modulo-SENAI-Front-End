@@ -246,7 +246,7 @@ function page() {
 
 
               <div className={styles["img-produto-card-content"]}>
-                <img src="" alt="" />
+                <img src="./img/produtos_personalizados/caixa/caixa_normal.svg" alt="" />
               </div>
 
 
