@@ -45,9 +45,9 @@
 /* CSS media query dentro de um stylesheet */
 @media screen and (min-width: 375px) and (max-width: 667px) {
 
-    body {
+    /* body {
         margin-top: 75vw;
-    }
+    } */
 
     .logo-fly-tela-em-andamento {
         width: 28vw;
