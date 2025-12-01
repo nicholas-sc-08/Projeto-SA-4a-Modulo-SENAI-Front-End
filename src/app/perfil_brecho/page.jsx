@@ -148,7 +148,7 @@ function page() {
 
 
                   <div className={styles["titulo-topico-exibido-content"]}>
-                    <p>Informações de Endereco</p>
+                    <p>Informações de Endereço</p>
                   </div>
 
 
