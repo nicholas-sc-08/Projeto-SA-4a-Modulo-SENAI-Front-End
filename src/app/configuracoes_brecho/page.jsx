@@ -112,14 +112,14 @@ function Page() {
                 ============================ */}
                 <div className={styles["menu-lateral"]}>
                     <div className={styles["escolha-config"]}>
-                        <div className={styles["info-perfil"]}>
-                            <img src="./img/fotoPerfil.png" alt="" />
-                        </div>
-
                         <div className={styles["ir-para-perfil"]}>
-                            <div className={styles["container-informacoes-ir-para-perfil"]}>
-                                <h4>{usuario_logado?.nome || "Meu Brechó"}</h4>
-                                <p>No Fly desde: 10/09/2024</p>
+                            <div className={styles["perfil-top"]}>
+                                <img src="./img/fotoPerfil.png" alt="" />
+
+                                <div className={styles["container-informacoes-ir-para-perfil"]}>
+                                    <h4>Project Indigo Brechó</h4>
+                                    <p>No Fly desde: 10/09/2024</p>
+                                </div>
                             </div>
 
                             <button onClick={() => ir_ate_perfil()}>

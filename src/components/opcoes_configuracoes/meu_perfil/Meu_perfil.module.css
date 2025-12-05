@@ -48,6 +48,7 @@ html {
 
 .container-alinhamento-componente {
     margin-top: -3%;
+    /* border: 1px solid red; */
 }
 
 /* MEU PERFIL */
@@ -56,6 +57,7 @@ html {
     font-family: var(--tipografia_primaria);
     color: var(--cor_seis);
     font-weight: 600;
+    width: 100%;
 }
 
 .line-meu-perfil {
@@ -75,18 +77,30 @@ html {
 
 .container-foto-meu-perfil {
     /* border: 1px solid blue; */
+    padding-left: 2%;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 .container-foto-meu-perfil img {
-    width: 50%;
+    width: 10%;
+    border-radius: 10vw;
     height: auto;
 }
 
-.container-alinhamento-texto-meu-perfil {
-    margin-left: -30%;
+.container-imagem-tamanho{
+    /* border: 1px solid red; */
+    display: flex;
+    width: fit-content;
+}
+
+.container-alinhamento-texto-meu-perfil{
+    /* border: 1px solid red; */
+    padding-left: 2%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .alinhamento-button-excluir-meu-perfil button {
@@ -146,6 +160,7 @@ html {
     font-family: var(--tipografia_primaria);
     color: var(--cor_seis);
     font-weight: 600;
+    padding-left: 2%;
 }
 
 .container-alinhamento-titulo button {
@@ -166,6 +181,7 @@ html {
 .container-informacoes-edicao {
     margin-top: 1%;
     margin-bottom: 1%;
+    padding-left: 2%;
 }
 
 .container-informacoes-edicao p {

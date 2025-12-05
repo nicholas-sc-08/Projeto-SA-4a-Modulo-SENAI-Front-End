@@ -66,6 +66,7 @@ html {
     font-family: var(--tipografia_primaria);
     color: var(--cor_seis);
     font-weight: 600;
+    margin-left: 2%;
 }
 
 .container-alinhamento-titulo button {
@@ -101,6 +102,7 @@ html {
     color: var(--cor_seis);
     font-size: 90%;
     padding-top: 0.5%;
+    padding-left: 2%;
 }
 
 /* Botão de salvar alterações */

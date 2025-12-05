@@ -38,11 +38,11 @@ export default function Sacola_geral() {
     useEffect(() => {
 
         set_sacola_ou_produto(`/sacola_brecho`);
-        
+
     }, [set_sacola_ou_produto]);
 
     useEffect(() => {
-        
+
         buscar_sacolas_brechos().then(sacolas => set_array_sacola_brecho(sacolas));
         const sacola_brecho = array_sacola_brecho.filter(produto => produto.id_brecho === usuario_logado._id);
 
@@ -100,24 +100,30 @@ export default function Sacola_geral() {
     }, [clicou_em_excluir]);
 
     async function remover_produto_sacola(produto_selecionado) {
-
         try {
-
+            // 1. Atualiza o estado IMEDIATAMENTE (UI responsiva)
             const array_com_produto_removido = sacola.filter(p => p._id !== produto_selecionado._id);
-             await api.delete(`/sacolas_brechos/${produto_selecionado._id}`);
             set_sacola(array_com_produto_removido);
             set_clicou_em_excluir(true);
 
-        } catch (erro) {
+            // 2. Depois faz a requisição ao backend
+            await api.delete(`/sacolas_brechos/${produto_selecionado._id}`);
 
+            // 3. Atualiza o array global também
+            const array_global_atualizado = array_sacola_brecho.filter(p => p._id !== produto_selecionado._id);
+            set_array_sacola_brecho(array_global_atualizado);
+
+        } catch (erro) {
             console.error(erro);
-        };
-    };
+            // Em caso de erro, reverte a remoção
+            set_sacola(sacola);
+        }
+    }
 
     function preco_dos_produtos(produto_sacola) {
 
         const calcular_preco = produto_sacola.valor;
-        const preco_final = calcular_preco.toFixed(2).replace(`.`, `,`);        
+        const preco_final = calcular_preco.toFixed(2).replace(`.`, `,`);
 
         return `R$${preco_final}`;
     };
@@ -291,9 +297,9 @@ export default function Sacola_geral() {
 
                                             <p>{preco_dos_produtos(produto_sacola)}</p>
 
-                                            <div className={styles["container_contador_quantidade_produtos"]}>
+                                            {/* <div className={styles["container_contador_quantidade_produtos"]}> */}
 
-                                                <button
+                                            {/* <button
                                                     disabled={produto_sacola.quantidade_selecionada === 1}
                                                     className={styles['botao_diminuir_contador_sacola_geral']}
                                                     onClick={e => {
@@ -315,9 +321,9 @@ export default function Sacola_geral() {
                                                     }}
                                                 >
                                                     +
-                                                </button>
+                                                </button> */}
 
-                                            </div>
+                                            {/* </div> */}
                                         </div>
 
                                     </div>

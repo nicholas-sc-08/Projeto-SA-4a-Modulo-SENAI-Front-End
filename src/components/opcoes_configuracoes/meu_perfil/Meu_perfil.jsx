@@ -340,7 +340,14 @@ function Meu_perfil() {
 
             {/* Meu perfil */}
             <div className={styles['container-meu-perfil']}>
-                <h4>Meu perfil</h4>
+                <div className={styles["container-alinhamento-titulo"]}>
+                    <h4>Dados pessoais</h4>
+
+                    <button onClick={() => setEditandoDadosPessoais(!editandoDadosPessoais)}>
+                        <img src="./img/icons/edit.svg" alt="Editar" />
+                    </button>
+                </div>
+
                 <div className={styles["line-meu-perfil"]}></div>
 
                 <div className={styles["container-alinhamento-imagens-meu-perfil"]}>
@@ -353,45 +360,22 @@ function Meu_perfil() {
                                 }
                                 alt="Foto de perfil"
                             />
-                        </div>
 
-                        <div className={styles['container-alinhamento-texto-meu-perfil']}>
-                            <h4>{tipoUsuario === 'cliente' ? 'Foto de perfil' : 'Logo do brechó'}</h4>
+                            <div className={styles['container-alinhamento-texto-meu-perfil']}>
+                                <h4>{tipoUsuario === 'cliente' ? 'Foto de perfil' : 'Logo do brechó'}</h4>
 
-                            <div className={styles["alinhamento-button-excluir-meu-perfil"]}>
-                                <button><img src="./img/icons/lixeira.svg" alt="" /> Excluir</button>
+                                <div className={styles["alinhamento-button-excluir-meu-perfil"]}>
+                                    <button><img src="./img/icons/lixeira.svg" alt="" /> Excluir</button>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div className={styles["container-foto-meu-perfil"]}>
-                        <div className={styles["container-imagem-tamanho"]}>
-                            <img src="./img/fotoPerfil.png" alt="Layout" />
-                        </div>
-
-                        <div className={styles['container-alinhamento-texto-meu-perfil-layout']}>
-                            <h4>Layout</h4>
-
-                            <div className={styles["alinhamento-button-excluir-meu-perfil-layout"]}>
-                                <button><img src="./img/icons/lixeira.svg" alt="" /> Excluir</button>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
 
             {/* Dados pessoais */}
             <div className={styles['container-secoes-dados']}>
-                <div className={styles["container-alinhamento-titulo"]}>
-                    <h4>Dados pessoais</h4>
-
-                    <button onClick={() => setEditandoDadosPessoais(!editandoDadosPessoais)}>
-                        <img src="./img/icons/edit.svg" alt="Editar" />
-                    </button>
-                </div>
-
-                <div className={styles["line-meu-perfil"]}></div>
-
                 <div className={styles["container-informacoes-edicao"]}>
                     {editandoDadosPessoais ? (
                         <>
