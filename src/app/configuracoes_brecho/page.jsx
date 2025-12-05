@@ -14,7 +14,7 @@ import Meus_pedidos from '@/components/opcoes_configuracoes/meus_pedidos/Meus_pe
 import { useEffect } from 'react';
 
 function Page() {
-    const {secaoAtiva, setSecaoAtiva} = useGlobalContext();
+    const { secaoAtiva, setSecaoAtiva } = useGlobalContext();
     const { usuario_logado, set_usuario_logado } = useGlobalContext();
     const { brecho_selecionado, set_brecho_selecionado } = useGlobalContext();
     const { array_brechos, set_array_brechos } = useGlobalContext();
@@ -69,14 +69,14 @@ function Page() {
                 {/* MENU LATERAL ESQUERDO */}
                 <div className={styles["menu-lateral"]}>
                     <div className={styles["escolha-config"]}>
-                        <div className={styles["info-perfil"]}>
-                            <img src="./img/fotoPerfil.png" alt="" />
-                        </div>
-
                         <div className={styles["ir-para-perfil"]}>
-                            <div className={styles["container-informacoes-ir-para-perfil"]}>
-                                <h4>Project Indigo Brechó</h4>
-                                <p>No Fly desde: 10/09/2024</p>
+                            <div className={styles["perfil-top"]}>
+                                <img src="./img/fotoPerfil.png" alt="" />
+
+                                <div className={styles["container-informacoes-ir-para-perfil"]}>
+                                    <h4>Project Indigo Brechó</h4>
+                                    <p>No Fly desde: 10/09/2024</p>
+                                </div>
                             </div>
 
                             <button onClick={() => ir_ate_perfil()}>Ir para perfil</button>
