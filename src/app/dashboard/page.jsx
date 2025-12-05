@@ -13,8 +13,9 @@ import Produtos_dashboard from '@/components/dashboard/Produto_dashboard';
 import Brechos_dashboard from '@/components/dashboard/Brechos_dashboard';
 // import Marcas_dashboard from '../../components/dashboard/Marcas_dashboard.jsx';
 import { buscar_categorias } from '@/services/categoria/categoria';
-import { buscar_estoques, buscar_produtos } from '@/services/produto/produto';
+import { buscar_produtos } from '@/services/produto/produto';
 import { useGlobalContext } from '@/context/GlobalContext';
+import { buscarPersonalizados } from '@/services/personalizado/personalizado';
 
 export default function DashBoard() {
 
@@ -36,7 +37,7 @@ export default function DashBoard() {
         buscar_produtos().then(p => set_array_produtos(p));
         buscar_marcas();
         buscar_categorias().then(c => set_array_categorias(c));
-        buscar_estoques().then(e => set_array_estoque(e));
+        buscarPersonalizados().then(e => set_array_estoque(e));
         
     }, []);
 

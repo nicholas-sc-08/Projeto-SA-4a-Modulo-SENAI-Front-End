@@ -92,6 +92,7 @@ export const GlobalContextProvider = ({ children }) => {
     const [pop_up_notificacao_excluir_marca, set_pop_up_notificacao_excluir_marca] = useState(false);
 
     const [produto_selecionado, set_produto_selecionado] = useState('ecobag');
+    const [modal_criar_perso, set_modal_criar_perso] = useState(false);
 
     const [popupExcluirAberto, setPopupExcluirAberto] = useState(false)
     const [popupSairAberto, setPopupSairAberto] = useState(false)
@@ -287,6 +288,8 @@ export const GlobalContextProvider = ({ children }) => {
             setPopupExcluirAberto,
             popupSairAberto,
             setPopupSairAberto,
+            modal_criar_perso,
+            set_modal_criar_perso,
             secaoAtiva, 
             setSecaoAtiva,
         }}>

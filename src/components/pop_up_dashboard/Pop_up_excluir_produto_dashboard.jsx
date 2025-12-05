@@ -1,11 +1,12 @@
 "use client";
 
 import React, { useEffect } from 'react'
-import { buscar_estoques, buscar_produtos } from '@/services/produto/produto';
+import { buscar_produtos } from '@/services/produto/produto';
 import api from '../../services/api';
 import { useGlobalContext } from '@/context/GlobalContext';
 import styles from "@/components/pop_up_dashboard/Pop_up_excluir_produto_dashboard.module.css";
 import { AnimatePresence, motion } from 'framer-motion';
+import { buscarPersonalizados } from '@/services/personalizado/personalizado';
 
 export default function Pop_up_excluir_produto_dashboard() {
 
@@ -24,7 +25,7 @@ export default function Pop_up_excluir_produto_dashboard() {
             set_abrir_pop_up_dashboard(false);
             set_pop_up_notificacao_excluir_dashboard(true);
             buscar_produtos().then(p => set_array_produtos(p));
-            buscar_estoques().then(e => set_array_estoques(e));
+            buscarPersonalizados().then(p => set_array_estoques(p));
 
         } catch (erro) {
 

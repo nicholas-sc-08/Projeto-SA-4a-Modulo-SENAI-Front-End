@@ -9,8 +9,7 @@ import { useGlobalContext } from '@/context/GlobalContext';
 import { buscar_marcas } from '@/services/marca/marca';
 import { buscar_brechos } from '@/services/brecho/brecho';
 import { buscar_clientes } from '@/services/cliente/cliente.js';
-import { buscar_estoques } from '@/services/produto/produto.js';
-
+import { buscarPersonalizados } from '@/services/personalizado/personalizado.js';
 
 export default function Inicio_dashboard() {
 
@@ -52,7 +51,7 @@ export default function Inicio_dashboard() {
         buscar_marcas().then(marcas => set_array_marcas(marcas));
         buscar_brechos().then(brechos => set_array_brechos(brechos));
         buscar_clientes().then(clientes => set_array_clientes(clientes));
-        buscar_estoques().then(estoques => set_array_estoque(estoques));
+        buscarPersonalizados().then(p => set_array_estoque(p));
         
     }, []);
 

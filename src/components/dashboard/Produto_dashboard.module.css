@@ -399,3 +399,16 @@
 .container_excluir_produto img {
     width: 35%;
 }
+.container_b_n_p {
+
+    display: flex;
+    justify-content: end;
+    width: 50%;
+}
+
+.container_b_n_p button {
+
+    cursor: pointer;
+    height: 6vh;
+    width: 35%;
+}

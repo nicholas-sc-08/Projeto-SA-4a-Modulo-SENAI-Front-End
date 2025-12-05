@@ -85,7 +85,7 @@ export function nome_produto(tipo) {
     };
 };
 
-export function imagem_produto_sacola_brecho(tipo, padrao, cor_corpo, cor_alca) {
+export function imagem_produto_sacola_brecho(tipo, padrao, cor, cor_corpo, cor_alca) {
 
     console.log(cor_corpo);
 
@@ -93,20 +93,26 @@ export function imagem_produto_sacola_brecho(tipo, padrao, cor_corpo, cor_alca) 
 
         switch (true) {
 
-            case padrao == "logo_fly" && cor_corpo == "verde":
+            case padrao == "sem_logo" && cor == "verde":
+            return "./img/produtos_personalizados/sacola/sacola-verde-meio-virada.png";
+
+            case padrao == "logo_fly" && cor == "verde":
                 return "./img/produtos_personalizados/sacola/sacola-verde-meio-virada-logo-nome-meio.png";
 
-            case padrao == "logo_fly_embaixo" && cor_corpo == "verde":
+            case padrao == "logo_fly_embaixo" && cor == "verde":
                 return "./img/produtos_personalizados/sacola/sacola-verde-meio-virada-logo-embaixo.png";
 
-            case padrao == "logo_fly_nome" && cor_corpo == "verde":
+            case padrao == "logo_fly_nome" && cor == "verde":
                 return "./img/produtos_personalizados/sacola/sacola-verde-meio-virada-logo-nome-embaixo.png";
 
-            case padrao == "logo_fly" && cor_corpo == "branco":
-                return "./img/sacola-branca-meio-virada-logo-nome-meio.png";
+            case padrao == "sem_logo" && cor == "branco":
+                return "./img/produtos_personalizados/sacola/sacola-branca-meio-virada.png";
 
-            case padrao == "logo_fly_embaixo" && cor_corpo == "branco":
-                return "./img/sacola-branca-meio-virada-logo-embaixo.png";
+            case padrao == "logo_fly" && cor == "branco":
+                return "./img/produtos_personalizados/sacola/sacola-branca-meio-virada-logo-nome-meio.png";
+
+            case padrao == "logo_fly_embaixo" && cor == "branco":
+                return "./img/produtos_personalizados/sacola/sacola-branca-meio-virada-logo-embaixo.png";
 
             case padrao == "logo_fly_nome":
                 return "./img/produtos_personalizados/sacola/sacola-branca-meio-virada-logo-embaixosacola-branca-meio-virada-logo-embaixo.png";
@@ -118,10 +124,10 @@ export function imagem_produto_sacola_brecho(tipo, padrao, cor_corpo, cor_alca) 
         switch (tipo == "caixa") {
 
             case padrao == "logo_fly":
-                return "./img/produtos_personalizados/caixa/caixa-meio-virada-logo-embaixo.svg";
+                return "./img/produtos_personalizados/caixa/caixa-meio-virada-logo-nome-emcima.svg";
 
             case padrao == "logo_fly_embaixo":
-                return "./img/produtos_personalizados/caixa/caixa-meio-virada-logo-nome-emcima.svg";
+                return "./img/produtos_personalizados/caixa/caixa-meio-virada-logo-embaixo.svg";
 
             case padrao == "logo_fly_nome":
                 return "./img/produtos_personalizados/caixa/caixa-meio-virada-logo-nome-embaixo.svg";

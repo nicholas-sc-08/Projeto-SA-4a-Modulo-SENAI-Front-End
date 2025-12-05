@@ -9,7 +9,8 @@ import Cadastrar_personalizado from "@/components/pop_up_dashboard/Cadastrar_per
 import Pop_up_excluir_produto_dashboard from '../pop_up_dashboard/Pop_up_excluir_produto_dashboard';
 import Pop_up_notificacao_excluir_produto from '@/components/pop_up_excluir_produto_sacola/Pop_up_excluir_produto_sacola';
 import styles from "@/components/dashboard/Produto_dashboard.module.css";
-import { buscar_estoques, buscar_produtos } from '@/services/produto/produto';
+import { buscar_produtos } from '@/services/produto/produto';
+import { buscarPersonalizados } from '@/services/personalizado/personalizado';
 import { useGlobalContext } from '@/context/GlobalContext';
 import { imagem_produto_sacola_brecho, material_produto_sacola_brecho, nome_produto, padrao_produto_sacola_brecho, tamanho_produto_sacola_brecho } from '@/services/sacolas_brechos/sacolas_brecho';
 
@@ -19,6 +20,7 @@ export default function Produtos_dashboard() {
     const { array_categorias, set_array_categorias } = useGlobalContext();
     const { produtos_dashboard, set_produtos_dashboard } = useGlobalContext()
     const { inicio_dashboard, set_inicio_dashboard } = useGlobalContext()
+    const { modal_criar_perso, set_modal_criar_perso } = useGlobalContext();
     const { pop_up_notificacao_excluir_dashboard, set_pop_up_notificacao_excluir_dashboard } = useGlobalContext();
     const { abrir_pop_up_dashboard, set_abrir_pop_up_dashboard } = useGlobalContext();
     const { id_do_produto_a_excluir, set_id_do_produto_a_excluir } = useGlobalContext();
@@ -58,7 +60,7 @@ export default function Produtos_dashboard() {
     useEffect(() => {
 
         buscar_produtos().then(produtos => set_array_produtos(produtos));
-        buscar_estoques().then(estoques => set_array_estoque(estoques));
+        buscarPersonalizados().then(p => set_array_estoque(p));
     }, []);
 
     useEffect(() => {
@@ -78,7 +80,7 @@ export default function Produtos_dashboard() {
 
                 {abrir_pop_up_dashboard && <Pop_up_excluir_produto_dashboard />}
                 {pop_up_notificacao_excluir_dashboard && <Pop_up_notificacao_excluir_produto />}
-                {true && <Cadastrar_personalizado />}
+                {modal_criar_perso && <Cadastrar_personalizado />}
 
                 <div className={styles["container-alinhamento-imagem-titulo-produtos-dashboard"]}>
                     <div className={styles["container-alinhamento-imagem-produtos-dashboard"]}>
@@ -219,7 +221,9 @@ export default function Produtos_dashboard() {
                                     value={barra_pesquisa_estoque}
                                     onChange={e => set_barra_pesquisa_estoque(e.target.value)}
                                 />
-
+                                <div className={styles["container_b_n_p"]}>
+                                    <button className={styles["b_novo_personalizado"]} onClick={() => set_modal_criar_perso(true)}>Novo Personalizado</button>
+                                </div>
                                 <div className={styles["container_excluir_produto"]}>
                                     <button onClick={() => set_escolher_qual_excluir(!escolher_qual_excluir)}>{!escolher_qual_excluir ? <img src='./img/Lixeira_icon_v_dois.svg' alt='lixeira' /> : <img src='./img/icons/close-icon.png' alt='cancelar' />}</button>
                                 </div>
@@ -239,34 +243,34 @@ export default function Produtos_dashboard() {
                     </div>
                     <div className={styles['fundo-container-dados-do-produto']}>
                         <div className={styles["container-dados-do-produto"]}>
-                            {!barra_pesquisa_estoque && array_estoque.map((produto, i) => (
-                                <div key={i} className={styles["alinhamento-containers-informacoes-produtos-dashboard"]}>
+                            {!barra_pesquisa_estoque && array_estoque.map((p) => (
+                                <div key={p._id} className={styles["alinhamento-containers-informacoes-produtos-dashboard"]}>
                                     <div className={styles["grupo-um-informacoes-produto-dashboard"]}>
                                         <div className={styles["imagem-produto-dashboard"]}>
-                                            <img src={imagem_produto_sacola_brecho(produto.tipo, produto.padrao, produto.cor_corpo, produto.cor_alca)} alt="" />
+                                            <img src={imagem_produto_sacola_brecho(p.tipo, p.padrao, p.cor_corpo, p.cor_alca)} alt="" />
                                         </div>
                                         <div className={styles["nome-categoria-produto-dashboard"]}>
                                             <p className={styles["categoria-cor-dashboard"]}>
-                                                {nome_produto(produto.tipo)}
+                                                {nome_produto(p.tipo)}
                                             </p>
                                         </div>
                                     </div>
                                     <div className={styles["grupo-dois-informacoes-produto-dashboard"]}>
-                                        <p className={styles["preco-produto-dashboard"]}>{produto.quantidade} Uni</p>
+                                        <p className={styles["preco-produto-dashboard"]}>{p.quantidade} Uni</p>
                                         <div className={styles["alinhamento-informacoes-gerais-unidade-dashboard"]}>
-                                            <p className={styles['p-grupo-dois-informacoes-produto-dashboard']}>{material_produto_sacola_brecho(produto.material)}</p>
+                                            <p className={styles['p-grupo-dois-informacoes-produto-dashboard']}>{material_produto_sacola_brecho(p.material)}</p>
                                         </div>
                                         <div className={styles["alinhamento-informacoes-gerais-conservacao-dashboard"]}>
-                                            <p className={styles['p-grupo-dois-informacoes-produto-dashboard']}>{tamanho_produto_sacola_brecho(produto.tamanho)}</p>
+                                            <p className={styles['p-grupo-dois-informacoes-produto-dashboard']}>{tamanho_produto_sacola_brecho(p.tamanho)}</p>
                                         </div>
                                         <div className={styles["alinhamento-informacoes-gerais-tamanho-dashboard"]}>
-                                            <p className={styles['p-grupo-dois-informacoes-produto-dashboard']}>{padrao_produto_sacola_brecho(produto.padrao)}</p>
+                                            <p className={styles['p-grupo-dois-informacoes-produto-dashboard']}>{padrao_produto_sacola_brecho(p.padrao)}</p>
                                         </div>
                                     </div>
                                     {escolher_qual_excluir && (
                                         <button
                                             className={styles["button-deletar-produto-dashboard-individual"]}
-                                            onClick={() => armazenar_id_do_produto(produto._id)}
+                                            onClick={() => armazenar_id_do_produto(p._id)}
                                         >
                                             <img src="./img/icons/lixeira-vermelha-icon.svg" alt="Excluir" />
                                         </button>
@@ -274,34 +278,34 @@ export default function Produtos_dashboard() {
                                     <div className={styles["linha-pretinha"]}></div>
                                 </div>
                             ))}
-                            {barra_pesquisa_estoque && resultado_pesquisa_estoque.map((produto, i) => (
+                            {barra_pesquisa_estoque && resultado_pesquisa_estoque.map((p, i) => (
                                 <div key={i} className={styles["alinhamento-containers-informacoes-produtos-dashboard"]}>
                                     <div className={styles["grupo-um-informacoes-produto-dashboard"]}>
                                         <div className={styles["imagem-produto-dashboard"]}>
-                                            <img src={imagem_produto_sacola_brecho(produto.tipo, produto.padrao, produto.cor_corpo, produto.cor_alca)} alt="" />
+                                            <img src={imagem_produto_sacola_brecho(p.tipo, p.padrao, p.cor_corpo, p.cor_alca)} alt="" />
                                         </div>
                                         <div className={styles["nome-categoria-produto-dashboard"]}>
                                             <p className={styles["categoria-cor-dashboard"]}>
-                                                {nome_produto(produto.tipo)}
+                                                {nome_produto(p.tipo)}
                                             </p>
                                         </div>
                                     </div>
                                     <div className={styles["grupo-dois-informacoes-produto-dashboard"]}>
-                                        <p className={styles["preco-produto-dashboard"]}>{produto.quantidade} Uni</p>
+                                        <p className={styles["preco-produto-dashboard"]}>{p.quantidade} Uni</p>
                                         <div className={styles["alinhamento-informacoes-gerais-unidade-dashboard"]}>
-                                            <p className={styles['p-grupo-dois-informacoes-produto-dashboard']}>{material_produto_sacola_brecho(produto.material)}</p>
+                                            <p className={styles['p-grupo-dois-informacoes-produto-dashboard']}>{material_produto_sacola_brecho(p.material)}</p>
                                         </div>
                                         <div className={styles["alinhamento-informacoes-gerais-conservacao-dashboard"]}>
-                                            <p className={styles['p-grupo-dois-informacoes-produto-dashboard']}>{tamanho_produto_sacola_brecho(produto.tamanho)}</p>
+                                            <p className={styles['p-grupo-dois-informacoes-produto-dashboard']}>{tamanho_produto_sacola_brecho(p.tamanho)}</p>
                                         </div>
                                         <div className={styles["alinhamento-informacoes-gerais-tamanho-dashboard"]}>
-                                            <p className={styles['p-grupo-dois-informacoes-produto-dashboard']}>{padrao_produto_sacola_brecho(produto.padrao)}</p>
+                                            <p className={styles['p-grupo-dois-informacoes-produto-dashboard']}>{padrao_produto_sacola_brecho(p.padrao)}</p>
                                         </div>
                                     </div>
                                     {escolher_qual_excluir && (
                                         <button
                                             className={styles["button-deletar-produto-dashboard-individual"]}
-                                            onClick={() => armazenar_id_do_produto(produto._id)}
+                                            onClick={() => armazenar_id_do_produto(p._id)}
                                         >
                                             <img src="./img/icons/lixeira-vermelha-icon.svg" alt="Excluir" />
                                         </button>
