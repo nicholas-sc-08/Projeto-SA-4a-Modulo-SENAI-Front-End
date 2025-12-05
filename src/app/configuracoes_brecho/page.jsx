@@ -35,13 +35,13 @@ function Page() {
             if (!usuario_logado?._id) return;
 
             const req = await fetch(
-                `${process.env.NEXT_PUBLIC_API_URL}/enderecos/brecho/${usuario_logado._id}`
+                `${process.env.NEXT_PUBLIC_API_URL}/enderecos?fk_id_brecho=${usuario_logado._id}`
             );
 
             const res = await req.json();
 
-            if (res?.endereco) {
-                setEndereco(res.endereco);
+            if (Array.isArray(res) && res.length > 0) {
+                setEndereco(res[0]);
             }
         } catch (err) {
             console.log("Erro ao buscar endereço:", err);
