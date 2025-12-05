@@ -10,6 +10,147 @@ import { useRouter } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import { buscar_sacolas_brechos } from "@/services/sacolas_brechos/sacolas_brecho";
 
+// 🔹 Mapeamento de imagens por produto
+const mapeamento_imagens = {
+  ecobag: {
+    // Combinações completas: cor_corpo + cor_alca + padrao
+    combinacoes_completas: {
+      'amarelo-amarelo-logo_fly': '/img/produtos_personalizados/ecobaag/cores/amarelo/ecobag-amarelo-alca-amarela-logo-meio.png',
+      'amarelo-amarelo-logo_fly_nome': '/img/produtos_personalizados/ecobaag/cores/amarelo/ecobag-amarelo-alca-amarelo-logo-nome-em-baixo.png',
+      'amarelo-amarelo-logo_fly_embaixo': '/img/produtos_personalizados/ecobaag/cores/amarelo/ecobag-amarelo-alca-amarelo-logo-em-baixo.png',
+      
+      'amarelo-verde-logo_fly': '/img/produtos_personalizados/ecobaag/cores/amarelo/amarelo-verde/ecobag-amarelo-alca-verde-logo-meio.png',
+      'amarelo-verde-logo_fly_nome': '/img/produtos_personalizados/ecobaag/cores/amarelo/amarelo-verde/ecobag-amarelo-alca-verde-logo-nome-em-baixo.png',
+      'amarelo-verde-logo_fly_embaixo': '/img/produtos_personalizados/ecobaag/cores/amarelo/amarelo-verde/ecobag-amarelo-alca-verde-logo-em-baixo.png',
+      
+      'amarelo-areia-logo_fly': '/img/produtos_personalizados/ecobaag/cores/amarelo/amarelo-areia/ecobag-amarelo-alca-areia-logo-meio.png',
+      'amarelo-areia-logo_fly_nome': '/img/produtos_personalizados/ecobaag/cores/amarelo/amarelo-areia/ecobag-amarelo-alca-areia-logo-nome-em-baixo.png',
+      'amarelo-areia-logo_fly_embaixo': '/img/produtos_personalizados/ecobaag/cores/amarelo/amarelo-areia/ecobag-amarelo-alca-areia-logo-em-baixo.png',
+      
+      'verde-amarelo-logo_fly': '/img/produtos_personalizados/ecobaag/comb/verde-amarelo-logo_fly.png',
+      'verde-amarelo-logo_fly_nome': '/img/produtos_personalizados/ecobaag/comb/verde-amarelo-logo_fly_nome.png',
+      'verde-amarelo-logo_fly_embaixo': '/img/produtos_personalizados/ecobaag/comb/verde-amarelo-logo_fly_embaixo.png',
+      
+      'verde-verde-logo_fly': '/img/produtos_personalizados/ecobaag/comb/verde-verde-logo_fly.png',
+      'verde-verde-logo_fly_nome': '/img/produtos_personalizados/ecobaag/comb/verde-verde-logo_fly_nome.png',
+      'verde-verde-logo_fly_embaixo': '/img/produtos_personalizados/ecobaag/comb/verde-verde-logo_fly_embaixo.png',
+      
+      'verde-areia-logo_fly': '/img/produtos_personalizados/ecobaag/comb/verde-areia-logo_fly.png',
+      'verde-areia-logo_fly_nome': '/img/produtos_personalizados/ecobaag/comb/verde-areia-logo_fly_nome.png',
+      'verde-areia-logo_fly_embaixo': '/img/produtos_personalizados/ecobaag/comb/verde-areia-logo_fly_embaixo.png',
+      
+      'areia-amarelo-logo_fly': '/img/produtos_personalizados/ecobaag/comb/areia-amarelo-logo_fly.png',
+      'areia-amarelo-logo_fly_nome': '/img/produtos_personalizados/ecobaag/comb/areia-amarelo-logo_fly_nome.png',
+      'areia-amarelo-logo_fly_embaixo': '/img/produtos_personalizados/ecobaag/comb/areia-amarelo-logo_fly_embaixo.png',
+      
+      'areia-verde-logo_fly': '/img/produtos_personalizados/ecobaag/comb/areia-verde-logo_fly.png',
+      'areia-verde-logo_fly_nome': '/img/produtos_personalizados/ecobaag/comb/areia-verde-logo_fly_nome.png',
+      'areia-verde-logo_fly_embaixo': '/img/produtos_personalizados/ecobaag/comb/areia-verde-logo_fly_embaixo.png',
+      
+      'areia-areia-logo_fly': '/img/produtos_personalizados/ecobaag/comb/areia-areia-logo_fly.png',
+      'areia-areia-logo_fly_nome': '/img/produtos_personalizados/ecobaag/comb/areia-areia-logo_fly_nome.png',
+      'areia-areia-logo_fly_embaixo': '/img/produtos_personalizados/ecobaag/comb/areia-areia-logo_fly_embaixo.png',
+    },
+    
+    // Combinações cor + padrao (sem alça específica)
+    cor_padrao: {
+      'amarelo-logo_fly': '/img/produtos_personalizados/ecobaag/cores/amarelo/ecobag-amarelo-alca-amarela-logo-meio.png',
+      'amarelo-logo_fly_nome': '/img/produtos_personalizados/ecobaag/cores/amarelo/ecobag-amarelo-alca-amarelo-logo-nome-em-baixo.png',
+      'amarelo-logo_fly_embaixo': '/img/produtos_personalizados/ecobaag/cores/amarelo/ecobag-amarelo-alca-amarelo-logo-em-baixo.png',
+      
+      'verde-logo_fly': '/img/produtos_personalizados/ecobaag/comb/verde-logo_fly.png',
+      'verde-logo_fly_nome': '/img/produtos_personalizados/ecobaag/comb/verde-logo_fly_nome.png',
+      'verde-logo_fly_embaixo': '/img/produtos_personalizados/ecobaag/comb/verde-logo_fly_embaixo.png',
+      
+      'areia-logo_fly': '/img/produtos_personalizados/ecobaag/comb/areia-logo_fly.png',
+      'areia-logo_fly_nome': '/img/produtos_personalizados/ecobaag/comb/areia-logo_fly_nome.png',
+      'areia-logo_fly_embaixo': '/img/produtos_personalizados/ecobaag/comb/areia-logo_fly_embaixo.png',
+    },
+    
+    // Só cor
+    cores: {
+      'amarelo': '/img/produtos_personalizados/ecobaag/cores/amarelo/ecobag-cor-base-amarelo.png',
+      'verde': '/img/produtos_personalizados/ecobaag/cores/ecobag-cor-base-verde.png',
+      'areia': '/img/produtos_personalizados/ecobaag/cores/ecobag-cor-base-areia.png',
+    },
+    
+    // Só padrão
+    padroes: {
+      'logo_fly': '/img/produtos_personalizados/ecobaag/padrao/ecobag-nome-logo-meio.png',
+      'logo_fly_nome': '/img/produtos_personalizados/ecobaag/padrao/ecobag-nome-logo-embaixo.png',
+      'logo_fly_embaixo': '/img/produtos_personalizados/ecobaag/padrao/ecobag-logo.png',
+    }
+  },
+  
+  sacola: {
+    cor_padrao: {
+      'verde-logo_fly': '/img/produtos_personalizados/sacola/sacola-verde-meio-virada-logo-nome-meio.png',
+      'verde-logo_fly_nome': '/img/produtos_personalizados/sacola/sacola-verde-meio-virada-logo-nome-embaixo.png',
+      'verde-logo_fly_embaixo': '/img/produtos_personalizados/sacola/sacola-verde-meio-virada-logo-embaixo.png',
+      
+      'branco-logo_fly': '/img/produtos_personalizados/sacola/sacola-branca-meio-virada-logo-nome-meio.png.png',
+      'branco-logo_fly_nome': '/img/produtos_personalizados/sacola/sacola-branca-meio-virada-logo-nome-embaixo.png',
+      'branco-logo_fly_embaixo': '/img/produtos_personalizados/sacola/sacola-branca-meio-virada-logo-embaixo.png',
+    },
+    
+    cores: {
+      'verde': '/img/produtos_personalizados/sacola/sacola-verde-meio-virada.png',
+      'branco': '/img/produtos_personalizados/sacola/sacola-branca-meio-virada.png',
+    },
+    
+    padroes: {
+      'logo_fly': '/img/produtos_personalizados/sacola/sacola-padrao-meio-virada-logo-nome-meio.png',
+      'logo_fly_nome': '/img/produtos_personalizados/sacola/sacola-padrao-meio-virada-logo-nome-embaixo.png',
+      'logo_fly_embaixo': '/img/produtos_personalizados/sacola/sacola-padrao-meio-virada-logo-embaixo.png',
+    }
+  },
+  
+  caixa: {
+    padroes: {
+      'logo_fly': '/img/produtos_personalizados/caixa/caixa-meio-virada-logo-embaixo.svg',
+      'logo_fly_nome': '/img/produtos_personalizados/caixa/caixa-meio-virada-logo-nome-emcima.svg',
+      'logo_fly_embaixo': '/img/produtos_personalizados/caixa/caixa-meio-virada-logo-nome-embaixo.svg',
+    }
+  }
+};
+
+// 🔹 Função para buscar imagem dinamicamente
+const buscar_imagem_produto = (produto, selecoes, imagemPadrao) => {
+  const config = mapeamento_imagens[produto];
+  if (!config) return imagemPadrao;
+
+  const { cor_corpo, cor_alca, padrao } = selecoes;
+
+  // Prioridade 1: Combinação completa (cor_corpo + cor_alca + padrao)
+  if (cor_corpo && cor_alca && padrao) {
+    const chave = `${cor_corpo}-${cor_alca}-${padrao}`;
+    if (config.combinacoes_completas?.[chave]) {
+      return config.combinacoes_completas[chave];
+    }
+  }
+
+  // Prioridade 2: Cor + Padrão (sem alça)
+  if (cor_corpo && padrao) {
+    const chave = `${cor_corpo}-${padrao}`;
+    if (config.cor_padrao?.[chave]) {
+      return config.cor_padrao[chave];
+    }
+  }
+
+  // Prioridade 3: Só cor
+  if (cor_corpo && config.cores?.[cor_corpo]) {
+    return config.cores[cor_corpo];
+  }
+
+  // Prioridade 4: Só padrão
+  if (padrao && config.padroes?.[padrao]) {
+    return config.padroes[padrao];
+  }
+
+  // Fallback: imagem padrão
+  return imagemPadrao;
+};
+
 function page() {
   const router = useRouter();
   const { tipo_de_header, set_tipo_de_header } = useGlobalContext();
@@ -409,12 +550,12 @@ function page() {
     try {
       const sacola_salva = await api.post("/sacolas_brechos", pedido);
 
-      await pedido_sacola_para_maquina(sacola_salva.data);
+      // await pedido_sacola_para_maquina(sacola_salva.data);
 
       buscar_sacolas_brechos().then((sacolas) => set_array_sacola_brecho(sacolas));
 
       alert("Pedido enviado com sucesso!");
-      router.push(`/rastreamento_pedidos}`);
+      router.push(`/sacola_brecho`);
 
     } catch (error) {
       console.error("Erro ao enviar pedido:", error);
@@ -571,10 +712,7 @@ function page() {
                   className={styles["button-comprar-produtos-personalizados"]}
                   onClick={enviar_pedido}
                 >
-                  Comprar
-                </button>
-                <button className={styles["button-chat-produtos-personalizados"]}>
-                  Chat
+                  Adicionar a sacola
                 </button>
               </div>
             </div>
