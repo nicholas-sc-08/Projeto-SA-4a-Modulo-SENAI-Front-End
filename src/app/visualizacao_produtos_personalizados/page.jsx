@@ -145,7 +145,7 @@ function page() {
     const alca = selecaoAtual.cor_alca?.toLowerCase();
 
     switch (produto_selecionado) {
-      // === 🟢 LÓGICA ECOSBAG (48 casos: 36 triplos + 12 cor+padrao) ===
+      // === 🟢ECOSBAG (48 casos: 36 triplos + 12 cor+padrao) ===
       case "ecobag":
         switch (true) {
           // --- 36 CASOS: COR + ALÇA + PADRÃO ---
@@ -190,15 +190,7 @@ function page() {
             setImagemAtual("/img/produtos_personalizados/ecobaag/comb/verde-amarelo-logo_fly_embaixo.png");
             break;
 
-          case cor === "verde" && alca === "verde" && padrao === "logo_fly":
-            setImagemAtual("/img/produtos_personalizados/ecobaag/comb/verde-verde-logo_fly.png");
-            break;
-          case cor === "verde" && alca === "verde" && padrao === "logo_fly_nome":
-            setImagemAtual("/img/produtos_personalizados/ecobaag/comb/verde-verde-logo_fly_nome.png");
-            break;
-          case cor === "verde" && alca === "verde" && padrao === "logo_fly_embaixo":
-            setImagemAtual("/img/produtos_personalizados/ecobaag/comb/verde-verde-logo_fly_embaixo.png");
-            break;
+        
 
           case cor === "verde" && alca === "areia" && padrao === "logo_fly":
             setImagemAtual("/img/produtos_personalizados/ecobaag/comb/verde-areia-logo_fly.png");
@@ -221,24 +213,16 @@ function page() {
             break;
 
           case cor === "areia" && alca === "verde" && padrao === "logo_fly":
-            setImagemAtual("/img/produtos_personalizados/ecobaag/comb/areia-verde-logo_fly.png");
+            setImagemAtual("/img/produtos_personalizados/ecobaag/cores/areia/areia-verde/ecobag-areia-clara-alca-verde-logo-meio.png");
             break;
           case cor === "areia" && alca === "verde" && padrao === "logo_fly_nome":
-            setImagemAtual("/img/produtos_personalizados/ecobaag/comb/areia-verde-logo_fly_nome.png");
+            setImagemAtual("/img/produtos_personalizados/ecobaag/cores/areia/areia-verde/ecobag-areia-alca-verde-logo-nome-em-baixo.png");
             break;
           case cor === "areia" && alca === "verde" && padrao === "logo_fly_embaixo":
-            setImagemAtual("/img/produtos_personalizados/ecobaag/comb/areia-verde-logo_fly_embaixo.png");
+            setImagemAtual("/img/produtos_personalizados/ecobaag/cores/areia/areia-verde/ecobag-areia-alca-verde-logo-em-baixo.png");
             break;
 
-          case cor === "areia" && padrao === "logo_fly":
-            setImagemAtual("/img/produtos_personalizados/ecobaag/cores/areia/ecobag-areia-alca-areia-logo-nome-meio.png");
-            break;
-          case cor === "areia" && padrao === "logo_fly_nome":
-            setImagemAtual("/img/produtos_personalizados/ecobaag/cores/areia/ecobag-areia-alca-areia-logo-nome-em-baixo.png");
-            break;
-          case cor === "areia" && padrao === "logo_fly_embaixo":
-            setImagemAtual("/img/produtos_personalizados/ecobaag/cores/areia/ecobag-areia-alca-areia-logo-em-baixo.png");
-            break;
+          
 
           // --- 12 CASOS: COR + PADRÃO (sem alça) ---
           case cor === "amarelo" && padrao === "logo_fly":
@@ -251,36 +235,36 @@ function page() {
             setImagemAtual("/img/produtos_personalizados/ecobaag/cores/amarelo/ecobag-amarelo-alca-amarelo-logo-em-baixo.png");
             break;
 
-
-          case cor === "verde" && padrao === "logo_fly":
-            setImagemAtual("/img/produtos_personalizados/ecobaag/comb/verde-logo_fly.png");
+              case cor === "verde"  && padrao === "logo_fly":
+            setImagemAtual("/img/produtos_personalizados/ecobaag/cores/verde/ecobag-verde-alca-verde-logo-meio.png");
             break;
           case cor === "verde" && padrao === "logo_fly_nome":
-            setImagemAtual("/img/produtos_personalizados/ecobaag/comb/verde-logo_fly_nome.png");
+            setImagemAtual("/img/produtos_personalizados/ecobaag/cores/verde/ecobag-verde-alca-verde-logo-nome-em-baixo.png");
             break;
-          case cor === "verde" && padrao === "logo_fly_embaixo":
-            setImagemAtual("/img/produtos_personalizados/ecobaag/comb/verde-logo_fly_embaixo.png");
+          case cor === "verde" &&  padrao === "logo_fly_embaixo":
+            setImagemAtual("/img/produtos_personalizados/ecobaag/cores/verde/ecobag-verde-alca-verde-logo-em-baixo.png");
             break;
 
-          case cor === "areia" && padrao === "logo_fly":
-            setImagemAtual("/img/produtos_personalizados/ecobaag/comb/areia-logo_fly.png");
+        case cor === "areia" && padrao === "logo_fly":
+            setImagemAtual("/img/produtos_personalizados/ecobaag/cores/areia/ecobag-areia-alca-areia-logo-nome-meio.png");
             break;
           case cor === "areia" && padrao === "logo_fly_nome":
-            setImagemAtual("/img/produtos_personalizados/ecobaag/comb/areia-logo_fly_nome.png");
+            setImagemAtual("/img/produtos_personalizados/ecobaag/cores/areia/ecobag-areia-alca-areia-logo-nome-em-baixo.png");
             break;
           case cor === "areia" && padrao === "logo_fly_embaixo":
-            setImagemAtual("/img/produtos_personalizados/ecobaag/comb/areia-logo_fly_embaixo.png");
+            setImagemAtual("/img/produtos_personalizados/ecobaag/cores/areia/ecobag-areia-alca-areia-logo-em-baixo.png");
             break;
+
 
           // --- CASOS RESTANTES: SÓ COR / SÓ PADRÃO / FALLBACK ---
           case cor === "amarelo":
             setImagemAtual("/img/produtos_personalizados/ecobaag/cores/amarelo/ecobag-cor-base-amarelo.png");
             break;
           case cor === "verde":
-            setImagemAtual("/img/produtos_personalizados/ecobaag/cores/ecobag-cor-base-verde.png");
+            setImagemAtual("/img/produtos_personalizados/ecobaag/cores/verde/ecobag-cor-base-verde.png");
             break;
           case cor === "areia":
-            setImagemAtual("/img/produtos_personalizados/ecobaag/cores/ecobag-cor-base-areia.png");
+            setImagemAtual("/img/produtos_personalizados/ecobaag/cores/areia/ecobag-cor-base-areia.png");
             break;
           
 
