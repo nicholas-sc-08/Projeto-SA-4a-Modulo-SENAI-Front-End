@@ -217,16 +217,16 @@ export function imagem_produto_sacola_brecho(tipo, padrao, cor, cor_corpo, cor_a
             
             //ainda nao tenho as imagens
             case padrao == "logo_fly" && cor_corpo == "verde" && cor_alca == "verde":
-                return "./img/produtos_personalizados/ecobaag/cores/amarelo/amarelo-verde/ecobag-amarelo-alca-verde-logo-meio.png";
+                return "./img/produtos_personalizados/ecobaag/cores/verde/ecobag-verde-alca-verde-logo-meio.png";
 
             case padrao == "logo_fly_embaixo" && cor_corpo == "verde" && cor_alca == "verde":
-                return "./img/produtos_personalizados/ecobaag/cores/amarelo/amarelo-verde/ecobag-amarelo-alca-verde-logo-em-baixo.png";
+                return "./img/produtos_personalizados/ecobaag/cores/verde/ecobag-verde-alca-verde-logo-em-baixo.png";
 
             case padrao == "logo_fly_nome" && cor_corpo == "verde" && cor_alca == "verde":
-                return "./img/produtos_personalizados/ecobaag/cores/amarelo/amarelo-verde/ecobag-amarelo-alca-verde-logo-nome-em-baixo.png";
+                return "./img/produtos_personalizados/ecobaag/cores/verde/ecobag-verde-alca-verde-logo-nome-em-baixo.png";
 
             case padrao == "sem_logo" && cor_corpo == "verde" && cor_alca == "verde":
-                return "./img/produtos_personalizados/ecobaag/cores/amarelo/amarelo-verde/ecobag-amarela-alca-verde.png";
+                return "./img/produtos_personalizados/ecobaag/cores/verde/ecobag-cor-base-verde.png";
 
         };
     };
