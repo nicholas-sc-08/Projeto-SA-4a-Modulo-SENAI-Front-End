@@ -50,15 +50,15 @@ function page() {
   };
 
   const traducaoNomeProduto = {
-    ecobag: "Ecobag",
-    sacola: "Sacola",
-    caixa: "Caixa",
+    ecobag: "Kit Ecobag",
+    sacola: "Kit Sacola",
+    caixa: "Kit Caixa",
   };
 
   // 🔹 Configuração dos produtos
   const produtos_config = {
     ecobag: {
-      nome: "ecobag",
+      nome: "Kit Ecobag",
       preco: 54.70,
       imagem: "/img/produtos_personalizados/ecobaag/padrao/sacola-ecobag-sem-fundo.png",
       descricao:
@@ -72,11 +72,11 @@ function page() {
       },
     },
     sacola: {
-      nome: "sacola",
-      preco: 0.16,
+      nome: "Kit Sacola",
+      preco: 32.90,
       imagem: "/img/produtos_personalizados/sacola/sacola-padrao-meio-virada.png",
       descricao:
-        "Esta sacola é pra você que valoriza moda feita com sentido: reutilizável, personalizável e amiga do meio ambiente. Transforme-a em algo só seu e mostre ao mundo que agir bem com o planeta também é tendência.",
+        "Este kit de 10 sacolas é para você que valoriza moda feita com sentido: reutilizáveis, personalizáveis e amigas do meio ambiente. Transforme cada peça em algo só seu e mostre ao mundo que agir bem com o planeta também é tendência.",
       opcoes: {
         material: ["plastico_biodegradavel", "papel_kraft"],
         tamanho: ["pequeno", "medio", "grande"],
@@ -86,11 +86,11 @@ function page() {
       },
     },
     caixa: {
-      nome: "caixa",
-      preco: 0.85,
+      nome: "Kit Caixa",
+      preco: 25.50,
       imagem: "/img/produtos_personalizados/caixa/caixa_normal.svg",
       descricao:
-        "Caixa resistente e elegante, ideal para embalar seus produtos com cuidado e estilo. Personalize e transforme a experiência de entrega em algo memorável e sustentável.",
+        "Caixas resistentes e elegantes, ideal para embalar seus produtos com cuidado e estilo. Personalize e transforme a experiência de entrega em algo memorável e sustentável.",
       opcoes: {
         material: ["papelao_reciclavel"],
         tamanho: ["pequeno", "medio", "grande"],
@@ -488,7 +488,7 @@ function page() {
                 <h2>{traducaoNomeProduto[produto_atual.nome] || produto_atual.nome}</h2>
 
                 <div className={styles["container-preço-quantidade"]}>
-                  <h4>R$ {produto_atual.preco.toFixed(2).replace(".", ",")} - Kit com 10 Ecobags</h4>
+                  <h4>R$ {produto_atual.preco.toFixed(2).replace(".", ",")} - Kit com 10 uni</h4>
                 </div>
 
                 <p>{produto_atual.descricao}</p>
