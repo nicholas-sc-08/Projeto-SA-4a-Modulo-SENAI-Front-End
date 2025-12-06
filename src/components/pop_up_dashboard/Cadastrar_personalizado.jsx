@@ -11,7 +11,7 @@ import { useState } from "react";
 export default function Cadstrar_personalizado() {
 
     const { set_modal_criar_perso } = useGlobalContext();
-    const [personalizado, set_personalizado] = useState({ tipo: "caixa", material: "papelao_reciclavel", tamanho: "pequeno", padrao: "logo_fly", cor_corpo: "", cor_alca: "", cor: "", quantidade: 0 });
+    const [personalizado, set_personalizado] = useState({ tipo: "caixa", material: "papelao_reciclavel", tamanho: "pequeno", padrao: "logo_fly", cor_corpo: "", cor_alca: "", cor: "verde", quantidade: 1 });
 
     return (
 
@@ -95,7 +95,7 @@ export default function Cadstrar_personalizado() {
                             </div>
                             <div className={styles["container_opcoes"]}>
                                 <label>Quantidade</label>
-                                <input type="number" placeholder="0" value={personalizado.quantidade} onChange={e => set_personalizado({ ...personalizado, quantidade: Number(e.target.value) })} />
+                                <input type="number" min={1} placeholder="0" value={personalizado.quantidade} onChange={e => set_personalizado({ ...personalizado, quantidade: Number(e.target.value) })} />
                             </div>
                         </div>
                         <footer className={styles["footer"]}>
