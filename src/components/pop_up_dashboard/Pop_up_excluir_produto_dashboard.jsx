@@ -20,7 +20,7 @@ export default function Pop_up_excluir_produto_dashboard() {
 
         try {
 
-            const estoque_excluir = await api.delete(`/estoques/${id}`);
+            const estoque_excluir = await api.delete(`/estoque/${id}`);
             const produto_a_excluir = await api.delete(`/produtos/${id}`);
             set_abrir_pop_up_dashboard(false);
             set_pop_up_notificacao_excluir_dashboard(true);

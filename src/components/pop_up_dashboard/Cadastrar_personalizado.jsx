@@ -3,14 +3,14 @@
 import styles from "@/components/pop_up_dashboard/Cadastrar_personalizado.module.css";
 import { useGlobalContext } from "@/context/GlobalContext";
 import { imagem_produto_sacola_brecho } from "@/services/sacolas_brechos/sacolas_brecho";
-import { cadastrarPersonalizado } from "@/services/personalizado/personalizado";
+import { buscarPersonalizados, cadastrarPersonalizado } from "@/services/personalizado/personalizado";
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect } from "react";
 import { useState } from "react";
 
 export default function Cadstrar_personalizado() {
 
-    const { set_modal_criar_perso } = useGlobalContext();
+    const { modal_criar_perso, set_modal_criar_perso } = useGlobalContext();
     const [personalizado, set_personalizado] = useState({ tipo: "caixa", material: "papelao_reciclavel", tamanho: "pequeno", padrao: "logo_fly", cor_corpo: "", cor_alca: "", cor: "verde", quantidade: 1 });
 
     return (
@@ -99,7 +99,7 @@ export default function Cadstrar_personalizado() {
                             </div>
                         </div>
                         <footer className={styles["footer"]}>
-                            <button className={styles["botao_cadastrar_personalizado"]} onClick={() => cadastrarPersonalizado(personalizado)}>Cadastrar</button>
+                            <button className={styles["botao_cadastrar_personalizado"]} onClick={() => cadastrarPersonalizado(personalizado).then(set_modal_criar_perso(false))}>Cadastrar</button>
                             <button className={styles["botao_limpar_personalizado"]} onClick={() => set_modal_criar_perso(false)}>Sair</button>
                         </footer>
                     </main>

@@ -73,6 +73,8 @@ export default function Produtos_dashboard() {
 
     }, [pop_up_notificacao_excluir_dashboard]);
 
+        useEffect(() => { buscarPersonalizados().then(p => set_array_estoque(p)) }, [modal_criar_perso]);
+
     return (
         <AnimatePresence>
             <motion.div className={styles['alinhamento-estoque-produto-dashboard']} initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.4 }}>
@@ -247,7 +249,7 @@ export default function Produtos_dashboard() {
                                 <div key={p._id} className={styles["alinhamento-containers-informacoes-produtos-dashboard"]}>
                                     <div className={styles["grupo-um-informacoes-produto-dashboard"]}>
                                         <div className={styles["imagem-produto-dashboard"]}>
-                                            <img src={imagem_produto_sacola_brecho(p.tipo, p.padrao, p.cor_corpo, p.cor_alca)} alt="" />
+                                            <img src={imagem_produto_sacola_brecho(p.tipo, p.padrao, p.cor, p.cor_corpo, p.cor_alca)} alt="" />
                                         </div>
                                         <div className={styles["nome-categoria-produto-dashboard"]}>
                                             <p className={styles["categoria-cor-dashboard"]}>
