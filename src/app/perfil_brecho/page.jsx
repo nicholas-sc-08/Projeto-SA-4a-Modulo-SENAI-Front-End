@@ -7,6 +7,7 @@ import { useGlobalContext } from '@/context/GlobalContext';
 import { useState, useEffect } from 'react';
 import { Sparkles } from 'lucide-react';
 import api from '@/services/api';
+import { useRouter } from 'next/navigation';
 
 function page() {
   const { tipo_de_header, usuario_logado, array_brechos } = useGlobalContext();
@@ -19,6 +20,8 @@ function page() {
   const [redesSociais, setRedesSociais] = useState(null);
   const [produtos, setProdutos] = useState([]);
   const [loading, setLoading] = useState(true);
+  const { produto, set_produto } = useGlobalContext();
+  const router = useRouter();
 
   // ============================
   // 🔵 BUSCAR DADOS DO BRECHÓ
@@ -119,19 +122,30 @@ function page() {
     try {
       if (!usuario_logado?._id) return;
 
-      const req = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/produtos?fk_id_brecho=${usuario_logado._id}`
+      // Busca TODOS os produtos
+      const response = await api.get('/produtos');
+      const todosProdutos = response.data;
+
+      // Filtra apenas os produtos que pertencem ao brechó logado
+      const produtosDoBrecho = todosProdutos.filter(
+        produto => produto.fk_id_brecho === usuario_logado._id
       );
 
-      const res = await req.json();
+      console.log('✅ Produtos do brechó:', produtosDoBrecho);
 
-      if (Array.isArray(res)) {
-        setProdutos(res.slice(0, 10)); // Pega apenas os 10 primeiros
-      }
+      // Define os produtos (você pode limitar a 10 se quiser)
+      setProdutos(produtosDoBrecho);
+
     } catch (err) {
-      console.log("Erro ao buscar produtos:", err);
+      console.error("❌ Erro ao buscar produtos:", err);
     }
   }
+
+  function ir_para_produto(produto) {
+
+    set_produto(produto);
+    router.push('/produto');
+  };
 
   // ============================
   // CARREGAR DADOS AO MONTAR
@@ -236,7 +250,7 @@ function page() {
             {divAtiva === "sobre-brecho" && (
               <>
                 <div className={styles["titulo-topico-content"]}>
-                  <p>Informações de Sobre o Brechó</p>
+                  <p>Sobre o Brechó</p>
                 </div>
 
                 <div className={styles["infos-cadastradas-content"]}>
@@ -274,11 +288,6 @@ function page() {
                     <label>Telefone:</label>
                     <span>{dadosBrecho?.telefone || "Não informado"}</span>
                   </div>
-
-                  <div className={styles["info-item"]}>
-                    <label>CNPJ:</label>
-                    <span>{dadosBrecho?.cnpj || "Não informado"}</span>
-                  </div>
                 </div>
               </>
             )}
@@ -307,27 +316,6 @@ function page() {
                         <span>{endereco.bairro}</span>
                       </div>
 
-                      <div className={styles["info-item"]}>
-                        <label>Logradouro:</label>
-                        <span>{endereco.logradouro}</span>
-                      </div>
-
-                      <div className={styles["info-item"]}>
-                        <label>Número:</label>
-                        <span>{endereco.numero}</span>
-                      </div>
-
-                      {endereco.complemento && (
-                        <div className={styles["info-item"]}>
-                          <label>Complemento:</label>
-                          <span>{endereco.complemento}</span>
-                        </div>
-                      )}
-
-                      <div className={styles["info-item"]}>
-                        <label>CEP:</label>
-                        <span>{endereco.cep}</span>
-                      </div>
                     </>
                   ) : (
                     <p className={styles["texto-vazio"]}>
@@ -341,7 +329,7 @@ function page() {
             {divAtiva === "redes-sociais" && (
               <>
                 <div className={styles["titulo-topico-content"]}>
-                  <p>Informações de Redes Sociais</p>
+                  <p>Redes Sociais</p>
                 </div>
 
                 <div className={styles["infos-cadastradas-content"]}>
@@ -394,12 +382,13 @@ function page() {
           <div className={styles["grid-produtos"]}>
             {produtos.length > 0 ? (
               produtos.map((produto) => (
-                <div key={produto._id} className={styles["card-produto"]}>
+                <div key={produto._id} className={styles["card-produto"]} onClick={() => ir_para_produto(produto)}>
                   <div className={styles["img-produto"]}>
-                    <img
-                      src={produto.imagem || "./img/produtos_personalizados/caixa/caixa_normal.svg"}
-                      alt={produto.nome}
-                    />
+                    <img src={
+                      Array.isArray(produto.imagem) && produto.imagem.length > 0
+                        ? produto.imagem[0]  // Pega a PRIMEIRA imagem do array
+                        : "./img/produtos_personalizados/caixa/caixa_normal.svg"
+                    } />
                   </div>
                   <p className={styles["nome-produto"]}>{produto.nome}</p>
                   <p className={styles["preco-produto"]}>
