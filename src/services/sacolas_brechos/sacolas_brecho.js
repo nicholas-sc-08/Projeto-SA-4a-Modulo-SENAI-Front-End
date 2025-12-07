@@ -199,7 +199,6 @@ export function imagem_produto_sacola_brecho(tipo, padrao, cor, cor_corpo, cor_a
                 return "./img/produtos_personalizados/ecobaag/cores/areia/areia-amarelo/ecobag-areia-alca-amarelo-logo-nome-em-baixo.png";
 
             case padrao == "sem_logo" && cor_corpo == "areia" && cor_alca == "amarelo":
-                //nao tem    
                 return "./img/produtos_personalizados/ecobaag/cores/areia/areia-amarelo/ecobag-amarela-alca-verde.png";
 
             case padrao == "logo_fly" && cor_corpo == "areia" && cor_alca == "areia":

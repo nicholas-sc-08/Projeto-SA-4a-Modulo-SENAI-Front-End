@@ -50,10 +50,10 @@ export default function Sacola_geral() {
 
     useEffect(() => {
 
-        if(pop_up_usuario_nao_logado){
+        if (pop_up_usuario_nao_logado) {
 
             setTimeout(() => {
-                
+
                 set_pop_up_usuario_nao_logado(false);
 
             }, 2000);
@@ -61,12 +61,12 @@ export default function Sacola_geral() {
 
     }, [pop_up_usuario_nao_logado]);
 
-        useEffect(() => {
+    useEffect(() => {
 
-        if(pop_up_sacola_vazia){
+        if (pop_up_sacola_vazia) {
 
             setTimeout(() => {
-                
+
                 set_pop_up_sacola_vazia(false);
 
             }, 2000);
@@ -154,12 +154,12 @@ export default function Sacola_geral() {
                 set_sacola(produtos);
 
             } else {
-                
+
                 set_sacola(produtos);
             };
 
         } catch (erro) {
-            
+
             console.error(erro);
         };
     };
@@ -199,18 +199,18 @@ export default function Sacola_geral() {
                 return;
             };
 
-            if(usuario_logado._id){
-                
-                const response = await api.post(`/criar-checkout`, { itens: sacola });
-                
+            if (usuario_logado._id) {
+
+                const response = await api.post(`/api/payments/create-checkout-session`, { items: sacola });
+
                 if (response.data?.url) {
                     // Redireciona para o checkout do Stripe
-                    window.location.href = response.data.url;                            
+                    window.location.href = response.data.url;
                     atualizar_usuario_pos_compra();
                 };
-                
+
             } else {
-            
+
                 set_pop_up_usuario_nao_logado(true);
             };
         } catch (error) {
@@ -237,8 +237,8 @@ export default function Sacola_geral() {
                 transition={{ duration: 0.4 }}
                 ref={referencia_sacola}
             >
-                {pop_up_sacola_vazia && <Pop_up_sacola_vazia/>}
-                {pop_up_usuario_nao_logado && <Pop_up_usuario_nao_logado/>}
+                {pop_up_sacola_vazia && <Pop_up_sacola_vazia />}
+                {pop_up_usuario_nao_logado && <Pop_up_usuario_nao_logado />}
                 {clicou_em_excluir && <Pop_up_excluir_produto_sacola />}
                 {mostrarPopupCompra && <Pop_up_notificacao_comprado fechar={fecharPopupSucesso} />}
 
