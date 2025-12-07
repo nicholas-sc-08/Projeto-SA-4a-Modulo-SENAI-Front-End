@@ -69,32 +69,29 @@ html {
     opacity: 30%;
 }
 
-.info-perfil {
-    background: linear-gradient(135deg, #2a3b5f 0%, #3d5280 100%);
-    height: 120px;
-    position: relative;
-    /* border: 1px solid red; */
+.ir-para-perfil {
+    padding: 20px;
+    background-color: var(--cor_quatro);
 }
 
-.info-perfil img {
-    width: 85px;
-    height: 85px;
+.perfil-top {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.perfil-top img {
+    width: 60px;
+    height: 60px;
     border-radius: 50%;
     object-fit: cover;
     background-color: var(--cor_quatro);
-    position: absolute;
-    bottom: -35px;
-    left: 17px;
-    border: 3px solid var(--cor_quatro);
-}
-
-.ir-para-perfil {
-    padding: 30px 20px 20px 20px;
-    background-color: var(--cor_quatro);
+    flex-shrink: 0;
 }
 
 .container-informacoes-ir-para-perfil {
-    margin-top: 5%;
+    flex: 1;
 }
 
 .container-informacoes-ir-para-perfil h4 {
@@ -103,7 +100,6 @@ html {
     font-size: 14px;
     font-weight: 700;
     margin: 0 0 4px 0;
-    /* border: 1px solid red; */
 }
 
 .container-informacoes-ir-para-perfil p {
@@ -124,9 +120,7 @@ html {
     font-weight: 600;
     cursor: pointer;
     transition: background-color 0.3s;
-    float: right;
-    margin-top: -70px;
-    margin-right: -5%;
+    width: 100%;
 }
 
 .ir-para-perfil button:hover {
@@ -214,16 +208,14 @@ html {
     opacity: 0.7;
 }
 
-/* ADICIONAR AO FINAL DO SEU CSS EXISTENTE */
-
 /* Transformar container em grid de 2 colunas */
 .config-container {
     padding: 2% 5%;
     margin: 0 auto;
     display: grid;
     grid-template-columns: 350px 1fr;
-    gap: 30px;
     align-items: start;
+    /* border: 1px solid red; */
 }
 
 /* Wrapper do menu lateral */
@@ -242,9 +234,9 @@ html {
 /* Container do conteúdo dinâmico */
 .conteudo-dinamico {
     background-color: var(--cor_quatro);
-    border-radius: 12px;
-    padding: 30px;
+    padding-top: 30px;
     min-height: 500px;
+    border-left: 1px solid rgba(130, 74, 23, 0.3);
 }
 
 /* Ajuste nos containers para não ficar com width fixa */
