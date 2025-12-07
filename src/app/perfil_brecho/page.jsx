@@ -1,311 +1,424 @@
 "use client";
 
-
 import Header from '@/components/header/Header';
 import Footer from '@/components/footer/Footer';
 import styles from '@/app/perfil_brecho/page.module.css';
-
-
 import { useGlobalContext } from '@/context/GlobalContext';
-import { useState } from 'react';
-
+import { useState, useEffect } from 'react';
+import { Sparkles } from 'lucide-react';
+import api from '@/services/api';
 
 function page() {
+  const { tipo_de_header, usuario_logado, array_brechos } = useGlobalContext();
+  const [divAtiva, setDivAtiva] = useState("sobre-brecho");
 
+  // Estados para armazenar os dados do brechó
+  const [dadosBrecho, setDadosBrecho] = useState(null);
+  const [endereco, setEndereco] = useState(null);
+  const [descricao, setDescricao] = useState(null);
+  const [redesSociais, setRedesSociais] = useState(null);
+  const [produtos, setProdutos] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  const { tipo_de_header, set_tipo_de_header } = useGlobalContext();
+  // ============================
+  // 🔵 BUSCAR DADOS DO BRECHÓ
+  // ============================
+  async function buscarDadosBrecho() {
+    try {
+      if (!usuario_logado?._id) return;
 
+      const response = await api.get(`/brechos/${usuario_logado._id}`);
+      const data = response.data;
 
-  const [tres_pontos_botao, set_tres_pontos_botao] = useState("./img/icons/tres_pontos_menu.svg"); //colocar aqui o icone
+      console.log('✅ Dados do brechó:', data);
+      setDadosBrecho(data);
 
-
-  const [divAtiva, setDivAtiva] = useState("informacoes")
-  const [mostrarPopUpConfiguracoes, setMostrarPopUpConfiguracoes] = useState(false)
-
-
-  const abrirPopUpConfig = () => {
-    setMostrarPopUpConfiguracoes(true)
+    } catch (erro) {
+      console.error('❌ Erro ao buscar dados do brechó:', erro);
+    }
   }
 
+  // ============================
+  // 🔵 BUSCAR ENDEREÇO DO BRECHÓ
+  // ============================
+  async function buscarEndereco() {
+    try {
+      if (!usuario_logado?._id) return;
 
-  const fecharPopUpConfig = () => {
-    setMostrarPopUpConfiguracoes(false)
+      const response = await api.get(`/enderecos`, {
+        params: { fk_id_brecho: usuario_logado._id }
+      });
+
+      console.log('📍 Resposta do endereço:', response?.data);
+
+      if (response && response.data) {
+        let enderecoEncontrado = null;
+
+        if (Array.isArray(response.data)) {
+          enderecoEncontrado = response.data.find(e => e.fk_id_brecho === usuario_logado._id);
+        } else if (response.data._id) {
+          enderecoEncontrado = response.data;
+        }
+
+        if (enderecoEncontrado) {
+          console.log('✅ Endereço encontrado:', enderecoEncontrado);
+          setEndereco(enderecoEncontrado);
+        }
+      }
+    } catch (erro) {
+      console.error('❌ Erro ao buscar endereço:', erro);
+    }
   }
 
+  // ============================
+  // 🔵 BUSCAR DESCRIÇÃO DO BRECHÓ
+  // ============================
+  async function buscarDescricao() {
+    try {
+      if (!usuario_logado?._id) return;
 
-  const { array_produtos, set_array_produtos } = useGlobalContext();
-  const { produto, set_produto } = useGlobalContext();
+      const req = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/descricao?fk_id_brecho=${usuario_logado._id}`
+      );
 
+      const res = await req.json();
+
+      if (Array.isArray(res) && res.length > 0) {
+        setDescricao(res[0]);
+      }
+    } catch (err) {
+      console.log("Erro ao buscar descrição:", err);
+    }
+  }
+
+  // ============================
+  // 🔵 BUSCAR REDES SOCIAIS
+  // ============================
+  async function buscarRedesSociais() {
+    try {
+      if (!usuario_logado?._id) return;
+
+      const req = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/redes-sociais?fk_id_brecho=${usuario_logado._id}`
+      );
+
+      const res = await req.json();
+
+      if (Array.isArray(res) && res.length > 0) {
+        setRedesSociais(res[0]);
+      }
+    } catch (err) {
+      console.log("Erro ao buscar redes sociais:", err);
+    }
+  }
+
+  // ============================
+  // 🔵 BUSCAR PRODUTOS DO BRECHÓ
+  // ============================
+  async function buscarProdutos() {
+    try {
+      if (!usuario_logado?._id) return;
+
+      const req = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/produtos?fk_id_brecho=${usuario_logado._id}`
+      );
+
+      const res = await req.json();
+
+      if (Array.isArray(res)) {
+        setProdutos(res.slice(0, 10)); // Pega apenas os 10 primeiros
+      }
+    } catch (err) {
+      console.log("Erro ao buscar produtos:", err);
+    }
+  }
+
+  // ============================
+  // CARREGAR DADOS AO MONTAR
+  // ============================
+  useEffect(() => {
+    const carregarDados = async () => {
+      if (usuario_logado && usuario_logado._id) {
+        // Verifica se é um brechó
+        const isBrecho = array_brechos.some(b => b._id === usuario_logado._id);
+
+        if (isBrecho) {
+          setLoading(true);
+          await buscarDadosBrecho();
+          await buscarEndereco();
+          await buscarDescricao();
+          await buscarRedesSociais();
+          await buscarProdutos();
+          setLoading(false);
+        }
+      }
+    };
+
+    carregarDados();
+  }, [usuario_logado, array_brechos]);
+
+  // Formatar data de criação
+  const formatarData = (data) => {
+    if (!data) return '';
+    const date = new Date(data);
+    return date.toLocaleDateString('pt-BR');
+  };
+
+  if (loading) {
+    return (
+      <div className={styles["toda-a-tela-content"]}>
+        <Header tipo={tipo_de_header} />
+        <div className={styles["entre-navbar-e-footer-content"]}>
+          <p className={styles['texto-vazio']}>Carregando...</p>
+        </div>
+        <Footer />
+      </div>
+    );
+  }
 
   return (
-
-
     <div className={styles["toda-a-tela-content"]}>
       <Header tipo={tipo_de_header} />
-
 
       <div className={styles["entre-navbar-e-footer-content"]}>
         <div className={styles["perfil-brecho-content"]}>
 
+          <div className={styles["logo-e-info-content"]}>
+            <div className={styles["logo-brecho-content"]}>
+              <img
+                src={dadosBrecho?.logo || "./img/logo_brecho/logo-indigo-brecho.svg"}
+                alt="logo-brecho"
+              />
+            </div>
 
-          <div className={styles["parte-azul-superior-content"]}>
+            <div className={styles["nome-data-content"]}>
+              <h1>{dadosBrecho?.nome_brecho || "Nome do Brechó"}</h1>
+              <p>No Fly desde: {formatarData(dadosBrecho?.createdAt)}</p>
+            </div>
+          </div>
 
+          <div className={styles["topicos-de-informacao-content"]}>
+            <button
+              onClick={() => setDivAtiva("sobre-brecho")}
+              className={divAtiva === "sobre-brecho" ? styles["ativo"] : ""}
+            >
+              Sobre o brechó
+            </button>
 
-            <button onClick={() => setMostrarPopUpConfiguracoes(true)} className={styles["tres-pontos-icon"]}>
-              <img src={tres_pontos_botao} alt='configuracoes' />
+            <button
+              onClick={() => setDivAtiva("informacoes")}
+              className={divAtiva === "informacoes" ? styles["ativo"] : ""}
+            >
+              Informações
+            </button>
+
+            <button
+              onClick={() => setDivAtiva("endereco")}
+              className={divAtiva === "endereco" ? styles["ativo"] : ""}
+            >
+              Endereço
+            </button>
+
+            <button
+              onClick={() => setDivAtiva("redes-sociais")}
+              className={divAtiva === "redes-sociais" ? styles["ativo"] : ""}
+            >
+              Redes sociais
+            </button>
+
+            <button className={styles["btn-salvar-alteracoes"]}>
+              <Sparkles color="#3e2a21bd" strokeWidth={1} />
+              Personalize seus produtos
             </button>
           </div>
 
+          <div className={styles["informacoes-exibidas-content"]}>
+            {divAtiva === "sobre-brecho" && (
+              <>
+                <div className={styles["titulo-topico-content"]}>
+                  <p>Informações de Sobre o Brechó</p>
+                </div>
 
-          <div className={styles["parte-do-meio-logo-nome-content"]}>
+                <div className={styles["infos-cadastradas-content"]}>
+                  {descricao?.texto ? (
+                    <p className={styles["texto-sobre"]}>
+                      {descricao.texto}
+                    </p>
+                  ) : (
+                    <p className={styles["texto-vazio"]}>
+                      Ops, nada por aqui ainda.
+                    </p>
+                  )}
+                </div>
+              </>
+            )}
 
+            {divAtiva === "informacoes" && (
+              <>
+                <div className={styles["titulo-topico-content"]}>
+                  <p>Informações de Contato</p>
+                </div>
 
-            <div className={styles["logo-brecho-content"]}>
-              <img src="./img/logo_brecho/logo-indigo-brecho.svg" alt="logo-brecho" />
-            </div>
-
-
-            <div className={styles["nome-brecho-content"]}>
-              <h1>Project Indigo Brechó</h1>
-            </div>
-
-
-          </div>
-
-
-          <div className={styles["parte-inferior-do-perfil-brecho-content"]}>
-            <div className={styles["topicos-de-informacao-sobre-perfil-content"]}>
-
-              <button onClick={() => setDivAtiva("informacoes")}
-              className={divAtiva === "informacoes" ? styles["ativo"] : ""}
-                >Informações</button>
-
-              <button onClick={() => setDivAtiva("endereco")}
-              className={divAtiva === "endereco" ? styles["ativo"] : ""}
-                >Endereço</button>
-
-              <button onClick={() => setDivAtiva("sobre-brecho")}
-              className={divAtiva === "sobre-brecho" ? styles["ativo"] : ""}
-                >Sobre o brechó</button>
-
-              <button onClick={() => setDivAtiva("redes-sociais")}
-              className={divAtiva === "redes-sociais" ? styles["ativo"] : ""}
-                >Redes Sociais</button>
-              
-            </div>
-
-
-            <div className={styles["informacoes-exibidas-content"]}>
-
-
-              {divAtiva === "informacoes" && (
-                <>
-
-
-                  <div className={styles["titulo-topico-exibido-content"]}>
-                    <p>Informações de Contato</p>
+                <div className={styles["infos-cadastradas-content"]}>
+                  <div className={styles["info-item"]}>
+                    <label>Nome:</label>
+                    <span>{dadosBrecho?.nome_brecho || "Não informado"}</span>
                   </div>
 
-
-                  <div className={styles["infos-cadastradas-sub-div"]}>
-
-
-                    <div className={styles["labels-e-dados-cadastrados-content"]}>
-                      <label className={styles["labels-info"]}>Nome: </label>
-                      <span className={styles["dados-cadastradas-exibidos"]}></span>
-                    </div>
-
-
-                    <div className={styles["labels-e-dados-cadastrados-content"]}>
-                      <label className={styles["labels-info"]}>Email: </label>
-                      <span className={styles["dados-cadastradas-exibidos"]}></span>
-                    </div>
-
-
-                    <div className={styles["labels-e-dados-cadastrados-content"]}>
-                      <label className={styles["labels-info"]}>Telefone: </label>
-                      <span className={styles["dados-cadastradas-exibidos"]}>aaaa</span>
-                    </div>
-
-
-                    <div className={styles["labels-e-dados-cadastrados-content"]}>
-                      <label className={styles["labels-info"]}>CNPJ: </label>
-                      <span className={styles["dados-cadastradas-exibidos"]}></span>
-                    </div>
-
-
+                  <div className={styles["info-item"]}>
+                    <label>Email:</label>
+                    <span>{dadosBrecho?.email || "Não informado"}</span>
                   </div>
 
-
-
-
-                </>
-              )}
-
-
-              {divAtiva === "endereco" && (
-                <>
-
-
-                  <div className={styles["titulo-topico-exibido-content"]}>
-                    <p>Informações de Endereço</p>
+                  <div className={styles["info-item"]}>
+                    <label>Telefone:</label>
+                    <span>{dadosBrecho?.telefone || "Não informado"}</span>
                   </div>
 
-
-                  <div className={styles["infos-cadastradas-sub-div"]}>
-
-
-                    <label className={styles["labels-info"]}>Estado: </label> {/* pensei em inicialmente exibir só essas informações, ai no edicao de perfil ter uma pergunta "deseja exibir todo o endereço?" serviria para os brechós q tem de loja física */}
-                    <span className={styles["dados-cadastradas-exibidos"]}></span>
-
-
-                    <label className={styles["labels-info"]}>Cidade: </label>
-                    <span className={styles["dados-cadastradas-exibidos"]}></span>
-
-
-                    <label className={styles["labels-info"]}>Bairro: </label>
-                    <span className={styles["dados-cadastradas-exibidos"]}></span>
-
-
+                  <div className={styles["info-item"]}>
+                    <label>CNPJ:</label>
+                    <span>{dadosBrecho?.cnpj || "Não informado"}</span>
                   </div>
+                </div>
+              </>
+            )}
 
+            {divAtiva === "endereco" && (
+              <>
+                <div className={styles["titulo-topico-content"]}>
+                  <p>Informações de Endereço</p>
+                </div>
 
-                </>
-              )}
+                <div className={styles["infos-cadastradas-content"]}>
+                  {endereco ? (
+                    <>
+                      <div className={styles["info-item"]}>
+                        <label>Estado:</label>
+                        <span>{endereco.estado}</span>
+                      </div>
 
+                      <div className={styles["info-item"]}>
+                        <label>Cidade:</label>
+                        <span>{endereco.cidade}</span>
+                      </div>
 
+                      <div className={styles["info-item"]}>
+                        <label>Bairro:</label>
+                        <span>{endereco.bairro}</span>
+                      </div>
 
+                      <div className={styles["info-item"]}>
+                        <label>Logradouro:</label>
+                        <span>{endereco.logradouro}</span>
+                      </div>
 
-              {divAtiva === "sobre-brecho" && (
-                <>
+                      <div className={styles["info-item"]}>
+                        <label>Número:</label>
+                        <span>{endereco.numero}</span>
+                      </div>
 
+                      {endereco.complemento && (
+                        <div className={styles["info-item"]}>
+                          <label>Complemento:</label>
+                          <span>{endereco.complemento}</span>
+                        </div>
+                      )}
 
-                  <div className={styles["titulo-topico-exibido-content"]}>
-                    <p>Informações de Sobre o Brechó</p>
-                  </div>
+                      <div className={styles["info-item"]}>
+                        <label>CEP:</label>
+                        <span>{endereco.cep}</span>
+                      </div>
+                    </>
+                  ) : (
+                    <p className={styles["texto-vazio"]}>
+                      Ops, nada por aqui ainda.
+                    </p>
+                  )}
+                </div>
+              </>
+            )}
 
+            {divAtiva === "redes-sociais" && (
+              <>
+                <div className={styles["titulo-topico-content"]}>
+                  <p>Informações de Redes Sociais</p>
+                </div>
 
-                  <div className={styles["infos-cadastradas-sobre-sub-div"]}>
-                    <span className={styles["dados-cadastradas-sobre-exibidos"]}> Primeiramente, você pode encontrar peças exclusivas e vintage que não estão disponíveis nas lojas convencionais. Além disso, ao comprar de segunda mão, você está contribuindo para a sustentabilidade, reduzindo o desperdício e a demanda por novos produtos. Outro benefício é o custo, muitas vezes mais baixo do que o de itens novos, permitindo que você economize enquanto adquire peças de qualidade.</span>
-                  </div>
+                <div className={styles["infos-cadastradas-content"]}>
+                  {redesSociais ? (
+                    <>
+                      {redesSociais.instagram && (
+                        <div className={styles["info-item"]}>
+                          <label>Instagram:</label>
+                          <span>{redesSociais.instagram}</span>
+                        </div>
+                      )}
 
+                      {redesSociais.facebook && (
+                        <div className={styles["info-item"]}>
+                          <label>Facebook:</label>
+                          <span>{redesSociais.facebook}</span>
+                        </div>
+                      )}
 
-                </>
-              )}
+                      {redesSociais.whatsapp && (
+                        <div className={styles["info-item"]}>
+                          <label>Whatsapp:</label>
+                          <span>{redesSociais.whatsapp}</span>
+                        </div>
+                      )}
 
-
-
-
-              {divAtiva === "redes-sociais" && (
-                <>
-
-
-                  <div className={styles["titulo-topico-exibido-content"]}>
-                    <p>Informações de Redes Sociais</p>
-                  </div>
-
-
-                  <div className={styles["infos-cadastradas-sub-div"]}>
-
-
-                    <label className={styles["labels-info"]}>Instagram: </label>
-                    <span className={styles["dados-cadastradas-exibidos"]}></span>
-
-
-                    <label className={styles["labels-info"]}>Facebook: </label>
-                    <span className={styles["dados-cadastradas-exibidos"]}></span>
-
-
-                    <label className={styles["labels-info"]}>Whatsapp: </label>
-                    <span className={styles["dados-cadastradas-exibidos"]}></span>
-                  </div>
-
-
-
-
-                </>
-              )}
-
-
-            </div>
-
-
+                      {!redesSociais.instagram && !redesSociais.facebook && !redesSociais.whatsapp && (
+                        <p className={styles["texto-vazio"]}>
+                          Ops, nada por aqui ainda.
+                        </p>
+                      )}
+                    </>
+                  ) : (
+                    <p className={styles["texto-vazio"]}>
+                      Ops, nada por aqui ainda.
+                    </p>
+                  )}
+                </div>
+              </>
+            )}
           </div>
         </div>
-
 
         <div className={styles["produtos-do-brecho-content"]}>
-          <div className={styles["titulo-produtos-mais-ver-todos"]}>
-            <h2>Produtos </h2>
-            <button>Ver todos</button>
+          <div className={styles["header-produtos"]}>
+            <h2>Produtos <span>({produtos.length})</span></h2>
+            <button className={styles["btn-ver-todos"]}>Ver todos</button>
           </div>
-          <div className={styles["produtos-exibidos-do-brecho-content"]}>
 
-
-            <div className={styles["card-produto-brecho-content"]}>
-
-
-              <div className={styles["img-produto-card-content"]}>
-                <img src="./img/produtos_personalizados/caixa/caixa_normal.svg" alt="" />
+          <div className={styles["grid-produtos"]}>
+            {produtos.length > 0 ? (
+              produtos.map((produto) => (
+                <div key={produto._id} className={styles["card-produto"]}>
+                  <div className={styles["img-produto"]}>
+                    <img
+                      src={produto.imagem || "./img/produtos_personalizados/caixa/caixa_normal.svg"}
+                      alt={produto.nome}
+                    />
+                  </div>
+                  <p className={styles["nome-produto"]}>{produto.nome}</p>
+                  <p className={styles["preco-produto"]}>
+                    R$ {produto.preco ? produto.preco.toFixed(2).replace('.', ',') : '0,00'}
+                  </p>
+                </div>
+              ))
+            ) : (
+              <div className={styles["texto-vazio"]}>
+                <p>Ops, nada por aqui ainda.</p>
               </div>
-
-
-              <div className="info-produto-card-content">
-                <p>Camiseta off the wall vans</p>
-
-                <span>R$45,00</span>
-              </div>
-
-
-
-            </div>
-
-            {/* <div className={styles["card-produto-brecho-content"]}>
-              <img src="" alt="" />
-              <p>Camiseta off the wall vans</p>
-              <p>R$45,00</p>
-            </div>
-
-             <div className={styles["card-produto-brecho-content"]}>
-              <img src="" alt="" />
-              <p>Camiseta off the wall vans</p>
-              <p>R$45,00</p>
-            </div>
-
-             <div className={styles["card-produto-brecho-content"]}>
-              <img src="" alt="" />
-              <p>Camiseta off the wall vans</p>
-              <p>R$45,00</p>
-            </div>
-
-             <div className={styles["card-produto-brecho-content"]}>
-              <img src="" alt="" />
-              <p>Camiseta off the wall vans</p>
-              <p>R$45,00</p>
-            </div> */}
-
+            )}
           </div>
         </div>
-
-
-
-
-
-
       </div>
-
-
-      {/* {mostrarPopUpConfiguracoes && (
-        <Pop_up_de_excluir_perfil fecharPopUpConfig={() => setMmostrarPopUpConfiguracoes(false)} />
-      )} */}
-
 
       <Footer />
     </div>
-
-
-  )
+  );
 }
 
-
-export default page
+export default page;
