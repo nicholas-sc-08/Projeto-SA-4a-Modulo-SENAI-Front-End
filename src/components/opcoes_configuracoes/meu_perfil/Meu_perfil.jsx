@@ -42,6 +42,59 @@ function Meu_perfil() {
         numero: '',
         complemento: ''
     })
+    const [enderecoId, setEnderecoId] = useState(null)
+
+    const buscarEndereco = async (fk_id_cliente, fk_id_brecho) => {
+        try {
+            let response
+            if (fk_id_cliente) {
+                response = await api.get(`/enderecos`, {
+                    params: { fk_id_cliente }
+                })
+            } else if (fk_id_brecho) {
+                response = await api.get(`/enderecos`, {
+                    params: { fk_id_brecho }
+                })
+            }
+
+            console.log('📍 Resposta do endereço:', response?.data)
+
+            if (response && response.data) {
+                let endereco = null
+                
+                // Se for array, filtra e pega o primeiro que corresponde
+                if (Array.isArray(response.data)) {
+                    if (fk_id_cliente) {
+                        endereco = response.data.find(e => e.fk_id_cliente === fk_id_cliente)
+                    } else if (fk_id_brecho) {
+                        endereco = response.data.find(e => e.fk_id_brecho === fk_id_brecho)
+                    }
+                }
+                // Se for um objeto direto
+                else if (response.data._id) {
+                    endereco = response.data
+                }
+
+                if (endereco) {
+                    console.log('✅ Endereço encontrado:', endereco)
+                    setEnderecoId(endereco._id)
+                    setDadosEndereco({
+                        cep: endereco.cep || '',
+                        bairro: endereco.bairro || '',
+                        logradouro: endereco.logradouro || '',
+                        estado: endereco.estado || '',
+                        cidade: endereco.cidade || '',
+                        numero: endereco.numero || '',
+                        complemento: endereco.complemento || ''
+                    })
+                } else {
+                    console.log('❌ Nenhum endereço encontrado para este usuário')
+                }
+            }
+        } catch (erro) {
+            console.error('❌ Erro ao buscar endereço:', erro)
+        }
+    }
 
     useEffect(() => {
         if (usuario_logado && usuario_logado._id) {
@@ -89,15 +142,8 @@ function Meu_perfil() {
                 senha: ''
             })
 
-            setDadosEndereco({
-                cep: data.cep || '',
-                bairro: data.bairro || '',
-                logradouro: data.logradouro || '',
-                estado: data.estado || '',
-                cidade: data.cidade || '',
-                numero: data.numero || '',
-                complemento: data.complemento || ''
-            })
+            // Buscar endereço do cliente
+            await buscarEndereco(usuario_logado._id, null)
 
         } catch (erro) {
             console.error('Erro ao buscar dados do cliente:', erro)
@@ -133,15 +179,8 @@ function Meu_perfil() {
                 horario_funcionamento: data.horario_funcionamento || ''
             })
 
-            setDadosEndereco({
-                cep: data.cep || '',
-                bairro: data.bairro || '',
-                logradouro: data.logradouro || '',
-                estado: data.estado || '',
-                cidade: data.cidade || '',
-                numero: data.numero || '',
-                complemento: data.complemento || ''
-            })
+            // Buscar endereço do brechó
+            await buscarEndereco(null, usuario_logado._id)
 
         } catch (erro) {
             console.error('Erro ao buscar dados do brechó:', erro)
@@ -251,21 +290,26 @@ function Meu_perfil() {
                 complemento: dadosEndereco.complemento
             }
 
-            const endpoint = tipoUsuario === 'cliente'
-                ? `/clientes/${usuario_logado._id}`
-                : `/brechos/${usuario_logado._id}`
+            if (tipoUsuario === 'cliente') {
+                dadosParaAtualizar.fk_id_cliente = usuario_logado._id
+            } else {
+                dadosParaAtualizar.fk_id_brecho = usuario_logado._id
+            }
 
-            const response = await api.put(endpoint, dadosParaAtualizar)
+            let response
+            
+            // Se já existe endereço, faz PUT. Se não, faz POST
+            if (enderecoId) {
+                response = await api.put(`/enderecos/${enderecoId}`, dadosParaAtualizar)
+            } else {
+                response = await api.post(`/enderecos`, dadosParaAtualizar)
+                if (response.data._id) {
+                    setEnderecoId(response.data._id)
+                }
+            }
 
-            setDadosUsuario(response.data)
             setEditandoDadosEndereco(false)
             alert('Dados de endereço atualizados com sucesso!')
-
-            if (tipoUsuario === 'cliente') {
-                await buscarDadosCliente()
-            } else {
-                await buscarDadosBrecho()
-            }
 
         } catch (erro) {
             console.error('Erro ao salvar endereço:', erro)
@@ -296,7 +340,14 @@ function Meu_perfil() {
 
             {/* Meu perfil */}
             <div className={styles['container-meu-perfil']}>
-                <h4>Meu perfil</h4>
+                <div className={styles["container-alinhamento-titulo"]}>
+                    <h4>Dados pessoais</h4>
+
+                    <button onClick={() => setEditandoDadosPessoais(!editandoDadosPessoais)}>
+                        <img src="./img/icons/edit.svg" alt="Editar" />
+                    </button>
+                </div>
+
                 <div className={styles["line-meu-perfil"]}></div>
 
                 <div className={styles["container-alinhamento-imagens-meu-perfil"]}>
@@ -309,45 +360,22 @@ function Meu_perfil() {
                                 }
                                 alt="Foto de perfil"
                             />
-                        </div>
 
-                        <div className={styles['container-alinhamento-texto-meu-perfil']}>
-                            <h4>{tipoUsuario === 'cliente' ? 'Foto de perfil' : 'Logo do brechó'}</h4>
+                            <div className={styles['container-alinhamento-texto-meu-perfil']}>
+                                <h4>{tipoUsuario === 'cliente' ? 'Foto de perfil' : 'Logo do brechó'}</h4>
 
-                            <div className={styles["alinhamento-button-excluir-meu-perfil"]}>
-                                <button><img src="./img/icons/lixeira.svg" alt="" /> Excluir</button>
+                                <div className={styles["alinhamento-button-excluir-meu-perfil"]}>
+                                    <button><img src="./img/icons/lixeira.svg" alt="" /> Excluir</button>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div className={styles["container-foto-meu-perfil"]}>
-                        <div className={styles["container-imagem-tamanho"]}>
-                            <img src="./img/fotoPerfil.png" alt="Layout" />
-                        </div>
-
-                        <div className={styles['container-alinhamento-texto-meu-perfil-layout']}>
-                            <h4>Layout</h4>
-
-                            <div className={styles["alinhamento-button-excluir-meu-perfil-layout"]}>
-                                <button><img src="./img/icons/lixeira.svg" alt="" /> Excluir</button>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
 
             {/* Dados pessoais */}
             <div className={styles['container-secoes-dados']}>
-                <div className={styles["container-alinhamento-titulo"]}>
-                    <h4>Dados pessoais</h4>
-
-                    <button onClick={() => setEditandoDadosPessoais(!editandoDadosPessoais)}>
-                        <img src="./img/icons/edit.svg" alt="Editar" />
-                    </button>
-                </div>
-
-                <div className={styles["line-meu-perfil"]}></div>
-
                 <div className={styles["container-informacoes-edicao"]}>
                     {editandoDadosPessoais ? (
                         <>
@@ -526,13 +554,13 @@ function Meu_perfil() {
                         </>
                     ) : (
                         <>
-                            <p><strong>CEP:</strong> {dadosUsuario.cep || 'Não informado'}</p>
-                            <p><strong>Bairro:</strong> {dadosUsuario.bairro || 'Não informado'}</p>
-                            <p><strong>Logradouro:</strong> {dadosUsuario.logradouro || 'Não informado'}</p>
-                            <p><strong>Estado:</strong> {dadosUsuario.estado || 'Não informado'}</p>
-                            <p><strong>Cidade:</strong> {dadosUsuario.cidade || 'Não informado'}</p>
-                            <p><strong>Número:</strong> {dadosUsuario.numero || 'Não informado'}</p>
-                            <p><strong>Complemento:</strong> {dadosUsuario.complemento || 'Não informado'}</p>
+                            <p><strong>CEP:</strong> {dadosEndereco.cep || 'Não informado'}</p>
+                            <p><strong>Bairro:</strong> {dadosEndereco.bairro || 'Não informado'}</p>
+                            <p><strong>Logradouro:</strong> {dadosEndereco.logradouro || 'Não informado'}</p>
+                            <p><strong>Estado:</strong> {dadosEndereco.estado || 'Não informado'}</p>
+                            <p><strong>Cidade:</strong> {dadosEndereco.cidade || 'Não informado'}</p>
+                            <p><strong>Número:</strong> {dadosEndereco.numero || 'Não informado'}</p>
+                            <p><strong>Complemento:</strong> {dadosEndereco.complemento || 'Não informado'}</p>
                         </>
                     )}
                 </div>
