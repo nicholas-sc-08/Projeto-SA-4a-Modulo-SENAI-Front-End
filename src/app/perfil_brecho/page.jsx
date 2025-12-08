@@ -386,7 +386,7 @@ function page() {
                   <div className={styles["img-produto"]}>
                     <img src={
                       Array.isArray(produto.imagem) && produto.imagem.length > 0
-                        ? produto.imagem[0]  // Pega a PRIMEIRA imagem do array
+                        ? produto.imagem[0]  
                         : "./img/produtos_personalizados/caixa/caixa_normal.svg"
                     } />
                   </div>

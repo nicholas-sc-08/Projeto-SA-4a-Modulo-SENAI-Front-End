@@ -11,10 +11,9 @@ function Meus_pedidos() {
     const [pedidos, setPedidos] = useState([]);
     const [loading, setLoading] = useState(true);
 
-    // Dados de exemplo - depois você pode buscar de uma API
     useEffect(() => {
         // Buscar pedidos da API
-        fetch('/http://localhost:8080/pedidos') // ou a rota correta da sua API
+        fetch('/http://localhost:8080/pedidos')
             .then(res => res.json())
             .then(data => {
                 setPedidos(data);

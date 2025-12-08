@@ -56,15 +56,16 @@ export default function Sacola_geral() {
     }, []);
 
     useEffect(() => {
+        const sacola_brecho = array_sacola_brecho.filter(
+            produto => produto.id_brecho === usuario_logado._id
+        );
 
-        const sacola_brecho = array_sacola_brecho.filter(produto => produto.id_brecho === usuario_logado._id);
-
-        if (sacola_brecho) {
-
+        if (sacola_brecho.length > 0) {
             set_sacola(sacola_brecho);
-        };
-
-    }, [array_sacola_brecho]);
+        } else {
+            set_sacola([]); // ✅ Importante: limpar quando vazio
+        }
+    }, [array_sacola_brecho, usuario_logado._id]); // ✅ Adicionar usuario_logado._id
 
     useEffect(() => {
 
@@ -147,55 +148,54 @@ export default function Sacola_geral() {
     };
 
     async function diminuir_quantia_selecionada(produto_selecionado) {
-
         try {
+            if (produto_selecionado.quantidade <= 1) return; // Previne quantidade negativa
 
-            const produto_atualizado = { ...produto_selecionado, quantidade_selecionada: produto_selecionado.quantidade_selecionada - 1 };
-            const produtos = sacola.map(p => p._id === produto_selecionado._id ? produto_atualizado : p);
+            const nova_quantidade = produto_selecionado.quantidade - 1;
+            const novo_valor = produto_selecionado.valor / produto_selecionado.quantidade * nova_quantidade;
 
-            if (usuario_logado._id) {
-
-                const cliente_atualizado = { ...usuario_logado, sacola: produtos };
-                const dados_do_cliente = await api.put(`/clientes/${cliente_atualizado._id}`, cliente_atualizado);
-
-                set_usuario_logado(dados_do_cliente.data);
-                set_sacola(produtos);
-
-            } else {
-
-                set_sacola(produtos);
+            const produto_atualizado = {
+                ...produto_selecionado,
+                quantidade: nova_quantidade,
+                valor: novo_valor
             };
 
-        } catch (erro) {
+            // Atualiza no backend
+            await api.put(`/sacolas_brechos/${produto_selecionado._id}`, produto_atualizado);
 
-            console.error(erro);
-        };
-    };
+            // Re-busca dados atualizados
+            const sacolas_atualizadas = await buscar_sacolas_brechos();
+            set_array_sacola_brecho(sacolas_atualizadas);
+
+        } catch (erro) {
+            console.error("Erro ao diminuir quantidade:", erro);
+            alert("Erro ao atualizar quantidade. Tente novamente.");
+        }
+    }
 
     async function aumentar_quantidade_selecionada(produto_selecionado) {
-
         try {
+            const nova_quantidade = produto_selecionado.quantidade + 1;
+            const novo_valor = produto_selecionado.valor / produto_selecionado.quantidade * nova_quantidade;
 
-            const produto_atualizado = { ...produto_selecionado, quantidade_selecionada: produto_selecionado.quantidade_selecionada + 1 };
-            const produtos = sacola.map(p => p._id === produto_selecionado._id ? produto_atualizado : p);
-
-            if (usuario_logado._id) {
-
-                const usuario_atualizado = { ...usuario_logado, sacola: produtos };
-                const dados_do_usuario = await api.put(`/clientes/${usuario_atualizado._id}`, usuario_atualizado);
-
-                set_sacola(produtos);
-                set_usuario_logado(dados_do_usuario.data);
-
-            } else {
-                set_sacola(produtos);
+            const produto_atualizado = {
+                ...produto_selecionado,
+                quantidade: nova_quantidade,
+                valor: novo_valor
             };
 
-        } catch (erro) {
+            // Atualiza no backend
+            await api.put(`/sacolas_brechos/${produto_selecionado._id}`, produto_atualizado);
 
-            console.error(erro);
-        };
-    };
+            // Re-busca dados atualizados
+            const sacolas_atualizadas = await buscar_sacolas_brechos();
+            set_array_sacola_brecho(sacolas_atualizadas);
+
+        } catch (erro) {
+            console.error("Erro ao aumentar quantidade:", erro);
+            alert("Erro ao atualizar quantidade. Tente novamente.");
+        }
+    }
 
     // Função para finalizar compra e redirecionar para Stripe
     async function finalizarCompra() {
@@ -207,9 +207,9 @@ export default function Sacola_geral() {
                 return;
             };
 
-            if (usuario_logado._id) {
+            if (usuario_logado._id && sacola) {
 
-                const response = await api.post(`/criar-checkout`, { itens: sacola });
+                const response = await api.post(`/api/payments/create-checkout-session-brecho`, { items: sacola });
 
                 if (response.data?.url) {
                     // Redireciona para o checkout do Stripe
@@ -307,7 +307,7 @@ export default function Sacola_geral() {
                                                     -
                                                 </button>
 
-                                                <span>1</span>
+                                                <span>{produto_sacola.quantidade}</span>
 
                                                 <button
                                                     disabled={produto_sacola.quantidade_selecionada === produto_sacola.quantidade}
