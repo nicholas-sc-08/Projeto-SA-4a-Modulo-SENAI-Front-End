@@ -11,7 +11,22 @@ import { useState } from "react";
 export default function Cadstrar_personalizado() {
 
     const { modal_criar_perso, set_modal_criar_perso } = useGlobalContext();
-    const [personalizado, set_personalizado] = useState({ tipo: "caixa", material: "papelao_reciclavel", tamanho: "pequeno", padrao: "logo_fly", cor_corpo: "", cor_alca: "", cor: "verde", quantidade: 1 });
+    const [personalizado, set_personalizado] = useState({ tipo: "caixa", material: "papelao_reciclavel", tamanho: "pequeno", padrao: "logo_fly", cor_corpo: "verde", cor_alca: "amarelo", cor: "verde", quantidade: 1 });
+
+    useEffect(() => {
+
+        if(personalizado.tipo === "caixa"){
+
+           set_personalizado({...personalizado, material: "papelao_reciclavel"}); 
+        } else if(personalizado.tipo === "sacola"){
+
+            set_personalizado({...personalizado, material: "plastico_biodegradavel"});
+        } else {
+
+            set_personalizado({...personalizado, material: "algodao"});
+        };
+
+    }, [personalizado.tipo]);
 
     return (
 
@@ -39,11 +54,11 @@ export default function Cadstrar_personalizado() {
                             <div className={styles["container_opcoes"]}>
                                 <label>Material</label>
                                 <select value={personalizado.material} onChange={e => set_personalizado({ ...personalizado, material: e.target.value })}>
-                                    <option value="papelao_reciclavel">Papelão Reciclável</option>
-                                    <option value="plastico_biodegradavel" disabled={personalizado.tipo === "caixa"}>Plástico Biodegradável</option>
-                                    <option value="papel_kraft" disabled={personalizado.tipo === "caixa"}>Papel Kraft</option>
-                                    <option value="algodao" disabled={personalizado.tipo === "caixa"}>Algodão</option>
-                                    <option value="poliester_reciclavel" disabled={personalizado.tipo === "caixa"}>Poliéster Reciclável</option>
+                                    <option value="papelao_reciclavel" disabled={personalizado.tipo === "sacola" || personalizado.tipo === "ecobag"}>Papelão Reciclável</option>
+                                    <option value="plastico_biodegradavel" disabled={personalizado.tipo === "caixa" || personalizado.tipo === "ecobag"}>Plástico Biodegradável</option>
+                                    <option value="papel_kraft" disabled={personalizado.tipo === "caixa" || personalizado.tipo === "ecobag"}>Papel Kraft</option>
+                                    <option value="algodao" disabled={personalizado.tipo === "caixa" || personalizado.tipo === "sacola"}>Algodão</option>
+                                    <option value="poliester_reciclavel" disabled={personalizado.tipo === "caixa" || personalizado.tipo === "sacola"}>Poliéster Reciclável</option>
                                 </select>
                             </div>
                         </div>

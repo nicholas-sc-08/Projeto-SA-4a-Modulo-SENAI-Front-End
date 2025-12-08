@@ -6,6 +6,7 @@ import { useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useRouter } from 'next/navigation';
 import { useGlobalContext } from '@/context/GlobalContext';
+import { buscarPersonalizados } from "@/services/personalizado/personalizado";
 import api from "@/services/api";
 import Pop_up_excluir_produto_sacola from '@/components/pop_up_excluir_produto_sacola/Pop_up_excluir_produto_sacola';
 import Pop_up_notificacao_comprado from '@/components/pop_up_notificacao_comprado/Pop_up_notificacao_comprado';
@@ -16,13 +17,14 @@ import Footer from '@/components/footer/Footer';
 // import Chat from '../../components/chat/Chat.jsx';
 // import Chat_conversa from '../../components/chat/Chat_conversa.jsx';
 import styles from '@/app/sacola/page.module.css';
-import { buscar_sacolas_brechos, imagem_produto_sacola_brecho, nome_produto, padrao_produto_sacola_brecho } from '@/services/sacolas_brechos/sacolas_brecho';
+import { buscar_sacolas_brechos, imagem_produto_sacola_brecho, material_produto_sacola_brecho, nome_produto, padrao_produto_sacola_brecho } from '@/services/sacolas_brechos/sacolas_brecho';
 
 export default function Sacola_geral() {
 
     const { tipo_de_header, set_tipo_de_header } = useGlobalContext();
     const { usuario_logado, set_usuario_logado } = useGlobalContext();
     const { sacola, set_sacola } = useGlobalContext();
+    const { array_estoque, set_array_estoque } = useGlobalContext();
     const { array_sacola_brecho, set_array_sacola_brecho } = useGlobalContext();
     const { conversa_aberta, set_conversa_aberta } = useGlobalContext();
     const { sacola_aberta, set_sacola_aberta } = useGlobalContext();
@@ -38,11 +40,11 @@ export default function Sacola_geral() {
     useEffect(() => {
 
         set_sacola_ou_produto(`/sacola_brecho`);
-        
+
     }, [set_sacola_ou_produto]);
 
     useEffect(() => {
-        
+
         buscar_sacolas_brechos().then(sacolas => set_array_sacola_brecho(sacolas));
         const sacola_brecho = array_sacola_brecho.filter(produto => produto.id_brecho === usuario_logado._id);
 
@@ -104,8 +106,9 @@ export default function Sacola_geral() {
         try {
 
             const array_com_produto_removido = sacola.filter(p => p._id !== produto_selecionado._id);
-             await api.delete(`/sacolas_brechos/${produto_selecionado._id}`);
+            await api.delete(`/sacolas_brechos/${produto_selecionado._id}`);
             set_sacola(array_com_produto_removido);
+            buscarPersonalizados().then(p => set_array_estoque(p));
             set_clicou_em_excluir(true);
 
         } catch (erro) {
@@ -117,7 +120,7 @@ export default function Sacola_geral() {
     function preco_dos_produtos(produto_sacola) {
 
         const calcular_preco = produto_sacola.valor;
-        const preco_final = calcular_preco.toFixed(2).replace(`.`, `,`);        
+        const preco_final = calcular_preco.toFixed(2).replace(`.`, `,`);
 
         return `R$${preco_final}`;
     };
@@ -262,7 +265,7 @@ export default function Sacola_geral() {
                                 <div key={i} className={styles['container_produto_sacola_geral']} onClick={() => ir_para_produto(produto_sacola)}>
 
                                     <div className={styles["container_imagem_do_produto_sacola_geral"]}>
-                                        <img src={imagem_produto_sacola_brecho(produto_sacola.tipo, produto_sacola.padrao, produto_sacola.cor_corpo)} alt="" />
+                                        <img src={imagem_produto_sacola_brecho(produto_sacola.tipo, produto_sacola.padrao, produto_sacola.cor, produto_sacola.cor_corpo, produto_sacola.cor_alca)} alt="" />
                                     </div>
 
                                     <div className={styles["container_info_produto_sacola_geral"]}>
@@ -283,7 +286,7 @@ export default function Sacola_geral() {
                                         </div>
 
                                         <div className={styles["container_info_extra_produto"]}>
-                                            <p>Material: <span>{produto_sacola.material}</span></p>
+                                            <p>Material: <span>{material_produto_sacola_brecho(produto_sacola.material)}</span></p>
                                             <p>Padrão: <span>{padrao_produto_sacola_brecho(produto_sacola.padrao)}</span></p>
                                         </div>
 

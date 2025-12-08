@@ -9,7 +9,7 @@ import api from "../../services/api";
 import styles from '@/components/sacola_brecho/Sacola_brecho.module.css';
 import { buscar_brechos } from '@/services/brecho/brecho';
 import { buscar_clientes } from '@/services/cliente/cliente';
-import { buscar_sacolas_brechos, imagem_produto_sacola_brecho, nome_produto, padrao_produto_sacola_brecho } from '@/services/sacolas_brechos/sacolas_brecho';
+import { buscar_sacolas_brechos, imagem_produto_sacola_brecho, material_produto_sacola_brecho, nome_produto, padrao_produto_sacola_brecho } from '@/services/sacolas_brechos/sacolas_brecho';
 
 export default function Sacola_brecho() {
 
@@ -156,7 +156,7 @@ export default function Sacola_brecho() {
                         <div key={i} className={styles['container_produtos_a_exibir_sacola']}>
 
                             <div className={styles["container_imagem_do_produto_sacola"]}>
-                                <img src={imagem_produto_sacola_brecho(produto.tipo, produto.padrao, produto.cor_corpo)} alt="" />
+                                <img src={imagem_produto_sacola_brecho(produto.tipo, produto.padrao, produto.cor, produto.cor_corpo, produto.cor_alca)} alt="" />
 
                             </div>
 
@@ -171,7 +171,7 @@ export default function Sacola_brecho() {
                                             <h3>{nome_produto(produto.tipo)}</h3>
                                         </div>
                                         <div className={styles["container_info_produto_material_sacola"]}>
-                                            <p>Material: <span>{produto.material}</span></p>
+                                            <p>Material: <span>{material_produto_sacola_brecho(produto.material)}</span></p>
                                         </div>
 
                                     </div>
