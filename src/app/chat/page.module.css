@@ -702,11 +702,15 @@
 .mensagem_recebedor {
 
     width: fit-content;
+    max-width: 50%;
 
     border-top-right-radius: 1vw;
     border-bottom-left-radius: 1vw;
     border-bottom-right-radius: 1vw;
 
+    white-space: pre-wrap;
+  word-wrap: break-word;
+  
     padding-left: 1%;
     padding-top: 1%;
     padding-bottom: 1%;

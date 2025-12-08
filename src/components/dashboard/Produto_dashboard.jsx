@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import { AnimatePresence } from 'framer-motion';
 import { motion } from 'framer-motion';
+import Modal_p from '../pop_up_dashboard/Modal_p';
 import Header from '../Header/Header'
 import Cadastrar_personalizado from "@/components/pop_up_dashboard/Cadastrar_personalizado";
 import Pop_up_excluir_produto_dashboard from '../pop_up_dashboard/Pop_up_excluir_produto_dashboard';
@@ -21,6 +22,7 @@ export default function Produtos_dashboard() {
     const { produtos_dashboard, set_produtos_dashboard } = useGlobalContext()
     const { inicio_dashboard, set_inicio_dashboard } = useGlobalContext()
     const { modal_criar_perso, set_modal_criar_perso } = useGlobalContext();
+    const { modal_cadastrado, set_modal_cadastrado } = useGlobalContext();
     const { pop_up_notificacao_excluir_dashboard, set_pop_up_notificacao_excluir_dashboard } = useGlobalContext();
     const { abrir_pop_up_dashboard, set_abrir_pop_up_dashboard } = useGlobalContext();
     const { id_do_produto_a_excluir, set_id_do_produto_a_excluir } = useGlobalContext();
@@ -83,6 +85,7 @@ export default function Produtos_dashboard() {
                 {abrir_pop_up_dashboard && <Pop_up_excluir_produto_dashboard />}
                 {pop_up_notificacao_excluir_dashboard && <Pop_up_notificacao_excluir_produto />}
                 {modal_criar_perso && <Cadastrar_personalizado />}
+                {modal_cadastrado && <Modal_p/>}
 
                 <div className={styles["container-alinhamento-imagem-titulo-produtos-dashboard"]}>
                     <div className={styles["container-alinhamento-imagem-produtos-dashboard"]}>

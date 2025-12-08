@@ -93,6 +93,7 @@ export const GlobalContextProvider = ({ children }) => {
 
     const [produto_selecionado, set_produto_selecionado] = useState('ecobag');
     const [modal_criar_perso, set_modal_criar_perso] = useState(false);
+    const [modal_cadastrado, set_modal_cadastrado] = useState(false);
 
     const [popupExcluirAberto, setPopupExcluirAberto] = useState(false)
     const [popupSairAberto, setPopupSairAberto] = useState(false)
@@ -231,6 +232,8 @@ export const GlobalContextProvider = ({ children }) => {
             set_pagina_atual,
             sacola_ou_produto,
             set_sacola_ou_produto,
+            modal_cadastrado,
+            set_modal_cadastrado,
 
             id_do_produto_a_excluir,
             set_id_do_produto_a_excluir,
