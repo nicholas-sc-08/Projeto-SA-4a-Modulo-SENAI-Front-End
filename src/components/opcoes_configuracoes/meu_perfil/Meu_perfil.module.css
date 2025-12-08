@@ -191,6 +191,28 @@ html {
     padding-top: 0.5%;
 }
 
+
+.container-informacoes-edicao input {
+    width: 45%;
+    height: 2.3rem;
+
+    border: 1.2px solid var(--cor_dois);
+    border-radius: 1.1rem;
+    color: var(--cor_seis_v_um);
+    font-family: var(--tipografia_primaria);
+    font-size: 0.8rem;
+    padding: 2%;
+    
+    
+}
+
+.container-informacoes-edicao{
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+
 .alinhamento-button-salvar-alteracoes-meu-perfil {
     display: flex;
     align-items: end;
@@ -214,3 +236,4 @@ html {
 .alinhamento-button-salvar-alteracoes-meu-perfil button:hover{
     background-color: var(--cor_dois_v_um);
 }
+
