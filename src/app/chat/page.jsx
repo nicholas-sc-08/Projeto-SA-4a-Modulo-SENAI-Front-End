@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import ReactMarkDown from "react-markdown";
 import EmojiPicker from "emoji-picker-react";
 import { useEffect } from "react";
 import { useState } from "react";
@@ -23,6 +24,7 @@ export default function chat() {
     const [perfil_botao, set_perfil_botao] = useState("./img/chat/chat_perfil.svg");
     const [conversas_botao, set_conversas_botao] = useState("./img/chat/chat_conversas.svg");
     const [titulo, set_titulo] = useState("");
+    const [assistente_fly, set_assistente_fly] = useState({ id: "assistente", nome: "Assistente Fly", imagem_de_perfil: "./img/icons/gemini-icon.webp" });
     const [grupos_botao, set_grupos_botao] = useState("./img/chat/chat_grupos.svg");
     const [conversa_atual, set_conversa_atual] = useState(null);
     const [pesquisa_inpt, set_pesquisa_inpt] = useState("");
@@ -43,7 +45,7 @@ export default function chat() {
         buscar_conversas().then(mensagem => set_array_chat(mensagem));
         buscar_clientes().then(data => set_array_clientes(data));
 
-                if (ref_final_conversa.current) {
+        if (ref_final_conversa.current) {
 
             ref_final_conversa.current.scrollIntoView({ behavior: "smooth" });
         };
@@ -80,9 +82,10 @@ export default function chat() {
     }, [secao_chat]);
 
     useEffect(() => {
-
-
-    }, [conversa_atual]);
+        if (usuario_logado && usuario_logado.conversas) {
+            set_array_de_pesquisa(usuario_logado.conversas);
+        }
+    }, [usuario_logado, array_chat]);
 
     useEffect(() => {
 
@@ -115,6 +118,25 @@ export default function chat() {
 
         try {
 
+            if (contato.id === "assistente") {
+
+                set_enviar_mensagem("");
+                const resposta = await api.post("/gemini/ai/generate", { prompt: mensagem_enviar });
+
+                const mensagem = {
+                    mensagem: resposta.data,
+                    id_dono_mensagem: "assistente",
+                    id_quem_recebeu_mensagem: usuario_logado._id,
+                    data_mensagem: dia_de_hoje,
+                    mensagem_lida_quem_recebeu: false,
+                    hora: `${dia_de_hoje.getHours() < 10 ? `0${dia_de_hoje.getHours()}` : dia_de_hoje.getHours()}:${dia_de_hoje.getMinutes() < 10 ? `0${dia_de_hoje.getMinutes()}` : dia_de_hoje.getMinutes()}`
+                };
+
+                const chat = await api.post(`/chats`, mensagem);
+                set_conversa_atual([...conversa_atual, chat.data]);
+                return;
+            };
+
             const mensagem = {
                 mensagem: mensagem_enviar,
                 id_dono_mensagem: usuario_logado._id,
@@ -125,8 +147,8 @@ export default function chat() {
             };
 
             const resposta = await api.post(`/chats`, mensagem);
-            set_conversa_atual([...conversa_atual, resposta.data]);
-            socket.emit("enviar_mensagem", resposta.data);
+            set_conversa_atual([...conversa_atual, resposta]);
+            socket.emit("enviar_mensagem", resposta);
             set_mensagem_enviar("");
 
         } catch (erro) {
@@ -153,6 +175,7 @@ export default function chat() {
                 });
 
                 set_conversa_atual(mensagens_filtradas_cliente_com_brecho);
+                return;
             };
         };
 
@@ -168,6 +191,22 @@ export default function chat() {
                 });
 
                 set_conversa_atual(mensagens_filtradas_brecho_com_cliente);
+                return;
+            };
+        };
+
+        if (id == "assistente") {
+
+            set_contato(assistente_fly);
+
+            if (array_chat.length != 0) {
+
+                const mensagens_assistente = array_chat.filter(mensagem => {
+
+                    return mensagem.id_dono_mensagem == usuario_logado._id && mensagem.id_quem_recebeu_mensagem == assistente_fly._id || mensagem.id_dono_mensagem == assistente_fly._id && mensagem.id_quem_recebeu_mensagem == usuario_logado._id;
+                });
+
+                set_conversa_atual(mensagens_assistente);
             };
         };
     };
@@ -203,7 +242,7 @@ export default function chat() {
                             : ""}
                         {secao_chat == "conversas" ?
 
-                            <span>Recentes({array_de_pesquisa ? (array_de_pesquisa.length) : 0})</span>
+                            <span>Recentes({array_de_pesquisa ? (array_de_pesquisa.length + 1) : 1})</span>
                             : ""}
                     </header>
                     : ""}
@@ -241,6 +280,16 @@ export default function chat() {
                 {secao_chat == "conversas" ?
                     <AnimatePresence>
                         <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.4 }} className={styles["container_conversas"]}>
+                            <div className={styles["container_conversa"]} onClick={() => selecionar_conversa("assistente")}>
+                                <aside>
+                                    <img src={assistente_fly.imagem_de_perfil} referrerPolicy="no-referrer" crossOrigin="anonymous" alt="" />
+                                </aside>
+                                <section className={styles["container_contato_info"]}>
+                                    <h5>{assistente_fly.nome}</h5>
+                                    <span>Converse com o Assistente da Fly para tirar suas dúvidas!</span>
+                                </section>
+                            </div>
+
                             {array_de_pesquisa && array_de_pesquisa.length > 0 ? array_de_pesquisa.map((conversa, i) => (
 
                                 <div key={i} className={styles["container_conversa"]} onClick={() => selecionar_conversa(conversa._id)}>
@@ -252,11 +301,8 @@ export default function chat() {
                                         <span>{buscar_ultima_mensagem(conversa._id, array_chat, usuario_logado)}</span>
                                     </section>
                                 </div>
-                            )) :
-                                <div className={styles["container_nenhuma_convesa"]}>
-                                    <img src="./img/chat/chat_nenhuma_conversa.svg" alt="balão" />
-                                    <p>Tentamos procurar por conversas mas parece que não conseguimos encontrar nenhuma conversa!</p>
-                                </div>}
+                            )) :""
+                                }
                         </motion.div>
                     </AnimatePresence>
                     : ""}
@@ -284,14 +330,14 @@ export default function chat() {
                                             <AnimatePresence>
                                                 <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.4 }} className={styles["container_fundo_mensagem_dono"]}>
                                                     <div className={styles["mensagem_dono"]}>
-                                                        <p>{_.mensagem}</p>
+                                                        <ReactMarkDown>{_.mensagem}</ReactMarkDown>
                                                     </div>
                                                 </motion.div>
                                             </AnimatePresence> :
                                             <AnimatePresence>
                                                 <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.4 }} className={styles["container_fundo_mensagem_recebedor"]}>
                                                     <div className={styles["mensagem_recebedor"]}>
-                                                        <p>{_.mensagem}</p>
+                                                        <ReactMarkDown>{_.mensagem}</ReactMarkDown>
                                                     </div>
                                                 </motion.div>
                                             </AnimatePresence>
@@ -314,10 +360,7 @@ export default function chat() {
                         </main>
                     </motion.div>
                 </AnimatePresence>
-                : <div className={styles["container_nenhum_contato_selecionado"]}>
-                    <img src="./img/chat/chat_perfil.svg" alt="" />
-                    <span>Procure adicionar algum contato para poder iniciar uma conversa!</span>
-                </div>
+                : ""
             }
         </div>
 

@@ -10,6 +10,7 @@ import { useState } from "react";
 
 export default function Cadstrar_personalizado() {
 
+    const { modal_cadastrado, set_modal_cadastrado } = useGlobalContext();
     const { modal_criar_perso, set_modal_criar_perso } = useGlobalContext();
     const [personalizado, set_personalizado] = useState({ tipo: "caixa", material: "papelao_reciclavel", tamanho: "pequeno", padrao: "logo_fly", cor_corpo: "verde", cor_alca: "amarelo", cor: "verde", quantidade: 1 });
 
@@ -114,7 +115,7 @@ export default function Cadstrar_personalizado() {
                             </div>
                         </div>
                         <footer className={styles["footer"]}>
-                            <button className={styles["botao_cadastrar_personalizado"]} onClick={() => cadastrarPersonalizado(personalizado).then(set_modal_criar_perso(false))}>Cadastrar</button>
+                            <button className={styles["botao_cadastrar_personalizado"]} onClick={() => cadastrarPersonalizado(personalizado).then(set_modal_cadastrado(true), set_modal_criar_perso(false))}>Cadastrar</button>
                             <button className={styles["botao_limpar_personalizado"]} onClick={() => set_modal_criar_perso(false)}>Sair</button>
                         </footer>
                     </main>

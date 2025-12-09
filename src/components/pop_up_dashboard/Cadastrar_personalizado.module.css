@@ -18,7 +18,7 @@
     align-items: center;
     box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
     border-radius: 1vw;
-    width: 55%;
+    width: 60%;
     height: 70%;
     background-color: var(--cor_quatro);
 }
@@ -29,7 +29,7 @@
     justify-content: center;
     align-items: center;
 
-    width: 45%;
+    width: 50%;
     height: 100%;
 }
 
@@ -39,7 +39,7 @@
     align-items: center;
     justify-content: center;
     height: 85%;
-    width: 90%;
+    width: 80%;
     border-radius: 1vw;
     box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
     background-color: var(--cor_doze);
@@ -55,8 +55,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-
-    width: 55%;
+    width: 50%;
     height: 100%;
 }
 
@@ -91,7 +90,7 @@
     flex-direction: column;
     align-items: start;
     justify-content: space-between;
-    width: 40%;
+    width: 50%;
     height: 65%;
     margin-right: 10%;
 
@@ -112,12 +111,12 @@
 
 .container_opcoes select {
 
-    padding: 2%;
+    padding-left: 4%;
     cursor: pointer;
     transition: 0.3s;
-    border-radius: 0.4vw;
+    border-radius: 10vw;
     font-family: var(--tipografia_secundaria);
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     font-weight: 500;
     color: var(--cor_seis);
     outline: none;
@@ -154,7 +153,7 @@
     font-family: var(--tipografia_secundaria);
     font-size: 0.75rem;
     font-weight: 500;
-    border-radius: 0.4vw;
+    border-radius: 1vw;
     box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
     border: none;
     color: var(--cor_seis);

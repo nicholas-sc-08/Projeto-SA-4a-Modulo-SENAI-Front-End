@@ -12,7 +12,7 @@ export default function Pop_up_excluir_produto_dashboard() {
 
     const { id_do_produto_a_excluir, set_id_do_produto_a_excluir } = useGlobalContext();
     const { array_produtos, set_array_produtos } = useGlobalContext();
-    const { array_estoques, set_array_estoques } = useGlobalContext();
+    const { array_estoque, set_array_estoque } = useGlobalContext();
     const { abrir_pop_up_dashboard, set_abrir_pop_up_dashboard } = useGlobalContext();
     const { pop_up_notificacao_excluir_dashboard, set_pop_up_notificacao_excluir_dashboard } = useGlobalContext();
 
@@ -25,7 +25,7 @@ export default function Pop_up_excluir_produto_dashboard() {
             set_abrir_pop_up_dashboard(false);
             set_pop_up_notificacao_excluir_dashboard(true);
             buscar_produtos().then(p => set_array_produtos(p));
-            buscarPersonalizados().then(p => set_array_estoques(p));
+            buscarPersonalizados().then(p => set_array_estoque(p));
 
         } catch (erro) {
 
