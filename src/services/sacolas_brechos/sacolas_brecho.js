@@ -2,11 +2,15 @@
 
 import api from "../api";
 
+
 export async function buscar_sacolas_brechos() {
-
+    
     try {
-
-        const resposta = await api.get(`/sacolas_brechos`);
+        
+        
+        const token = localStorage.getItem("user") || "{}";
+        console.log(token);
+        const resposta = await api.get(`/sacolas_brechos`, { headers: { "Authorization": `Bearer ${token}`}});
         return resposta.data;
 
     } catch (erro) {

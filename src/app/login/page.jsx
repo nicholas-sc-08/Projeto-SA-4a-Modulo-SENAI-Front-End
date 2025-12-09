@@ -64,7 +64,7 @@ export default function Login() {
         };
     };
 
-    function lidar_com_formulario(e) {
+    async function lidar_com_formulario(e) {
 
         e.preventDefault();
 
@@ -98,12 +98,16 @@ export default function Login() {
 
         if (cliente_a_encontrar) {
 
+            const login = await api.post("/auth/login", { email: formulario.email, senha: formulario.senha });
             set_usuario_logado(cliente_a_encontrar);
+            localStorage.setItem("user", login.data);
             set_erro(``);
             rotuer.push(`/`);
 
         } else if (brecho_a_encontrar) {
 
+            const login = await api.post("/auth/login", { email: formulario.email, senha: formulario.senha });
+            localStorage.setItem("user", login.data);
             set_usuario_logado(brecho_a_encontrar);
             set_erro(``);
             rotuer.push(`/`);

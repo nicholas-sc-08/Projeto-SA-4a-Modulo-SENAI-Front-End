@@ -209,7 +209,7 @@ export default function Sacola_geral() {
 
             if (usuario_logado._id) {
 
-                const response = await api.post(`/criar-checkout`, { itens: sacola });
+                const response = await api.post(`/api/payments/create-checkout-session-brecho`, { itens: sacola });
 
                 if (response.data?.url) {
                     // Redireciona para o checkout do Stripe
