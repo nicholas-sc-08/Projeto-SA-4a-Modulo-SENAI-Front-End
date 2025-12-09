@@ -441,7 +441,8 @@ function page() {
     }
 
     try {
-      const sacola_salva = await api.post("/sacolas_brechos", pedido);
+      const token = JSON.parse(localStorage.getItem("user"));
+      const sacola_salva = await api.post("/sacolas_brechos", pedido, { headers: {Authorization: `Bearer ${token}`}});
       // await pedido_sacola_para_maquina(sacola_salva.data);
       buscar_sacolas_brechos().then((sacolas) => set_array_sacola_brecho(sacolas));
 

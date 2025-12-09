@@ -207,9 +207,10 @@ export default function Sacola_geral() {
                 return;
             };
 
-            if (usuario_logado._id && sacola) {
+            if (sacola) {
 
-                const response = await api.post(`/api/payments/create-checkout-session-brecho`, { items: sacola });
+                const token = JSON.parse(localStorage.getItem("user"));
+                const response = await api.post(`/api/payments/create-checkout-session-brecho`, { items: sacola }, { headers: { Authorization: `Bearer ${token}` } });
 
                 if (response.data?.url) {
                     // Redireciona para o checkout do Stripe
@@ -262,7 +263,7 @@ export default function Sacola_geral() {
 
                             {sacola && sacola.length > 0 ? sacola.map((produto_sacola, i) => (
 
-                                <div key={i} className={styles['container_produto_sacola_geral']} onClick={() => ir_para_produto(produto_sacola)}>
+                                <div key={i} className={styles['container_produto_sacola_geral']}>
 
                                     <div className={styles["container_imagem_do_produto_sacola_geral"]}>
                                         <img src={imagem_produto_sacola_brecho(produto_sacola.tipo, produto_sacola.padrao, produto_sacola.cor, produto_sacola.cor_corpo, produto_sacola.cor_alca)} alt="" />

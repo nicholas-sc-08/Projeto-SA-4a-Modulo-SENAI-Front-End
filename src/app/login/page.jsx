@@ -107,7 +107,7 @@ export default function Login() {
         } else if (brecho_a_encontrar) {
 
             const login = await api.post("/auth/login", { email: formulario.email, senha: formulario.senha });
-            localStorage.setItem("user", login.data);
+            localStorage.setItem("user", JSON.stringify(login.data));
             set_usuario_logado(brecho_a_encontrar);
             set_erro(``);
             rotuer.push(`/`);

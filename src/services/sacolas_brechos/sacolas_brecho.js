@@ -4,13 +4,12 @@ import api from "../api";
 
 
 export async function buscar_sacolas_brechos() {
-    
+
     try {
-        
-        
-        const token = localStorage.getItem("user") || "{}";
-        console.log(token);
-        const resposta = await api.get(`/sacolas_brechos`, { headers: { "Authorization": `Bearer ${token}`}});
+
+
+        const token = JSON.parse(localStorage.getItem("user"));
+        const resposta = await api.get(`/sacolas_brechos`, { headers: { Authorization: `Bearer ${token}` } });
         return resposta.data;
 
     } catch (erro) {
@@ -24,7 +23,8 @@ export async function buscar_sacola_brecho(id) {
 
     try {
 
-        const resposta = await api.get(`/sacolas_brechos/${id}`);
+        const token = JSON.parse(localStorage.getItem("user"));
+        const resposta = await api.get(`/sacolas_brechos/${id}`, { headers: { Authorization: `Bearer ${token}` } });
         return resposta.data;
 
     } catch (erro) {
@@ -38,7 +38,8 @@ export async function cadastrar_sacola_brecho(mensagem) {
 
     try {
 
-        const resposta = await api.post(`/sacolas_brechos`, mensagem);
+        const token = JSON.parse(localStorage.getItem("user"));
+        const resposta = await api.post(`/sacolas_brechos`, mensagem, { headers: { Authorization: `Bearer ${token}` } });
         return resposta.data;
 
     } catch (erro) {
@@ -52,7 +53,8 @@ export async function atualizar_sacolas_brecho(id, mensagem) {
 
     try {
 
-        const resposta = await api.put(`/sacolas_brechos/${id}`, mensagem);
+        const token = JSON.parse(localStorage.getItem("user"));
+        const resposta = await api.put(`/sacolas_brechos/${id}`, mensagem, { headers: { Authorization: `Bearer ${token}` } });
         return resposta.data;
 
     } catch (erro) {
@@ -66,7 +68,8 @@ export async function deletar_sacolas_brecho(id) {
 
     try {
 
-        const reposta = await api.delete(`/sacolas_brechos/${id}`);
+        const token = JSON.parse(localStorage.getItem("user"));
+        await api.delete(`/sacolas_brechos/${id}`, { headers: { Authorization: `Bearer ${token}` } });
 
     } catch (erro) {
 

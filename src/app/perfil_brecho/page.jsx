@@ -30,7 +30,8 @@ function page() {
     try {
       if (!usuario_logado?._id) return;
 
-      const response = await api.get(`/brechos/${usuario_logado._id}`);
+      const token = JSON.parse(localStorage.getItem("user"));
+      const response = await api.get(`/brechos/${usuario_logado._id}`, { headers: { Authorization: `Bearer ${token}` } });
       const data = response.data;
 
       console.log('✅ Dados do brechó:', data);
@@ -48,7 +49,8 @@ function page() {
     try {
       if (!usuario_logado?._id) return;
 
-      const response = await api.get(`/enderecos`, {
+      const token = JSON.parse(localStorage.getItem("user"));
+      const response = await api.get(`/enderecos`, { headers: { Authorization: `Bearer ${token}` } }, {
         params: { fk_id_brecho: usuario_logado._id }
       });
 
