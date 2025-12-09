@@ -142,10 +142,16 @@ function page() {
   }
 
   function ir_para_produto(produto) {
-
     set_produto(produto);
     router.push('/produto');
-  };
+  }
+
+  // ============================
+  // 🔵 IR PARA PERSONALIZAÇÃO
+  // ============================
+  function irParaPersonalizacao() {
+    router.push('/escolha_de_personalizacao_produtos');
+  }
 
   // ============================
   // CARREGAR DADOS AO MONTAR
@@ -240,7 +246,10 @@ function page() {
               Redes sociais
             </button>
 
-            <button className={styles["btn-salvar-alteracoes"]}>
+            <button
+              className={styles["btn-salvar-alteracoes"]}
+              onClick={irParaPersonalizacao}
+            >
               <Sparkles color="#3e2a21bd" strokeWidth={1} />
               Personalize seus produtos
             </button>
@@ -386,7 +395,7 @@ function page() {
                   <div className={styles["img-produto"]}>
                     <img src={
                       Array.isArray(produto.imagem) && produto.imagem.length > 0
-                        ? produto.imagem[0]  
+                        ? produto.imagem[0]
                         : "./img/produtos_personalizados/caixa/caixa_normal.svg"
                     } />
                   </div>
