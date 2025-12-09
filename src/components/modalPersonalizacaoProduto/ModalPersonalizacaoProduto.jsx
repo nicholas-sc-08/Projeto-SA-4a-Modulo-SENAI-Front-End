@@ -5,7 +5,7 @@ import { X, Plus, Minus } from "lucide-react";
 import styles from "./ModalPersonalizacaoProduto.module.css";
 import api from "@/services/api";
 import { useGlobalContext } from "@/context/GlobalContext";
-import { buscar_sacolas_brechos } from "@/services/sacolas_brechos/sacolas_brecho";
+import { buscar_sacolas_brechos, cadastrar_sacola_brecho } from "@/services/sacolas_brechos/sacolas_brecho";
 import { useRouter } from "next/navigation";
 
 const ModalPersonalizacaoProdutos = ({ isOpen, onClose }) => {
@@ -409,7 +409,7 @@ const ModalPersonalizacaoProdutos = ({ isOpen, onClose }) => {
         }
 
         try {
-            await api.post("/sacolas_brechos", pedido);
+            await cadastrar_sacola_brecho(pedido);
             buscar_sacolas_brechos().then((sacolas) => set_array_sacola_brecho(sacolas));
 
             alert("Produto adicionado à sacola com sucesso!");

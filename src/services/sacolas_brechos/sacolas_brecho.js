@@ -34,12 +34,12 @@ export async function buscar_sacola_brecho(id) {
     };
 };
 
-export async function cadastrar_sacola_brecho(mensagem) {
+export async function cadastrar_sacola_brecho(p) {
 
     try {
 
         const token = JSON.parse(localStorage.getItem("user"));
-        const resposta = await api.post(`/sacolas_brechos`, mensagem, { headers: { Authorization: `Bearer ${token}` } });
+        const resposta = await api.post(`/sacolas_brechos`, p, { headers: { Authorization: `Bearer ${token}` } });
         return resposta.data;
 
     } catch (erro) {
