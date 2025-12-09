@@ -8,6 +8,7 @@ import { useState, useEffect } from 'react';
 import { Sparkles } from 'lucide-react';
 import api from '@/services/api';
 import { useRouter } from 'next/navigation';
+import ModalPersonalizacaoProdutos from '@/components/modalPersonalizacaoProduto/ModalPersonalizacaoProduto';
 
 function page() {
   const { tipo_de_header, usuario_logado, array_brechos } = useGlobalContext();
@@ -22,6 +23,7 @@ function page() {
   const [loading, setLoading] = useState(true);
   const { produto, set_produto } = useGlobalContext();
   const router = useRouter();
+  const [modalAberto, setModalAberto] = useState(false);
 
   // ============================
   // 🔵 BUSCAR DADOS DO BRECHÓ
@@ -151,8 +153,8 @@ function page() {
   // ============================
   // 🔵 IR PARA PERSONALIZAÇÃO
   // ============================
-  function irParaPersonalizacao() {
-    router.push('/escolha_de_personalizacao_produtos');
+  function abrirModalPersonalizacao() {
+    setModalAberto(true);
   }
 
   // ============================
@@ -250,7 +252,7 @@ function page() {
 
             <button
               className={styles["btn-salvar-alteracoes"]}
-              onClick={irParaPersonalizacao}
+              onClick={abrirModalPersonalizacao} // <- Aqui está a mudança
             >
               <Sparkles color="#3e2a21bd" strokeWidth={1} />
               Personalize seus produtos
@@ -415,6 +417,11 @@ function page() {
           </div>
         </div>
       </div>
+
+      <ModalPersonalizacaoProdutos
+        isOpen={modalAberto}
+        onClose={() => setModalAberto(false)}
+      />
 
       <Footer />
     </div>
