@@ -12,6 +12,10 @@ import { Link } from 'next/link';
 import { motion, AnimatePresence, useAnimation } from "framer-motion";
 import Header from '@/components/header/Header';
 import Compra_realizada from '@/components/pop_up_compra_realizada/Compra_realizada';
+import { buscar_brechos } from '@/services/brecho/brecho';
+import { buscar_clientes } from '@/services/cliente/cliente';
+import { buscar_produtos } from '@/services/produto/produto';
+import { buscar_categorias } from '@/services/categoria/categoria';
 // import { motion, AnimatePresence } from 'framer-motion';
 // import { useSearch } from '@/contexts/SearchContext';
 
@@ -58,10 +62,10 @@ export default function Tela_incial() {
 
   useEffect(() => {
 
-    informacoes_clientes();
-    informacoes_brechos();
-    informacoes_produtos();
-    buscar_categorias()
+    buscar_brechos().then(b => set_array_brechos(b));
+    buscar_clientes().then(c => set_array_clientes(c));
+    buscar_produtos().then(p => set_array_produtos(p));
+    buscar_categorias().then(c => set_array_categorias(c));
     set_id_categoria_selecionada(null);
 
   }, []);
@@ -71,55 +75,6 @@ export default function Tela_incial() {
     quantidade_de_produtos_sacola();
 
   }, [sacola]);
-
-  async function informacoes_clientes() {
-
-    try {
-
-      const resultado = await api.get(`/clientes`);
-      set_array_clientes(resultado.data);
-
-    } catch (erro) {
-
-      console.error(erro);
-    };
-  };
-
-  async function informacoes_brechos() {
-
-    try {
-
-      const resultado = await api.get(`/brechos`);
-      set_array_brechos(resultado.data);
-
-    } catch (erro) {
-
-      console.error(erro);
-    };
-  };
-
-  async function informacoes_produtos() {
-
-    try {
-
-      const resultado = await api.get(`/produtos`);
-      set_array_produtos(resultado.data);
-
-    } catch (erro) {
-
-      console.error(erro);
-    };
-  };
-
-  async function buscar_categorias() {
-    try {
-      const categorias = await api.get(`/categorias`);
-      set_array_categorias(categorias.data);
-    } catch (erro) {
-      console.error(erro);
-    };
-  };
-
 
   function quantidade_de_produtos_sacola() {
 
@@ -464,54 +419,6 @@ export default function Tela_incial() {
 
               <div className={styles["card-quatro-secao-quatro"]} onClick={() => handleCategoryClick('Calçados')}>
                 <p>Calçados</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* home page seção de teste - Personalização de produtos */}
-        <div className={styles["container-personalizacao-de-produto"]}>
-          <div className={styles["alinhamento-container-personalizacao-de-produto"]}>
-            <div className={styles["container-titulo-personalizacao-de-produto"]}>
-              <p className={styles["titulo-personalizacao-de-produto"]}>PERSONALIZE SEUS PRODUTOS</p>
-
-              {/* <div className={styles["line-personalizacao-de-produto"]}></div> */}
-
-              <p className={styles["subtitulo-personalizacao-de-produto"]}>
-                Novidade no Fly! Agora você pode interagir diretamente com a gente e personalizar suas compras
-                na nossa loja oficial. Dê seu toque único a cada produto!
-              </p>
-            </div>
-
-            <div className={styles["container-card-personalizacao"]}>
-              <div className={styles["container-conteudo-personalizacao"]}>
-                <div className={styles["container-imagem-personalizacao"]}>
-                  <img
-                    src="/img/imagens_telaInicial/CardImagemTresTelaInicial.svg"
-                    alt="Personalização de produtos"
-                    className={styles["imagem-personalizacao"]}
-                  />
-                </div>
-
-                {/* <div className={styles["icone-estrela-amarela-personalizacao"]}>
-                  <img src="./img/Estrela_um_cadastro.svg" alt="estrela amarela" />
-                </div> */}
-
-                <div className={styles["texto-personalizacao"]}>
-                  <h3 className={styles["titulo-card-personalizacao"]}>
-                    Transforme seus produtos com personalização exclusiva
-                  </h3>
-                </div>
-
-                {/* <div className={styles["icone-estrela-verde-personalizacao"]}>
-                  <img src="./img/Estrela_dois_cadastro.svg" alt="estrela verde" />
-                </div> */}
-              </div>
-
-              <div className={styles["container-botao-personalizacao"]}>
-                <button onClick={() => router.push(`/escolha_de_personalizacao_produtos`)}className={styles["botao-avancar-personalizacao"]}>
-                  Avançar
-                </button>
               </div>
             </div>
           </div>

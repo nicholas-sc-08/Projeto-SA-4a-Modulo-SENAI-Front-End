@@ -4,9 +4,11 @@ import React, { useState, useEffect } from 'react'
 import styles from '@/components/opcoes_configuracoes/meu_perfil/Meu_perfil.module.css'
 import { useGlobalContext } from '@/context/GlobalContext'
 import api from '@/services/api'
+import Toast, { useToast } from '@/components/Toast/Toast'
 
 function Meu_perfil() {
     const { usuario_logado, array_clientes, array_brechos } = useGlobalContext()
+    const { toasts, showToast, removeToast } = useToast()
 
     const [dadosUsuario, setDadosUsuario] = useState(null)
     const [loading, setLoading] = useState(true)
@@ -47,21 +49,20 @@ function Meu_perfil() {
     const buscarEndereco = async (fk_id_cliente, fk_id_brecho) => {
         try {
             let response
+            const token = JSON.parse(localStorage.getItem("user"));
             if (fk_id_cliente) {
-                response = await api.get(`/enderecos`, {
+                response = await api.get(`/enderecos`, { headers: { Authorization: `Bearer ${token}` } }, {
                     params: { fk_id_cliente }
                 })
             } else if (fk_id_brecho) {
-                response = await api.get(`/enderecos`, {
+                response = await api.get(`/enderecos`, { headers: { Authorization: `Bearer ${token}` } }, {
                     params: { fk_id_brecho }
                 })
             }
 
-            console.log('📍 Resposta do endereço:', response?.data)
-
             if (response && response.data) {
                 let endereco = null
-                
+
                 // Se for array, filtra e pega o primeiro que corresponde
                 if (Array.isArray(response.data)) {
                     if (fk_id_cliente) {
@@ -116,6 +117,7 @@ function Meu_perfil() {
             }
         } catch (erro) {
             console.error('Erro ao identificar usuário:', erro)
+            showToast('Erro ao carregar dados do usuário', 'error')
         } finally {
             setLoading(false)
         }
@@ -123,7 +125,8 @@ function Meu_perfil() {
 
     const buscarDadosCliente = async () => {
         try {
-            const response = await api.get(`/clientes/${usuario_logado._id}`)
+            const token = JSON.parse(localStorage.getItem("user"));
+            const response = await api.get(`/clientes/${usuario_logado._id}`, { headers: { Authorization: `Bearer ${token}` } })
             const data = response.data
 
             setDadosUsuario(data)
@@ -147,12 +150,14 @@ function Meu_perfil() {
 
         } catch (erro) {
             console.error('Erro ao buscar dados do cliente:', erro)
+            showToast('Erro ao buscar dados do cliente', 'error')
         }
     }
 
     const buscarDadosBrecho = async () => {
         try {
-            const response = await api.get(`/brechos/${usuario_logado._id}`)
+            const token = JSON.parse(localStorage.getItem("user"));
+            const response = await api.get(`/brechos/${usuario_logado._id}`, { headers: { Authorization: `Bearer ${token}` } })
             const data = response.data
 
             setDadosUsuario(data)
@@ -184,6 +189,7 @@ function Meu_perfil() {
 
         } catch (erro) {
             console.error('Erro ao buscar dados do brechó:', erro)
+            showToast('Erro ao buscar dados do brechó', 'error')
         }
     }
 
@@ -232,13 +238,14 @@ function Meu_perfil() {
 
             console.log('📤 Endpoint:', endpoint)
 
-            const response = await api.put(endpoint, dadosParaAtualizar)
+            const token = JSON.parse(localStorage.getItem("user"));
+            const response = await api.put(endpoint, dadosParaAtualizar, { headers: { Authorization: `Bearer ${token}` } })
 
             console.log('✅ Resposta do servidor:', response.data)
 
             setDadosUsuario(response.data)
             setEditandoDadosPessoais(false)
-            alert('Dados pessoais atualizados com sucesso!')
+            showToast('Dados pessoais atualizados com sucesso!', 'success')
 
             if (tipoUsuario === 'cliente') {
                 await buscarDadosCliente()
@@ -250,7 +257,7 @@ function Meu_perfil() {
             console.error('❌ Erro completo:', erro)
             console.error('❌ Resposta do erro:', erro.response?.data)
             console.error('❌ Status:', erro.response?.status)
-            alert(`Erro ao salvar dados pessoais: ${JSON.stringify(erro.response?.data)}`)
+            showToast(`Erro ao salvar dados pessoais: ${erro.response?.data?.message || 'Tente novamente'}`, 'error')
         }
     }
 
@@ -264,17 +271,18 @@ function Meu_perfil() {
                 horario_funcionamento: dadosBrecho.horario_funcionamento
             }
 
-            const response = await api.put(`/brechos/${usuario_logado._id}`, dadosParaAtualizar)
+            const token = JSON.parse(localStorage.getItem("user"));
+            const response = await api.put(`/brechos/${usuario_logado._id}`, dadosParaAtualizar, { headers: { Authorization: `Bearer ${token}` } });
 
             setDadosUsuario(response.data)
             setEditandoDadosBrecho(false)
-            alert('Dados do brechó atualizados com sucesso!')
+            showToast('Dados do brechó atualizados com sucesso!', 'success')
 
             await buscarDadosBrecho()
 
         } catch (erro) {
             console.error('Erro ao salvar dados do brechó:', erro)
-            alert('Erro ao salvar dados do brechó')
+            showToast('Erro ao salvar dados do brechó', 'error')
         }
     }
 
@@ -297,23 +305,24 @@ function Meu_perfil() {
             }
 
             let response
-            
+            const token = JSON.parse(localStorage.getItem("user"));
+
             // Se já existe endereço, faz PUT. Se não, faz POST
             if (enderecoId) {
-                response = await api.put(`/enderecos/${enderecoId}`, dadosParaAtualizar)
+                response = await api.put(`/enderecos/${enderecoId}`, dadosParaAtualizar, { headers: { Authorization: `Bearer ${token}` } })
             } else {
-                response = await api.post(`/enderecos`, dadosParaAtualizar)
+                response = await api.post(`/enderecos`, dadosParaAtualizar, { headers: { Authorization: `Bearer ${token}` } })
                 if (response.data._id) {
                     setEnderecoId(response.data._id)
                 }
             }
 
             setEditandoDadosEndereco(false)
-            alert('Dados de endereço atualizados com sucesso!')
+            showToast('Dados de endereço atualizados com sucesso!', 'success')
 
         } catch (erro) {
             console.error('Erro ao salvar endereço:', erro)
-            alert(`Erro ao salvar endereço: ${erro.response?.data?.message || erro.message}`)
+            showToast(`Erro ao salvar endereço: ${erro.response?.data?.message || 'Tente novamente'}`, 'error')
         }
     }
 
@@ -337,6 +346,8 @@ function Meu_perfil() {
 
     return (
         <div className={styles["container-alinhamento-componente"]}>
+            {/* Toast Container */}
+            <Toast toasts={toasts} removeToast={removeToast} />
 
             {/* Meu perfil */}
             <div className={styles['container-meu-perfil']}>

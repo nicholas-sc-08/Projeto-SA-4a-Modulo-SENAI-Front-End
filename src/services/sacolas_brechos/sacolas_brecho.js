@@ -2,11 +2,14 @@
 
 import api from "../api";
 
+
 export async function buscar_sacolas_brechos() {
 
     try {
 
-        const resposta = await api.get(`/sacolas_brechos`);
+
+        const token = JSON.parse(localStorage.getItem("user"));
+        const resposta = await api.get(`/sacolas_brechos`, { headers: { Authorization: `Bearer ${token}` } });
         return resposta.data;
 
     } catch (erro) {
@@ -20,7 +23,8 @@ export async function buscar_sacola_brecho(id) {
 
     try {
 
-        const resposta = await api.get(`/sacolas_brechos/${id}`);
+        const token = JSON.parse(localStorage.getItem("user"));
+        const resposta = await api.get(`/sacolas_brechos/${id}`, { headers: { Authorization: `Bearer ${token}` } });
         return resposta.data;
 
     } catch (erro) {
@@ -30,11 +34,12 @@ export async function buscar_sacola_brecho(id) {
     };
 };
 
-export async function cadastrar_sacola_brecho(mensagem) {
+export async function cadastrar_sacola_brecho(p) {
 
     try {
 
-        const resposta = await api.post(`/sacolas_brechos`, mensagem);
+        const token = JSON.parse(localStorage.getItem("user"));
+        const resposta = await api.post(`/sacolas_brechos`, p, { headers: { Authorization: `Bearer ${token}` } });
         return resposta.data;
 
     } catch (erro) {
@@ -48,7 +53,8 @@ export async function atualizar_sacolas_brecho(id, mensagem) {
 
     try {
 
-        const resposta = await api.put(`/sacolas_brechos/${id}`, mensagem);
+        const token = JSON.parse(localStorage.getItem("user"));
+        const resposta = await api.put(`/sacolas_brechos/${id}`, mensagem, { headers: { Authorization: `Bearer ${token}` } });
         return resposta.data;
 
     } catch (erro) {
@@ -62,7 +68,8 @@ export async function deletar_sacolas_brecho(id) {
 
     try {
 
-        const reposta = await api.delete(`/sacolas_brechos/${id}`);
+        const token = JSON.parse(localStorage.getItem("user"));
+        await api.delete(`/sacolas_brechos/${id}`, { headers: { Authorization: `Bearer ${token}` } });
 
     } catch (erro) {
 
@@ -87,34 +94,32 @@ export function nome_produto(tipo) {
 
 export function imagem_produto_sacola_brecho(tipo, padrao, cor, cor_corpo, cor_alca) {
 
-    console.log(cor_corpo);
-
     if (tipo == "sacola") {
 
         switch (true) {
 
-            case padrao == "sem_logo" && cor == "verde":
+            case padrao == "sem_logo" && cor_corpo == "verde":
                 return "./img/produtos_personalizados/sacola/sacola-verde-meio-virada.png";
 
-            case padrao == "logo_fly" && cor == "verde":
+            case padrao == "logo_fly" && cor_corpo == "verde":
                 return "./img/produtos_personalizados/sacola/sacola-verde-meio-virada-logo-nome-meio.png";
 
-            case padrao == "logo_fly_embaixo" && cor == "verde":
+            case padrao == "logo_fly_embaixo" && cor_corpo == "verde":
                 return "./img/produtos_personalizados/sacola/sacola-verde-meio-virada-logo-embaixo.png";
 
-            case padrao == "logo_fly_nome" && cor == "verde":
+            case padrao == "logo_fly_nome" && cor_corpo == "verde":
                 return "./img/produtos_personalizados/sacola/sacola-verde-meio-virada-logo-nome-embaixo.png";
 
-            case padrao == "sem_logo" && cor == "branco":
+            case padrao == "sem_logo" && cor_corpo == "branco":
                 return "./img/produtos_personalizados/sacola/sacola-branca-meio-virada.png";
 
-            case padrao == "logo_fly" && cor == "branco":
+            case padrao == "logo_fly" && cor_corpo == "branco":
                 return "./img/produtos_personalizados/sacola/sacola-branca-meio-virada-logo-nome-meio.png";
 
-            case padrao == "logo_fly_embaixo" && cor == "branco":
+            case padrao == "logo_fly_embaixo" && cor_corpo == "branco":
                 return "./img/produtos_personalizados/sacola/sacola-branca-meio-virada-logo-embaixo.png";
 
-            case padrao == "logo_fly_nome" && cor == "branco":
+            case padrao == "logo_fly_nome" && cor_corpo == "branco":
                 return "./img/produtos_personalizados/sacola/sacola-branca-meio-virada-logo-embaixosacola-branca-meio-virada-logo-embaixo.png";
         };
     };

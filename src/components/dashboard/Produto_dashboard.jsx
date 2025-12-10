@@ -284,10 +284,10 @@ export default function Produtos_dashboard() {
                                 </div>
                             ))}
                             {barra_pesquisa_estoque && resultado_pesquisa_estoque.map((p, i) => (
-                                <div key={i} className={styles["alinhamento-containers-informacoes-produtos-dashboard"]}>
+                                                                <div key={p._id} className={styles["alinhamento-containers-informacoes-produtos-dashboard"]}>
                                     <div className={styles["grupo-um-informacoes-produto-dashboard"]}>
                                         <div className={styles["imagem-produto-dashboard"]}>
-                                            <img src={imagem_produto_sacola_brecho(p.tipo, p.padrao, p.cor_corpo, p.cor_alca)} alt="" />
+                                            <img src={imagem_produto_sacola_brecho(p.tipo, p.padrao, p.cor, p.cor_corpo, p.cor_alca)} alt="" />
                                         </div>
                                         <div className={styles["nome-categoria-produto-dashboard"]}>
                                             <p className={styles["categoria-cor-dashboard"]}>

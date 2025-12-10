@@ -370,9 +370,12 @@ body {
     width: 60%;
     padding-top: 20px;
     gap: 20%;
-    margin-top: 10px;
-    padding-left: 9.5%;
+    margin-top:13;
+    padding-left: 0%;
     font-size: 16px;
+    display: flex;
+    flex-wrap: wrap;
+
 }
 
 .formulario-direito {
@@ -404,8 +407,8 @@ body {
     font-weight: 350;
     margin-bottom: 5px;
     font-family: "Poppins", sans-serif;
-    font-size: 20px;
     font-weight: bold;
+    color: #3e2a2198;
     margin-left: 130px;
 }
 
@@ -430,7 +433,7 @@ body {
     outline: none;
     margin-left: 130px;
     font-family: var(--tipografia_secundaria);
-    color: #3e2a2188;
+    
 }
 
 .input-group label {
@@ -608,7 +611,7 @@ select.input-group-estado:valid {
     cursor: pointer;
     font-size: 18px;
     transition: 0.2s;
-    margin-top: 26%;
+    margin-top: 15.2%;
     border-radius: 80px;
 }
 
@@ -721,6 +724,8 @@ select.input-group-estado:valid {
 .cabecalho-titulo {
     display: flex;
     align-items: center;
+    margin-bottom: 2%;
+    
 }
 
 .botao-seta-voltar {
@@ -746,6 +751,7 @@ select.input-group-estado:valid {
 .titulo {
     font-size: 24px;
     font-weight: bold;
+    margin-left: 2%;
 }
 
 /* ========================

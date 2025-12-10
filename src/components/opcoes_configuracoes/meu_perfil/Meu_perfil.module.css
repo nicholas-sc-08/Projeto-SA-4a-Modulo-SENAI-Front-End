@@ -89,13 +89,13 @@ html {
     height: auto;
 }
 
-.container-imagem-tamanho{
+.container-imagem-tamanho {
     /* border: 1px solid red; */
     display: flex;
     width: fit-content;
 }
 
-.container-alinhamento-texto-meu-perfil{
+.container-alinhamento-texto-meu-perfil {
     /* border: 1px solid red; */
     padding-left: 2%;
     display: flex;
@@ -146,7 +146,7 @@ html {
 }
 
 /* DADOS PESSOAIS - DADOS DO BRECHÓ - DADOS DE ENDEREÇO */
-.container-secoes-dados{
+.container-secoes-dados {
     margin-bottom: 3%;
 }
 
@@ -197,7 +197,7 @@ html {
     justify-content: end;
 }
 
-.alinhamento-button-salvar-alteracoes-meu-perfil button{
+.alinhamento-button-salvar-alteracoes-meu-perfil button {
     border: none;
     background-color: var(--cor_dois);
     color: var(--cor_quatro);
@@ -211,6 +211,25 @@ html {
     transition: 0.4s;
 }
 
-.alinhamento-button-salvar-alteracoes-meu-perfil button:hover{
+.alinhamento-button-salvar-alteracoes-meu-perfil button:hover {
     background-color: var(--cor_dois_v_um);
+}
+
+.container-informacoes-edicao input {
+    width: 45%;
+    height: 2.3rem;
+    margin-top: 2%;
+
+    border: 1.2px solid var(--cor_dois);
+    border-radius: 1.1rem;
+    color: var(--cor_seis_v_um);
+    font-family: var(--tipografia_primaria);
+    font-size: 0.8rem;
+    padding: 2%;
+}
+
+.container-informacoes-edicao {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
 }

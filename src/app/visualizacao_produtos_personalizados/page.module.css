@@ -14,19 +14,15 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%; /* ocupa toda a largura disponível */
-  max-width: 400px; /* largura máxima para a imagem */
-  margin: 0 auto; /* centraliza */
-  padding: 10px;
+  width: 200%; /* ocupa toda a largura disponível */
+  /* border: 1px solid red; */
 }
 
 /* Imagem do produto */
 .container-imagem-produto-personalizado img {
-  width: 100%; /* ocupa 100% do container */
-  max-height: 300px; /* altura máxima */
+  width: 120%; /* ocupa 100% do container */
   object-fit: contain; /* mantém proporção e não corta */
 }
-
 
 .container-voltar-pagina {
     /* border: 1px solid red; */
@@ -144,6 +140,7 @@
     /* border: 1px solid red; */
     margin-top: 1%;
     display: flex;
+    justify-content: space-between;
 }
 
 .container-preço-quantidade h4 {
@@ -391,4 +388,39 @@
 
 .button-chat-produtos-personalizados:hover {
     background-color: var(--cor_dois_v_um);
+}
+
+.container-contador-quantidade{
+    /* border: 1px solid red; */
+    width: 15%;
+    height: fit-content;
+    display: flex;
+    align-items: center;
+}
+
+.input-quantidade{
+    height: 37px;
+    background-color: var(--cor_nove_v_dois);
+    border: none;
+    outline: none;
+    color: var(--cor_seis);
+    width: 60%;
+}
+
+.botao-aumentar{
+    border: none;
+    cursor: pointer;
+    background-color: var(--cor_nove_v_dois);
+    padding: 2%;
+    border-bottom-right-radius: 1vw;
+    border-top-right-radius: 1vw;
+}
+
+.botao-menos{
+    border: none;
+    cursor: pointer;
+    background-color: var(--cor_nove_v_dois);
+    padding: 2%;
+    border-bottom-left-radius: 1vw;
+    border-top-left-radius: 1vw;
 }

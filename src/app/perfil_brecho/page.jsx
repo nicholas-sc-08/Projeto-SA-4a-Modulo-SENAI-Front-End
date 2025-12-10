@@ -8,6 +8,7 @@ import { useState, useEffect } from 'react';
 import { Sparkles } from 'lucide-react';
 import api from '@/services/api';
 import { useRouter } from 'next/navigation';
+import ModalPersonalizacaoProdutos from '@/components/modalPersonalizacaoProduto/ModalPersonalizacaoProduto';
 
 function page() {
   const { tipo_de_header, usuario_logado, array_brechos } = useGlobalContext();
@@ -22,6 +23,7 @@ function page() {
   const [loading, setLoading] = useState(true);
   const { produto, set_produto } = useGlobalContext();
   const router = useRouter();
+  const [modalAberto, setModalAberto] = useState(false);
 
   // ============================
   // 🔵 BUSCAR DADOS DO BRECHÓ
@@ -30,7 +32,8 @@ function page() {
     try {
       if (!usuario_logado?._id) return;
 
-      const response = await api.get(`/brechos/${usuario_logado._id}`);
+      const token = JSON.parse(localStorage.getItem("user"));
+      const response = await api.get(`/brechos/${usuario_logado._id}`, { headers: { Authorization: `Bearer ${token}` } });
       const data = response.data;
 
       console.log('✅ Dados do brechó:', data);
@@ -48,7 +51,8 @@ function page() {
     try {
       if (!usuario_logado?._id) return;
 
-      const response = await api.get(`/enderecos`, {
+      const token = JSON.parse(localStorage.getItem("user"));
+      const response = await api.get(`/enderecos`, { headers: { Authorization: `Bearer ${token}` } }, {
         params: { fk_id_brecho: usuario_logado._id }
       });
 
@@ -142,10 +146,16 @@ function page() {
   }
 
   function ir_para_produto(produto) {
-
     set_produto(produto);
     router.push('/produto');
-  };
+  }
+
+  // ============================
+  // 🔵 IR PARA PERSONALIZAÇÃO
+  // ============================
+  function abrirModalPersonalizacao() {
+    setModalAberto(true);
+  }
 
   // ============================
   // CARREGAR DADOS AO MONTAR
@@ -240,7 +250,10 @@ function page() {
               Redes sociais
             </button>
 
-            <button className={styles["btn-salvar-alteracoes"]}>
+            <button
+              className={styles["btn-salvar-alteracoes"]}
+              onClick={abrirModalPersonalizacao} // <- Aqui está a mudança
+            >
               <Sparkles color="#3e2a21bd" strokeWidth={1} />
               Personalize seus produtos
             </button>
@@ -386,7 +399,7 @@ function page() {
                   <div className={styles["img-produto"]}>
                     <img src={
                       Array.isArray(produto.imagem) && produto.imagem.length > 0
-                        ? produto.imagem[0]  // Pega a PRIMEIRA imagem do array
+                        ? produto.imagem[0]
                         : "./img/produtos_personalizados/caixa/caixa_normal.svg"
                     } />
                   </div>
@@ -404,6 +417,11 @@ function page() {
           </div>
         </div>
       </div>
+
+      <ModalPersonalizacaoProdutos
+        isOpen={modalAberto}
+        onClose={() => setModalAberto(false)}
+      />
 
       <Footer />
     </div>

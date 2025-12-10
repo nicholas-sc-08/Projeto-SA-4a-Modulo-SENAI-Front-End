@@ -11,6 +11,7 @@ import Pop_up_confirmacao_excluir_conta from "@/components/pop_up_confirmacao_ex
 import Pop_up_confirmacao_sair_da_conta from "@/components/pop_up_confirmacao_sair_da_conta/Pop_up_confirmacao_sair_da_conta";
 import { useGlobalContext } from "@/context/GlobalContext";
 import { useRouter } from "next/navigation";
+import api from "@/services/api";
 
 function Page() {
     const { secaoAtiva, setSecaoAtiva } = useGlobalContext();
@@ -24,49 +25,98 @@ function Page() {
 
     const router = useRouter();
 
+    // Estados para armazenar os dados do brechó
+    const [dadosBrecho, setDadosBrecho] = useState(null);
     const [endereco, setEndereco] = useState(null);
+    const [loading, setLoading] = useState(true);
+
+    // ============================
+    // 🔵 BUSCAR DADOS DO BRECHÓ
+    // ============================
+    async function buscarDadosBrecho() {
+        try {
+            if (!usuario_logado?._id) return;
+
+            const token = JSON.parse(localStorage.getItem("user"));
+            const response = await api.get(`/brechos/${usuario_logado._id}`, { headers: { Authorization: `Bearer ${token}`}});
+            const data = response.data;
+
+            console.log('✅ Dados do brechó:', data);
+            setDadosBrecho(data);
+
+        } catch (erro) {
+            console.error('❌ Erro ao buscar dados do brechó:', erro);
+        }
+    }
 
     // ============================
     // 🔵 BUSCAR ENDEREÇO DO BRECHÓ
     // ============================
-
     async function buscarEndereco() {
         try {
             if (!usuario_logado?._id) return;
 
-            const req = await fetch(
-                `${process.env.NEXT_PUBLIC_API_URL}/enderecos?fk_id_brecho=${usuario_logado._id}`
-            );
+            const token = JSON.parse(localStorage.getItem("user"));
+            const response = await api.get(`/enderecos`, {headers: {Authorization: `Bearer ${token}`}}, {
+                params: { fk_id_brecho: usuario_logado._id }
+            });
 
-            const res = await req.json();
+            console.log('📍 Resposta do endereço:', response?.data);
 
-            if (Array.isArray(res) && res.length > 0) {
-                setEndereco(res[0]);
+            if (response && response.data) {
+                let enderecoEncontrado = null;
+
+                if (Array.isArray(response.data)) {
+                    enderecoEncontrado = response.data.find(e => e.fk_id_brecho === usuario_logado._id);
+                } else if (response.data._id) {
+                    enderecoEncontrado = response.data;
+                }
+
+                if (enderecoEncontrado) {
+                    console.log('✅ Endereço encontrado:', enderecoEncontrado);
+                    setEndereco(enderecoEncontrado);
+                }
             }
-        } catch (err) {
-            console.log("Erro ao buscar endereço:", err);
+        } catch (erro) {
+            console.error('❌ Erro ao buscar endereço:', erro);
         }
     }
 
+    // ============================
+    // CARREGAR DADOS AO MONTAR
+    // ============================
     useEffect(() => {
-        buscarEndereco();
-    }, [usuario_logado]);
+        const carregarDados = async () => {
+            if (usuario_logado && usuario_logado._id) {
+                const isBrecho = array_brechos.some(b => b._id === usuario_logado._id);
+
+                if (isBrecho) {
+                    setLoading(true);
+                    await buscarDadosBrecho();
+                    await buscarEndereco();
+                    setLoading(false);
+                } else {
+                    setLoading(false);
+                }
+            }
+        };
+
+        carregarDados();
+    }, [usuario_logado, array_brechos]);
 
     // ============================
     // DEFINIR O TIPO DE HEADER
     // ============================
-
     useEffect(() => {
         const encontrar_brecho = array_brechos.find(
             (brecho) => brecho._id === usuario_logado._id
         );
         set_tipo_de_header(encontrar_brecho ? "brecho" : "usuario");
-    }, []);
+    }, [usuario_logado, array_brechos]);
 
     // ============================
     // NAVEGAR ATÉ PERFIL DO BRECHÓ
     // ============================
-
     function ir_ate_perfil() {
         const encontrar_brecho = array_brechos.find(
             (brecho) => brecho._id === usuario_logado._id
@@ -82,9 +132,17 @@ function Page() {
     }
 
     // ============================
+    // FORMATAR DATA
+    // ============================
+    const formatarData = (data) => {
+        if (!data) return '';
+        const date = new Date(data);
+        return date.toLocaleDateString('pt-BR');
+    };
+
+    // ============================
     // RENDERIZAÇÃO DAS SEÇÕES
     // ============================
-
     const renderizarConteudo = () => {
         switch (secaoAtiva) {
             case "meu-perfil":
@@ -102,6 +160,18 @@ function Page() {
         }
     };
 
+    if (loading) {
+        return (
+            <div>
+                <Header tipo={tipo_de_header} />
+                <div className={styles["config-container"]}>
+                    <p>Carregando...</p>
+                </div>
+                <Footer />
+            </div>
+        );
+    }
+
     return (
         <div>
             <Header tipo={tipo_de_header} />
@@ -114,11 +184,14 @@ function Page() {
                     <div className={styles["escolha-config"]}>
                         <div className={styles["ir-para-perfil"]}>
                             <div className={styles["perfil-top"]}>
-                                <img src="./img/fotoPerfil.png" alt="" />
+                                <img
+                                    src={dadosBrecho?.logo || "./img/fotoPerfil.png"}
+                                    alt="Logo do brechó"
+                                />
 
                                 <div className={styles["container-informacoes-ir-para-perfil"]}>
-                                    <h4>Project Indigo Brechó</h4>
-                                    <p>No Fly desde: 10/09/2024</p>
+                                    <h4>{dadosBrecho?.nome_brecho || "Nome do Brechó"}</h4>
+                                    <p>No Fly desde: {formatarData(dadosBrecho?.createdAt)}</p>
                                 </div>
                             </div>
 
@@ -202,28 +275,8 @@ function Page() {
                     </div>
                 </div>
 
-                {/* ============================
-                    CONTEÚDO DIREITO
-                ============================ */}
                 <div className={styles["conteudo-dinamico"]}>
                     {renderizarConteudo()}
-
-                    {/* ============================
-                        🔵 EXIBIR ENDEREÇO AQUI
-                    ============================ */}
-                    {endereco && (
-                        <div className={styles["card-endereco"]}>
-                            <h3>Endereço do Brechó</h3>
-
-                            <p><strong>CEP:</strong> {endereco.cep}</p>
-                            <p><strong>Logradouro:</strong> {endereco.logradouro}</p>
-                            <p><strong>Bairro:</strong> {endereco.bairro}</p>
-                            <p><strong>Número:</strong> {endereco.numero}</p>
-                            <p><strong>Complemento:</strong> {endereco.complemento}</p>
-                            <p><strong>Cidade:</strong> {endereco.cidade}</p>
-                            <p><strong>Estado:</strong> {endereco.estado}</p>
-                        </div>
-                    )}
                 </div>
 
                 {popupExcluirAberto && <Pop_up_confirmacao_excluir_conta />}

@@ -1,0 +1,488 @@
+/* ==================== OVERLAY E CONTAINER ==================== */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(62, 42, 33, 0.6);
+    backdrop-filter: blur(4px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    padding: 2rem;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.modal-container {
+    background-color: var(--cor_quatro);
+    border-radius: 1.5rem;
+    width: 70%;
+    max-width: 70%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    animation: slideUp 0.3s ease-out;
+    padding: 3rem;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.btn-fechar {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    background-color: transparent;
+    border: none;
+    color: var(--cor_seis);
+    cursor: pointer;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.5rem;
+    transition: all 0.2s ease;
+    z-index: 10;
+}
+
+.btn-fechar:hover {
+    background-color: var(--cor_doze);
+    transform: scale(1.1);
+}
+
+/* ==================== HEADER DAS FASES ==================== */
+.header-fase {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.numero-fase {
+    width: 2.5rem;
+    height: 2.5rem;
+    background-color: var(--cor_dois);
+    color: var(--cor_quatro);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--tipografia_primaria);
+    font-size: 1.2rem;
+    font-weight: 650;
+    flex-shrink: 0;
+    /* border: 1px solid red; */
+}
+
+.header-fase h2 {
+    font-family: var(--tipografia_primaria);
+    font-size: 1.5rem;
+    color: var(--cor_seis);
+    font-weight: 650;
+    margin: 0;
+}
+
+.descricao-fase {
+    font-family: var(--tipografia_secundaria);
+    color: var(--cor_seis);
+    opacity: 0.85;
+    font-size: 0.95rem;
+    margin-bottom: 2.5rem;
+    line-height: 1.6;
+}
+
+/* ==================== FASE 1: ESCOLHA DE PRODUTO ==================== */
+.grid-produtos {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.card-produto-escolha {
+    background-color: var(--cor_doze);
+    border: none;
+    border-radius: 1rem;
+    padding: 2rem 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+    /* border: 1px solid red; */
+}
+
+.card-produto-escolha:hover {
+    transform: translateY(-8px);
+    /* box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12); */
+    background-color: var(--cor_doze_v_um);
+}
+
+.img-produto-escolha {
+    width: 100%;
+    height: 180px;
+    object-fit: contain;
+    margin-bottom: 0.5rem;
+}
+
+.info-produto {
+    text-align: center;
+}
+
+.info-produto h3 {
+    font-family: var(--tipografia_primaria);
+    font-size: 1.2rem;
+    color: var(--cor_seis);
+    font-weight: 600;
+    margin: 0 0 0.3rem 0;
+}
+
+.info-produto p {
+    font-family: var(--tipografia_secundaria);
+    font-size: 0.85rem;
+    color: var(--cor_seis);
+    opacity: 0.7;
+    margin: 0;
+}
+
+/* ==================== FASE 2: PERSONALIZAÇÃO ==================== */
+
+.header-fase-segunda h2 {
+    font-family: var(--tipografia_primaria);
+    font-size: 1.5rem;
+    color: var(--cor_seis);
+    font-weight: 650;
+    margin: 0;
+}
+
+.btn-voltar {
+    background-color: transparent;
+    border: none;
+    color: var(--cor_um);
+    font-family: var(--tipografia_primaria);
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 0.5rem 0;
+    margin-bottom: 1rem;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    /* border: 1px solid red; */
+}
+
+.btn-voltar:hover {
+    opacity: 0.8;
+    transform: translateX(-4px);
+}
+
+.titulo-fase-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.conteudo-personalizacao {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 3rem;
+    margin-top: 2rem;
+}
+
+.preview-produto {
+    background-color: var(--cor_doze);
+    border-radius: 1rem;
+    padding: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: sticky;
+    top: 2rem;
+    height: fit-content;
+    box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+    /* border: 1px solid red; */
+}
+
+.preview-produto img {
+    width: 100%;
+    max-width: 350px;
+    height: auto;
+    object-fit: contain;
+}
+
+.opcoes-personalizacao {
+    display: flex;
+    flex-direction: column;
+    /* border: 1px solid red; */
+}
+
+.info-produto-header h3 {
+    font-family: var(--tipografia_primaria);
+    font-size: 1.5rem;
+    color: var(--cor_seis);
+    font-weight: 650;
+}
+
+.preco-quantidade {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.preco {
+    font-family: var(--tipografia_primaria);
+    font-size: 1.5rem;
+    color: var(--cor_seis);
+    font-weight: 650;
+    margin: 0;
+}
+
+.contador-quantidade {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    background-color: var(--cor_nove_v_dois);
+    border-radius: 2rem;
+    padding: 0.3rem 0.5rem;
+}
+
+.btn-quantidade {
+    background-color: transparent;
+    border: none;
+    color: var(--cor_seis);
+    cursor: pointer;
+    padding: 0.3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+}
+
+.btn-quantidade:hover:not(:disabled) {
+    background-color: var(--cor_doze_v_um);
+    transform: scale(1.1);
+}
+
+.btn-quantidade:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.contador-quantidade span {
+    font-family: var(--tipografia_primaria);
+    font-size: 1.1rem;
+    font-weight: 550;
+    color: var(--cor_seis);
+    min-width: 2rem;
+    text-align: center;
+}
+
+.descricao-produto {
+    font-family: var(--tipografia_secundaria);
+    color: var(--cor_seis);
+    opacity: 0.85;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.separador {
+    border-top: 1px solid var(--cor_seis);
+    opacity: 0.15;
+    margin: 0.5rem 0;
+}
+
+/* ==================== OPÇÕES DE PERSONALIZAÇÃO ==================== */
+.opcao-grupo {
+    display: flex;
+    flex-direction: column;
+    margin-top: 2.5%;
+    /* border: 1px solid red; */
+}
+
+.opcao-grupo label {
+    font-family: var(--tipografia_secundaria);
+    font-size: 0.8rem;
+    color: var(--cor_seis);
+    font-weight: 500;
+    opacity: 0.8;
+    margin-bottom: 1%;
+    /* border: 1px solid red; */
+}
+
+.opcoes-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    /* border: 1px solid red; */
+}
+
+.btn-opcao {
+    background-color: var(--cor_doze);
+    border: 2px solid transparent;
+    color: var(--cor_seis);
+    font-family: var(--tipografia_secundaria);
+    font-size: 0.8rem;
+    font-weight: 500;
+    padding: 0.6rem 1.2rem;
+    border-radius: 2rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    /* border: 1px solid red; */
+}
+
+.btn-opcao:hover {
+    background-color: var(--cor_doze_v_um);
+}
+
+.btn-opcao.selecionado {
+    background-color: var(--cor_um);
+    color: var(--cor_quatro);
+    border-color: var(--cor_um);
+}
+
+.select-opcao {
+    background-color: var(--cor_doze);
+    color: var(--cor_seis);
+    font-family: var(--tipografia_secundaria);
+    font-size: 0.8rem;
+    border: none;
+    box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+    padding: 0.6rem 1.2rem;
+    border-radius: 2rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    outline: none;
+    /* border: 1px solid red; */
+}
+
+.select-opcao:hover {
+    border-color: var(--cor_um);
+}
+
+.select-opcao:focus {
+    border-color: var(--cor_um);
+    box-shadow: 0 0 0 3px rgba(204, 153, 110, 0.2);
+}
+
+/* ==================== BOTÃO ADICIONAR À SACOLA ==================== */
+.btn-adicionar-sacola {
+    background-color: var(--cor_um);
+    color: var(--cor_quatro);
+    border: none;
+    font-family: var(--tipografia_primaria);
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 0.8rem 2rem;
+    border-radius: 2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 1.5rem;
+    width: 100%;
+    box-shadow: 0 4px 12px rgba(204, 153, 110, 0.3);
+    /* border: 1px solid red; */
+}
+
+.btn-adicionar-sacola:hover {
+    background-color: var(--cor_um_v_dois);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(204, 153, 110, 0.4);
+}
+
+.btn-adicionar-sacola:active {
+    transform: translateY(0);
+}
+
+/* ==================== RESPONSIVIDADE ==================== */
+@media (max-width: 1024px) {
+    .modal-container {
+        padding: 2rem;
+    }
+
+    .conteudo-personalizacao {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .preview-produto {
+        position: relative;
+        top: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .modal-overlay {
+        padding: 1rem;
+    }
+
+    .modal-container {
+        padding: 1.5rem;
+        max-height: 95vh;
+    }
+
+    .grid-produtos {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .header-fase h2 {
+        font-size: 1.4rem;
+    }
+
+    .info-produto-header h3 {
+        font-size: 1.5rem;
+    }
+
+    .preco-quantidade {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+}
+
+/* ==================== SCROLLBAR CUSTOMIZADA ==================== */
+.modal-container::-webkit-scrollbar {
+    width: 1px;
+    /* border: 1px solid red; */
+}
+
+.modal-container::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: 10px;
+}
+
+.modal-container::-webkit-scrollbar-thumb {
+    background: transparent;
+    border-radius: 10px;
+}
+
+.modal-container::-webkit-scrollbar-thumb:hover {
+    background: transparent;
+}

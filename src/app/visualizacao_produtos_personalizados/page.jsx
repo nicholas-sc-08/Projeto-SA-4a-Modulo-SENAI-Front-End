@@ -9,6 +9,8 @@ import api from "@/services/api";
 import { useRouter } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import { buscar_sacolas_brechos } from "@/services/sacolas_brechos/sacolas_brecho";
+import { Plus } from "lucide-react";
+import { Minus } from "lucide-react";
 
 
 function page() {
@@ -58,8 +60,8 @@ function page() {
   // 🔹 Configuração dos produtos
   const produtos_config = {
     ecobag: {
-      nome: "Kit Ecobag",
-      preco: 54.70,
+      nome: "Ecobag",
+      preco: 5.47,
       imagem: "/img/produtos_personalizados/ecobaag/padrao/sacola-ecobag-sem-fundo.png",
       descricao:
         "Um kit completo, versátil e cheio de propósito. Com 10 ecobags, você une estilo, praticidade e consciência em cada uso. Personalize como quiser e transforme peças do dia a dia em algo único, feito para você ou para compartilhar.",
@@ -73,7 +75,7 @@ function page() {
     },
     sacola: {
       nome: "Kit Sacola",
-      preco: 32.90,
+      preco: 0.85,
       imagem: "/img/produtos_personalizados/sacola/sacola-padrao-meio-virada.png",
       descricao:
         "Este kit de 10 sacolas é para você que valoriza moda feita com sentido: reutilizáveis, personalizáveis e amigas do meio ambiente. Transforme cada peça em algo só seu e mostre ao mundo que agir bem com o planeta também é tendência.",
@@ -87,7 +89,7 @@ function page() {
     },
     caixa: {
       nome: "Kit Caixa",
-      preco: 25.50,
+      preco: 0.85,
       imagem: "/img/produtos_personalizados/caixa/caixa_normal.svg",
       descricao:
         "Caixas resistentes e elegantes, ideal para embalar seus produtos com cuidado e estilo. Personalize e transforme a experiência de entrega em algo memorável e sustentável.",
@@ -264,25 +266,25 @@ function page() {
             break;
 
 
-              // --- 6 CASOS: COR + ALÇA (sem padrão) ---
+          // --- 6 CASOS: COR + ALÇA (sem padrão) ---
           case cor === "amarelo" && alca === "areia":
             setImagemAtual("/img/produtos_personalizados/ecobaag/cores/amarelo/amarelo-areia/ecobag-amarela-alca-areia.png");
             break;
-            case cor === "amarelo" && alca === "verde":
+          case cor === "amarelo" && alca === "verde":
             setImagemAtual("/img/produtos_personalizados/ecobaag/cores/amarelo/amarelo-verde/ecobag-amarela-alca-verde.png");
             break;
 
-              case cor === "verde" && alca === "areia":
+          case cor === "verde" && alca === "areia":
             setImagemAtual("/img/produtos_personalizados/ecobaag/cores/verde/verde-areia/ecobag-verde-alca-areia-clara.png");
             break;
-              case cor === "verde" && alca === "amarelo":
+          case cor === "verde" && alca === "amarelo":
             setImagemAtual("/img/produtos_personalizados/ecobaag/cores/verde/verde-amarelo/ecobag-verde-alca-amarela.png");
             break;
 
-              case cor === "areia" && alca === "amarelo":
+          case cor === "areia" && alca === "amarelo":
             setImagemAtual("/img/produtos_personalizados/ecobaag/cores/areia/areia-amarelo/ecobag-base-areia-clara-alca-amarela.png");
             break;
-              case cor === "areia" && alca === "verde":
+          case cor === "areia" && alca === "verde":
             setImagemAtual("/img/produtos_personalizados/ecobaag/cores/areia/areia-verde/ecobag-base-areia-clara-alca-verde.png");
             break;
 
@@ -296,7 +298,7 @@ function page() {
           case cor === "areia":
             setImagemAtual("/img/produtos_personalizados/ecobaag/cores/areia/ecobag-cor-base-areia.png");
             break;
-          
+
 
           case padrao === "logo_fly":
             setImagemAtual("/img/produtos_personalizados/ecobaag/padrao/ecobag-nome-logo-meio.png");
@@ -413,9 +415,11 @@ function page() {
       material: selecoes.material,
       padrao: selecoes.padrao,
       tamanho: selecoes.tamanho,
+      quantidade: Number(quantidade) || 1, // ✅ Garantir que é número
       valor: Number(produto_atual.preco * quantidade),
       id_brecho: usuario_logado._id,
     };
+
     if (selecoes.cor_corpo) objeto.cor_corpo = selecoes.cor_corpo;
     if (selecoes.cor_alca) objeto.cor_alca = selecoes.cor_alca;
     if (selecoes.cor_detalhes) objeto.cor_detalhes = selecoes.cor_detalhes;
@@ -426,22 +430,24 @@ function page() {
   const enviar_pedido = async () => {
     const pedido = criar_objeto_pedido();
 
-    // Validação
     if (!pedido.material || !pedido.padrao || !pedido.tamanho) {
       alert("Por favor, selecione todas as opções obrigatórias");
       return;
     }
 
+    if (pedido.quantidade < 1) {
+      alert("A quantidade deve ser pelo menos 1");
+      return;
+    }
+
     try {
-      const sacola_salva = await api.post("/sacolas_brechos", pedido);
-
+      const token = JSON.parse(localStorage.getItem("user"));
+      const sacola_salva = await api.post("/sacolas_brechos", pedido, { headers: {Authorization: `Bearer ${token}`}});
       // await pedido_sacola_para_maquina(sacola_salva.data);
-
       buscar_sacolas_brechos().then((sacolas) => set_array_sacola_brecho(sacolas));
 
       alert("Pedido enviado com sucesso!");
       router.push(`/sacola_brecho`);
-
     } catch (error) {
       console.error("Erro ao enviar pedido:", error);
       alert(error.response?.data?.message || "Erro ao enviar pedido. Tente novamente.");
@@ -488,7 +494,34 @@ function page() {
                 <h2>{traducaoNomeProduto[produto_atual.nome] || produto_atual.nome}</h2>
 
                 <div className={styles["container-preço-quantidade"]}>
-                  <h4>R$ {produto_atual.preco.toFixed(2).replace(".", ",")} - Kit com 10 uni</h4>
+                  <h4>R$ {(produto_atual.preco * quantidade).toFixed(2).replace(".", ",")} un</h4>
+
+                  <div className={styles["container-contador-quantidade"]}>
+                    <button
+                      disabled={quantidade === 1}
+                      onClick={() => set_quantidade(Math.max(1, quantidade - 1))}
+                      className={styles["botao-menos"]}
+                    >
+                      <Minus color="#3e2a21" strokeWidth={1.75} />
+                    </button>
+                    <input
+                      type="number"
+                      min="1"
+                      value={quantidade}
+                      onChange={(e) => {
+                        const valor = parseInt(e.target.value) || 1;
+                        set_quantidade(Math.max(1, valor));
+                      }}
+                      disabled
+                      className={styles["input-quantidade"]}
+                    />
+                    <button
+                      onClick={() => set_quantidade(quantidade + 1)}
+                      className={styles["botao-aumentar"]}
+                    >
+                      <Plus color="#3e2a21" strokeWidth={1.75} />
+                    </button>
+                  </div>
                 </div>
 
                 <p>{produto_atual.descricao}</p>
@@ -589,6 +622,12 @@ function page() {
                       </select>
                     </div>
                   )}
+
+                  {/* Adicionar ANTES do buttons-acoes-personalizacao-produtos */}
+                  <div className={styles["escolha-quantidade"]}>
+
+
+                  </div>
                 </div>
               </div>
 
