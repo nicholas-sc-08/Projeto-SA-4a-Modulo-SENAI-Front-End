@@ -6,7 +6,8 @@ export async function buscar_conversas() {
 
     try {
 
-        const resposta = await api.get(`/chats`);
+        const token = JSON.parse(localStorage.getItem("user"));
+        const resposta = await api.get(`/chats`, { headers: { Authorization: `Bearer ${token}` } });
         return resposta.data;
 
     } catch (erro) {
@@ -20,7 +21,8 @@ export async function buscar_conversa(id) {
 
     try {
 
-        const resposta = await api.get(`/chats/${id}`);
+        const token = JSON.parse(localStorage.getItem("user"));
+        const resposta = await api.get(`/chats/${id}`, { headers: { Authorization: `Bearer ${token}` } });
         return resposta.data;
 
     } catch (erro) {
@@ -34,8 +36,8 @@ export async function cadastrar_conversa(mensagem) {
 
     try {
 
-        console.log(mensagem);
-        const resposta = await api.post(`/chats`, mensagem);
+        const token = JSON.parse(localStorage.getItem("user"));
+        const resposta = await api.post(`/chats`, mensagem, { headers: { Authorization: `Bearer ${token}` } });
         return resposta.data;
 
     } catch (erro) {
@@ -49,7 +51,8 @@ export async function atualizar_conversa(id, mensagem) {
 
     try {
 
-        const resposta = await api.put(`/chats/${id}`, mensagem);
+        const token = JSON.parse(localStorage.getItem("user"));
+        const resposta = await api.put(`/chats/${id}`, mensagem, { headers: { Authorization: `Bearer ${token}` } });
         return resposta.data;
 
     } catch (erro) {
@@ -63,7 +66,8 @@ export async function deletar_conversa(id) {
 
     try {
 
-        const reposta = await api.delete(`/chats/${id}`);
+        const token = JSON.parse(localStorage.getItem("user"));
+        const reposta = await api.delete(`/chats/${id}`, { headers: { Authorization: `Bearer ${token}` } });
 
     } catch (erro) {
 

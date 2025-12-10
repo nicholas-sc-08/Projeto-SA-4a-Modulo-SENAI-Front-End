@@ -148,7 +148,8 @@ export default function chat() {
                 hora: `${dia_de_hoje.getHours() < 10 ? `0${dia_de_hoje.getHours()}` : dia_de_hoje.getHours()}:${dia_de_hoje.getMinutes() < 10 ? `0${dia_de_hoje.getMinutes()}` : dia_de_hoje.getMinutes()}`
             };
 
-            const resposta = await api.post(`/chats`, mensagem);
+            const token = JSON.parse(localStorage.getItem("user"));
+            const resposta = await api.post(`/chats`, mensagem, { headers: { Authorization: `Bearer ${token}` } });
             set_conversa_atual([...conversa_atual, resposta]);
             socket.emit("enviar_mensagem", resposta);
             set_mensagem_enviar("");
@@ -303,8 +304,8 @@ export default function chat() {
                                         <span>{buscar_ultima_mensagem(conversa._id, array_chat, usuario_logado)}</span>
                                     </section>
                                 </div>
-                            )) :""
-                                }
+                            )) : ""
+                            }
                         </motion.div>
                     </AnimatePresence>
                     : ""}
