@@ -14,6 +14,7 @@ import { AnimatePresence } from "framer-motion";
 import { motion } from "framer-motion";
 import { buscar_ultima_mensagem } from "@/services/chat/chat";
 import api from "@/services/api";
+import { useRouter } from "next/navigation";
 import styles from "@/app/chat/page.module.css";
 import socket from "@/services/socket";
 
@@ -38,6 +39,7 @@ export default function chat() {
     const { secao_chat, set_secao_chat } = useGlobalContext();
     const { usuario_logado, set_usuario_logado } = useGlobalContext();
     const dia_de_hoje = new Date();
+    const router = useRouter();
 
     useEffect(() => {
 

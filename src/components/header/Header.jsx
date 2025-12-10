@@ -259,7 +259,7 @@ export default function Header({ tipo }) {
 
                     {tipo === 'brecho' && (
                         <button className={styles["button-chat-navbar"]} onClick={() => router.push("/chat")}>
-                            <img src="/img/icons/chat.svg" alt="Chat" />
+                            <img src="/img/icons/messenger.png" alt="Chat" />
                         </button>
                     )}
 
