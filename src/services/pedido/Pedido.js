@@ -1,6 +1,5 @@
 "use client";
 
-import { headers } from "next/headers";
 import api from "../api";
 
 /**
