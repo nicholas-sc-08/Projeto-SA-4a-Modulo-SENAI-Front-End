@@ -507,8 +507,13 @@ const ModalPersonalizacaoProdutos = ({ isOpen, onClose }) => {
 
                         <div className={styles["conteudo-personalizacao"]}>
                             <div className={styles["preview-produto"]}>
-                                <img src={imagemAtual} alt={produto_atual.nome} />
+                                {imagemAtual ? (
+                                    <img src={imagemAtual} alt={produto_atual.nome} />
+                                ) : (
+                                    <p>Nenhuma imagem selecionada</p>
+                                )}
                             </div>
+
 
                             <div className={styles["opcoes-personalizacao"]}>
                                 <div className={styles["info-produto-header"]}>
