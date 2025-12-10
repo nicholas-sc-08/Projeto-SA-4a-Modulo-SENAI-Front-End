@@ -94,8 +94,6 @@ export function nome_produto(tipo) {
 
 export function imagem_produto_sacola_brecho(tipo, padrao, cor, cor_corpo, cor_alca) {
 
-    console.log(cor_corpo);
-
     if (tipo == "sacola") {
 
         switch (true) {

@@ -108,8 +108,9 @@ export default function Sacola_geral() {
 
         try {
 
+            const token = JSON.parse(localStorage.getItem("user"));
             const array_com_produto_removido = sacola.filter(p => p._id !== produto_selecionado._id);
-            await api.delete(`/sacolas_brechos/${produto_selecionado._id}`);
+            await api.delete(`/sacolas_brechos/${produto_selecionado._id}`, { headers: { Authorization: `Bearer ${token}`}});
             set_sacola(array_com_produto_removido);
             buscarPersonalizados().then(p => set_array_estoque(p));
             set_clicou_em_excluir(true);
@@ -163,7 +164,8 @@ export default function Sacola_geral() {
             };
 
             // Atualiza no backend
-            await api.put(`/sacolas_brechos/${produto_selecionado._id}`, produto_atualizado);
+            const token = JSON.parse(localStorage.getItem("user"));
+            await api.put(`/sacolas_brechos/${produto_selecionado._id}`, {headers: { Authorization: `Bearer ${token}`}}, produto_atualizado);
 
             // Re-busca dados atualizados
             const sacolas_atualizadas = await buscar_sacolas_brechos();
@@ -187,7 +189,8 @@ export default function Sacola_geral() {
             };
 
             // Atualiza no backend
-            await api.put(`/sacolas_brechos/${produto_selecionado._id}`, produto_atualizado);
+            const token = JSON.parse(localStorage.getItem("user"));
+            await api.put(`/sacolas_brechos/${produto_selecionado._id}`, produto_atualizado, { headers: { Authorization: `Bearer ${token}` } });
 
             // Re-busca dados atualizados
             const sacolas_atualizadas = await buscar_sacolas_brechos();

@@ -1,65 +1,66 @@
 import api from "../api";
 
-export async function buscar_enderecos(){
+export async function buscar_enderecos() {
 
     try {
 
-        const resposta = await api.get("/enderecos");
+        const token = JSON.parse(localStorage.getItem("user"));
+        const resposta = await api.get("/enderecos", { headers: { Authorization: `Bearer ${token}` } });
         return resposta.data;
-        
+
     } catch (erro) {
-      
+
         console.error(erro);
     };
 };
 
-export async function buscar_endereco(id){
+export async function buscar_endereco(id) {
 
     try {
 
         const resposta = await api.get(`/enderecos/${id}`);
         return resposta.data;
-        
+
     } catch (erro) {
-      
+
         console.error(erro);
     };
 };
 
-export async function cadastrar_endereco(endereco){
+export async function cadastrar_endereco(endereco) {
 
     try {
 
         const resposta = await api.post("/enderecos", endereco);
         return resposta.data;
-        
+
     } catch (erro) {
-      
+
         console.error(erro);
     };
 };
 
-export async function atualizar_endereco(endereco, id){
+export async function atualizar_endereco(endereco, id) {
 
     try {
 
         const resposta = await api.put(`/enderecos/${id}`, endereco);
         return resposta.data;
-        
+
     } catch (erro) {
-      
+
         console.error(erro);
     };
 };
 
-export async function deletar_endereco(id){
+export async function deletar_endereco(id) {
 
     try {
 
         const resposta = await api.delete(`/enderecos/${id}`);
-        
+
     } catch (erro) {
-      
+
         console.error(erro);
     };
 };

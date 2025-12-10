@@ -12,6 +12,10 @@ import { Link } from 'next/link';
 import { motion, AnimatePresence, useAnimation } from "framer-motion";
 import Header from '@/components/header/Header';
 import Compra_realizada from '@/components/pop_up_compra_realizada/Compra_realizada';
+import { buscar_brechos } from '@/services/brecho/brecho';
+import { buscar_clientes } from '@/services/cliente/cliente';
+import { buscar_produtos } from '@/services/produto/produto';
+import { buscar_categorias } from '@/services/categoria/categoria';
 // import { motion, AnimatePresence } from 'framer-motion';
 // import { useSearch } from '@/contexts/SearchContext';
 
@@ -58,10 +62,10 @@ export default function Tela_incial() {
 
   useEffect(() => {
 
-    informacoes_clientes();
-    informacoes_brechos();
-    informacoes_produtos();
-    buscar_categorias()
+    buscar_brechos().then(b => set_array_brechos(b));
+    buscar_clientes().then(c => set_array_clientes(c));
+    buscar_produtos().then(p => set_array_produtos(p));
+    buscar_categorias().then(c => set_array_categorias(c));
     set_id_categoria_selecionada(null);
 
   }, []);
@@ -71,55 +75,6 @@ export default function Tela_incial() {
     quantidade_de_produtos_sacola();
 
   }, [sacola]);
-
-  async function informacoes_clientes() {
-
-    try {
-
-      const resultado = await api.get(`/clientes`);
-      set_array_clientes(resultado.data);
-
-    } catch (erro) {
-
-      console.error(erro);
-    };
-  };
-
-  async function informacoes_brechos() {
-
-    try {
-
-      const resultado = await api.get(`/brechos`);
-      set_array_brechos(resultado.data);
-
-    } catch (erro) {
-
-      console.error(erro);
-    };
-  };
-
-  async function informacoes_produtos() {
-
-    try {
-
-      const resultado = await api.get(`/produtos`);
-      set_array_produtos(resultado.data);
-
-    } catch (erro) {
-
-      console.error(erro);
-    };
-  };
-
-  async function buscar_categorias() {
-    try {
-      const categorias = await api.get(`/categorias`);
-      set_array_categorias(categorias.data);
-    } catch (erro) {
-      console.error(erro);
-    };
-  };
-
 
   function quantidade_de_produtos_sacola() {
 
