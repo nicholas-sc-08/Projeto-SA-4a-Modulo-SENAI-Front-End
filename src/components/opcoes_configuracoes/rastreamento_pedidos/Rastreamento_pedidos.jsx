@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import styles from '@/components/opcoes_configuracoes/rastreamento_pedidos/Rastreamento_pedidos.module.css'
 import { buscar_sacola_brecho } from '@/services/sacolas_brechos/sacolas_brecho'
 import { buscar_pedido_por_id } from '@/services/pedido/Pedido'
-import { Truck } from 'lucide-react';
 import { Check } from 'lucide-react';
 
 function Rastreamento_pedidos({ pedidoId, onVoltar }) {

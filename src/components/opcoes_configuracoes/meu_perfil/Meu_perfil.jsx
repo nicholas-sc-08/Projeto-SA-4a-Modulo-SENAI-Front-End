@@ -4,9 +4,11 @@ import React, { useState, useEffect } from 'react'
 import styles from '@/components/opcoes_configuracoes/meu_perfil/Meu_perfil.module.css'
 import { useGlobalContext } from '@/context/GlobalContext'
 import api from '@/services/api'
+import Toast, { useToast } from '@/components/Toast/Toast'
 
 function Meu_perfil() {
     const { usuario_logado, array_clientes, array_brechos } = useGlobalContext()
+    const { toasts, showToast, removeToast } = useToast()
 
     const [dadosUsuario, setDadosUsuario] = useState(null)
     const [loading, setLoading] = useState(true)
@@ -115,6 +117,7 @@ function Meu_perfil() {
             }
         } catch (erro) {
             console.error('Erro ao identificar usuário:', erro)
+            showToast('Erro ao carregar dados do usuário', 'error')
         } finally {
             setLoading(false)
         }
@@ -147,6 +150,7 @@ function Meu_perfil() {
 
         } catch (erro) {
             console.error('Erro ao buscar dados do cliente:', erro)
+            showToast('Erro ao buscar dados do cliente', 'error')
         }
     }
 
@@ -185,6 +189,7 @@ function Meu_perfil() {
 
         } catch (erro) {
             console.error('Erro ao buscar dados do brechó:', erro)
+            showToast('Erro ao buscar dados do brechó', 'error')
         }
     }
 
@@ -240,7 +245,7 @@ function Meu_perfil() {
 
             setDadosUsuario(response.data)
             setEditandoDadosPessoais(false)
-            alert('Dados pessoais atualizados com sucesso!')
+            showToast('Dados pessoais atualizados com sucesso!', 'success')
 
             if (tipoUsuario === 'cliente') {
                 await buscarDadosCliente()
@@ -252,7 +257,7 @@ function Meu_perfil() {
             console.error('❌ Erro completo:', erro)
             console.error('❌ Resposta do erro:', erro.response?.data)
             console.error('❌ Status:', erro.response?.status)
-            alert(`Erro ao salvar dados pessoais: ${JSON.stringify(erro.response?.data)}`)
+            showToast(`Erro ao salvar dados pessoais: ${erro.response?.data?.message || 'Tente novamente'}`, 'error')
         }
     }
 
@@ -271,13 +276,13 @@ function Meu_perfil() {
 
             setDadosUsuario(response.data)
             setEditandoDadosBrecho(false)
-            alert('Dados do brechó atualizados com sucesso!')
+            showToast('Dados do brechó atualizados com sucesso!', 'success')
 
             await buscarDadosBrecho()
 
         } catch (erro) {
             console.error('Erro ao salvar dados do brechó:', erro)
-            alert('Erro ao salvar dados do brechó')
+            showToast('Erro ao salvar dados do brechó', 'error')
         }
     }
 
@@ -313,11 +318,11 @@ function Meu_perfil() {
             }
 
             setEditandoDadosEndereco(false)
-            alert('Dados de endereço atualizados com sucesso!')
+            showToast('Dados de endereço atualizados com sucesso!', 'success')
 
         } catch (erro) {
             console.error('Erro ao salvar endereço:', erro)
-            alert(`Erro ao salvar endereço: ${erro.response?.data?.message || erro.message}`)
+            showToast(`Erro ao salvar endereço: ${erro.response?.data?.message || 'Tente novamente'}`, 'error')
         }
     }
 
@@ -341,6 +346,8 @@ function Meu_perfil() {
 
     return (
         <div className={styles["container-alinhamento-componente"]}>
+            {/* Toast Container */}
+            <Toast toasts={toasts} removeToast={removeToast} />
 
             {/* Meu perfil */}
             <div className={styles['container-meu-perfil']}>

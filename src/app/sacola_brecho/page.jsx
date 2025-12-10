@@ -14,6 +14,7 @@ import Pop_up_usuario_nao_logado from '@/components/pop_up_usuario_nao_logado/Po
 import Pop_up_sacola_vazia from '@/components/pop_up_sacola_vazia/Pop_up_sacola_vazia';
 import Header from '@/components/header/Header';
 import Footer from '@/components/footer/Footer';
+import Toast, { useToast } from '@/components/Toast/Toast';
 // import Chat from '../../components/chat/Chat.jsx';
 // import Chat_conversa from '../../components/chat/Chat_conversa.jsx';
 import styles from '@/app/sacola/page.module.css';
@@ -30,6 +31,7 @@ export default function Sacola_geral() {
     const { sacola_aberta, set_sacola_aberta } = useGlobalContext();
     const { sacola_ou_produto, set_sacola_ou_produto } = useGlobalContext();
     const { produto, set_produto } = useGlobalContext();
+    const { toasts, showToast, removeToast } = useToast();
     const [clicou_em_excluir, set_clicou_em_excluir] = useState(false);
     const [mostrarPopupCompra, setMostrarPopupCompra] = useState(false);
     const [pop_up_usuario_nao_logado, set_pop_up_usuario_nao_logado] = useState(false);
@@ -169,7 +171,7 @@ export default function Sacola_geral() {
 
         } catch (erro) {
             console.error("Erro ao diminuir quantidade:", erro);
-            alert("Erro ao atualizar quantidade. Tente novamente.");
+            showToast("Erro ao atualizar quantidade. Tente novamente.", "error");
         }
     }
 
@@ -193,7 +195,7 @@ export default function Sacola_geral() {
 
         } catch (erro) {
             console.error("Erro ao aumentar quantidade:", erro);
-            alert("Erro ao atualizar quantidade. Tente novamente.");
+            showToast("Erro ao atualizar quantidade. Tente novamente.", "error");
         }
     }
 
@@ -225,6 +227,7 @@ export default function Sacola_geral() {
         } catch (error) {
 
             console.error("Erro ao iniciar pagamento:", error);
+            showToast("Erro ao iniciar pagamento. Tente novamente.", "error");
         };
     };
 
@@ -246,6 +249,9 @@ export default function Sacola_geral() {
                 transition={{ duration: 0.4 }}
                 ref={referencia_sacola}
             >
+                {/* Toast Container */}
+                <Toast toasts={toasts} removeToast={removeToast} />
+
                 {pop_up_sacola_vazia && <Pop_up_sacola_vazia />}
                 {pop_up_usuario_nao_logado && <Pop_up_usuario_nao_logado />}
                 {clicou_em_excluir && <Pop_up_excluir_produto_sacola />}

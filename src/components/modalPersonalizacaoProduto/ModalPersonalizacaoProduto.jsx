@@ -7,9 +7,11 @@ import api from "@/services/api";
 import { useGlobalContext } from "@/context/GlobalContext";
 import { buscar_sacolas_brechos, cadastrar_sacola_brecho } from "@/services/sacolas_brechos/sacolas_brecho";
 import { useRouter } from "next/navigation";
+import Toast, { useToast } from '@/components/Toast/Toast';
 
 const ModalPersonalizacaoProdutos = ({ isOpen, onClose }) => {
     const { usuario_logado, set_array_sacola_brecho } = useGlobalContext();
+    const { toasts, showToast, removeToast } = useToast();
     const [fase, setFase] = useState(1); // 1: escolha, 2: personalização
     const [produtoSelecionado, setProdutoSelecionado] = useState(null);
     const [quantidade, setQuantidade] = useState(1);
@@ -399,12 +401,12 @@ const ModalPersonalizacaoProdutos = ({ isOpen, onClose }) => {
         const pedido = criarObjetoPedido();
 
         if (!pedido.material || !pedido.padrao || !pedido.tamanho) {
-            alert("Por favor, selecione todas as opções obrigatórias");
+            showToast("Por favor, selecione todas as opções obrigatórias", "error");
             return;
         }
 
         if (pedido.quantidade < 1) {
-            alert("A quantidade deve ser pelo menos 1");
+            showToast("A quantidade deve ser pelo menos 1", "error");
             return;
         }
 
@@ -412,12 +414,12 @@ const ModalPersonalizacaoProdutos = ({ isOpen, onClose }) => {
             await cadastrar_sacola_brecho(pedido);
             buscar_sacolas_brechos().then((sacolas) => set_array_sacola_brecho(sacolas));
 
-            alert("Produto adicionado à sacola com sucesso!");
+            showToast("Produto adicionado à sacola com sucesso!", "success");
             onClose();
             router.push('/sacola_brecho')
         } catch (error) {
             console.error("Erro ao enviar pedido:", error);
-            alert(error.response?.data?.message || "Erro ao enviar pedido. Tente novamente.");
+            showToast(error.response?.data?.message || "Erro ao enviar pedido. Tente novamente.", "error");
         }
     };
 
@@ -425,6 +427,9 @@ const ModalPersonalizacaoProdutos = ({ isOpen, onClose }) => {
 
     return (
         <div className={styles["modal-overlay"]} onClick={onClose}>
+            {/* Toast Container */}
+            <Toast toasts={toasts} removeToast={removeToast} />
+
             <div className={styles["modal-container"]} onClick={(e) => e.stopPropagation()}>
                 <button className={styles["btn-fechar"]} onClick={onClose}>
                     <X size={24} />
@@ -654,4 +659,4 @@ const ModalPersonalizacaoProdutos = ({ isOpen, onClose }) => {
     );
 };
 
-export default ModalPersonalizacaoProdutos;
+export default ModalPersonalizacaoProdutos
