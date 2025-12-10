@@ -100,28 +100,28 @@ export function imagem_produto_sacola_brecho(tipo, padrao, cor, cor_corpo, cor_a
 
         switch (true) {
 
-            case padrao == "sem_logo" && cor == "verde":
+            case padrao == "sem_logo" && cor_corpo == "verde":
                 return "./img/produtos_personalizados/sacola/sacola-verde-meio-virada.png";
 
-            case padrao == "logo_fly" && cor == "verde":
+            case padrao == "logo_fly" && cor_corpo == "verde":
                 return "./img/produtos_personalizados/sacola/sacola-verde-meio-virada-logo-nome-meio.png";
 
-            case padrao == "logo_fly_embaixo" && cor == "verde":
+            case padrao == "logo_fly_embaixo" && cor_corpo == "verde":
                 return "./img/produtos_personalizados/sacola/sacola-verde-meio-virada-logo-embaixo.png";
 
-            case padrao == "logo_fly_nome" && cor == "verde":
+            case padrao == "logo_fly_nome" && cor_corpo == "verde":
                 return "./img/produtos_personalizados/sacola/sacola-verde-meio-virada-logo-nome-embaixo.png";
 
-            case padrao == "sem_logo" && cor == "branco":
+            case padrao == "sem_logo" && cor_corpo == "branco":
                 return "./img/produtos_personalizados/sacola/sacola-branca-meio-virada.png";
 
-            case padrao == "logo_fly" && cor == "branco":
+            case padrao == "logo_fly" && cor_corpo == "branco":
                 return "./img/produtos_personalizados/sacola/sacola-branca-meio-virada-logo-nome-meio.png";
 
-            case padrao == "logo_fly_embaixo" && cor == "branco":
+            case padrao == "logo_fly_embaixo" && cor_corpo == "branco":
                 return "./img/produtos_personalizados/sacola/sacola-branca-meio-virada-logo-embaixo.png";
 
-            case padrao == "logo_fly_nome" && cor == "branco":
+            case padrao == "logo_fly_nome" && cor_corpo == "branco":
                 return "./img/produtos_personalizados/sacola/sacola-branca-meio-virada-logo-embaixosacola-branca-meio-virada-logo-embaixo.png";
         };
     };

@@ -47,21 +47,20 @@ function Meu_perfil() {
     const buscarEndereco = async (fk_id_cliente, fk_id_brecho) => {
         try {
             let response
+            const token = JSON.parse(localStorage.getItem("user"));
             if (fk_id_cliente) {
-                response = await api.get(`/enderecos`, {
+                response = await api.get(`/enderecos`, { headers: { Authorization: `Bearer ${token}` } }, {
                     params: { fk_id_cliente }
                 })
             } else if (fk_id_brecho) {
-                response = await api.get(`/enderecos`, {
+                response = await api.get(`/enderecos`, { headers: { Authorization: `Bearer ${token}` } }, {
                     params: { fk_id_brecho }
                 })
             }
 
-            console.log('📍 Resposta do endereço:', response?.data)
-
             if (response && response.data) {
                 let endereco = null
-                
+
                 // Se for array, filtra e pega o primeiro que corresponde
                 if (Array.isArray(response.data)) {
                     if (fk_id_cliente) {
@@ -123,7 +122,8 @@ function Meu_perfil() {
 
     const buscarDadosCliente = async () => {
         try {
-            const response = await api.get(`/clientes/${usuario_logado._id}`)
+            const token = JSON.parse(localStorage.getItem("user"));
+            const response = await api.get(`/clientes/${usuario_logado._id}`, { headers: { Authorization: `Bearer ${token}` } })
             const data = response.data
 
             setDadosUsuario(data)
@@ -152,7 +152,8 @@ function Meu_perfil() {
 
     const buscarDadosBrecho = async () => {
         try {
-            const response = await api.get(`/brechos/${usuario_logado._id}`)
+            const token = JSON.parse(localStorage.getItem("user"));
+            const response = await api.get(`/brechos/${usuario_logado._id}`, { headers: { Authorization: `Bearer ${token}` } })
             const data = response.data
 
             setDadosUsuario(data)
@@ -232,7 +233,8 @@ function Meu_perfil() {
 
             console.log('📤 Endpoint:', endpoint)
 
-            const response = await api.put(endpoint, dadosParaAtualizar)
+            const token = JSON.parse(localStorage.getItem("user"));
+            const response = await api.put(endpoint, dadosParaAtualizar, { headers: { Authorization: `Bearer ${token}` } })
 
             console.log('✅ Resposta do servidor:', response.data)
 
@@ -264,7 +266,8 @@ function Meu_perfil() {
                 horario_funcionamento: dadosBrecho.horario_funcionamento
             }
 
-            const response = await api.put(`/brechos/${usuario_logado._id}`, dadosParaAtualizar)
+            const token = JSON.parse(localStorage.getItem("user"));
+            const response = await api.put(`/brechos/${usuario_logado._id}`, dadosParaAtualizar, { headers: { Authorization: `Bearer ${token}` } });
 
             setDadosUsuario(response.data)
             setEditandoDadosBrecho(false)
@@ -297,12 +300,13 @@ function Meu_perfil() {
             }
 
             let response
-            
+            const token = JSON.parse(localStorage.getItem("user"));
+
             // Se já existe endereço, faz PUT. Se não, faz POST
             if (enderecoId) {
-                response = await api.put(`/enderecos/${enderecoId}`, dadosParaAtualizar)
+                response = await api.put(`/enderecos/${enderecoId}`, dadosParaAtualizar, { headers: { Authorization: `Bearer ${token}` } })
             } else {
-                response = await api.post(`/enderecos`, dadosParaAtualizar)
+                response = await api.post(`/enderecos`, dadosParaAtualizar, { headers: { Authorization: `Bearer ${token}` } })
                 if (response.data._id) {
                     setEnderecoId(response.data._id)
                 }
