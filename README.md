@@ -152,5 +152,3 @@
 |-----------|
 | A interface do usuário foi desenvolvida com React, utilizando o React Router para navegação entre páginas, Framer Motion para animações suaves e interativas, e IMask para formatação de inputs como CPF, telefone e datas. As requisições HTTP são tratadas com Axios, enquanto a autenticação é feita via Google OAuth2 com @react-oauth/google e decodificação de tokens com jwt-decode. Além disso, o sistema conta com integração de websockets em tempo real usando socket.io-client, envio de e-mails via EmailJS, e identificação de cores com color-namer. |
 | ```npm i axios react-router-dom jwt-decode color-namer @react-oauth/google socket.io-client react-imask framer-motion ngrok emailjs-com``` |
-
-| ```npm i cors express cloudinary socket.io nodemon mongoose dotenv stripe ```|
